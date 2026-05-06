@@ -1,0 +1,190 @@
+# IGCSE Economics 0455 — Lesson library
+
+Interactive classroom presentations for Cambridge IGCSE Economics 0455,
+all built on one shared design system.
+
+## Quick start
+
+Open `index.html` in a browser (or double-click it) to see the landing page,
+then click any lesson tile to open that deck.
+
+Inside a deck:
+
+| Key              | Action                   |
+| ---------------- | ------------------------ |
+| `→` / `Space` / `PageDown` | next slide      |
+| `←` / `PageUp`   | previous slide           |
+| `Home` / `End`   | first / last slide       |
+| `F`              | toggle fullscreen        |
+| `N`              | toggle teacher notes     |
+| `O`              | overview grid (jump)     |
+| `Esc`            | close overview           |
+
+URL hash tracks the slide (e.g. `…/index.html#12`), so bookmarks work.
+
+---
+
+On slides that use partial review, the next action reveals the next element
+before advancing to the next slide. Use this sparingly: full slides are better
+when students need to see the whole structure at once.
+
+## Folder structure
+
+```
+IGCSE HTML/
+├── index.html                         ← course landing page
+├── README.md                          ← this file
+├── references/
+│   └── igcse-economics-definitions-2026.md ← exam-ready definition overview
+├── assets/
+│   ├── css/
+│   │   ├── theme.css                  ← design tokens + primitives (buttons, cards, chips)
+│   │   └── presentation.css           ← slide layout, navigation, motion, print
+│   └── js/
+│       ├── presentation.js            ← reusable slide engine (ES module)
+│       └── visuals.js                 ← SVG graphic library
+├── lessons/
+│   ├── _template/                     ← starter files for a new lesson
+│   │   ├── index.html
+│   │   └── slides.js
+│   └── unit-4-government/
+│       └── 4-3-fiscal-policy/
+│           ├── index.html             ← thin page; just loads engine + slides
+│           └── slides.js              ← lesson content (data only)
+└── archive/                           ← superseded originals
+```
+
+Naming rules:
+
+- Unit folders: `unit-<number>-<slug>` (e.g. `unit-4-government`).
+- Lesson folders: `<syllabus-code>-<slug>` (e.g. `4-3-fiscal-policy`).
+- Lesson slugs use kebab-case; no spaces, no capital letters.
+
+---
+
+## Reference source for lesson content
+
+Use `references/igcse-economics-definitions-2026.md` as the shared content
+source when building or revising decks. It contains syllabus references,
+terms, and exam-ready definition / mark-scheme wording.
+
+Recommended workflow:
+
+1. Find the relevant syllabus rows, e.g. `4.3` for fiscal policy.
+2. Use the exact definition wording on `term` slides where possible.
+3. Shorten wording only when needed for slide clarity.
+4. Keep detailed wording in speaker explanation or follow-up practice slides.
+5. Add a short source comment near the top of each lesson `slides.js`.
+
+Example comment:
+
+```
+Definition source: ../../../references/igcse-economics-definitions-2026.md
+Use the 4.3 rows for exam-ready wording when creating slides.
+```
+
+---
+
+## Creating a new lesson
+
+1. Copy `lessons/_template/` into the correct unit folder and rename, e.g.:
+   ```
+   lessons/unit-2-allocation/2-4-elasticity/
+   ```
+2. Edit **`slides.js`** — change the `meta` block and rewrite the `slides` array.
+   Each slide is a plain object with a `type` and fields for that type.
+3. Leave **`index.html`** alone unless you're customising the page itself.
+   It simply imports the engine and your slide data.
+4. Add a card to `index.html` (the landing page) under the matching unit.
+
+That's it. No CSS or JavaScript changes are needed for a new lesson.
+
+### Slide types (in `slides.js`)
+
+| `type`     | Purpose                                  |
+| ---------- | ---------------------------------------- |
+| `hero`     | Opening title slide                      |
+| `roadmap`  | Numbered agenda cards                    |
+| `outcomes` | Learning objectives list                 |
+| `term`     | Key-term definition box (+ optional examples / formula) |
+| `compare`  | Side-by-side comparison                  |
+| `quiz`     | Question + choice pills                  |
+| `answer`   | Answer card and/or reasoning steps       |
+| `cards`    | Grid of concept cards                    |
+| `split`    | Two-column bullet comparison             |
+| `flow`     | Chain of arrow-connected chips           |
+| `exam`     | Exam-style question + keyword anchors    |
+| `section`  | Full-bleed section break                 |
+
+Every slide accepts:
+
+- `eyebrow` — small badge text (top-left)
+- `title`   — main heading
+- `visual`  — a key from `assets/js/visuals.js`, or a photo object with
+  `src`, `alt`, `credit`, and `source`, for the right-hand visual
+- `notes`   — private teacher note revealed with `N`
+
+Also accepts:
+
+- `partialReview` - optional reveal pacing for selected slides
+
+See `lessons/unit-4-government/4-3-fiscal-policy/slides.js` for a full example.
+
+### Partial review
+
+Prefer full content by default. Add `partialReview` only when revealing one
+piece at a time improves teaching:
+
+- Good uses: answer steps, exam chains, flow diagrams, dense comparisons,
+  starter questions, and definition-then-formula reveals.
+- Avoid it: title slides, lesson maps, section breaks, single-concept answer
+  slides, and tasks where students need all options visible before responding.
+
+Use `partialReview: true` to reveal all supported content blocks on a slide, or
+pass selectors for finer control:
+
+```js
+partialReview: ['.choices > .choice', '.prompt']
+```
+
+### Visual keys
+
+Declared in `assets/js/visuals.js`. Core graphics:
+
+- `hero`          — orbiting-coins title graphic
+- `abstract`      — concentric circles with crossed curves (default fall-back)
+- `demandShift`   — supply/demand with shifted curve
+- `budgetBars`    — two-bar revenue vs. spending chart
+- `progressive` / `regressive` / `proportional` — tax-rate bar charts
+- `demandUp` / `demandDown` — expansionary / contractionary curves
+- `flowArrows`    — four-node horizontal flow
+
+Legacy keys from older lessons are mapped onto these automatically.
+
+---
+
+## Design system
+
+All colours, radii, shadows, and font sizes live as CSS custom properties in
+`assets/css/theme.css`. Change the token, every lesson updates.
+
+Tone: dark background (`--bg-0` = `#05101d`), bold white headings with tight
+tracking, cyan/gold accents. Large fluid type (`clamp()`) so a single deck
+reads cleanly on anything from a 13" laptop to a 75" classroom display.
+
+Motion is gated on `prefers-reduced-motion` and print CSS is included for
+PDF export (File → Print → "Save as PDF").
+
+---
+
+## Browser requirements
+
+The engine uses native ES modules (`import` / `export`), so the lesson pages
+must be loaded over `http://` (or `file:///` in browsers that allow local
+module loads — most do). If double-clicking the HTML fails due to CORS:
+
+```powershell
+# from the repo root, in PowerShell
+python -m http.server 8080
+```
+…then open <http://localhost:8080/>.

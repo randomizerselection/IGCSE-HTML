@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cambridge IGCSE Economics 0455 — Lesson library</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
+
+  <link rel="stylesheet" href="assets/css/theme.css" />
+
+  <style>
+    body { overflow-y: auto; min-height: 100vh; }
+    .site {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 10vh 6vw 8vh;
+    }
+    .site header { margin-bottom: 4rem; max-width: 60ch; }
+    .site h1 {
+      font-size: clamp(48px, 6vw, 120px);
+      letter-spacing: -0.05em;
+      line-height: .94;
+      margin-bottom: .3em;
+      background: linear-gradient(135deg, #ffffff, var(--cyan) 50%, var(--gold));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .site .tagline {
+      font-size: clamp(20px, 2vw, 34px);
+      color: var(--ink-dim);
+      line-height: 1.3;
+      margin: .4em 0 0;
+    }
+
+    .unit { margin: 4rem 0; }
+    .unit-head {
+      display: flex; justify-content: space-between; align-items: baseline;
+      gap: 1rem; margin-bottom: 1.2rem;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: .7rem;
+    }
+    .unit-head h2 {
+      font-size: clamp(26px, 2.8vw, 50px);
+      letter-spacing: -0.02em;
+    }
+    .unit-head .count { color: var(--muted); font-size: var(--t-small); letter-spacing: .08em; text-transform: uppercase; }
+
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    a.lesson-card {
+      display: block;
+      padding: 1.4rem 1.5rem;
+      border: 1px solid var(--line);
+      border-radius: var(--r-lg);
+      background: var(--card-bg);
+      color: var(--ink);
+      text-decoration: none;
+      box-shadow: var(--shadow-md);
+      transition: transform .3s var(--ease), border-color .3s var(--ease), background .3s var(--ease);
+    }
+    a.lesson-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--line-strong);
+      background: var(--card-bg-hi);
+    }
+    a.lesson-card .code {
+      font-size: 13px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    a.lesson-card h3 {
+      font-size: clamp(20px, 1.8vw, 30px);
+      line-height: 1.15;
+      margin: .4em 0 .4em;
+      letter-spacing: -0.01em;
+    }
+    a.lesson-card p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    a.lesson-card.placeholder {
+      opacity: .5;
+      pointer-events: none;
+      font-style: italic;
+    }
+
+    footer.site-foot {
+      margin-top: 6rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+    }
+  </style>
+</head>
+<body class="bg-ambient">
+  <div class="site">
+
+    <header>
+      <div class="badge is-warm">Cambridge IGCSE · 0455</div>
+      <h1>Economics lesson library</h1>
+      <p class="tagline">
+        A growing set of interactive classroom presentations — one HTML deck per
+        specification topic, sharing a single design system.
+      </p>
+    </header>
+
+    <!-- UNIT 1 -->
+    <section class="unit">
+      <div class="unit-head">
+        <h2>Unit 1 — The basic economic problem</h2>
+        <span class="count">coming soon</span>
+      </div>
+      <div class="lesson-grid">
+        <a class="lesson-card placeholder">
+          <span class="code">1.1</span>
+          <h3>The nature of the economic problem</h3>
+          <p>Finite resources, unlimited wants, scarcity.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- UNIT 2 -->
+    <section class="unit">
+      <div class="unit-head">
+        <h2>Unit 2 — The allocation of resources</h2>
+        <span class="count">coming soon</span>
+      </div>
+      <div class="lesson-grid">
+        <a class="lesson-card placeholder">
+          <span class="code">2.x</span>
+          <h3>Demand, supply and price determination</h3>
+          <p>Market forces and equilibrium.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- UNIT 3 -->
+    <section class="unit">
+      <div class="unit-head">
+        <h2>Unit 3 — Microeconomic decision makers</h2>
+        <span class="count">coming soon</span>
+      </div>
+      <div class="lesson-grid">
+        <a class="lesson-card placeholder">
+          <span class="code">3.x</span>
+          <h3>Households, workers, firms, banks</h3>
+          <p>Individual decision makers in the economy.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- UNIT 4 -->
+    <section class="unit">
+      <div class="unit-head">
+        <h2>Unit 4 — The role of government in an economy</h2>
+        <span class="count">1 lesson</span>
+      </div>
+      <div class="lesson-grid">
+        <a class="lesson-card" href="lessons/unit-4-government/4-3-fiscal-policy/index.html">
+          <span class="code">4.3</span>
+          <h3>Fiscal policy</h3>
+          <p>Taxation classification, good-tax principles, budget balance and macroeconomic aims.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- UNIT 5 -->
+    <section class="unit">
+      <div class="unit-head">
+        <h2>Unit 5 — Economic development</h2>
+        <span class="count">coming soon</span>
+      </div>
+      <div class="lesson-grid">
+        <a class="lesson-card placeholder">
+          <span class="code">5.x</span>
+          <h3>Living standards, poverty, population</h3>
+          <p>Measuring and explaining development.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- UNIT 6 -->
+    <section class="unit">
+      <div class="unit-head">
+        <h2>Unit 6 — International trade and globalisation</h2>
+        <span class="count">coming soon</span>
+      </div>
+      <div class="lesson-grid">
+        <a class="lesson-card placeholder">
+          <span class="code">6.x</span>
+          <h3>Specialisation, trade, exchange rates</h3>
+          <p>Links between economies.</p>
+        </a>
+      </div>
+    </section>
+
+    <footer class="site-foot">
+      <span>Built for classroom teaching · press <b>F</b> inside a lesson for fullscreen.</span>
+      <span>Cambridge IGCSE Economics 0455</span>
+    </footer>
+
+  </div>
+</body>
+</html>

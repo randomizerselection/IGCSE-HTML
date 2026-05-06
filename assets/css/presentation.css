@@ -1,0 +1,332 @@
+/* ============================================================
+   Presentation engine — deck, slides, navigation, print, motion
+   Depends on theme.css tokens.
+   ============================================================ */
+
+html, body { height: 100%; }
+body { overflow: hidden; }
+
+#deck {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+/* ---------- Slide canvas ---------- */
+.slide {
+  position: absolute; inset: 0;
+  display: none;
+  padding: 5vh 5.8vw 5.5vh;
+  grid-template-rows: auto 1fr auto;
+  gap: 2vh;
+  overflow: hidden;
+}
+.slide.is-active {
+  display: grid;
+  animation: slideIn .28s var(--ease) both;
+}
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------- Partial review reveals ---------- */
+.partial-item {
+  opacity: 0;
+  transform: translateY(10px);
+  filter: blur(2px);
+  pointer-events: none;
+  transition:
+    opacity .24s var(--ease),
+    transform .24s var(--ease),
+    filter .24s var(--ease);
+}
+.partial-item.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  pointer-events: auto;
+}
+
+/* ---------- Chrome: topline & footer ---------- */
+.topline {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px;
+  color: var(--muted);
+  font-size: var(--t-small);
+  letter-spacing: .06em; text-transform: uppercase;
+}
+.topline .count {
+  font-variant-numeric: tabular-nums;
+  color: #d9e2f1; font-weight: 600;
+}
+
+.slide-footer {
+  display: flex; justify-content: space-between; align-items: end;
+  gap: 16px;
+  font-size: var(--t-small);
+  color: var(--muted);
+}
+
+/* ---------- Layout: two-column content ---------- */
+.content {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1.18fr .82fr;
+  gap: 3vw;
+  align-items: center;
+}
+.content.is-full { grid-template-columns: 1fr; }
+.content.is-section { grid-template-columns: .95fr 1.05fr; }
+
+.content main {
+  min-width: 0;
+  display: grid;
+  align-content: center;
+  gap: .6rem;
+}
+.content aside.visual {
+  min-width: 0;
+  min-height: 42vh;
+  display: grid;
+  place-items: center;
+}
+
+@media (max-width: 960px) {
+  .content { grid-template-columns: 1fr; gap: 2vh; }
+  .content aside.visual { min-height: 30vh; }
+  .slide { padding: 4vh 5vw; }
+}
+
+/* ---------- Visual panels ---------- */
+.vizPanel {
+  width: min(100%, 560px);
+  aspect-ratio: 1.08;
+  background: var(--card-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-sm);
+  padding: 28px;
+  overflow: hidden;
+}
+.vizPanel svg { width: 100%; height: 100%; display: block; }
+
+.photoPanel {
+  position: relative;
+  width: min(100%, 600px);
+  height: min(64vh, 520px);
+  min-height: 360px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.055);
+  box-shadow: var(--shadow-md);
+}
+.photoPanel img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+.photoPanel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 58%, rgba(3,10,20,.78));
+}
+.photoPanel figcaption {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 12px;
+  z-index: 1;
+  color: rgba(255,255,255,.78);
+  font-size: clamp(11px, .85vw, 14px);
+  line-height: 1.25;
+}
+.photoPanel figcaption a {
+  color: inherit;
+  text-decoration: none;
+}
+.photoPanel figcaption a:hover { text-decoration: underline; }
+
+@media (max-width: 960px) {
+  .photoPanel {
+    height: min(34vh, 360px);
+    min-height: 240px;
+  }
+}
+
+/* SVG primitives */
+.axis     { stroke: rgba(255,255,255,.55); stroke-width: 2.5; }
+.gridline { stroke: rgba(255,255,255,.055); stroke-width: 1; }
+.curve {
+  fill: none; stroke-width: 6; stroke-linecap: round;
+  filter: none;
+  stroke-dasharray: 700; stroke-dashoffset: 700;
+  animation: draw .8s var(--ease) forwards;
+}
+.curve.gold  { stroke: var(--gold); }
+.curve.cyan  { stroke: var(--cyan); }
+.curve.green { stroke: var(--green); }
+.curve.rose  { stroke: var(--rose); }
+.curve.violet { stroke: var(--violet); }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+.bar {
+  rx: 8;
+  transform-origin: bottom;
+  animation: growY 1s var(--ease) forwards;
+}
+@keyframes growY {
+  from { transform: scaleY(.02); opacity: .4; }
+  to   { transform: scaleY(1); opacity: 1; }
+}
+
+.arrow-line {
+  stroke: var(--gold); stroke-width: 4.5; fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 360; stroke-dashoffset: 360;
+  animation: draw .75s var(--ease) forwards;
+}
+
+/* Hero decorative graphic */
+.heroGraphic {
+  position: relative;
+  width: min(100%, 520px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(86,216,255,.14), transparent 62%);
+  display: grid; place-items: center;
+}
+.heroGraphic .orbit {
+  position: absolute;
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 50%;
+}
+.heroGraphic .o1 { inset: 8%; }
+.heroGraphic .o2 { inset: 22%; }
+.heroGraphic .o3 { inset: 36%; }
+.coin {
+  position: absolute;
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--gold), var(--gold-warm));
+  color: #111827;
+  font-weight: 900; font-size: 30px;
+  box-shadow: var(--shadow-sm);
+}
+.coin.c1 { top: 12%; right: 16%; }
+.coin.c2 { bottom: 15%; left: 10%; transform: scale(.8); }
+.coin.c3 { bottom: 24%; right: 14%; transform: scale(.62); }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- Hero slide ---------- */
+.slide.is-hero .content { grid-template-columns: 1.2fr .8fr; }
+.slide.is-hero h1 { font-size: var(--t-hero); }
+
+/* ---------- Progress bar ---------- */
+#progress {
+  position: fixed; left: 0; right: 0; bottom: 0;
+  height: 4px;
+  background: rgba(255,255,255,.08);
+  z-index: 60;
+}
+#progress > span {
+  display: block; height: 100%; width: 0;
+  background: linear-gradient(90deg, var(--cyan), var(--gold));
+  transition: width .3s var(--ease);
+}
+
+/* ---------- Hint ribbon ---------- */
+.help {
+  position: fixed; right: 16px; bottom: 16px;
+  z-index: 50;
+  font-size: 12px; letter-spacing: .03em;
+  color: rgba(255,255,255,.46);
+  background: rgba(0,0,0,.18);
+  padding: 7px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.08);
+  backdrop-filter: blur(6px);
+}
+
+/* ---------- Notes overlay ---------- */
+#notes {
+  display: none;
+  position: fixed;
+  left: 4vw; right: 4vw; bottom: 5vh;
+  z-index: 70;
+  padding: 1rem 1.2rem;
+  background: rgba(3,10,20,.92);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-lg);
+  font-size: 16px; line-height: 1.4;
+  color: var(--ink-dim);
+  backdrop-filter: blur(14px);
+}
+#notes.is-visible { display: block; }
+
+/* ---------- Overview (thumbnail grid) ---------- */
+#overview {
+  display: none;
+  position: fixed; inset: 0;
+  z-index: 80;
+  background: rgba(5,12,22,.92);
+  backdrop-filter: blur(18px);
+  padding: 4vh 4vw;
+  overflow: auto;
+}
+#overview.is-visible { display: block; }
+#overview h2 { margin-bottom: 1.2rem; }
+.thumbGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+.thumb {
+  cursor: pointer;
+  text-align: left;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: var(--card-bg);
+  padding: 1rem;
+  color: var(--ink);
+  font-family: inherit;
+  transition: transform .25s var(--ease), border-color .25s var(--ease);
+}
+.thumb:hover { transform: translateY(-3px); border-color: var(--line-strong); }
+.thumb .n { font-size: 12px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
+.thumb .t { display: block; font-weight: 700; margin-top: .35em; font-size: 17px; line-height: 1.25; color: #fff; }
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .slide.is-active { animation: none; }
+  .partial-item { transition: none; }
+  .curve, .arrow-line, .bar { animation: none; stroke-dashoffset: 0; transform: none; }
+  .heroGraphic .orbit { animation: none; }
+}
+
+/* ---------- Print ---------- */
+@media print {
+  html, body { height: auto; overflow: auto; background: white; }
+  body::before, body::after, #progress, .help, #notes, #overview { display: none !important; }
+  #deck { height: auto; }
+  .slide {
+    position: relative !important;
+    display: grid !important;
+    height: 100vh;
+    page-break-after: always;
+    background: var(--bg-0);
+    color: var(--ink);
+  }
+  .partial-item {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
