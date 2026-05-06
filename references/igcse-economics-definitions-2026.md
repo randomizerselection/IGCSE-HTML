@@ -11,6 +11,10 @@ converted_on: "2026-05-06"
 
 **Definition Overview**
 
+> Current syllabus note: for 2027-2029 planning, use
+> `references/igcse-economics-syllabus-2027-2029.md`. This 2026 file is kept as
+> a historical definition glossary for older lesson decks.
+
 Each table row contains a syllabus reference, a term, and exam-ready definition wording for lesson planning, retrieval, and assessment design.
 
 ## 1 The basic economic problem

@@ -35,7 +35,8 @@ IGCSE HTML/
 ├── index.html                         ← course landing page
 ├── README.md                          ← this file
 ├── references/
-│   └── igcse-economics-definitions-2026.md ← exam-ready definition overview
+│   ├── igcse-economics-syllabus-2027-2029.md ← current syllabus reference
+│   └── igcse-economics-definitions-2026.md ← historical definition overview
 ├── assets/
 │   ├── css/
 │   │   ├── theme.css                  ← design tokens + primitives (buttons, cards, chips)
@@ -64,14 +65,18 @@ Naming rules:
 
 ## Reference source for lesson content
 
-Use `references/igcse-economics-definitions-2026.md` as the shared content
-source when building or revising decks. It contains syllabus references,
-terms, and exam-ready definition / mark-scheme wording.
+Use `references/igcse-economics-syllabus-2027-2029.md` as the shared content
+source when building or revising decks for the current syllabus. It contains
+the revised 2027-2029 syllabus references, assessment overview, command words,
+formulas, and planning notes.
+
+The older `references/igcse-economics-definitions-2026.md` file is retained as
+a historical definition glossary for previously built lessons.
 
 Recommended workflow:
 
-1. Find the relevant syllabus rows, e.g. `4.3` for fiscal policy.
-2. Use the exact definition wording on `term` slides where possible.
+1. Find the relevant syllabus rows, e.g. `4.2` for fiscal policy.
+2. Use the planning notes on `term` slides where possible.
 3. Shorten wording only when needed for slide clarity.
 4. Keep detailed wording in speaker explanation or follow-up practice slides.
 5. Add a short source comment near the top of each lesson `slides.js`.
@@ -79,8 +84,8 @@ Recommended workflow:
 Example comment:
 
 ```
-Definition source: ../../../references/igcse-economics-definitions-2026.md
-Use the 4.3 rows for exam-ready wording when creating slides.
+Syllabus source: ../../../references/igcse-economics-syllabus-2027-2029.md
+Use the 4.2 rows for fiscal-policy wording when creating slides.
 ```
 
 ---
