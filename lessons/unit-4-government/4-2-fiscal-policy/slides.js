@@ -181,13 +181,11 @@ IGCSE.lesson = {
       eyebrow: 'Lesson objectives',
       title:   'By the end, you can',
       bullets: [
-        'Explain government budgets, deficits and surpluses, including calculations.',
-        'Describe main areas of government spending and reasons for taxation.',
-        'Classify tax types and explain fiscal policy measures.',
-        'Analyse how fiscal policy may affect growth, employment, price stability, redistribution, the balance of payments and sustainability.',
+        'Calculate deficits and surpluses.',
+        'Explain spending and taxation.',
+        'Classify tax types.',
+        'Link fiscal policy to macro aims.',
       ],
-      footer: 'Success looks like: accurate term, clear policy chain, relevant macroeconomic aim, balanced evaluation.',
-      partialReview: ['.choices > .choice', '.prompt'],
     },
     {
       type: 'roadmap',
@@ -214,7 +212,6 @@ IGCSE.lesson = {
       ],
       prompt: 'Choose one aim, then name the likely trade-off.',
       visual: photos.budgetMeeting,
-      partialReview: ['.choices > .choice', '.prompt'],
     },
     {
       type: 'discussion',
@@ -309,14 +306,13 @@ IGCSE.lesson = {
       type: 'cards',
       eyebrow: 'Government spending',
       title:   'Main areas of spending',
-      lead:    'These are common areas. The next slides explain why governments spend in them.',
       cards: [
-        ['Education', 'schools, colleges and training'],
-        ['Healthcare', 'hospitals, doctors and public health'],
-        ['Infrastructure', 'roads, rail, ports and digital networks'],
-        ['Welfare', 'benefits, pensions and income support'],
-        ['Defence', 'armed forces and national security'],
-        ['Industry support', 'subsidies, grants and research support'],
+        ['Education', 'schools and training'],
+        ['Healthcare', 'hospitals and public health'],
+        ['Infrastructure', 'transport and digital networks'],
+        ['Welfare', 'benefits and pensions'],
+        ['Defence', 'national security'],
+        ['Industry support', 'subsidies and research'],
       ],
       visual: photos.budgetHearing,
       partialReview: ['.cardgrid > .card'],
@@ -343,14 +339,13 @@ IGCSE.lesson = {
       type: 'cards',
       eyebrow: 'Government spending',
       title:   'Why governments spend',
-      lead:    'Use one clear reason at a time in an exam answer.',
       cards: [
-        ['Provide merit goods', 'education and healthcare', '1'],
-        ['Provide public goods', 'defence and street lighting', '2'],
-        ['Invest in infrastructure', 'roads, rail and ports', '3'],
-        ['Support key industries', 'subsidies and R&D', '4'],
-        ['Reduce inequality', 'benefits and pensions', '5'],
-        ['Manage the macroeconomy', 'influence demand and inflation', '6'],
+        ['Merit goods', 'education, healthcare', '1'],
+        ['Public goods', 'defence', '2'],
+        ['Infrastructure', 'roads, rail, ports', '3'],
+        ['Key industries', 'subsidies, R&D', '4'],
+        ['Inequality', 'benefits, pensions', '5'],
+        ['Macroeconomy', 'demand, inflation', '6'],
       ],
       visual: photos.budgetHearing,
       partialReview: ['.cardgrid > .card'],
@@ -411,7 +406,6 @@ IGCSE.lesson = {
     {
       type: 'quiz',
       eyebrow: 'Quick check',
-      title:   'Which reason?',
       question: 'The government builds a new railway between factories and a port. Which reason for spending is most direct?',
       choices: [
         'Provide a public good',
@@ -420,7 +414,6 @@ IGCSE.lesson = {
       ],
       prompt: 'Say the answer, then add one likely effect on firms.',
       visual: photos.roadwork,
-      partialReview: ['.choices > .choice', '.prompt'],
     },
     {
       type: 'discussion',
@@ -488,7 +481,6 @@ IGCSE.lesson = {
     {
       type: 'quiz',
       eyebrow: 'Quick check',
-      title:   'Spot the reason',
       question: 'The government increases unemployment benefits during a downturn. Which reason fits best?',
       choices: [
         'Reduce inequality',
@@ -497,12 +489,10 @@ IGCSE.lesson = {
       ],
       prompt: 'Now name one possible opportunity cost.',
       visual: photos.socialSecurity,
-      partialReview: ['.choices > .choice', '.prompt'],
     },
     {
       type: 'quiz',
       eyebrow: 'Spending challenge',
-      title:   'Match policy to aim',
       question: 'Which spending decision most directly supports environmental sustainability?',
       choices: [
         'Build cleaner public transport',
@@ -511,7 +501,6 @@ IGCSE.lesson = {
       ],
       prompt: 'Now add one possible opportunity cost.',
       visual: photos.pollution,
-      partialReview: ['.choices > .choice', '.prompt'],
     },
 
     {
@@ -533,14 +522,12 @@ IGCSE.lesson = {
       eyebrow: 'Taxation objectives',
       title:   'By the end of the taxation lesson, you can',
       bullets: [
-        'Define taxation and explain why governments use it.',
-        'Classify taxes as direct, indirect, progressive, regressive or proportional.',
-        'Define major tax examples: income tax, corporation tax, VAT or sales tax, excise duties, tariffs, property or wealth taxes, payroll taxes and pollution taxes.',
-        'Use real-world examples to explain the likely effects of a tax on consumers, firms, government revenue and macroeconomic aims.',
+        'Explain reasons for taxation.',
+        'Distinguish between direct and indirect tax.',
+        'Distinguish between proportional, progressive and regressive tax.',
+        'Use real examples.',
       ],
-      footer: 'Success looks like: correct tax type, real example, clear effect, one limitation.',
       visual: photos.taxForms,
-      partialReview: ['.choices > .choice', '.prompt'],
     },
     {
       type: 'quiz',
@@ -554,48 +541,6 @@ IGCSE.lesson = {
       ],
       prompt: 'Choose one, then correct one wrong statement.',
       visual: photos.taxForms,
-      partialReview: ['.choices > .choice', '.prompt'],
-    },
-    {
-      type: 'term',
-      eyebrow: 'Core definition',
-      title:   'What is taxation?',
-      term:    'taxation',
-      definition: 'Taxation is the compulsory payment of money by households or firms to the government, without a direct good or service being received in return.',
-      examples: ['workers pay income tax', 'shoppers pay VAT or sales tax', 'firms pay corporation tax'],
-      visual:  photos.taxForms,
-      partialReview: ['.termBox', '.choices > .choice'],
-    },
-    {
-      type: 'quiz',
-      eyebrow: 'Taxation',
-      title:   'Why tax?',
-      question: 'Which reason for taxation is shown by a tariff on imported cars?',
-      choices: [
-        'Reduce imports',
-        'Raise revenue',
-        'Redistribute income',
-        'Encourage sustainability',
-      ],
-      prompt: 'There may be more than one valid answer.',
-      visual: photos.port,
-      partialReview: ['.choices > .choice', '.prompt'],
-    },
-    {
-      type: 'cards',
-      eyebrow: 'Taxation',
-      title:   'Reasons for taxation',
-      lead:    'A tax can have more than one purpose, but exam answers should focus on one clear reason at a time.',
-      cards: [
-        ['Raise revenue', 'fund government spending', '1'],
-        ['Reduce demerit goods', 'reduce harmful consumption', '2'],
-        ['Reduce imports', 'make imports more expensive', '3'],
-        ['Redistribute income', 'reduce income inequality', '4'],
-        ['Influence demand', 'change total spending', '5'],
-        ['Encourage sustainability', 'change environmental incentives', '6'],
-      ],
-      visual:  photos.pollution,
-      partialReview: ['.cardgrid > .card'],
     },
     {
       type: 'fact',
@@ -630,7 +575,7 @@ IGCSE.lesson = {
       eyebrow: 'Real-world fact',
       flag:    '🇵🇭',
       country: 'Philippines',
-      fact:    'The Philippines passed a Sin Tax Reform Law in 2012 that raised tobacco and alcohol excise taxes.',
+      fact:    'The Philippines passed a Sin Tax Reform Law in 2012 that raised indirect taxes on tobacco and alcohol.',
       zh:      '菲律宾在2012年通过“罪恶税”改革法，提高了烟草和酒精消费税。',
       source: 'Source: World Health Organization and Philippines Department of Finance material on sin tax reform.',
       visual: factPhotos.philippinesTobacco,
@@ -647,7 +592,6 @@ IGCSE.lesson = {
     {
       type: 'quiz',
       eyebrow: 'Quick check',
-      title:   'Which reason?',
       question: 'A government increases tax on alcohol. Which reason for taxation is most direct?',
       choices: [
         'Raise revenue only',
@@ -656,7 +600,6 @@ IGCSE.lesson = {
       ],
       prompt: 'Add one reason why the effect may be limited.',
       visual: photos.tobacco,
-      partialReview: ['.choices > .choice', '.prompt'],
     },
     {
       type: 'flow',
@@ -688,7 +631,6 @@ IGCSE.lesson = {
     {
       type: 'quiz',
       eyebrow: 'Quick check',
-      title:   'One tax, two possible aims',
       question: 'A pollution tax raises money and makes pollution more expensive. Which answer is strongest?',
       choices: [
         'It can raise revenue and encourage sustainability',
@@ -697,7 +639,6 @@ IGCSE.lesson = {
       ],
       prompt: 'Explain why one tax can have more than one effect.',
       visual: photos.pollution,
-      partialReview: ['.choices > .choice', '.prompt'],
     },
     {
       type: 'discussion',
@@ -706,21 +647,6 @@ IGCSE.lesson = {
       question: 'If the government needs more revenue for hospitals, should it raise income tax, VAT, corporation tax or a tax on unhealthy products?',
       zh: '如果政府需要更多收入来资助医院，应该提高所得税、增值税、公司税，还是对不健康产品征税？',
       visual: photos.healthcare,
-    },
-    {
-      type: 'cards',
-      eyebrow: 'Tax classification',
-      title:   'Two ways to classify taxes',
-      lead:    'First identify what is taxed. Then identify how the burden changes as income changes.',
-      cards: [
-        ['Tax base', 'income, profit, wealth, spending, imports or pollution', '1'],
-        ['Collection point', 'paid directly to government or added to prices', '2'],
-        ['Income effect', 'progressive, regressive or proportional', '3'],
-        ['Policy aim', 'revenue, behaviour, imports, equality, demand or sustainability', '4'],
-      ],
-      footer: 'Exam habit: classify first, then explain the effect.',
-      visual: photos.taxForms,
-      partialReview: ['.cardgrid > .card', '.prompt'],
     },
     {
       type: 'discussion',
@@ -754,7 +680,7 @@ IGCSE.lesson = {
       title:   'Indirect tax',
       term:    'indirect tax',
       definition: 'An indirect tax is a tax on spending. It is added to the price of goods or services and collected by the seller for the government.',
-      examples: ['VAT on many goods and services', 'sales tax at a shop checkout', 'excise duty on petrol or cigarettes'],
+      examples: ['VAT on many goods and services', 'sales tax at a shop checkout', 'indirect tax on petrol or cigarettes'],
       visual: photos.shopping,
       partialReview: ['.termBox', '.choices > .choice'],
     },
@@ -771,18 +697,15 @@ IGCSE.lesson = {
     {
       type: 'compare',
       eyebrow: 'Tax type',
-      title:   'Income tax and corporation tax',
+      title:   'Two direct taxes',
       leftTitle: 'Income tax',
       left: [
         'tax on wages, salaries or other personal income',
-        'usually a direct tax',
         'often progressive: higher earners may pay a higher percentage'
       ],
       rightTitle: 'Corporation tax',
       right: [
         'tax on company profits',
-        'direct tax paid by firms',
-        'may affect retained profit, investment and shareholder returns'
       ],
       prompt: 'Real-world link: the UK, US, China and many other countries use both taxes.',
       visual: photos.industry,
@@ -799,14 +722,14 @@ IGCSE.lesson = {
     {
       type: 'compare',
       eyebrow: 'Tax type',
-      title:   'VAT, sales tax and excise duty',
+      title:   'VAT, sales tax and other indirect taxes',
       leftTitle: 'VAT or sales tax',
       left: [
         'indirect tax on spending',
         'charged as a percentage of the selling price',
         'real examples: VAT in the UK and EU; sales tax in many US states'
       ],
-      rightTitle: 'Excise duty',
+      rightTitle: 'Indirect tax on specific goods',
       right: [
         'indirect tax on specific goods',
         'often used on cigarettes, alcohol and fuel',
@@ -817,7 +740,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Excise duty',
+      eyebrow: 'Indirect tax',
       title:   'Taxing harmful goods',
       question: 'Why might governments tax cigarettes more heavily than bread?',
       zh: '为什么政府可能对香烟征收比面包更高的税？',
@@ -826,8 +749,8 @@ IGCSE.lesson = {
     {
       type: 'flow',
       eyebrow: 'Real-world example',
-      title:   'Excise tax on tobacco',
-      question: 'Many governments put high excise taxes on cigarettes.',
+      title:   'Indirect tax on tobacco',
+      question: 'Many governments put high indirect taxes on cigarettes.',
       nodes: [['tax per packet rises', 'retail price rises', 'some smokers buy fewer cigarettes', 'health costs may fall']],
       footer: 'Limitation: addiction can make demand price inelastic, so quantity may fall only slightly.',
       visual: photos.tobacco,
@@ -836,22 +759,12 @@ IGCSE.lesson = {
     {
       type: 'term',
       eyebrow: 'Tax type',
-      title:   'Tariff or import duty',
+      title:   'Import tariff',
       term:    'tariff',
-      definition: 'A tariff is a tax on imported goods. It raises the price of imports and may protect domestic producers or raise government revenue.',
+      definition: 'A tariff is an indirect tax on imported goods. It raises the price of imports and may protect domestic producers.',
       examples: ['tax on imported cars', 'import duty on steel', 'tariff on imported clothing'],
       visual: photos.port,
       partialReview: ['.termBox', '.choices > .choice'],
-    },
-    {
-      type: 'fact',
-      eyebrow: 'Real-world fact',
-      flag:    '🇳🇱',
-      country: 'Netherlands',
-      fact:    'The Port of Rotterdam is in the EU, where CBAM applies to carbon-intensive imports such as cement, steel, aluminium and fertilisers.',
-      zh:      '鹿特丹港位于欧盟，CBAM适用于水泥、钢铁、铝和化肥等高碳进口品。',
-      source: 'Source: European Commission, Carbon Border Adjustment Mechanism.',
-      visual: factPhotos.euCbam,
     },
     {
       type: 'discussion',
@@ -860,63 +773,6 @@ IGCSE.lesson = {
       question: 'If a tariff makes imported phones more expensive, who might gain and who might lose?',
       zh: '如果关税使进口手机更贵，谁可能受益，谁可能受损？',
       visual: photos.port,
-    },
-    {
-      type: 'compare',
-      eyebrow: 'Tax type',
-      title:   'Property, wealth and capital gains taxes',
-      leftTitle: 'Property or wealth tax',
-      left: [
-        'tax on ownership of assets such as land, houses or financial wealth',
-        'usually a direct tax',
-        'can be used to raise revenue and reduce wealth inequality'
-      ],
-      rightTitle: 'Capital gains tax',
-      right: [
-        'tax on profit made when an asset is sold for more than its purchase price',
-        'usually a direct tax',
-        'real examples include tax on gains from shares or second homes'
-      ],
-      visual: photos.socialSecurity,
-      partialReview: ['.splitCols > .card', '.prompt'],
-    },
-    {
-      type: 'discussion',
-      eyebrow: 'Wealth taxes',
-      title:   'Hard to measure',
-      question: 'Why might wealth taxes be harder to administer than a sales tax?',
-      zh: '为什么财富税可能比销售税更难管理？',
-      visual: photos.socialSecurity,
-    },
-    {
-      type: 'compare',
-      eyebrow: 'Tax type',
-      title:   'Payroll taxes and social security contributions',
-      leftTitle: 'Payroll tax',
-      left: [
-        'tax linked to workers on a firm payroll',
-        'may be paid by employers, employees or both',
-        'can increase the cost of employing labour'
-      ],
-      rightTitle: 'Social security contribution',
-      right: [
-        'payment used to fund pensions, unemployment benefits or healthcare systems',
-        'often deducted from wages',
-        'may be treated like a direct tax on labour income'
-      ],
-      prompt: 'Real-world link: many countries fund pensions or healthcare through wage-linked contributions.',
-      visual: photos.socialSecurity,
-      partialReview: ['.splitCols > .card', '.prompt'],
-    },
-    {
-      type: 'term',
-      eyebrow: 'Tax type',
-      title:   'Carbon or pollution tax',
-      term:    'carbon tax',
-      definition: 'A carbon or pollution tax charges firms or consumers for emissions or environmentally harmful activity, making pollution more expensive.',
-      examples: ['tax on carbon emissions', 'fuel tax to discourage petrol use', 'landfill tax to reduce waste'],
-      visual: photos.pollution,
-      partialReview: ['.termBox', '.choices > .choice'],
     },
     {
       type: 'fact',
@@ -937,32 +793,29 @@ IGCSE.lesson = {
       visual: photos.pollution,
     },
     {
-      type: 'discussion',
-      eyebrow: 'Tax burden',
-      title:   'Progressive or regressive',
-      question: 'Should a tax be judged by how much money it raises or by who bears the burden?',
-      zh: '评价一种税时，应该看它筹集了多少钱，还是看谁承担了负担？',
-      visual: photos.shopping,
-    },
-    {
       type: 'compare',
       eyebrow: 'Tax structure',
       title:   'Progressive and regressive taxes',
       leftTitle: 'Progressive tax',
       left: [
         'takes a higher proportion of income as income rises',
-        'common example: income tax with higher rates for higher income bands',
+        'example: income tax with higher rates for higher income bands',
         'often used to reduce inequality'
       ],
       rightTitle: 'Regressive tax',
       right: [
         'takes a higher proportion of income from lower-income households',
-        'common example: a flat sales tax on essentials',
-        'may increase inequality if poorer households spend most of their income'
+        'example: indirect tax (sales tax)',
+        'may increase inequality'
       ],
-      prompt: 'Classify VAT on food: why does the answer depend on whether food is taxed?',
       visual: photos.shopping,
       partialReview: ['.splitCols > .card', '.prompt'],
+    },
+    {
+      type: 'taxSim',
+      eyebrow: 'Tax simulator',
+      title:   'Progressive or regressive?',
+      defaultMode: 'progressive',
     },
     {
       type: 'flow',
@@ -985,42 +838,17 @@ IGCSE.lesson = {
       partialReview: ['.termBox', '.choices > .choice'],
     },
     {
-      type: 'cards',
-      eyebrow: 'Real-world examples',
-      title:   'Examples you can use in answers',
-      lead:    'Use examples carefully: you do not need exact tax rates unless the question gives them.',
-      cards: [
-        ['UK VAT', 'an indirect tax added to many goods and services', '1'],
-        ['US sales taxes', 'state and local indirect taxes at checkout', '2'],
-        ['Tobacco excise duties', 'used by many countries to reduce smoking and raise revenue', '3'],
-        ['Import tariffs', 'used to tax goods entering a country', '4'],
-        ['Income tax bands', 'used by many countries to make income tax progressive', '5'],
-        ['Carbon taxes', 'used in countries such as Sweden to price emissions', '6'],
-      ],
-      visual: photos.budgetHearing,
-      partialReview: ['.cardgrid > .card', '.prompt'],
-    },
-    {
-      type: 'discussion',
-      eyebrow: 'Real-world examples',
-      title:   'Using examples',
-      question: 'Which tax example is easiest to link to a macroeconomic aim?',
-      zh: '哪个税收例子最容易与宏观经济目标联系起来？',
-      visual: photos.budgetHearing,
-    },
-    {
       type: 'quiz',
       eyebrow: 'Formative assessment',
       title:   'Classify the tax',
       question: 'A government charges a percentage tax on company profits and uses the revenue to fund schools.',
       choices: [
         'Direct tax and corporation tax',
-        'Indirect tax and excise duty',
+        'Indirect tax on spending',
         'Tariff and regressive tax',
       ],
       prompt: 'Add one possible effect on firms.',
       visual: photos.industry,
-      partialReview: ['.choices > .choice', '.prompt'],
     },
     {
       type: 'quiz',
@@ -1034,7 +862,6 @@ IGCSE.lesson = {
       ],
       prompt: 'Now add one limitation of the policy.',
       visual: photos.pollution,
-      partialReview: ['.choices > .choice', '.prompt'],
     },
     {
       type: 'answer',

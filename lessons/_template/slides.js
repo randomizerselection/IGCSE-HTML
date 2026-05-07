@@ -7,7 +7,7 @@
 
    Supported slide types (see assets/js/presentation.js):
      hero | roadmap | outcomes | term | compare | quiz | answer
-     cards | split | flow | exam | section | discussion | fact
+     cards | split | flow | exam | section | discussion | fact | taxSim
 
    Available "visual" keys (see assets/js/visuals.js):
      hero · abstract · demandShift · budgetBars · progressive

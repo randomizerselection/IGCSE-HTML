@@ -63,6 +63,17 @@ const choiceList = (items = []) => `
   </div>
 `;
 
+const mcqChoiceList = (items = []) => `
+  <div class="choices is-mcq">
+    ${items.map((x, i) => `
+      <div class="choice">
+        <span class="choiceLetter">${String.fromCharCode(65 + i)}</span>
+        <span>${esc(x)}</span>
+      </div>
+    `).join('')}
+  </div>
+`;
+
 const stepList = (items = []) => `
   <div class="steps">
     ${items.map(x => `
@@ -147,9 +158,9 @@ const renderers = {
 
   quiz: (s) => `
     <div>
-      <h2>${esc(s.title)}</h2>
+      ${s.title ? `<h2>${esc(s.title)}</h2>` : ''}
       ${s.question ? `<p class="lead">${esc(s.question)}</p>` : ''}
-      ${choiceList(s.choices)}
+      ${mcqChoiceList(s.choices)}
       ${s.prompt ? `<div class="prompt">${esc(s.prompt)}</div>` : ''}
     </div>
   `,
@@ -228,6 +239,65 @@ const renderers = {
       </div>
       <p class="factText">${esc(s.fact || (s.facts || [])[0] || '')}</p>
       ${s.zh ? `<p class="factZh">${esc(s.zh)}</p>` : ''}
+    </div>
+  `,
+
+  taxSim: (s) => `
+    <div class="taxSim" data-default-mode="${esc(s.defaultMode || 'progressive')}">
+      <h2>${esc(s.title || 'Tax burden simulator')}</h2>
+      ${s.lead ? `<p class="lead">${esc(s.lead)}</p>` : ''}
+      <div class="simModes" role="group" aria-label="Tax type">
+        <button type="button" class="simMode is-active" data-mode="progressive">Progressive</button>
+        <button type="button" class="simMode" data-mode="proportional">Proportional</button>
+        <button type="button" class="simMode" data-mode="regressive">Regressive</button>
+      </div>
+      <div class="simControls">
+        <label>
+          <span>Set lower-income household income</span>
+          <input class="incomeSlider" data-target="low" type="range" min="10000" max="60000" step="1000" value="20000" />
+          <span class="sliderValue" data-value-for="low"></span>
+        </label>
+        <label>
+          <span>Set higher-income household income</span>
+          <input class="incomeSlider" data-target="high" type="range" min="50000" max="160000" step="5000" value="100000" />
+          <span class="sliderValue" data-value-for="high"></span>
+        </label>
+      </div>
+      <div class="simResults">
+        <div class="simHousehold" data-household="low">
+          <div class="simName">Lower-income household</div>
+          <div class="simIncome"></div>
+          <div class="simBarLabel">Income split</div>
+          <div class="simStackedBar">
+            <span class="simTaxSegment"></span>
+            <span class="simAfterTaxSegment"></span>
+          </div>
+          <div class="simTaxRows">
+            <div><span>Tax amount</span><b class="simTaxAmount"></b></div>
+            <div><span>Tax rate</span><b class="simTaxRate"></b></div>
+            <div><span>After-tax income</span><b class="simAfterTax"></b></div>
+          </div>
+        </div>
+        <div class="simHousehold" data-household="high">
+          <div class="simName">Higher-income household</div>
+          <div class="simIncome"></div>
+          <div class="simBarLabel">Income split</div>
+          <div class="simStackedBar">
+            <span class="simTaxSegment"></span>
+            <span class="simAfterTaxSegment"></span>
+          </div>
+          <div class="simTaxRows">
+            <div><span>Tax amount</span><b class="simTaxAmount"></b></div>
+            <div><span>Tax rate</span><b class="simTaxRate"></b></div>
+            <div><span>After-tax income</span><b class="simAfterTax"></b></div>
+          </div>
+        </div>
+      </div>
+      <div class="simLegend">
+        <span><i class="is-tax"></i>Tax paid</span>
+        <span><i class="is-after-tax"></i>After-tax income</span>
+      </div>
+      <div class="simTakeaway"></div>
     </div>
   `,
 };
@@ -320,6 +390,7 @@ const partialSelectors = [
 
 function getPartialSelectors(meta, slide) {
   const config = slide.partialReview;
+  if (slide.type === 'quiz') return '';
   if (config === false) return '';
   if (Array.isArray(config)) return config.map((selector) => `.content main > div > ${selector}`).join(',');
   if (slide.type === 'hero' && config !== true) return '';
@@ -365,6 +436,7 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
   const partialProgress = slides.map(() => 0);
 
   setupPartialReview(slideEls, slides, meta);
+  setupTaxSimulators(mountEl);
 
   function syncPartials(n) {
     const items = [...slideEls[n].querySelectorAll('.partial-item')];
@@ -463,7 +535,7 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
   // Click-to-advance (but not on overview / notes / controls)
   mountEl.addEventListener('click', (e) => {
     const target = e.target?.closest ? e.target : null;
-    if (target?.closest('.thumb, #notes, .help, button, a')) return;
+    if (target?.closest('.thumb, #notes, .help, button, a, input, label, select, .taxSim')) return;
     if (!revealNextPartial()) show(idx + 1);
   });
 
@@ -488,4 +560,65 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
   show(Number.isFinite(fromHash) ? fromHash - 1 : 0);
 
   return { show, toggleNotes, toggleOverview };
+}
+
+function setupTaxSimulators(root) {
+  const sims = [...root.querySelectorAll('.taxSim')];
+  const money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  });
+
+  const rates = {
+    progressive: { low: 0.10, high: 0.30 },
+    proportional: { low: 0.20, high: 0.20 },
+    regressive: { low: 0.30, high: 0.10 },
+  };
+
+  const taxFor = (income, mode, household) => {
+    const rate = rates[mode]?.[household] ?? 0;
+    return income * rate;
+  };
+
+  const labelFor = (mode) => ({
+    progressive: 'Progressive: the higher-income household pays a higher percentage.',
+    proportional: 'Proportional: both households pay the same percentage.',
+    regressive: 'Regressive: the lower-income household pays a higher percentage.',
+  }[mode] || '');
+
+  sims.forEach((sim) => {
+    let mode = sim.dataset.defaultMode || 'progressive';
+    const buttons = [...sim.querySelectorAll('.simMode')];
+    const sliders = [...sim.querySelectorAll('.incomeSlider')];
+
+    const update = () => {
+      buttons.forEach((button) => button.classList.toggle('is-active', button.dataset.mode === mode));
+      const incomes = Object.fromEntries(sliders.map((slider) => [slider.dataset.target, Number(slider.value)]));
+      const maxTax = Math.max(taxFor(incomes.low, mode, 'low'), taxFor(incomes.high, mode, 'high'), 1);
+
+      for (const key of ['low', 'high']) {
+        const box = sim.querySelector(`[data-household="${key}"]`);
+        const tax = taxFor(incomes[key], mode, key);
+        const rate = (tax / incomes[key]) * 100;
+        sim.querySelector(`[data-value-for="${key}"]`).textContent = money.format(incomes[key]);
+        box.querySelector('.simIncome').textContent = `Income: ${money.format(incomes[key])}`;
+        box.querySelector('.simTaxAmount').textContent = money.format(tax);
+        box.querySelector('.simTaxRate').textContent = `${rate.toFixed(1)}% of income`;
+        box.querySelector('.simAfterTax').textContent = money.format(incomes[key] - tax);
+        box.querySelector('.simTaxSegment').style.width = `${rate}%`;
+        box.querySelector('.simAfterTaxSegment').style.width = `${100 - rate}%`;
+      }
+      sim.querySelector('.simTakeaway').textContent = labelFor(mode);
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        mode = button.dataset.mode;
+        update();
+      });
+    });
+    sliders.forEach((slider) => slider.addEventListener('input', update));
+    update();
+  });
 }

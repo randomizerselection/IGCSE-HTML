@@ -129,6 +129,7 @@ p, .text { margin: 0; font-size: var(--t-body); line-height: 1.4; color: var(--i
   font-size: clamp(23px, 2vw, 36px);
   line-height: 1.08; margin-bottom: .35em;
   color: #fff;
+  font-weight: 750;
   letter-spacing: -0.01em;
 }
 .card span { font-size: clamp(18px, 1.32vw, 25px); line-height: 1.35; color: #ccdaee; }
@@ -222,10 +223,30 @@ ul.clean li::before {
   border-radius: var(--r-md);
   background: rgba(255,255,255,.05);
   font-size: clamp(20px, 1.52vw, 30px);
-  font-weight: 650;
+  font-weight: 500;
   color: #fff;
   line-height: 1.25;
   transition: background .3s var(--ease), border-color .3s var(--ease);
+}
+.choices.is-mcq .choice {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: .85rem;
+}
+.choiceLetter {
+  display: inline-grid;
+  place-items: center;
+  min-width: 2.1em;
+  height: 2.1em;
+  border-radius: 999px;
+  background: rgba(86,216,255,.18);
+  border: 1px solid rgba(86,216,255,.5);
+  color: var(--cyan);
+  font-size: .72em;
+  font-weight: 850;
+  line-height: 1;
+  letter-spacing: 0;
 }
 .choice:hover { background: rgba(255,255,255,.09); border-color: var(--line-strong); }
 
