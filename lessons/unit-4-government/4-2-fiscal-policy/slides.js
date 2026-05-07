@@ -16,7 +16,17 @@ const localPhoto = (file, alt, credit) => ({
   type: 'photo',
   src: `../../../assets/images/fiscal-policy/${file}`,
   alt,
+  caption: alt.replace(/\.$/, ''),
   credit,
+});
+
+const factPhoto = (file, caption, credit, source) => ({
+  type: 'photo',
+  src: `../../../assets/images/fiscal-policy/facts/${file}`,
+  alt: caption,
+  caption,
+  credit,
+  source,
 });
 
 const photos = {
@@ -92,6 +102,63 @@ const photos = {
   ),
 };
 
+const factPhotos = {
+  ukBudget: factPhoto(
+    'uk-budget-rachel-reeves.jpg',
+    'Rachel Reeves official portrait',
+    'Wikimedia Commons / Chris McAndrew',
+    'https://commons.wikimedia.org/wiki/File:Official_portrait_of_Rachel_Reeves_crop_2.jpg'
+  ),
+  finlandEducation: factPhoto(
+    'finland-vantaankoski-classroom.jpg',
+    'Vantaankoski school classroom',
+    'Wikimedia Commons / Leo-setä',
+    'https://commons.wikimedia.org/wiki/File:Elementary_school_classroom_in_Vantaankoski_school_in_Vantaa,_Finland,_2010.jpg'
+  ),
+  usSemiconductors: factPhoto(
+    'us-intel-d1x-fab.png',
+    'Intel D1X semiconductor fab',
+    'Wikimedia Commons / Intel Free Press',
+    'https://commons.wikimedia.org/wiki/File:Intel_D1X_Development_Fab_Hillsboro_Oregon.png'
+  ),
+  denmarkTax: factPhoto(
+    'denmark-ministry-taxation.jpg',
+    'Danish Ministry of Taxation',
+    'Wikimedia Commons / Bjoertvedt',
+    'https://commons.wikimedia.org/wiki/File:Copenhagen_Skatteministeriet_IMG_5647.jpg'
+  ),
+  philippinesTobacco: factPhoto(
+    'philippines-tobacco-warning-labels.jpg',
+    'Philippine tobacco warning labels',
+    'Wikimedia Commons / Government of the Philippines',
+    'https://commons.wikimedia.org/wiki/File:PH_tobacco_packaging_graphic_warning_labels.jpg'
+  ),
+  ukSugar: factPhoto(
+    'uk-soft-drink-shelf.jpg',
+    'Soft drinks on supermarket shelves',
+    'Wikimedia Commons',
+    'https://commons.wikimedia.org/wiki/File:Soft_drink_shelf.JPG'
+  ),
+  euCbam: factPhoto(
+    'netherlands-rotterdam-container-terminal.jpg',
+    'Port of Rotterdam container terminal',
+    'Wikimedia Commons / AgainErick',
+    'https://commons.wikimedia.org/wiki/File:Waalhaven_pier_6_-_Port_of_Rotterdam_-_container_terminal_and_cranes.jpg'
+  ),
+  swedenCarbon: factPhoto(
+    'sweden-hammarbyverket.jpg',
+    'Hammarbyverket energy plant',
+    'Wikimedia Commons / Holger.Ellgaard',
+    'https://commons.wikimedia.org/wiki/File:Hammarbyverket_2008.jpg'
+  ),
+  singaporeBudget: factPhoto(
+    'singapore-budget-2024-thumbnail.jpg',
+    'Singapore Budget 2024 video thumbnail',
+    'YouTube / Singapore MOF',
+    'https://www.mof.gov.sg/budget-archives/budget-2024/'
+  ),
+};
+
 IGCSE.lesson = {
   meta: {
     code:         '4.2',
@@ -154,6 +221,7 @@ IGCSE.lesson = {
       eyebrow: 'Opening discussion',
       title:   'Trade-offs',
       question: 'What should a government do first when it cannot achieve every aim at once?',
+      zh: '当政府无法同时实现所有目标时，应该先做什么？',
       visual: photos.budgetMeeting,
     },
 
@@ -168,6 +236,7 @@ IGCSE.lesson = {
       eyebrow: 'Budget discussion',
       title:   'Public money',
       question: 'What should happen if a government spends more than it receives?',
+      zh: '如果政府支出超过收入，应该怎么办？',
       visual: photos.budgetHearing,
     },
     {
@@ -180,6 +249,16 @@ IGCSE.lesson = {
       examples: ['negative balance = deficit', 'positive balance = surplus'],
       visual:  photos.budgetMeeting,
       partialReview: ['.termBox', '.formula', '.choices > .choice'],
+    },
+    {
+      type: 'fact',
+      eyebrow: 'Real-world fact',
+      flag:    '🇬🇧',
+      country: 'United Kingdom',
+      fact:    'In the financial year ending March 2024, UK public sector net borrowing was estimated at GBP 131.1 billion.',
+      zh:      '截至2024年3月的财政年度，英国公共部门净借款估计为1311亿英镑。',
+      source: 'Source: Office for National Statistics, Public sector finances, December 2024.',
+      visual: factPhotos.ukBudget,
     },
     {
       type: 'quiz',
@@ -223,6 +302,7 @@ IGCSE.lesson = {
       eyebrow: 'Spending discussion',
       title:   'Priorities',
       question: 'Which area of government spending should receive more money first?',
+      zh: '政府支出的哪个领域应该最先获得更多资金？',
       visual: photos.budgetHearing,
     },
     {
@@ -242,10 +322,21 @@ IGCSE.lesson = {
       partialReview: ['.cardgrid > .card'],
     },
     {
+      type: 'fact',
+      eyebrow: 'Real-world fact',
+      flag:    '🇫🇮',
+      country: 'Finland',
+      fact:    'World Bank data report Finland government expenditure on education at about 6.38% of GDP in 2022.',
+      zh:      '世界银行数据显示，2022年芬兰政府教育支出约占GDP的6.38%。',
+      source: 'Source: World Bank indicator SE.XPD.TOTL.GD.ZS, based on UNESCO UIS data.',
+      visual: factPhotos.finlandEducation,
+    },
+    {
       type: 'discussion',
       eyebrow: 'Spending reasons',
       title:   'Why spend?',
       question: 'Why might markets fail to provide enough education, healthcare or infrastructure?',
+      zh: '为什么市场可能无法提供足够的教育、医疗或基础设施？',
       visual: photos.classroom,
     },
     {
@@ -269,6 +360,7 @@ IGCSE.lesson = {
       eyebrow: 'Merit goods',
       title:   'Education and healthcare',
       question: 'Why might a person consume too little education or healthcare if they must pay the full price?',
+      zh: '如果必须支付全部价格，为什么人们可能消费太少的教育或医疗？',
       visual: photos.classroom,
     },
     {
@@ -286,6 +378,7 @@ IGCSE.lesson = {
       eyebrow: 'Public goods',
       title:   'Free rider problem',
       question: 'Why is defence difficult to sell only to people who pay for it?',
+      zh: '为什么国防很难只卖给付费的人？',
       visual: photos.defence,
     },
     {
@@ -303,6 +396,7 @@ IGCSE.lesson = {
       eyebrow: 'Infrastructure',
       title:   'Roads, rail and ports',
       question: 'How can a better road or railway help firms produce more?',
+      zh: '更好的公路或铁路如何帮助企业生产更多？',
       visual: photos.roadwork,
     },
     {
@@ -333,7 +427,18 @@ IGCSE.lesson = {
       eyebrow: 'Industry support',
       title:   'Picking winners',
       question: 'Should a government support an industry if it is important for future jobs?',
+      zh: '如果某个产业对未来就业很重要，政府应该支持它吗？',
       visual: photos.industry,
+    },
+    {
+      type: 'fact',
+      eyebrow: 'Real-world fact',
+      flag:    '🇺🇸',
+      country: 'United States',
+      fact:    'The CHIPS Act provided $52.7 billion to revive the US semiconductor industry.',
+      zh:      '《芯片法案》提供527亿美元，用于振兴美国半导体产业。',
+      source: 'Source: NIST, CHIPS Incentives Funding Opportunities.',
+      visual: factPhotos.usSemiconductors,
     },
     {
       type: 'flow',
@@ -350,6 +455,7 @@ IGCSE.lesson = {
       eyebrow: 'Inequality',
       title:   'Welfare support',
       question: 'How much responsibility should a government take for reducing poverty?',
+      zh: '政府在减少贫困方面应该承担多大责任？',
       visual: photos.socialSecurity,
     },
     {
@@ -366,6 +472,7 @@ IGCSE.lesson = {
       eyebrow: 'Macroeconomy',
       title:   'Managing demand',
       question: 'Should a government spend more when unemployment is rising?',
+      zh: '当失业率上升时，政府应该增加支出吗？',
       visual: photos.budgetMeeting,
     },
     {
@@ -418,6 +525,7 @@ IGCSE.lesson = {
       eyebrow: 'Taxation hook',
       title:   'Every receipt is a policy choice',
       question: 'Which taxes do you already know?',
+      zh: '你已经知道哪些税？',
       visual: photos.shopping,
     },
     {
@@ -490,6 +598,16 @@ IGCSE.lesson = {
       partialReview: ['.cardgrid > .card'],
     },
     {
+      type: 'fact',
+      eyebrow: 'Real-world fact',
+      flag:    '🇩🇰',
+      country: 'Denmark',
+      fact:    'In 2024, Denmark had a tax-to-GDP ratio of 45.2%, compared with an OECD average of 34.1%.',
+      zh:      '2024年，丹麦税收占GDP的比例为45.2%，而OECD平均水平为34.1%。',
+      source: 'Source: OECD Revenue Statistics 2025, Denmark country note.',
+      visual: factPhotos.denmarkTax,
+    },
+    {
       type: 'flow',
       eyebrow: 'Reason for taxation',
       title:   '1. Raise revenue',
@@ -506,6 +624,16 @@ IGCSE.lesson = {
       footer: 'Evaluation: demand may be price inelastic.',
       visual: photos.tobacco,
       partialReview: ['.flowRow > .flowChip', '.prompt'],
+    },
+    {
+      type: 'fact',
+      eyebrow: 'Real-world fact',
+      flag:    '🇵🇭',
+      country: 'Philippines',
+      fact:    'The Philippines passed a Sin Tax Reform Law in 2012 that raised tobacco and alcohol excise taxes.',
+      zh:      '菲律宾在2012年通过“罪恶税”改革法，提高了烟草和酒精消费税。',
+      source: 'Source: World Health Organization and Philippines Department of Finance material on sin tax reform.',
+      visual: factPhotos.philippinesTobacco,
     },
     {
       type: 'flow',
@@ -576,6 +704,7 @@ IGCSE.lesson = {
       eyebrow: 'Class discussion',
       title:   'Who should pay?',
       question: 'If the government needs more revenue for hospitals, should it raise income tax, VAT, corporation tax or a tax on unhealthy products?',
+      zh: '如果政府需要更多收入来资助医院，应该提高所得税、增值税、公司税，还是对不健康产品征税？',
       visual: photos.healthcare,
     },
     {
@@ -598,6 +727,7 @@ IGCSE.lesson = {
       eyebrow: 'Direct tax',
       title:   'Income and wealth',
       question: 'Should higher-income households pay a higher percentage of their income in tax?',
+      zh: '高收入家庭是否应该缴纳更高比例的收入作为税？',
       visual: photos.taxForms,
     },
     {
@@ -615,6 +745,7 @@ IGCSE.lesson = {
       eyebrow: 'Indirect tax',
       title:   'At the checkout',
       question: 'Is a tax added to prices fair if poorer households spend most of their income?',
+      zh: '如果较贫困家庭会花掉大部分收入，加在价格上的税公平吗？',
       visual: photos.shopping,
     },
     {
@@ -626,6 +757,16 @@ IGCSE.lesson = {
       examples: ['VAT on many goods and services', 'sales tax at a shop checkout', 'excise duty on petrol or cigarettes'],
       visual: photos.shopping,
       partialReview: ['.termBox', '.choices > .choice'],
+    },
+    {
+      type: 'fact',
+      eyebrow: 'Real-world fact',
+      flag:    '🇬🇧',
+      country: 'United Kingdom',
+      fact:    'The UK government says sugar in soft drinks within the Soft Drinks Industry Levy fell by 46% between 2015 and 2020.',
+      zh:      '英国政府称，软饮料产业税范围内的软饮料含糖量在2015年至2020年下降了46%。',
+      source: 'Source: HM Treasury and HMRC, Soft Drinks Industry Levy Review, October 2024.',
+      visual: factPhotos.ukSugar,
     },
     {
       type: 'compare',
@@ -652,6 +793,7 @@ IGCSE.lesson = {
       eyebrow: 'Class discussion',
       title:   'Taxing company profits',
       question: 'If corporation tax rises, what might a firm do with prices, wages, investment or dividends?',
+      zh: '如果公司税上升，企业可能会如何调整价格、工资、投资或股息？',
       visual: photos.industry,
     },
     {
@@ -678,6 +820,7 @@ IGCSE.lesson = {
       eyebrow: 'Excise duty',
       title:   'Taxing harmful goods',
       question: 'Why might governments tax cigarettes more heavily than bread?',
+      zh: '为什么政府可能对香烟征收比面包更高的税？',
       visual: photos.tobacco,
     },
     {
@@ -701,10 +844,21 @@ IGCSE.lesson = {
       partialReview: ['.termBox', '.choices > .choice'],
     },
     {
+      type: 'fact',
+      eyebrow: 'Real-world fact',
+      flag:    '🇳🇱',
+      country: 'Netherlands',
+      fact:    'The Port of Rotterdam is in the EU, where CBAM applies to carbon-intensive imports such as cement, steel, aluminium and fertilisers.',
+      zh:      '鹿特丹港位于欧盟，CBAM适用于水泥、钢铁、铝和化肥等高碳进口品。',
+      source: 'Source: European Commission, Carbon Border Adjustment Mechanism.',
+      visual: factPhotos.euCbam,
+    },
+    {
       type: 'discussion',
       eyebrow: 'Class discussion',
       title:   'At the port',
       question: 'If a tariff makes imported phones more expensive, who might gain and who might lose?',
+      zh: '如果关税使进口手机更贵，谁可能受益，谁可能受损？',
       visual: photos.port,
     },
     {
@@ -731,6 +885,7 @@ IGCSE.lesson = {
       eyebrow: 'Wealth taxes',
       title:   'Hard to measure',
       question: 'Why might wealth taxes be harder to administer than a sales tax?',
+      zh: '为什么财富税可能比销售税更难管理？',
       visual: photos.socialSecurity,
     },
     {
@@ -764,10 +919,21 @@ IGCSE.lesson = {
       partialReview: ['.termBox', '.choices > .choice'],
     },
     {
+      type: 'fact',
+      eyebrow: 'Real-world fact',
+      flag:    '🇸🇪',
+      country: 'Sweden',
+      fact:    'Sweden introduced a carbon tax in 1991 at SEK 250 per tonne of fossil CO2.',
+      zh:      '瑞典在1991年推出碳税，税率为每吨化石二氧化碳250瑞典克朗。',
+      source: 'Source: Government Offices of Sweden, Sweden\'s carbon tax.',
+      visual: factPhotos.swedenCarbon,
+    },
+    {
       type: 'discussion',
       eyebrow: 'Class discussion',
       title:   'The smoke stack',
       question: 'Should a factory pay tax for pollution if it provides jobs in the local area?',
+      zh: '如果工厂为当地提供就业，它还应该为污染纳税吗？',
       visual: photos.pollution,
     },
     {
@@ -775,6 +941,7 @@ IGCSE.lesson = {
       eyebrow: 'Tax burden',
       title:   'Progressive or regressive',
       question: 'Should a tax be judged by how much money it raises or by who bears the burden?',
+      zh: '评价一种税时，应该看它筹集了多少钱，还是看谁承担了负担？',
       visual: photos.shopping,
     },
     {
@@ -838,6 +1005,7 @@ IGCSE.lesson = {
       eyebrow: 'Real-world examples',
       title:   'Using examples',
       question: 'Which tax example is easiest to link to a macroeconomic aim?',
+      zh: '哪个税收例子最容易与宏观经济目标联系起来？',
       visual: photos.budgetHearing,
     },
     {
@@ -910,6 +1078,7 @@ IGCSE.lesson = {
       eyebrow: 'Redistribution',
       title:   'Reducing inequality',
       question: 'Which tax structure reduces inequality more directly?',
+      zh: '哪种税收结构更直接地减少不平等？',
       visual: photos.socialSecurity,
     },
     {
@@ -941,6 +1110,7 @@ IGCSE.lesson = {
       eyebrow: 'Exam trap',
       title:   'Regressive taxes',
       question: 'Why might a sales tax be called regressive?',
+      zh: '为什么销售税可能被称为累退税？',
       visual: photos.shopping,
     },
 
@@ -955,6 +1125,7 @@ IGCSE.lesson = {
       eyebrow: 'Fiscal policy discussion',
       title:   'Changing the economy',
       question: 'Can a government change the whole economy by changing spending and taxes?',
+      zh: '政府能通过改变支出和税收来影响整个经济吗？',
       visual: photos.budgetMeeting,
     },
     {
@@ -980,10 +1151,21 @@ IGCSE.lesson = {
       partialReview: ['.splitCols > .card', '.prompt'],
     },
     {
+      type: 'fact',
+      eyebrow: 'Real-world fact',
+      flag:    '🇸🇬',
+      country: 'Singapore',
+      fact:    'Singapore Budget 2024 focused on cost-of-living relief, a stronger social compact and future resilience.',
+      zh:      '新加坡2024年预算重点关注生活成本援助、更强的社会契约和未来韧性。',
+      source: 'Source: Singapore Ministry of Finance, Budget 2024.',
+      visual: factPhotos.singaporeBudget,
+    },
+    {
       type: 'discussion',
       eyebrow: 'Expansionary policy',
       title:   'Stimulus',
       question: 'When unemployment is high, should the government cut taxes or increase spending?',
+      zh: '当失业率较高时，政府应该减税还是增加支出？',
       visual: photos.roadwork,
     },
     {
@@ -1000,6 +1182,7 @@ IGCSE.lesson = {
       eyebrow: 'Contractionary policy',
       title:   'Cooling demand',
       question: 'When prices are rising too quickly, should the government raise taxes or cut spending?',
+      zh: '当价格上涨过快时，政府应该增税还是削减支出？',
       visual: photos.inflation,
     },
     {
@@ -1016,6 +1199,7 @@ IGCSE.lesson = {
       eyebrow: 'Macro aims',
       title:   'Policy conflicts',
       question: 'Which macroeconomic aim is most likely to conflict with lower inflation?',
+      zh: '哪个宏观经济目标最可能与降低通货膨胀发生冲突？',
       visual: photos.budgetMeeting,
     },
     {

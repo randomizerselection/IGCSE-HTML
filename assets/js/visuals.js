@@ -30,11 +30,18 @@ const htmlEsc = (s) => String(s ?? '').replace(/[&<>"']/g, (m) => ({
 }[m]));
 
 const renderPhoto = (photo = {}) => {
-  const caption = photo.credit || '';
-  const captionHtml = caption
-    ? `<figcaption>${photo.source
-        ? `<a href="${htmlEsc(photo.source)}" target="_blank" rel="noopener">${htmlEsc(caption)}</a>`
-        : htmlEsc(caption)}</figcaption>`
+  const caption = photo.caption || photo.alt || '';
+  const credit = photo.credit || '';
+  const creditHtml = credit
+    ? (photo.source
+        ? `<a href="${htmlEsc(photo.source)}" target="_blank" rel="noopener">${htmlEsc(credit)}</a>`
+        : htmlEsc(credit))
+    : '';
+  const captionHtml = caption || creditHtml
+    ? `<figcaption>
+        ${caption ? `<span>${htmlEsc(caption)}</span>` : '<span></span>'}
+        ${creditHtml ? `<span>${creditHtml}</span>` : ''}
+      </figcaption>`
     : '';
 
   return `

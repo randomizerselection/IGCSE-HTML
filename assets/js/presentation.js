@@ -216,6 +216,18 @@ const renderers = {
   discussion: (s) => `
     <div class="discussionPrompt">
       <p>${esc(s.question)}</p>
+      ${s.zh ? `<p class="zh">${esc(s.zh)}</p>` : ''}
+    </div>
+  `,
+
+  fact: (s) => `
+    <div class="factBlock">
+      <div class="factCountry">
+        ${s.flag ? `<span class="factFlag">${esc(s.flag)}</span>` : ''}
+        <span>${esc(s.country || '')}</span>
+      </div>
+      <p class="factText">${esc(s.fact || (s.facts || [])[0] || '')}</p>
+      ${s.zh ? `<p class="factZh">${esc(s.zh)}</p>` : ''}
     </div>
   `,
 };
@@ -224,6 +236,8 @@ const renderers = {
 function renderSlide(meta, slide, idx, total) {
   if (slide.type === 'discussion') {
     const photo = slide.visual && typeof slide.visual === 'object' ? slide.visual : null;
+    const caption = photo?.caption || photo?.alt || '';
+    const credit = photo?.credit || '';
     return `
       <section class="slide is-discussion" data-idx="${idx}"
                data-notes="${esc(slide.notes || 'Teacher cue: let students discuss the question before taking responses.')}">
@@ -237,7 +251,11 @@ function renderSlide(meta, slide, idx, total) {
         <div class="discussionContent">
           ${renderers.discussion(slide)}
         </div>
-        ${photo?.credit ? `<div class="discussionCredit">${esc(photo.credit)}</div>` : ''}
+        ${caption || credit ? `
+          <div class="discussionCredit">
+            ${caption ? `<span>${esc(caption)}</span>` : '<span></span>'}
+            ${credit ? `<span>${esc(credit)}</span>` : ''}
+          </div>` : ''}
         ${footer(meta, slide)}
       </section>
     `;
@@ -267,10 +285,11 @@ function renderSlide(meta, slide, idx, total) {
   const body = r ? r(slide) : `<div><h2>${esc(slide.title || '')}</h2></div>`;
 
   const isHero = slide.type === 'hero';
+  const isFact = slide.type === 'fact';
   const visual = IGCSE.renderVisual(slide.visual, `viz-${idx}`);
 
   return `
-    <section class="slide${isHero ? ' is-hero' : ''}" data-idx="${idx}"
+    <section class="slide${isHero ? ' is-hero' : ''}${isFact ? ' is-fact' : ''}" data-idx="${idx}"
              data-notes="${esc(slide.notes || 'Teacher cue: ask students to explain the mechanism before revealing any answer.')}">
       ${topline(slide, idx, total)}
       <div class="content${visual ? '' : ' is-full'}">
