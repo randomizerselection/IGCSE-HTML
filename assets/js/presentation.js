@@ -238,8 +238,10 @@ function renderSlide(meta, slide, idx, total) {
     const photo = slide.visual && typeof slide.visual === 'object' ? slide.visual : null;
     const caption = photo?.caption || photo?.alt || '';
     const credit = photo?.credit || '';
+    const promptLength = String(slide.question || '').length + String(slide.zh || '').length;
+    const sizeClass = promptLength > 135 ? ' is-long' : promptLength > 100 ? ' is-medium' : '';
     return `
-      <section class="slide is-discussion" data-idx="${idx}"
+      <section class="slide is-discussion${sizeClass}" data-idx="${idx}"
                data-notes="${esc(slide.notes || 'Teacher cue: let students discuss the question before taking responses.')}">
         ${photo?.src ? `
           <img class="discussionBg"
