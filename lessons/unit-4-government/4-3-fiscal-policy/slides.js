@@ -99,6 +99,7 @@ IGCSE.lesson = {
     title:        'Fiscal policy - Cambridge IGCSE Economics 0455',
     lessonLabel:  'Fiscal policy',
     courseLabel:  'Cambridge IGCSE Economics 0455',
+    creatorLabel: 'Created by Samuel Oehler-Huang, Suzhou Foreign Language School',
   },
 
   slides: [

@@ -30,6 +30,7 @@ IGCSE.lesson = {
     title:        '<Lesson title> — Cambridge IGCSE Economics 0455',
     lessonLabel:  '<Lesson label shown in slide footer>',
     courseLabel:  'Cambridge IGCSE Economics 0455',
+    creatorLabel: 'Created by Samuel Oehler-Huang, Suzhou Foreign Language School',
   },
 
   slides: [

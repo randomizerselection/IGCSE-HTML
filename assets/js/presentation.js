@@ -28,6 +28,7 @@ const topline = (slide, idx, total) => `
 const footer = (meta, slide) => `
   <div class="slide-footer">
     <span>${esc(meta.courseLabel || 'Cambridge IGCSE Economics 0455')}</span>
+    <span class="creator">${esc(meta.creatorLabel || 'Created by Samuel Oehler-Huang, Suzhou Foreign Language School')}</span>
     <span>${esc(slide.eyebrow || meta.lessonLabel || '')}</span>
   </div>
 `;

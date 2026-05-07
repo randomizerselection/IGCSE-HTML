@@ -63,9 +63,21 @@ body { overflow: hidden; }
 
 .slide-footer {
   display: flex; justify-content: space-between; align-items: end;
+  flex-wrap: wrap;
   gap: 16px;
   font-size: var(--t-small);
   color: var(--muted);
+}
+.slide-footer span {
+  flex: 1 1 0;
+}
+.slide-footer .creator {
+  flex: 1.6 1 260px;
+  text-align: center;
+  color: rgba(219,231,246,.72);
+}
+.slide-footer span:last-child {
+  text-align: right;
 }
 
 /* ---------- Layout: two-column content ---------- */

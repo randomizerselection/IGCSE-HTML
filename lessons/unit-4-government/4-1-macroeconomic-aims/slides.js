@@ -8,6 +8,7 @@ IGCSE.lesson = {
     title: 'Macroeconomic aims - Cambridge IGCSE Economics 0455',
     lessonLabel: 'Macroeconomic aims',
     courseLabel: 'Cambridge IGCSE Economics 0455',
+    creatorLabel: 'Created by Samuel Oehler-Huang, Suzhou Foreign Language School',
   },
 
   slides: [
