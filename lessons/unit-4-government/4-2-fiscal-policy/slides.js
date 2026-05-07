@@ -149,12 +149,26 @@ IGCSE.lesson = {
       visual: photos.budgetMeeting,
       partialReview: ['.choices > .choice', '.prompt'],
     },
+    {
+      type: 'discussion',
+      eyebrow: 'Opening discussion',
+      title:   'Trade-offs',
+      question: 'What should a government do first when it cannot achieve every aim at once?',
+      visual: photos.budgetMeeting,
+    },
 
     {
       type: 'section',
       eyebrow: '4.2.1',
       title:   'Government budget',
       subtitle: 'Revenue and expenditure decide whether there is a deficit or surplus.',
+    },
+    {
+      type: 'discussion',
+      eyebrow: 'Budget discussion',
+      title:   'Public money',
+      question: 'What should happen if a government spends more than it receives?',
+      visual: photos.budgetHearing,
     },
     {
       type: 'term',
@@ -205,6 +219,13 @@ IGCSE.lesson = {
       subtitle: 'Main areas of spending have different macroeconomic effects.',
     },
     {
+      type: 'discussion',
+      eyebrow: 'Spending discussion',
+      title:   'Priorities',
+      question: 'Which area of government spending should receive more money first?',
+      visual: photos.budgetHearing,
+    },
+    {
       type: 'cards',
       eyebrow: 'Government spending',
       title:   'Main areas of spending',
@@ -219,6 +240,13 @@ IGCSE.lesson = {
       ],
       visual: photos.budgetHearing,
       partialReview: ['.cardgrid > .card'],
+    },
+    {
+      type: 'discussion',
+      eyebrow: 'Spending reasons',
+      title:   'Why spend?',
+      question: 'Why might markets fail to provide enough education, healthcare or infrastructure?',
+      visual: photos.classroom,
     },
     {
       type: 'cards',
@@ -237,6 +265,13 @@ IGCSE.lesson = {
       partialReview: ['.cardgrid > .card'],
     },
     {
+      type: 'discussion',
+      eyebrow: 'Merit goods',
+      title:   'Education and healthcare',
+      question: 'Why might a person consume too little education or healthcare if they must pay the full price?',
+      visual: photos.classroom,
+    },
+    {
       type: 'flow',
       eyebrow: 'Reason for spending',
       title:   '1. Provide merit goods',
@@ -247,6 +282,13 @@ IGCSE.lesson = {
       partialReview: ['.flowRow > .flowChip', '.prompt'],
     },
     {
+      type: 'discussion',
+      eyebrow: 'Public goods',
+      title:   'Free rider problem',
+      question: 'Why is defence difficult to sell only to people who pay for it?',
+      visual: photos.defence,
+    },
+    {
       type: 'flow',
       eyebrow: 'Reason for spending',
       title:   '2. Provide public goods',
@@ -255,6 +297,13 @@ IGCSE.lesson = {
       footer: 'Exam link: public goods create benefits that markets may not provide.',
       visual: photos.defence,
       partialReview: ['.flowRow > .flowChip', '.prompt'],
+    },
+    {
+      type: 'discussion',
+      eyebrow: 'Infrastructure',
+      title:   'Roads, rail and ports',
+      question: 'How can a better road or railway help firms produce more?',
+      visual: photos.roadwork,
     },
     {
       type: 'flow',
@@ -280,6 +329,13 @@ IGCSE.lesson = {
       partialReview: ['.choices > .choice', '.prompt'],
     },
     {
+      type: 'discussion',
+      eyebrow: 'Industry support',
+      title:   'Picking winners',
+      question: 'Should a government support an industry if it is important for future jobs?',
+      visual: photos.industry,
+    },
+    {
       type: 'flow',
       eyebrow: 'Reason for spending',
       title:   '4. Support key industries',
@@ -290,6 +346,13 @@ IGCSE.lesson = {
       partialReview: ['.flowRow > .flowChip', '.prompt'],
     },
     {
+      type: 'discussion',
+      eyebrow: 'Inequality',
+      title:   'Welfare support',
+      question: 'How much responsibility should a government take for reducing poverty?',
+      visual: photos.socialSecurity,
+    },
+    {
       type: 'flow',
       eyebrow: 'Reason for spending',
       title:   '5. Reduce inequality',
@@ -297,6 +360,13 @@ IGCSE.lesson = {
       footer: 'Add a cost: the government may need higher taxes or borrowing.',
       visual: photos.socialSecurity,
       partialReview: ['.flowRow > .flowChip', '.prompt'],
+    },
+    {
+      type: 'discussion',
+      eyebrow: 'Macroeconomy',
+      title:   'Managing demand',
+      question: 'Should a government spend more when unemployment is rising?',
+      visual: photos.budgetMeeting,
     },
     {
       type: 'flow',
@@ -502,19 +572,11 @@ IGCSE.lesson = {
       partialReview: ['.choices > .choice', '.prompt'],
     },
     {
-      type: 'quiz',
+      type: 'discussion',
       eyebrow: 'Class discussion',
       title:   'Who should pay?',
       question: 'If the government needs more revenue for hospitals, should it raise income tax, VAT, corporation tax or a tax on unhealthy products?',
-      choices: [
-        'Income tax',
-        'VAT or sales tax',
-        'Corporation tax',
-        'Tax on unhealthy products',
-      ],
-      prompt: 'One question only: who bears the biggest burden of your choice?',
       visual: photos.healthcare,
-      partialReview: ['.choices > .choice', '.prompt'],
     },
     {
       type: 'cards',
@@ -532,6 +594,13 @@ IGCSE.lesson = {
       partialReview: ['.cardgrid > .card', '.prompt'],
     },
     {
+      type: 'discussion',
+      eyebrow: 'Direct tax',
+      title:   'Income and wealth',
+      question: 'Should higher-income households pay a higher percentage of their income in tax?',
+      visual: photos.taxForms,
+    },
+    {
       type: 'term',
       eyebrow: 'Tax type',
       title:   'Direct tax',
@@ -540,6 +609,13 @@ IGCSE.lesson = {
       examples: ['income tax on wages', 'corporation tax on company profits', 'property tax on land or buildings'],
       visual: photos.taxForms,
       partialReview: ['.termBox', '.choices > .choice'],
+    },
+    {
+      type: 'discussion',
+      eyebrow: 'Indirect tax',
+      title:   'At the checkout',
+      question: 'Is a tax added to prices fair if poorer households spend most of their income?',
+      visual: photos.shopping,
     },
     {
       type: 'term',
@@ -572,19 +648,11 @@ IGCSE.lesson = {
       partialReview: ['.splitCols > .card', '.prompt'],
     },
     {
-      type: 'quiz',
+      type: 'discussion',
       eyebrow: 'Class discussion',
       title:   'Taxing company profits',
       question: 'If corporation tax rises, what might a firm do with prices, wages, investment or dividends?',
-      choices: [
-        'Raise prices',
-        'Reduce investment',
-        'Accept lower profit after tax',
-        'A mix of these'
-      ],
-      prompt: 'One question only: which response is most likely for a firm in a competitive market?',
       visual: photos.industry,
-      partialReview: ['.choices > .choice', '.prompt'],
     },
     {
       type: 'compare',
@@ -627,19 +695,11 @@ IGCSE.lesson = {
       partialReview: ['.termBox', '.choices > .choice'],
     },
     {
-      type: 'quiz',
+      type: 'discussion',
       eyebrow: 'Class discussion',
       title:   'At the port',
       question: 'If a tariff makes imported phones more expensive, who might gain and who might lose?',
-      choices: [
-        'Domestic phone producers',
-        'Consumers who buy phones',
-        'Government revenue collectors',
-        'Foreign exporters'
-      ],
-      prompt: 'One question only: is the tariff mainly protection or revenue?',
       visual: photos.port,
-      partialReview: ['.choices > .choice', '.prompt'],
     },
     {
       type: 'compare',
@@ -692,18 +752,18 @@ IGCSE.lesson = {
       partialReview: ['.termBox', '.choices > .choice'],
     },
     {
-      type: 'quiz',
+      type: 'discussion',
       eyebrow: 'Class discussion',
       title:   'The smoke stack',
       question: 'Should a factory pay tax for pollution if it provides jobs in the local area?',
-      choices: [
-        'Yes, because pollution creates external costs',
-        'No, because jobs are more important',
-        'Only if cleaner technology is available',
-      ],
-      prompt: 'One question only: what is the strongest trade-off?',
       visual: photos.pollution,
-      partialReview: ['.choices > .choice', '.prompt'],
+    },
+    {
+      type: 'discussion',
+      eyebrow: 'Tax burden',
+      title:   'Progressive or regressive',
+      question: 'Should a tax be judged by how much money it raises or by who bears the burden?',
+      visual: photos.shopping,
     },
     {
       type: 'compare',
@@ -861,6 +921,13 @@ IGCSE.lesson = {
       subtitle: 'Changes in spending and taxation are used to influence macroeconomic aims.',
     },
     {
+      type: 'discussion',
+      eyebrow: 'Fiscal policy discussion',
+      title:   'Changing the economy',
+      question: 'Can a government change the whole economy by changing spending and taxes?',
+      visual: photos.budgetMeeting,
+    },
+    {
       type: 'term',
       eyebrow: 'Key term',
       title:   'Fiscal policy',
@@ -883,6 +950,13 @@ IGCSE.lesson = {
       partialReview: ['.splitCols > .card', '.prompt'],
     },
     {
+      type: 'discussion',
+      eyebrow: 'Expansionary policy',
+      title:   'Stimulus',
+      question: 'When unemployment is high, should the government cut taxes or increase spending?',
+      visual: photos.roadwork,
+    },
+    {
       type: 'flow',
       eyebrow: 'Fiscal policy',
       title:   'Expansionary policy',
@@ -892,6 +966,13 @@ IGCSE.lesson = {
       partialReview: ['.flowRow > .flowChip', '.prompt'],
     },
     {
+      type: 'discussion',
+      eyebrow: 'Contractionary policy',
+      title:   'Cooling demand',
+      question: 'When prices are rising too quickly, should the government raise taxes or cut spending?',
+      visual: photos.inflation,
+    },
+    {
       type: 'flow',
       eyebrow: 'Fiscal policy',
       title:   'Contractionary policy',
@@ -899,6 +980,13 @@ IGCSE.lesson = {
       footer: 'Risk: output and employment may fall.',
       visual: photos.taxForms,
       partialReview: ['.flowRow > .flowChip', '.prompt'],
+    },
+    {
+      type: 'discussion',
+      eyebrow: 'Macro aims',
+      title:   'Policy conflicts',
+      question: 'Which macroeconomic aim is most likely to conflict with lower inflation?',
+      visual: photos.budgetMeeting,
     },
     {
       type: 'cards',

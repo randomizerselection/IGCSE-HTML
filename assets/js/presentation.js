@@ -224,10 +224,15 @@ const renderers = {
 function renderSlide(meta, slide, idx, total) {
   if (slide.type === 'discussion') {
     const photo = slide.visual && typeof slide.visual === 'object' ? slide.visual : null;
-    const bg = photo?.src ? ` style="--discussion-bg: url('${esc(photo.src)}')"` : '';
     return `
-      <section class="slide is-discussion" data-idx="${idx}"${bg}
+      <section class="slide is-discussion" data-idx="${idx}"
                data-notes="${esc(slide.notes || 'Teacher cue: let students discuss the question before taking responses.')}">
+        ${photo?.src ? `
+          <img class="discussionBg"
+               src="${esc(photo.src)}"
+               alt="${esc(photo.alt || '')}"
+               loading="lazy"
+               decoding="async" />` : ''}
         ${topline(slide, idx, total)}
         <div class="discussionContent">
           ${renderers.discussion(slide)}
