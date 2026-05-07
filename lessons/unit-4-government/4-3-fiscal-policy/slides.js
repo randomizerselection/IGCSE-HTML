@@ -12,82 +12,81 @@
 
 window.IGCSE = window.IGCSE || {};
 
-const commonsPhoto = (file, alt, credit) => ({
+const localPhoto = (file, alt, credit) => ({
   type: 'photo',
-  src: `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(file)}?width=1200`,
-  source: `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(file).replace(/%20/g, '_')}`,
+  src: `../../../assets/images/fiscal-policy/${file}`,
   alt,
   credit,
 });
 
 const photos = {
-  budgetMeeting: commonsPhoto(
-    'Budget meeting with Congress.jpg',
+  budgetMeeting: localPhoto(
+    'budget-meeting-with-congress.jpg',
     'Government officials seated around a table during budget negotiations.',
     'Wikimedia Commons / Robert McNeely'
   ),
-  budgetHearing: commonsPhoto(
-    'House Budget Committee meeting - 2020-01-15.jpg',
+  budgetHearing: localPhoto(
+    'house-budget-committee-meeting-2020-01-15.jpg',
     'A legislative budget committee meeting in progress.',
     'Wikimedia Commons / House Budget Committee Democrats'
   ),
-  classroom: commonsPhoto(
-    'Students in a classroom.jpg',
+  classroom: localPhoto(
+    'students-in-a-classroom.jpg',
     'Students working at desks in a classroom.',
     'Wikimedia Commons / Ente75'
   ),
-  healthcare: commonsPhoto(
-    'Doctors and nurses at the 3rd Field Hospital.jpg',
+  healthcare: localPhoto(
+    'doctors-and-nurses-at-the-3rd-field-hospital.jpg',
     'Doctors and nurses standing together in a hospital.',
     'Wikimedia Commons / Defense VI Records Center'
   ),
-  defence: commonsPhoto(
-    '250417-D-FN350-1098 (54457200287).jpg',
+  defence: localPhoto(
+    'defence-officials-meeting.jpg',
     'Defence officials seated for a formal bilateral meeting.',
     'Wikimedia Commons / U.S. Secretary of Defense'
   ),
-  roadwork: commonsPhoto(
-    'Going-to-the-Sun Road, construction crew paving around milepost 33.jpg',
+  roadwork: localPhoto(
+    'going-to-the-sun-road-paving.jpg',
     'A road construction crew paving a mountain road.',
     'Wikimedia Commons / U.S. Dept. of Transportation'
   ),
-  industry: commonsPhoto(
-    'National Semiconductor Factory - geograph.org.uk - 63468.jpg',
+  industry: localPhoto(
+    'national-semiconductor-factory.jpg',
     'The exterior of a semiconductor factory.',
     'Wikimedia Commons / william craig'
   ),
-  socialSecurity: commonsPhoto(
-    'Signing Of The Social Security Act.jpg',
+  socialSecurity: localPhoto(
+    'signing-of-the-social-security-act.jpg',
     'President Roosevelt signing the Social Security Act.',
     'Wikimedia Commons / National Archives'
   ),
-  shopping: commonsPhoto(
-    'Shopping Carts in a Grocery Store.jpg',
+  shopping: localPhoto(
+    'shopping-carts-in-a-grocery-store.jpg',
     'Rows of shopping carts inside a grocery store.',
     'Wikimedia Commons / Visitor7'
   ),
-  taxForms: commonsPhoto(
-    'Tax Forms (13880455534).jpg',
+  taxForms: localPhoto(
+    'tax-forms.jpg',
     'Printed tax forms laid out on a table.',
     'Wikimedia Commons / Kalamazoo Public Library'
   ),
-  tobacco: commonsPhoto(
-    'Tobacco Cigarette Pack (24986420363).jpg',
+  tobacco: localPhoto(
+    'tobacco-cigarette-pack.jpg',
     'A cigarette pack photographed on a table.',
     'Wikimedia Commons / Lindsay Fox'
   ),
-  pollution: commonsPhoto(
-    'Smokestack in Detroit.jpg',
+  pollution: localPhoto(
+    'smokestack-in-detroit.jpg',
     'A smokestack rising from an industrial plant.',
     'Wikimedia Commons / Gyre'
   ),
-  port: commonsPhoto(
-    'Cargo containers (5945899601).jpg',
+  port: localPhoto(
+    'cargo-containers.jpg',
     'Stacks of cargo containers at a waterfront port.',
     'Wikimedia Commons / Roy Luck'
   ),
-  inflation: commonsPhoto(
-    'Meat inflation in the United States.jpg',
+  inflation: localPhoto(
+    'meat-inflation-in-the-united-states.jpg',
     'A grocery shelf with posted meat prices.',
     'Wikimedia Commons / Wikideas1'
   ),
