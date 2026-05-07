@@ -344,19 +344,11 @@ IGCSE.lesson = {
       subtitle: 'Taxes raise revenue, change behaviour and influence demand.',
     },
     {
-      type: 'quiz',
+      type: 'discussion',
       eyebrow: 'Taxation hook',
       title:   'Every receipt is a policy choice',
-      question: 'When you buy food, fuel, clothes or imported goods, where might the government be collecting tax?',
-      choices: [
-        'At the checkout',
-        'From the firm before the product reaches the shop',
-        'At the border when goods enter the country',
-        'From workers and firms when income is earned',
-      ],
-      prompt: 'Discussion: which tax would consumers notice most clearly?',
+      question: 'Which taxes do you already know?',
       visual: photos.shopping,
-      partialReview: ['.choices > .choice', '.prompt'],
     },
     {
       type: 'outcomes',

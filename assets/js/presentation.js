@@ -212,10 +212,32 @@ const renderers = {
       ${s.prompt ? `<div class="prompt">${esc(s.prompt)}</div>` : ''}
     </div>
   `,
+
+  discussion: (s) => `
+    <div class="discussionPrompt">
+      <p>${esc(s.question)}</p>
+    </div>
+  `,
 };
 
 /* ---------- Full slide renderer ---------- */
 function renderSlide(meta, slide, idx, total) {
+  if (slide.type === 'discussion') {
+    const photo = slide.visual && typeof slide.visual === 'object' ? slide.visual : null;
+    const bg = photo?.src ? ` style="--discussion-bg: url('${esc(photo.src)}')"` : '';
+    return `
+      <section class="slide is-discussion" data-idx="${idx}"${bg}
+               data-notes="${esc(slide.notes || 'Teacher cue: let students discuss the question before taking responses.')}">
+        ${topline(slide, idx, total)}
+        <div class="discussionContent">
+          ${renderers.discussion(slide)}
+        </div>
+        ${photo?.credit ? `<div class="discussionCredit">${esc(photo.credit)}</div>` : ''}
+        ${footer(meta, slide)}
+      </section>
+    `;
+  }
+
   // Section transitions get a special wide layout
   if (slide.type === 'section') {
     const sectionVisual = IGCSE.renderVisual(slide.visual, `sec-${idx}`);

@@ -228,6 +228,65 @@ body { overflow: hidden; }
 .slide.is-hero .content { grid-template-columns: 1.2fr .8fr; }
 .slide.is-hero h1 { font-size: var(--t-hero); }
 
+/* ---------- Full-screen discussion slide ---------- */
+.slide.is-discussion {
+  isolation: isolate;
+  background:
+    linear-gradient(90deg, rgba(3,10,20,.82), rgba(3,10,20,.36) 54%, rgba(3,10,20,.68)),
+    var(--discussion-bg, radial-gradient(circle at 50% 50%, rgba(86,216,255,.24), rgba(3,10,20,.94)));
+  background-size: cover;
+  background-position: center;
+}
+.slide.is-discussion::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: linear-gradient(180deg, rgba(3,10,20,.26), rgba(3,10,20,.68));
+}
+.slide.is-discussion > * {
+  position: relative;
+  z-index: 1;
+}
+.discussionContent {
+  min-height: 0;
+  display: grid;
+  align-items: center;
+  max-width: min(980px, 82vw);
+}
+.discussionPrompt p {
+  margin: 0;
+  max-width: 14ch;
+  color: #fff;
+  font-size: clamp(58px, 8vw, 118px);
+  line-height: .98;
+  font-weight: 900;
+  text-wrap: balance;
+  text-shadow: 0 14px 44px rgba(0,0,0,.58);
+}
+.discussionCredit {
+  position: absolute;
+  right: 5.8vw;
+  bottom: 9.5vh;
+  max-width: 36vw;
+  color: rgba(255,255,255,.62);
+  font-size: clamp(11px, .85vw, 14px);
+  text-align: right;
+  z-index: 1;
+}
+
+@media (max-width: 960px) {
+  .discussionContent { max-width: 90vw; }
+  .discussionPrompt p {
+    max-width: 12ch;
+    font-size: clamp(44px, 14vw, 78px);
+  }
+  .discussionCredit {
+    right: 5vw;
+    max-width: 70vw;
+  }
+}
+
 /* ---------- Progress bar ---------- */
 #progress {
   position: fixed; left: 0; right: 0; bottom: 0;
