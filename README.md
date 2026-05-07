@@ -104,6 +104,22 @@ Use the 4.2 rows for fiscal-policy wording when creating slides.
 
 That's it. No CSS or JavaScript changes are needed for a new lesson.
 
+### Lesson structure preferences
+
+For list-like syllabus content, avoid putting all explanations on one dense
+slide. Prefer:
+
+- a short overview slide that names the full list
+- numbered items when the list has a natural sequence
+- one slide per reason, type, effect, or case
+- a simple cause/effect chain on each explanation slide
+- quick checks of understanding between segments
+- exam prompts that ask students to identify the reason, apply it, and add an
+  opportunity cost or evaluation point
+
+For example, reasons for government spending and reasons for taxation should
+use a numbered overview followed by one slide per reason.
+
 ### Slide types (in `slides.js`)
 
 | `type`     | Purpose                                  |
