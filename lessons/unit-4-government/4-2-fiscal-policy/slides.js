@@ -685,6 +685,12 @@ IGCSE.lesson = {
       partialReview: ['.termBox', '.choices > .choice'],
     },
     {
+      type: 'indirectTaxSim',
+      eyebrow: 'Indirect tax simulator',
+      title:   'Why indirect taxes can be regressive',
+      taxRate: 10,
+    },
+    {
       type: 'fact',
       eyebrow: 'Real-world fact',
       flag:    '🇬🇧',
@@ -816,6 +822,15 @@ IGCSE.lesson = {
       eyebrow: 'Tax simulator',
       title:   'Progressive or regressive?',
       defaultMode: 'progressive',
+    },
+    {
+      type: 'chinaIncomeTaxSim',
+      eyebrow: 'Real-world simulator',
+      title:   'Mainland China income tax',
+      defaultIncome: 240000,
+      standardDeduction: 60000,
+      presets: [96000, 180000, 360000, 720000, 1200000],
+      source: 'Resident comprehensive income; simplified classroom estimate. Sources: STA Individual Income Tax Law; PwC Worldwide Tax Summaries.',
     },
     {
       type: 'flow',
