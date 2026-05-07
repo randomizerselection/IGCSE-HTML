@@ -670,9 +670,15 @@ IGCSE.lesson = {
         'often used on cigarettes, alcohol and fuel',
         'aims can include revenue and reducing demerit goods'
       ],
-      prompt: 'Why might governments tax cigarettes more heavily than bread?',
       visual: photos.tobacco,
       partialReview: ['.splitCols > .card', '.prompt'],
+    },
+    {
+      type: 'discussion',
+      eyebrow: 'Excise duty',
+      title:   'Taxing harmful goods',
+      question: 'Why might governments tax cigarettes more heavily than bread?',
+      visual: photos.tobacco,
     },
     {
       type: 'flow',
@@ -717,9 +723,15 @@ IGCSE.lesson = {
         'usually a direct tax',
         'real examples include tax on gains from shares or second homes'
       ],
-      prompt: 'Why might these taxes be harder to administer than a sales tax?',
       visual: photos.socialSecurity,
       partialReview: ['.splitCols > .card', '.prompt'],
+    },
+    {
+      type: 'discussion',
+      eyebrow: 'Wealth taxes',
+      title:   'Hard to measure',
+      question: 'Why might wealth taxes be harder to administer than a sales tax?',
+      visual: photos.socialSecurity,
     },
     {
       type: 'compare',
@@ -818,9 +830,15 @@ IGCSE.lesson = {
         ['Income tax bands', 'used by many countries to make income tax progressive', '5'],
         ['Carbon taxes', 'used in countries such as Sweden to price emissions', '6'],
       ],
-      footer: 'Discussion: which example is easiest to link to a macroeconomic aim?',
       visual: photos.budgetHearing,
       partialReview: ['.cardgrid > .card', '.prompt'],
+    },
+    {
+      type: 'discussion',
+      eyebrow: 'Real-world examples',
+      title:   'Using examples',
+      question: 'Which tax example is easiest to link to a macroeconomic aim?',
+      visual: photos.budgetHearing,
     },
     {
       type: 'quiz',
@@ -884,9 +902,15 @@ IGCSE.lesson = {
       left:  ['higher proportion as income rises'],
       rightTitle: 'Regressive',
       right: ['higher proportion for lower-income groups'],
-      prompt: 'Which type reduces inequality more directly?',
       visual: photos.socialSecurity,
       partialReview: ['.splitCols > .card', '.prompt'],
+    },
+    {
+      type: 'discussion',
+      eyebrow: 'Redistribution',
+      title:   'Reducing inequality',
+      question: 'Which tax structure reduces inequality more directly?',
+      visual: photos.socialSecurity,
     },
     {
       type: 'term',
@@ -909,9 +933,15 @@ IGCSE.lesson = {
         ['Regressive?', 'does the proportion hit lower-income households harder?'],
         ['Proportional?', 'is the same percentage charged at all income levels?'],
       ],
-      footer: 'Why might a sales tax be called regressive?',
       visual: photos.taxForms,
       partialReview: ['.cardgrid > .card', '.prompt'],
+    },
+    {
+      type: 'discussion',
+      eyebrow: 'Exam trap',
+      title:   'Regressive taxes',
+      question: 'Why might a sales tax be called regressive?',
+      visual: photos.shopping,
     },
 
     {
