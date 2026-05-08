@@ -281,12 +281,12 @@
       border-radius: var(--card-radius);
       background: rgba(255,255,255,.055);
       color: var(--ink);
-      text-decoration: none;
       box-shadow: var(--shadow-sm);
       transition: transform .22s var(--ease), border-color .22s var(--ease), background .22s var(--ease);
     }
 
-    .lesson-card:hover {
+    .lesson-card:hover,
+    .lesson-card:focus-within {
       transform: translateY(-3px);
       border-color: rgba(86,216,255,.46);
       background: rgba(255,255,255,.085);
@@ -315,12 +315,45 @@
       line-height: 1.5;
     }
 
-    .lesson-card .open {
+    .lesson-actions {
       margin-top: auto;
       padding-top: 1.3rem;
-      color: var(--cyan);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .65rem;
+    }
+
+    .lesson-action {
+      display: flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.06);
+      color: var(--ink);
       font-size: 14px;
       font-weight: 850;
+      text-align: center;
+      text-decoration: none;
+      transition: border-color .18s var(--ease), background .18s var(--ease), color .18s var(--ease);
+    }
+
+    .lesson-action:hover,
+    .lesson-action:focus-visible {
+      border-color: rgba(86,216,255,.58);
+      background: rgba(86,216,255,.13);
+      outline: none;
+    }
+
+    .lesson-action.primary {
+      color: var(--cyan);
+      border-color: rgba(86,216,255,.32);
+    }
+
+    .lesson-action.secondary {
+      color: var(--green);
+      border-color: rgba(126,240,181,.28);
     }
 
     .lesson-card.featured {
@@ -445,6 +478,10 @@
 
       .stats {
         border-top: 1px solid var(--line);
+      }
+
+      .lesson-actions {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -577,40 +614,55 @@
       </div>
 
       <div class="lesson-grid">
-        <a class="lesson-card featured" href="lessons/unit-2-allocation/2-8-market-economic-system/index.html">
+        <article class="lesson-card featured">
           <span class="code">2.8 - Unit 2</span>
           <h3>Market economic system</h3>
           <p>Definition of a market economy, resource allocation through the price mechanism, and arguments for and against markets.</p>
-          <span class="open">Open slide deck</span>
-        </a>
+          <div class="lesson-actions" aria-label="Market economic system views">
+            <a class="lesson-action primary" href="lessons/unit-2-allocation/2-8-market-economic-system/index.html">Slide view</a>
+            <a class="lesson-action secondary" href="lessons/unit-2-allocation/2-8-market-economic-system/index.html?view=print">Handout view</a>
+          </div>
+        </article>
 
-        <a class="lesson-card featured" href="lessons/unit-4-government/4-1-macroeconomic-aims/index.html">
+        <article class="lesson-card featured">
           <span class="code">4.1.1 - Unit 4</span>
           <h3>Macro<wbr>economic aims</h3>
           <p>Growth, employment, stable prices, balance of payments stability, redistribution of income and environmental sustainability.</p>
-          <span class="open">Open slide deck</span>
-        </a>
+          <div class="lesson-actions" aria-label="Macroeconomic aims views">
+            <a class="lesson-action primary" href="lessons/unit-4-government/4-1-macroeconomic-aims/index.html">Slide view</a>
+            <a class="lesson-action secondary" href="lessons/unit-4-government/4-1-macroeconomic-aims/index.html?view=print">Handout view</a>
+          </div>
+        </article>
 
-        <a class="lesson-card featured" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html">
+        <article class="lesson-card featured">
           <span class="code">4.2.1-4.2.2 - Unit 4</span>
           <h3>Government budget and spending</h3>
           <p>Budget plans, deficit and surplus calculations, and the main areas, reasons and effects of government spending.</p>
-          <span class="open">Open slide deck</span>
-        </a>
+          <div class="lesson-actions" aria-label="Government budget and spending views">
+            <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html">Slide view</a>
+            <a class="lesson-action secondary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html?view=print">Handout view</a>
+          </div>
+        </article>
 
-        <a class="lesson-card featured" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html">
+        <article class="lesson-card featured">
           <span class="code">4.2.3 - Unit 4</span>
           <h3>Taxation</h3>
           <p>Reasons for taxation and tax classifications: direct, indirect, progressive, regressive and proportional taxes.</p>
-          <span class="open">Open slide deck</span>
-        </a>
+          <div class="lesson-actions" aria-label="Taxation views">
+            <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html">Slide view</a>
+            <a class="lesson-action secondary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html?view=print">Handout view</a>
+          </div>
+        </article>
 
-        <a class="lesson-card featured" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html">
+        <article class="lesson-card featured">
           <span class="code">4.2.4-4.2.6 - Unit 4</span>
           <h3>Fiscal-policy measures and effects</h3>
           <p>Changes in taxes and government spending, with effects on growth, employment, prices, redistribution, external stability and sustainability.</p>
-          <span class="open">Open slide deck</span>
-        </a>
+          <div class="lesson-actions" aria-label="Fiscal-policy measures and effects views">
+            <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html">Slide view</a>
+            <a class="lesson-action secondary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html?view=print">Handout view</a>
+          </div>
+        </article>
       </div>
 
       <div class="library-note">

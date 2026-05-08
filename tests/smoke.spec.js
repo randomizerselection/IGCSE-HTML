@@ -20,8 +20,13 @@ test.describe('site smoke', () => {
 
     await expect(page.getByRole('heading', { name: /IGCSE Economics lesson review/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Review a deck/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /Open slide deck/i }).first()).toBeVisible();
+    await expect(page.getByRole('link', { name: /Slide view/i }).first()).toBeVisible();
+    await expect(page.getByRole('link', { name: /Handout view/i }).first()).toBeVisible();
     await expect(page.getByRole('heading', { name: /Macroeconomic aims/i })).toBeVisible();
+
+    await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(5);
+    await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(5);
+    await expect(page.getByRole('link', { name: /Handout view/i }).first()).toHaveAttribute('href', /view=print/);
 
     await expectNoHorizontalOverflow(page);
 
@@ -41,6 +46,7 @@ test.describe('site smoke', () => {
     await expect(page.locator('.slide.is-active')).toBeVisible();
     await expect(page.locator('.slide.is-active h1')).toHaveText(/Macroeconomic aims/i);
     await expect(page.locator('#progress')).toBeVisible();
+    await expect(page.getByRole('link', { name: /Student print view/i })).toBeVisible();
 
     await expectNoHorizontalOverflow(page);
 
@@ -70,5 +76,30 @@ test.describe('site smoke', () => {
       expect(mobileLayout.slidePosition).toBe('relative');
       expect(mobileLayout.documentHeight).toBeGreaterThanOrEqual(mobileLayout.viewportHeight);
     }
+  });
+
+  test('student print view renders a full lesson handout', async ({ page }) => {
+    await page.goto(pageUrl('lessons/unit-4-government/4-1-macroeconomic-aims/index.html') + '?view=print');
+
+    await expect(page.getByRole('heading', { name: /Macroeconomic aims/i }).first()).toBeVisible();
+    await expect(page.getByRole('button', { name: /^Print$/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Slide mode/i })).toBeVisible();
+    await expect(page.locator('.slide')).toHaveCount(0);
+    await expect(page.locator('.handoutBlock')).toHaveCount(4);
+    await expect(page.locator('.handoutBlock').filter({ hasText: /What governments try to achieve/i })).toBeVisible();
+    await expect(page.locator('.handoutBlock').filter({ hasText: /Choose the priority/i })).toHaveCount(0);
+
+    await expectNoHorizontalOverflow(page);
+  });
+
+  test('student handout excludes fact and discussion slides', async ({ page }) => {
+    await page.goto(pageUrl('lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html') + '?view=print');
+
+    await expect(page.locator('.slide')).toHaveCount(0);
+    await expect(page.locator('.handoutBlock').filter({ hasText: /Denmark had a tax-to-GDP ratio/i })).toHaveCount(0);
+    await expect(page.locator('.handoutBlock').filter({ hasText: /Turn and talk/i })).toHaveCount(0);
+    await expect(page.getByRole('heading', { name: 'Direct tax', exact: true })).toBeVisible();
+
+    await expectNoHorizontalOverflow(page);
   });
 });

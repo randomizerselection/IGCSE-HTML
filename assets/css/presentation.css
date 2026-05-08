@@ -1329,6 +1329,393 @@ h2 .inlineZh {
 .thumb .n { font-size: 12px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
 .thumb .t { display: block; font-weight: 700; margin-top: .35em; font-size: 17px; line-height: 1.25; color: #fff; }
 
+/* ---------- Lesson view switcher ---------- */
+.lessonModeSwitch {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 90;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.lessonModeButton {
+  appearance: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(7, 17, 31, .82);
+  color: var(--ink);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(14px);
+  padding: 10px 14px;
+  font: 800 13px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: .02em;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.lessonModeButton:hover,
+.lessonModeButton:focus-visible {
+  border-color: var(--line-strong);
+  background: rgba(16, 35, 58, .92);
+  outline: none;
+}
+
+/* ---------- Student print / reading view ---------- */
+body.is-handout-mode {
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #f6f7f9;
+  color: #172033;
+}
+
+body.is-handout-mode::before,
+body.is-handout-mode::after,
+body.is-handout-mode #notes,
+body.is-handout-mode #overview,
+body.is-handout-mode #progress,
+body.is-handout-mode .help {
+  display: none !important;
+}
+
+body.is-handout-mode #deck {
+  height: auto;
+}
+
+.handoutDeck {
+  width: min(920px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 72px 0 56px;
+}
+
+.handoutHero {
+  border-bottom: 2px solid #172033;
+  padding: 0 0 18px;
+  margin-bottom: 28px;
+}
+
+.handoutKicker,
+.handoutHero p {
+  color: #526176;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.handoutHero h1 {
+  max-width: 900px;
+  margin: 7px 0;
+  color: #111827;
+  font-size: clamp(34px, 4.8vw, 58px);
+  line-height: 1.02;
+}
+
+.handoutHero p {
+  margin: 0;
+}
+
+.handoutDocument {
+  display: grid;
+  gap: 34px;
+  background: #fff;
+  border: 1px solid #dde3ec;
+  border-radius: 8px;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, .08);
+  padding: clamp(22px, 4vw, 42px);
+}
+
+.handoutSection {
+  display: grid;
+  gap: 12px;
+  break-inside: avoid;
+}
+
+.handoutSection + .handoutSection {
+  border-top: 1px solid #d7dee8;
+  padding-top: 24px;
+}
+
+.handoutSectionHeader {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: baseline;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d7dee8;
+}
+
+.handoutSectionHeader span {
+  color: #2563eb;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.handoutSection h2 {
+  color: #111827;
+  font-size: 28px;
+  line-height: 1.14;
+  letter-spacing: 0;
+}
+
+.handoutSectionLead {
+  margin-top: -6px;
+  color: #526176;
+  font-size: 15px;
+}
+
+.handoutSectionBody {
+  display: grid;
+  gap: 18px;
+}
+
+.handoutBlock {
+  break-inside: avoid;
+  border: 1px solid #dde3ec;
+  border-left: 5px solid #cad3df;
+  border-radius: 8px;
+  background: #fff;
+  padding: 14px 16px;
+}
+
+.handoutBlock.is-key-points {
+  border-left-color: #2563eb;
+}
+
+.handoutBlock.is-definition {
+  border-left-color: #0f766e;
+}
+
+.handoutBlock.is-flow {
+  border-left-color: #7c3aed;
+}
+
+.handoutBlock.is-compare {
+  border-left-color: #d97706;
+}
+
+.handoutBlock.is-example {
+  border-left-color: #64748b;
+}
+
+.handoutLabel {
+  margin-bottom: 5px;
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.handoutBlock h3 {
+  margin: 0 0 10px;
+  color: #111827;
+  font-size: 20px;
+  line-height: 1.22;
+  letter-spacing: 0;
+}
+
+.handoutBlock h4 {
+  margin: 0 0 6px;
+  color: #111827;
+  font-size: 15px;
+  line-height: 1.25;
+  letter-spacing: 0;
+}
+
+.handoutBlock p,
+.handoutBlock li {
+  color: #263244;
+  font-size: 15.5px;
+  line-height: 1.52;
+}
+
+.handoutBlock p {
+  margin: 0 0 8px;
+}
+
+.handoutBlock ul,
+.handoutBlock ol {
+  margin: 0;
+  padding-left: 1.35rem;
+}
+
+.handoutBlock li + li {
+  margin-top: 5px;
+}
+
+.handoutCode,
+.handoutFormula,
+.handoutAnswer {
+  font-weight: 800;
+  color: #0f766e !important;
+}
+
+.handoutQuestion {
+  font-weight: 720;
+  color: #172033 !important;
+}
+
+.handoutNote {
+  margin-top: 8px !important;
+  border: 1px solid #dbe3ee;
+  border-radius: 8px;
+  background: #f8fafc;
+  padding: 10px 12px;
+  color: #334155 !important;
+  font-weight: 650;
+}
+
+.handoutSource {
+  color: #64748b !important;
+  font-size: 13px !important;
+}
+
+.handoutFact {
+  font-size: 16px !important;
+  font-weight: 720;
+}
+
+.handoutDefinition {
+  margin: 8px 0 10px;
+  border: 1px solid #dbe3ee;
+  border-left: 4px solid #0f766e;
+  border-radius: 8px;
+  background: #f8fafc;
+  padding: 10px 12px;
+}
+
+.handoutDefinition b {
+  display: block;
+  margin-bottom: 4px;
+  color: #111827;
+  font-size: 16px;
+}
+
+.handoutPairs,
+.handoutExamples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 11px;
+}
+
+.handoutPairs > div,
+.handoutExamples > div,
+.handoutColumns > section {
+  border: 1px solid #dbe3ee;
+  border-radius: 8px;
+  background: #fbfcfe;
+  padding: 12px;
+}
+
+.handoutPairs b,
+.handoutExamples b {
+  display: block;
+  color: #111827;
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.handoutPairs span,
+.handoutExamples span {
+  display: inline-block;
+  margin-bottom: 4px;
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.handoutPairs p,
+.handoutExamples p {
+  margin: 4px 0 0;
+  font-size: 14px;
+}
+
+.handoutColumns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+}
+
+.handoutFlow {
+  display: grid;
+  gap: 8px;
+  padding-left: 0 !important;
+  counter-reset: handout-flow;
+}
+
+.handoutFlow li {
+  list-style: none;
+  position: relative;
+  border: 1px solid #dbe3ee;
+  border-radius: 8px;
+  background: #fbfcfe;
+  padding: 9px 10px 9px 42px;
+  counter-increment: handout-flow;
+}
+
+.handoutFlow li::before {
+  content: counter(handout-flow);
+  position: absolute;
+  top: 9px;
+  left: 10px;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.handoutChoices {
+  columns: 2;
+  column-gap: 28px;
+}
+
+.handoutKeywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.handoutKeywords span {
+  border: 1px solid #dbe3ee;
+  border-radius: 999px;
+  background: #f8fafc;
+  padding: 5px 9px;
+  color: #172033;
+  font-size: 13px;
+  font-weight: 750;
+}
+
+@media (max-width: 760px) {
+  .lessonModeSwitch {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    justify-content: flex-end;
+  }
+
+  .handoutDeck {
+    width: min(100% - 24px, 720px);
+    padding-top: 64px;
+  }
+
+  .handoutDocument {
+    padding: 18px;
+  }
+
+  .handoutChoices {
+    columns: 1;
+  }
+}
+
 /* ---------- Mobile reading mode ---------- */
 @media (max-width: 760px) {
   html,
@@ -1461,8 +1848,44 @@ h2 .inlineZh {
 /* ---------- Print ---------- */
 @media print {
   html, body { height: auto; overflow: auto; background: white; }
-  body::before, body::after, #progress, .help, #notes, #overview { display: none !important; }
+  body::before, body::after, #progress, .help, #notes, #overview, .lessonModeSwitch { display: none !important; }
   #deck { height: auto; }
+  body.is-handout-mode {
+    background: white;
+    color: #111827;
+  }
+  body.is-handout-mode #deck {
+    width: 100%;
+    padding: 0;
+  }
+  .handoutHero {
+    margin-bottom: 8mm;
+    padding-bottom: 5mm;
+  }
+  .handoutHero h1 {
+    font-size: 28pt;
+  }
+  .handoutDocument {
+    border: 0;
+    box-shadow: none;
+    padding: 0;
+    gap: 7mm;
+  }
+  .handoutSection + .handoutSection {
+    padding-top: 6mm;
+  }
+  .handoutBlock {
+    break-inside: avoid;
+  }
+  .handoutBlock p,
+  .handoutBlock li {
+    font-size: 10.5pt;
+  }
+  .handoutPairs,
+  .handoutExamples,
+  .handoutColumns {
+    grid-template-columns: repeat(2, 1fr);
+  }
   .slide {
     position: relative !important;
     display: grid !important;

@@ -654,6 +654,261 @@ function renderSlide(meta, slide, idx, total) {
   `;
 }
 
+/* ---------- Student print/reading view ---------- */
+function isHandoutView() {
+  const view = new URLSearchParams(location.search).get('view');
+  return ['print', 'handout', 'student'].includes(String(view || '').toLowerCase());
+}
+
+function lessonViewUrl(view) {
+  const url = new URL(location.href);
+  if (view === 'handout') {
+    url.searchParams.set('view', 'print');
+    url.hash = '';
+  } else {
+    url.searchParams.delete('view');
+  }
+  return url.href;
+}
+
+function mountLessonModeSwitch(mode) {
+  document.querySelector('.lessonModeSwitch')?.remove();
+  const nav = document.createElement('nav');
+  nav.className = 'lessonModeSwitch';
+  nav.setAttribute('aria-label', 'Lesson view options');
+  nav.innerHTML = mode === 'handout'
+    ? `
+      <button type="button" class="lessonModeButton" data-print-lesson>Print</button>
+      <a class="lessonModeButton" href="${esc(lessonViewUrl('slides'))}">Slide mode</a>
+    `
+    : `<a class="lessonModeButton" href="${esc(lessonViewUrl('handout'))}">Student print view</a>`;
+  nav.querySelector('[data-print-lesson]')?.addEventListener('click', () => window.print());
+  document.body.appendChild(nav);
+}
+
+function handoutTitle(slide) {
+  return esc(slide.title || slide.eyebrow || '');
+}
+
+function handoutParagraph(text, className = '') {
+  return text ? `<p${className ? ` class="${className}"` : ''}>${esc(text)}</p>` : '';
+}
+
+function handoutList(items = [], ordered = false) {
+  if (!items.length) return '';
+  const tag = ordered ? 'ol' : 'ul';
+  return `<${tag}>${items.map((item) => `<li>${esc(item)}</li>`).join('')}</${tag}>`;
+}
+
+function handoutPairs(items = [], className = 'handoutPairs') {
+  if (!items.length) return '';
+  return `
+    <div class="${className}">
+      ${items.map((item) => {
+        const title = Array.isArray(item) ? item[0] : item?.title;
+        const detail = Array.isArray(item) ? item[1] : (item?.detail || item?.body || item?.definition);
+        const number = Array.isArray(item) ? item[2] : item?.number;
+        return `
+          <div>
+            ${number ? `<span>${esc(number)}</span>` : ''}
+            <b>${esc(title || '')}</b>
+            ${detail ? `<p>${esc(detail)}</p>` : ''}
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+function handoutSteps(items = []) {
+  if (!items.length) return '';
+  return `
+    <ol class="handoutSteps">
+      ${items.map((item) => {
+        const label = Array.isArray(item) ? item[0] : '';
+        const detail = Array.isArray(item) ? item[1] : item;
+        return `<li>${label ? `<b>${esc(label)}</b>` : ''}${esc(detail || '')}</li>`;
+      }).join('')}
+    </ol>
+  `;
+}
+
+function handoutFlow(nodes = []) {
+  const arr = Array.isArray(nodes[0]) ? nodes[0] : nodes;
+  if (!arr?.length) return '';
+  return `
+    <ol class="handoutFlow">
+      ${arr.map((node) => `<li>${esc(node)}</li>`).join('')}
+    </ol>
+  `;
+}
+
+function handoutChoices(choices = []) {
+  if (!choices.length) return '';
+  return `
+    <ol class="handoutChoices" type="A">
+      ${choices.map((choice) => `<li>${esc(choice)}</li>`).join('')}
+    </ol>
+  `;
+}
+
+function handoutBlock(slide, body, modifier = '') {
+  if (!body.trim()) return '';
+  const eyebrow = slide.eyebrow || slide.type || '';
+  return `
+    <article class="handoutBlock${modifier ? ` ${modifier}` : ''}">
+      ${eyebrow ? `<div class="handoutLabel">${esc(eyebrow)}</div>` : ''}
+      ${slide.title ? `<h3>${handoutTitle(slide)}</h3>` : ''}
+      ${body}
+    </article>
+  `;
+}
+
+const handoutContentTypes = new Set([
+  'cards',
+  'compare',
+  'flow',
+  'split',
+  'systemCompare',
+  'term',
+]);
+
+function shouldIncludeHandoutSlide(slide) {
+  return handoutContentTypes.has(slide.type);
+}
+
+function renderHandoutBlock(slide) {
+  switch (slide.type) {
+    case 'cards':
+      return handoutBlock({ ...slide, eyebrow: 'Key points' }, `
+        ${handoutParagraph(slide.lead)}
+        ${handoutPairs(slide.cards || [])}
+        ${handoutParagraph(slide.footer, 'handoutNote')}
+      `, 'is-key-points');
+
+    case 'term':
+      return handoutBlock({ ...slide, eyebrow: 'Definition' }, `
+        ${handoutParagraph(slide.lead)}
+        <div class="handoutDefinition">
+          ${slide.term ? `<b>${esc(slide.term)}</b>` : ''}
+          ${handoutParagraph(slide.definition)}
+        </div>
+        ${slide.formula ? `<p class="handoutFormula">${esc(slide.formula)}</p>` : ''}
+        ${handoutPairs(slide.examples || [], 'handoutExamples')}
+      `, 'is-definition');
+
+    case 'compare':
+    case 'split':
+      return handoutBlock({ ...slide, eyebrow: 'Compare' }, `
+        ${handoutParagraph(slide.question)}
+        ${slide.term ? `
+          <div class="handoutDefinition">
+            <b>${esc(slide.term)}</b>
+            ${handoutParagraph(slide.definition)}
+          </div>` : ''}
+        <div class="handoutColumns">
+          <section>
+            <h4>${esc(slide.leftTitle || 'Left')}</h4>
+            ${handoutList(slide.left || [])}
+          </section>
+          <section>
+            <h4>${esc(slide.rightTitle || 'Right')}</h4>
+            ${handoutList(slide.right || [])}
+          </section>
+        </div>
+        ${handoutParagraph(slide.prompt || slide.divider, 'handoutNote')}
+      `, 'is-compare');
+
+    case 'flow':
+      return handoutBlock({ ...slide, eyebrow: 'Linked chain' }, `
+        ${handoutParagraph(slide.question)}
+        ${handoutFlow(slide.nodes || [])}
+        ${handoutParagraph(slide.prompt || slide.footer, 'handoutNote')}
+      `, 'is-flow');
+
+    case 'systemCompare':
+      return handoutBlock({ ...slide, eyebrow: 'Systems' }, `
+        ${handoutParagraph(slide.lead)}
+        <div class="handoutColumns">
+          ${(slide.systems || []).map((system) => `
+            <section>
+              <h4>${esc(system.title || '')}${system.zhTitle ? ` <span>${esc(system.zhTitle)}</span>` : ''}</h4>
+              ${handoutList(system.points || [])}
+            </section>
+          `).join('')}
+        </div>
+        ${handoutParagraph(slide.prompt, 'handoutNote')}
+      `, 'is-compare');
+
+    default:
+      return '';
+  }
+}
+
+function renderHandoutSections(slides) {
+  const sections = [];
+  let current = { title: 'Key content', blocks: [] };
+
+  slides.forEach((slide) => {
+    if (slide.type === 'section') {
+      if (current.blocks.length) sections.push(current);
+      current = {
+        title: slide.title || 'Section',
+        subtitle: slide.subtitle || '',
+        blocks: [],
+      };
+      return;
+    }
+
+    if (!shouldIncludeHandoutSlide(slide)) return;
+    const block = renderHandoutBlock(slide);
+    if (block) current.blocks.push(block);
+  });
+
+  if (current.blocks.length) sections.push(current);
+
+  if (!sections.length) {
+    return `
+      <section class="handoutSection">
+        <h2>Key content</h2>
+        <p class="handoutSectionLead">This lesson does not yet have content marked for the student handout.</p>
+      </section>
+    `;
+  }
+
+  return sections.map((section, i) => `
+    <section class="handoutSection">
+      <div class="handoutSectionHeader">
+        <span>${String(i + 1).padStart(2, '0')}</span>
+        <h2>${esc(section.title)}</h2>
+      </div>
+      ${section.subtitle ? `<p class="handoutSectionLead">${esc(section.subtitle)}</p>` : ''}
+      <div class="handoutSectionBody">
+        ${section.blocks.join('')}
+      </div>
+    </section>
+  `).join('');
+}
+
+function mountHandoutLesson(meta, slides, mountEl) {
+  document.body.classList.add('is-handout-mode');
+  if (meta.title) document.title = `${meta.lessonLabel || meta.title} - Student print view`;
+  mountLessonModeSwitch('handout');
+
+  mountEl.className = 'handoutDeck';
+  mountEl.removeAttribute('aria-live');
+  mountEl.innerHTML = `
+    <header class="handoutHero">
+      <div class="handoutKicker">${esc(meta.unit || meta.courseLabel || 'Cambridge IGCSE Economics 0455')}</div>
+      <h1>${esc(meta.lessonLabel || meta.title || 'Lesson handout')}</h1>
+      <p>${esc(meta.code ? `${meta.code} - key content handout` : 'Key content handout')}</p>
+    </header>
+    <div class="handoutDocument" aria-label="Printable lesson content">
+      ${renderHandoutSections(slides)}
+    </div>
+  `;
+}
+
 /* ---------- Partial reveal helpers ---------- */
 const partialSelectors = [
   '.content main > div > .lead',
@@ -716,6 +971,14 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
 
   // Document title
   if (meta.title) document.title = meta.title;
+
+  if (isHandoutView()) {
+    mountHandoutLesson(meta, renderSlides, mountEl);
+    return { mode: 'handout' };
+  }
+
+  document.body.classList.remove('is-handout-mode');
+  mountLessonModeSwitch('slides');
 
   // Render
   mountEl.innerHTML = renderSlides
