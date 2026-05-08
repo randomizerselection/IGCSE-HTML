@@ -106,6 +106,47 @@ That's it. No CSS or JavaScript changes are needed for a new lesson.
 
 ### Lesson structure preferences
 
+Default slide decks should open in this order:
+
+1. Title slide
+2. Opening hook
+3. Learning objectives (`By the end, you can`)
+
+Keep title slides visually engaging but uncluttered: use the lesson title,
+a short lesson or unit label, one hook line, and a relevant, specific photo.
+Avoid repeating the course name in the slide body when the deck chrome already
+shows course information.
+
+Photo choices should be specific to the teaching point. Do not repeatedly reuse
+generic classroom, shopping, factory, or port images when a more precise image
+would make the concept clearer. New images must be saved locally in
+`assets/images/...` and referenced from the deck data.
+
+Learning-objective slides should use a simple graphic or no visual. Avoid
+photos on objective slides because they compete with the checklist.
+
+After that, teach each micro-sequence in this order:
+
+1. Divider or section slide
+2. Fact or discussion slide to introduce the topic
+3. Taught content slides
+4. Formative assessment, such as quizzes, hinge questions, application checks,
+   answer blanks, or exam-style checks
+
+Repeat that divider -> fact/discussion -> content -> formative-assessment
+sequence for each major section in the deck.
+
+Section dividers should name the content actually taught in that section. They
+do not need subtitles; the section slide itself shows progress through the
+lesson sequence.
+
+Most teaching slides should not use subtitles or lead text. Prefer a clear,
+self-contained title, then move directly into the content.
+
+Quiz slides should not have display titles. Put the cognitive load into the
+question and answer options; the shared engine provides click feedback on the
+options.
+
 For list-like syllabus content, avoid putting all explanations on one dense
 slide. Prefer:
 

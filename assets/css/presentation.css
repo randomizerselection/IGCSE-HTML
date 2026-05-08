@@ -248,6 +248,65 @@ body { overflow: hidden; }
   line-height: 1.08;
   letter-spacing: -0.035em;
 }
+.slide.is-hero .photoPanel {
+  height: min(62vh, 560px);
+  min-height: 420px;
+  border-radius: var(--r-lg);
+}
+.slide.is-hero .sub {
+  color: var(--ink-dim);
+  font-size: clamp(20px, 1.75vw, 34px);
+}
+
+.slide.is-quiz .content {
+  grid-template-columns: minmax(0, 1fr);
+}
+.slide.is-quiz .visual {
+  display: none;
+}
+.quizBlock {
+  max-width: min(1120px, 100%);
+  justify-self: center;
+}
+.quizBlock .lead {
+  max-width: 36ch;
+  font-size: clamp(27px, 2.65vw, 48px);
+  line-height: 1.16;
+  font-weight: 820;
+  text-wrap: balance;
+}
+
+.slide.is-flow .content {
+  grid-template-columns: minmax(0, 1fr);
+}
+.slide.is-flow .visual {
+  display: none;
+}
+.flowBlock h2 {
+  max-width: 18ch;
+}
+.flowBlock .lead {
+  max-width: 42ch;
+  color: var(--ink-dim);
+}
+
+h2 .inlineZh {
+  display: inline;
+  margin-left: .55em;
+  color: var(--ink-dim);
+  font-size: .42em;
+  line-height: 1.18;
+  font-weight: 760;
+  letter-spacing: 0;
+  vertical-align: middle;
+}
+.termBlock h2 .inlineZh {
+  display: block;
+  margin: .22em 0 0;
+  font-size: .38em;
+  line-height: 1.2;
+  white-space: normal;
+}
 
 /* ---------- Full-screen discussion slide ---------- */
 .slide.is-discussion {
@@ -260,8 +319,8 @@ body { overflow: hidden; }
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(90deg, rgba(3,10,20,.82), rgba(3,10,20,.36) 54%, rgba(3,10,20,.68)),
-    linear-gradient(180deg, rgba(3,10,20,.26), rgba(3,10,20,.68));
+    linear-gradient(90deg, rgba(3,10,20,.66), rgba(3,10,20,.18) 54%, rgba(3,10,20,.46)),
+    linear-gradient(180deg, rgba(3,10,20,.12), rgba(3,10,20,.48));
 }
 .slide.is-discussion > :not(.discussionBg) {
   position: relative;
@@ -293,20 +352,20 @@ body { overflow: hidden; }
   text-shadow: 0 14px 44px rgba(0,0,0,.58);
 }
 .discussionPrompt .zh {
-  margin-top: .85rem;
-  max-width: 30ch;
-  font-size: clamp(20px, 2.05vw, 31px);
-  line-height: 1.36;
-  font-weight: 700;
-  color: rgba(255,255,255,.86);
+  margin-top: 1.05rem;
+  max-width: 34ch;
+  font-size: clamp(25px, 2.55vw, 39px);
+  line-height: 1.48;
+  font-weight: 760;
+  color: rgba(255,255,255,.9);
 }
 .slide.is-discussion.is-medium .discussionPrompt p {
   max-width: 28ch;
   font-size: clamp(31px, 3.9vw, 58px);
 }
 .slide.is-discussion.is-medium .discussionPrompt .zh {
-  max-width: 34ch;
-  font-size: clamp(19px, 1.9vw, 28px);
+  max-width: 38ch;
+  font-size: clamp(23px, 2.28vw, 35px);
 }
 .slide.is-discussion.is-long .discussionPrompt p {
   max-width: 32ch;
@@ -314,8 +373,9 @@ body { overflow: hidden; }
   line-height: 1.1;
 }
 .slide.is-discussion.is-long .discussionPrompt .zh {
-  max-width: 36ch;
-  font-size: clamp(18px, 1.65vw, 25px);
+  max-width: 42ch;
+  font-size: clamp(21px, 2vw, 31px);
+  line-height: 1.5;
 }
 .discussionCredit {
   position: absolute;
@@ -344,8 +404,9 @@ body { overflow: hidden; }
     font-size: clamp(30px, 8vw, 48px);
   }
   .discussionPrompt .zh {
-    max-width: 24ch;
-    font-size: clamp(18px, 4.8vw, 27px);
+    max-width: 27ch;
+    font-size: clamp(21px, 5.3vw, 31px);
+    line-height: 1.48;
   }
   .slide.is-discussion.is-medium .discussionPrompt p,
   .slide.is-discussion.is-long .discussionPrompt p {
@@ -354,8 +415,8 @@ body { overflow: hidden; }
   }
   .slide.is-discussion.is-medium .discussionPrompt .zh,
   .slide.is-discussion.is-long .discussionPrompt .zh {
-    max-width: 26ch;
-    font-size: clamp(16px, 4vw, 23px);
+    max-width: 30ch;
+    font-size: clamp(18px, 4.5vw, 27px);
   }
   .discussionCredit {
     left: 5vw;
@@ -399,12 +460,25 @@ body { overflow: hidden; }
   text-wrap: balance;
 }
 .factZh {
-  margin: -.35rem 0 0;
+  margin: -.2rem 0 0;
   color: var(--ink-dim);
-  font-size: clamp(22px, 2vw, 34px);
-  line-height: 1.42;
-  font-weight: 700;
+  font-size: clamp(27px, 2.5vw, 43px);
+  line-height: 1.5;
+  font-weight: 760;
   text-wrap: balance;
+}
+.factSource {
+  width: fit-content;
+  max-width: 68ch;
+  margin-top: .2rem;
+  padding: .6rem .8rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: rgba(255,255,255,.045);
+  color: var(--muted);
+  font-size: clamp(13px, .9vw, 17px);
+  line-height: 1.25;
+  font-weight: 650;
 }
 
 /* ---------- Interactive tax simulator ---------- */
@@ -937,6 +1011,247 @@ body { overflow: hidden; }
   .indirectViz { grid-template-columns: 1fr; }
   .productButton { min-height: 100px; }
   .indirectHousehold { min-height: 230px; }
+}
+
+/* ---------- Market economy interactives ---------- */
+.marketMechanismSim,
+.marketSignalGame {
+  display: grid;
+  gap: 1rem;
+}
+.marketSimGrid {
+  display: grid;
+  grid-template-columns: minmax(320px, .95fr) minmax(360px, 1.05fr);
+  gap: 1rem;
+}
+.marketSimPanel {
+  display: grid;
+  gap: .9rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: rgba(255,255,255,.055);
+}
+.marketSimPanel label {
+  display: grid;
+  gap: .45rem;
+  color: #fff;
+  font-size: clamp(16px, 1.05vw, 21px);
+  font-weight: 800;
+}
+.marketSimPanel input[type="range"] {
+  width: 100%;
+  accent-color: var(--gold);
+}
+.marketSimBars {
+  display: grid;
+  gap: .7rem;
+}
+.marketSimBars div {
+  display: grid;
+  grid-template-columns: minmax(130px, .8fr) auto minmax(180px, 1.2fr);
+  gap: .75rem;
+  align-items: center;
+}
+.marketSimBars span,
+.marketMetric span {
+  color: var(--muted);
+  font-size: clamp(14px, .95vw, 18px);
+  line-height: 1.2;
+}
+.marketSimBars b {
+  color: #fff;
+  font-size: clamp(17px, 1.18vw, 23px);
+  font-weight: 860;
+  font-variant-numeric: tabular-nums;
+}
+.marketSimBars i {
+  height: 34px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+}
+.marketSimBars em {
+  display: block;
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--cyan), var(--gold));
+  transition: width .22s var(--ease);
+}
+.marketSimResults {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-content: start;
+}
+.marketMetric {
+  display: grid;
+  gap: .25rem;
+  min-height: 96px;
+  padding: .75rem;
+  border-radius: calc(var(--r-md) - 4px);
+  background: rgba(0,0,0,.14);
+}
+.marketMetric b {
+  color: #fff;
+  font-size: clamp(21px, 1.6vw, 32px);
+  line-height: 1.1;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+.marketMetric b.is-negative {
+  color: var(--rose);
+}
+.marketChain,
+.marketGameChain {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .55rem;
+}
+.marketChain span,
+.marketGameChain span {
+  min-height: 58px;
+  display: grid;
+  place-items: center;
+  padding: .55rem;
+  border: 1px solid rgba(86,216,255,.24);
+  border-radius: calc(var(--r-md) - 4px);
+  background: rgba(86,216,255,.08);
+  color: #fff;
+  font-size: clamp(14px, .98vw, 18px);
+  line-height: 1.16;
+  font-weight: 800;
+  text-align: center;
+}
+.marketTakeaway,
+.marketGameFeedback {
+  min-height: 3.2em;
+  padding: .85rem 1rem;
+  border-radius: var(--r-md);
+  background: rgba(255,209,102,.12);
+  border: 1px solid rgba(255,209,102,.28);
+  color: #fff;
+  font-size: clamp(18px, 1.25vw, 25px);
+  line-height: 1.25;
+  font-weight: 740;
+}
+.marketGameTop {
+  display: flex;
+  justify-content: space-between;
+  gap: .75rem;
+  color: var(--ink-dim);
+  font-size: clamp(15px, 1vw, 19px);
+  font-weight: 850;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.marketGameScenario {
+  min-height: 2.6em;
+  padding: .9rem 1rem;
+  border: 1px solid rgba(126,240,181,.26);
+  border-radius: var(--r-md);
+  background: rgba(126,240,181,.08);
+  color: #fff;
+  font-size: clamp(21px, 1.65vw, 32px);
+  line-height: 1.22;
+  font-weight: 780;
+}
+.marketGameGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .75rem;
+}
+.marketOption {
+  cursor: pointer;
+  min-height: 168px;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: .45rem;
+  justify-items: start;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: rgba(255,255,255,.055);
+  color: #fff;
+  font: inherit;
+  padding: .9rem;
+  text-align: left;
+  transition: transform .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease), opacity .2s var(--ease);
+}
+.marketOption:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: rgba(255,209,102,.55);
+  background: rgba(255,209,102,.12);
+}
+.marketOptionCode {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: rgba(86,216,255,.16);
+  color: var(--cyan);
+  font-size: 15px;
+  font-weight: 950;
+  letter-spacing: .06em;
+}
+.marketOption b {
+  font-size: clamp(18px, 1.25vw, 25px);
+  line-height: 1.1;
+}
+.marketOption span:last-child {
+  color: var(--ink-dim);
+  font-size: clamp(14px, .95vw, 18px);
+  line-height: 1.28;
+}
+.marketOption.is-correct {
+  border-color: rgba(126,240,181,.72);
+  background: rgba(126,240,181,.14);
+}
+.marketOption.is-wrong {
+  border-color: rgba(255,107,107,.75);
+  background: rgba(255,107,107,.13);
+}
+.marketOption.is-muted {
+  opacity: .48;
+}
+.marketGameFeedback:empty {
+  display: none;
+}
+.marketGameFeedback.is-correct {
+  background: rgba(126,240,181,.13);
+  border-color: rgba(126,240,181,.36);
+}
+.marketGameFeedback.is-wrong {
+  background: rgba(255,107,107,.12);
+  border-color: rgba(255,107,107,.32);
+}
+.marketNextSignal {
+  justify-self: end;
+  cursor: pointer;
+  min-height: 46px;
+  padding: .75rem 1rem;
+  border: 1px solid rgba(255,209,102,.45);
+  border-radius: 8px;
+  background: rgba(255,209,102,.14);
+  color: #fff;
+  font: inherit;
+  font-size: clamp(15px, 1vw, 19px);
+  font-weight: 850;
+}
+.marketNextSignal:disabled {
+  cursor: default;
+  opacity: .45;
+}
+
+@media (max-width: 1100px) {
+  .marketSimGrid,
+  .marketSimResults,
+  .marketGameGrid,
+  .marketChain,
+  .marketGameChain { grid-template-columns: 1fr; }
+  .marketSimBars div { grid-template-columns: 1fr; }
+  .marketOption { min-height: 132px; }
 }
 
 /* ---------- Progress bar ---------- */

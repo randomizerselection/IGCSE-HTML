@@ -8,7 +8,7 @@
    Supported slide types (see assets/js/presentation.js):
      hero | roadmap | outcomes | term | compare | quiz | answer
      cards | split | flow | exam | section | discussion | fact
-     taxSim | indirectTaxSim
+     taxSim | indirectTaxSim | marketMechanismSim | marketSignalGame
 
    Available "visual" keys (see assets/js/visuals.js):
      hero · abstract · demandShift · budgetBars · progressive
@@ -36,7 +36,7 @@ IGCSE.lesson = {
   slides: [
     {
       type: 'hero',
-      eyebrow:  'Cambridge IGCSE Economics 0455',
+      eyebrow:  '<Unit or syllabus strand>',
       title:    '<Lesson title>',
       subtitle: '<Short subtitle>',
       kicker:   '<One-line hook>',
@@ -44,14 +44,47 @@ IGCSE.lesson = {
     },
 
     {
-      type: 'roadmap',
-      eyebrow: 'Lesson map',
-      title:   'Today’s route',
-      items: [
-        ['1', 'Part one',   'short description'],
-        ['2', 'Part two',   'short description'],
-        ['3', 'Part three', 'short description'],
+      type: 'discussion',
+      eyebrow: 'Opening hook',
+      title:   '<Hook question>',
+      question: '<Concrete scenario or puzzle that creates the need for the lesson>',
+      visual: 'abstract',
+    },
+
+    {
+      type: 'outcomes',
+      eyebrow: 'Lesson objectives',
+      title:   'By the end, you can',
+      bullets: [
+        '<Objective 1>',
+        '<Objective 2>',
+        '<Objective 3>',
       ],
+    },
+
+    {
+      type: 'section',
+      eyebrow: '<Syllabus ref>',
+      title:   '<First section taught>',
+    },
+
+    {
+      type: 'discussion',
+      eyebrow: '<Section starter>',
+      title:   '<Starter question>',
+      question: '<Fact or discussion prompt that introduces this section>',
+      visual: 'abstract',
+    },
+
+    // Repeat for each section:
+    // section -> fact/discussion -> taught content -> formative assessment.
+
+    {
+      type: 'quiz',
+      eyebrow: 'Formative assessment',
+      question: '<Question>',
+      choices: ['<Correct or plausible choice>', '<Distractor>', '<Distractor>'],
+      prompt: '<Follow-up explanation or application task>',
       visual: 'abstract',
     },
 

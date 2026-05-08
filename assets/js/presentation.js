@@ -64,13 +64,13 @@ const choiceList = (items = []) => `
   </div>
 `;
 
-const mcqChoiceList = (items = []) => `
-  <div class="choices is-mcq">
+const mcqChoiceList = (items = [], answer = null) => `
+  <div class="choices is-mcq" ${Number.isInteger(answer) ? `data-answer="${answer}"` : ''}>
     ${items.map((x, i) => `
-      <div class="choice">
+      <button type="button" class="choice" aria-pressed="false" ${i === answer ? 'data-correct="true"' : ''}>
         <span class="choiceLetter">${String.fromCharCode(65 + i)}</span>
         <span>${esc(x)}</span>
-      </div>
+      </button>
     `).join('')}
   </div>
 `;
@@ -89,8 +89,13 @@ const stepList = (items = []) => `
 const flowChips = (nodes = []) => {
   const arr = Array.isArray(nodes[0]) ? nodes[0] : nodes;
   return `
-    <div class="flowRow">
-      ${arr.map(x => `<div class="flowChip">${esc(x)}</div>`).join('')}
+    <div class="flowChain flowRow" style="--flow-count:${arr.length}">
+      ${arr.map((x, i) => `
+        <div class="flowStep flowChip">
+          <span class="flowNumber">${i + 1}</span>
+          <span class="flowText">${esc(x)}</span>
+        </div>
+      `).join('')}
     </div>
   `;
 };
@@ -98,13 +103,83 @@ const flowChips = (nodes = []) => {
 const cleanList = (items = []) =>
   `<ul class="clean">${items.map(x => `<li>${esc(x)}</li>`).join('')}</ul>`;
 
+const termExamples = (items = []) => `
+  <div class="termExamples">
+    ${items.map((item, i) => {
+      const label = Array.isArray(item) ? item[0] : String(item);
+      const detail = Array.isArray(item) ? item[1] : '';
+      return `
+        <div class="termExample">
+          <span>${i + 1}</span>
+          <b>${esc(label)}</b>
+          ${detail ? `<em>${esc(detail)}</em>` : ''}
+        </div>
+      `;
+    }).join('')}
+  </div>
+`;
+
+const fillBlankList = (items = []) => {
+  const blankPattern = /_{3,}/;
+  return `
+    <div class="fillBlanks">
+      ${items.map((item, i) => {
+        const raw = Array.isArray(item) ? item[1] : String(item);
+        const answer = Array.isArray(item) ? (item[2] || '') : '';
+        const parts = raw.split(blankPattern);
+        const statement = answer && parts.length > 1
+          ? `${esc(parts[0])}<button type="button" class="blankAnswer" aria-expanded="false"><span>${esc(answer)}</span></button>${esc(parts.slice(1).join(''))}`
+          : esc(raw);
+        return `
+          <div class="fillBlank">
+            <span class="fillNumber">${i + 1}</span>
+            <p>${statement}</p>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+};
+
+const systemCompare = (systems = []) => `
+  <div class="systemCompare">
+    ${systems.map((system, i) => `
+      <div class="systemCard" style="--system-index:${i}">
+        <div class="systemTop">
+          <span class="systemVisual is-${esc(system.visual || `system-${i + 1}`)}" aria-hidden="true">
+            <i></i><i></i><i></i>
+          </span>
+          <b>${esc(system.title)}${system.zhTitle ? `<span>${esc(system.zhTitle)}</span>` : ''}</b>
+        </div>
+        ${cleanList(system.points || [])}
+      </div>
+    `).join('')}
+  </div>
+`;
+
+const sectionProgress = (slide) => {
+  const titles = slide._sectionTitles || [];
+  if (!titles.length) return '';
+  return `
+    <div class="sectionProgress" aria-label="Lesson section progress">
+      <div class="sectionTrack">
+        ${titles.map((title, i) => `
+          <span class="${i + 1 < slide._sectionStep ? 'is-complete' : i + 1 === slide._sectionStep ? 'is-current' : ''}">
+            <i>${i + 1}</i>
+            <em>${esc(String(title).replace(/\n/g, ' '))}</em>
+          </span>
+        `).join('')}
+      </div>
+    </div>
+  `;
+};
+
 /* ---------- Slide body renderers, keyed by slide.type ---------- */
 const renderers = {
   hero: (s) => `
     <div>
       ${s.subtitle ? `<div class="sub">${esc(s.subtitle)}</div>` : ''}
       <h1>${esc(s.title)}</h1>
-      ${s.eyebrow ? `<p class="lead">${esc(s.eyebrow)}</p>` : ''}
       ${s.kicker ? `<div class="kicker">${esc(s.kicker)}</div>` : ''}
     </div>
   `,
@@ -127,15 +202,17 @@ const renderers = {
   `,
 
   term: (s) => `
-    <div>
-      <h2>${esc(s.title)}</h2>
+    <div class="termBlock">
+      <h2>${esc(s.title)}${s.zhTitle ? `<span class="inlineZh">${esc(s.zhTitle)}</span>` : ''}</h2>
       ${s.lead ? `<p class="lead">${esc(s.lead)}</p>` : ''}
       <div class="termBox">
-        <b>${esc(s.term)}</b>
+        ${s.term && s.term.toLowerCase() !== String(s.title || '').toLowerCase()
+          ? `<b>${esc(s.term)}</b>`
+          : ''}
         <p>${esc(s.definition)}</p>
       </div>
       ${s.formula ? `<div class="formula">${esc(s.formula)}</div>` : ''}
-      ${s.examples ? choiceList(s.examples) : ''}
+      ${s.examples ? termExamples(s.examples) : ''}
     </div>
   `,
 
@@ -158,10 +235,9 @@ const renderers = {
   `,
 
   quiz: (s) => `
-    <div>
-      ${s.title ? `<h2>${esc(s.title)}</h2>` : ''}
+    <div class="quizBlock">
       ${s.question ? `<p class="lead">${esc(s.question)}</p>` : ''}
-      ${mcqChoiceList(s.choices)}
+      ${mcqChoiceList(s.choices, s.answer)}
       ${s.prompt ? `<div class="prompt">${esc(s.prompt)}</div>` : ''}
     </div>
   `,
@@ -174,7 +250,7 @@ const renderers = {
           <div class="big">${esc(s.answer)}</div>
           ${s.body ? `<p>${esc(s.body)}</p>` : ''}
         </div>` : ''}
-      ${s.steps ? stepList(s.steps) : ''}
+      ${s.mode === 'fillBlanks' && s.steps ? fillBlankList(s.steps) : s.steps ? stepList(s.steps) : ''}
       ${s.cue ? `<div class="prompt">${esc(s.cue)}</div>` : ''}
     </div>
   `,
@@ -200,8 +276,8 @@ const renderers = {
   `,
 
   flow: (s) => `
-    <div>
-      <h2>${esc(s.title)}</h2>
+    <div class="flowBlock">
+      <h2>${esc(s.title)}${s.zhTitle ? `<span class="inlineZh">${esc(s.zhTitle)}</span>` : ''}</h2>
       ${s.question ? `<p class="lead">${esc(s.question)}</p>` : ''}
       ${flowChips(s.nodes)}
       ${s.prompt ? `<div class="prompt">${esc(s.prompt)}</div>` : ''}
@@ -240,6 +316,16 @@ const renderers = {
       </div>
       <p class="factText">${esc(s.fact || (s.facts || [])[0] || '')}</p>
       ${s.zh ? `<p class="factZh">${esc(s.zh)}</p>` : ''}
+      ${s.source ? `<div class="factSource">${esc(s.source)}</div>` : ''}
+    </div>
+  `,
+
+  systemCompare: (s) => `
+    <div>
+      <h2>${esc(s.title)}</h2>
+      ${s.lead ? `<p class="lead">${esc(s.lead)}</p>` : ''}
+      ${systemCompare(s.systems)}
+      ${s.prompt ? `<div class="prompt">${esc(s.prompt)}</div>` : ''}
     </div>
   `,
 
@@ -405,6 +491,90 @@ const renderers = {
       <div class="indirectTakeaway"></div>
     </div>
   `,
+
+  marketMechanismSim: (s) => `
+    <div class="marketMechanismSim"
+      data-default-demand="${esc(s.defaultDemand ?? 55)}"
+      data-default-cost="${esc(s.defaultCost ?? 18)}">
+      <h2>${esc(s.title || 'Price mechanism simulator')}</h2>
+      ${s.lead ? `<p class="lead">${esc(s.lead)}</p>` : ''}
+      <div class="marketSimGrid">
+        <div class="marketSimPanel">
+          <label>
+            <span>Consumer demand</span>
+            <input class="marketDemandInput" type="range" min="10" max="100" step="5" />
+          </label>
+          <label>
+            <span>Cost of production</span>
+            <input class="marketCostInput" type="range" min="5" max="40" step="1" />
+          </label>
+          <div class="marketSimBars">
+            <div><span>Demand</span><b class="marketDemandValue"></b><i><em class="marketDemandBar"></em></i></div>
+            <div><span>Price signal</span><b class="marketPriceValue"></b><i><em class="marketPriceBar"></em></i></div>
+            <div><span>Resources attracted</span><b class="marketResourceValue"></b><i><em class="marketResourceBar"></em></i></div>
+          </div>
+        </div>
+        <div class="marketSimPanel marketSimResults">
+          <div class="marketMetric">
+            <span>Estimated market price</span>
+            <b class="marketPriceMetric"></b>
+          </div>
+          <div class="marketMetric">
+            <span>Profit per unit</span>
+            <b class="marketProfitMetric"></b>
+          </div>
+          <div class="marketMetric">
+            <span>Producer response</span>
+            <b class="marketResponseMetric"></b>
+          </div>
+          <div class="marketChain"></div>
+        </div>
+      </div>
+      <div class="marketTakeaway"></div>
+    </div>
+  `,
+
+  marketSignalGame: (s) => `
+    <div class="marketSignalGame">
+      <h2>${esc(s.title || 'Resource allocation game')}</h2>
+      ${s.lead ? `<p class="lead">${esc(s.lead)}</p>` : ''}
+      <div class="marketGameTop">
+        <div class="marketGameRound"></div>
+        <div class="marketGameScore"></div>
+      </div>
+      <div class="marketGameScenario"></div>
+      <div class="marketGameGrid">
+        <button type="button" class="marketOption" data-choice="bubble-tea">
+          <span class="marketOptionCode">BT</span>
+          <b>Bubble tea</b>
+          <span>Move workers and capital into drinks.</span>
+        </button>
+        <button type="button" class="marketOption" data-choice="umbrellas">
+          <span class="marketOptionCode">UM</span>
+          <b>Umbrellas</b>
+          <span>Move resources into rain products.</span>
+        </button>
+        <button type="button" class="marketOption" data-choice="e-bikes">
+          <span class="marketOptionCode">EB</span>
+          <b>Electric bikes</b>
+          <span>Move resources into transport.</span>
+        </button>
+        <button type="button" class="marketOption" data-choice="tutoring">
+          <span class="marketOptionCode">TU</span>
+          <b>Tutoring</b>
+          <span>Move resources into exam services.</span>
+        </button>
+      </div>
+      <div class="marketGameFeedback"></div>
+      <div class="marketGameChain">
+        <span>Demand signal</span>
+        <span>Price changes</span>
+        <span>Profit incentive</span>
+        <span>Resources move</span>
+      </div>
+      <button type="button" class="marketNextSignal">Next signal</button>
+    </div>
+  `,
 };
 
 /* ---------- Full slide renderer ---------- */
@@ -424,7 +594,10 @@ function renderSlide(meta, slide, idx, total) {
                alt="${esc(photo.alt || '')}"
                loading="lazy"
                decoding="async" />` : ''}
-        ${topline(slide, idx, total)}
+        <div class="topline">
+          <span class="badge">${esc(slide._sectionStep ? `Section ${slide._sectionStep} of ${slide._sectionTotal}` : 'Section')}</span>
+          <span class="count">${pad(idx + 1)} / ${pad(total)}</span>
+        </div>
         <div class="discussionContent">
           ${renderers.discussion(slide)}
         </div>
@@ -433,7 +606,7 @@ function renderSlide(meta, slide, idx, total) {
             ${caption ? `<span>${esc(caption)}</span>` : '<span></span>'}
             ${credit ? `<span>${esc(credit)}</span>` : ''}
           </div>` : ''}
-        ${footer(meta, slide)}
+        ${footer(meta, { ...slide, eyebrow: meta.lessonLabel || '' })}
       </section>
     `;
   }
@@ -447,9 +620,9 @@ function renderSlide(meta, slide, idx, total) {
         ${topline(slide, idx, total)}
         <div class="content is-section${sectionVisual ? '' : ' is-full'}">
           <div>
-            <div class="badge">${esc(slide.eyebrow || 'Section')}</div>
             <div class="sectionTitle">${esc(slide.title)}</div>
             ${slide.subtitle ? `<p class="lead">${esc(slide.subtitle)}</p>` : ''}
+            ${sectionProgress(slide)}
           </div>
           ${sectionVisual ? `<aside class="visual">${sectionVisual}</aside>` : ''}
         </div>
@@ -463,10 +636,13 @@ function renderSlide(meta, slide, idx, total) {
 
   const isHero = slide.type === 'hero';
   const isFact = slide.type === 'fact';
+  const typeClass = slide.type && !['hero', 'fact'].includes(slide.type)
+    ? ` is-${String(slide.type).replace(/[^a-z0-9_-]/gi, '')}`
+    : '';
   const visual = IGCSE.renderVisual(slide.visual, `viz-${idx}`);
 
   return `
-    <section class="slide${isHero ? ' is-hero' : ''}${isFact ? ' is-fact' : ''}" data-idx="${idx}"
+    <section class="slide${typeClass}${isHero ? ' is-hero' : ''}${isFact ? ' is-fact' : ''}" data-idx="${idx}"
              data-notes="${esc(slide.notes || 'Teacher cue: ask students to explain the mechanism before revealing any answer.')}">
       ${topline(slide, idx, total)}
       <div class="content${visual ? '' : ' is-full'}">
@@ -523,12 +699,26 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
     return;
   }
   const { meta = {}, slides } = lesson;
+  const sectionTitles = slides
+    .filter((slide) => slide.type === 'section')
+    .map((slide) => slide.title || slide.eyebrow || 'Section');
+  let sectionStep = 0;
+  const renderSlides = slides.map((slide) => {
+    if (slide.type !== 'section') return slide;
+    sectionStep += 1;
+    return {
+      ...slide,
+      _sectionStep: sectionStep,
+      _sectionTotal: sectionTitles.length,
+      _sectionTitles: sectionTitles,
+    };
+  });
 
   // Document title
   if (meta.title) document.title = meta.title;
 
   // Render
-  mountEl.innerHTML = slides
+  mountEl.innerHTML = renderSlides
     .map((s, i) => renderSlide(meta, s, i, slides.length))
     .join('');
 
@@ -544,6 +734,10 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
   setupTaxSimulators(mountEl);
   setupChinaIncomeTaxSimulators(mountEl);
   setupIndirectTaxSimulators(mountEl);
+  setupMarketMechanismSimulators(mountEl);
+  setupMarketSignalGames(mountEl);
+  setupQuizChoices(mountEl);
+  setupFillBlanks(mountEl);
 
   function syncPartials(n) {
     const items = [...slideEls[n].querySelectorAll('.partial-item')];
@@ -642,7 +836,7 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
   // Click-to-advance (but not on overview / notes / controls)
   mountEl.addEventListener('click', (e) => {
     const target = e.target?.closest ? e.target : null;
-    if (target?.closest('.thumb, #notes, .help, button, a, input, label, select, .taxSim, .chinaTaxSim, .indirectTaxSim')) return;
+    if (target?.closest('.thumb, #notes, .help, button, a, input, label, select, .taxSim, .chinaTaxSim, .indirectTaxSim, .marketMechanismSim, .marketSignalGame')) return;
     if (!revealNextPartial()) show(idx + 1);
   });
 
@@ -667,6 +861,41 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
   show(Number.isFinite(fromHash) ? fromHash - 1 : 0);
 
   return { show, toggleNotes, toggleOverview };
+}
+
+function setupQuizChoices(root) {
+  root.querySelectorAll('.choices.is-mcq').forEach((list) => {
+    const choices = [...list.querySelectorAll('.choice')];
+    const correctChoice = choices.find((choice) => choice.dataset.correct === 'true');
+    choices.forEach((choice) => {
+      choice.addEventListener('click', () => {
+        choices.forEach((item) => {
+          item.classList.remove('is-selected');
+          item.classList.remove('is-correct', 'is-incorrect');
+          item.setAttribute('aria-pressed', 'false');
+        });
+        choice.classList.add('is-selected');
+        choice.setAttribute('aria-pressed', 'true');
+        if (correctChoice) {
+          correctChoice.classList.add('is-correct');
+          if (choice !== correctChoice) choice.classList.add('is-incorrect');
+        }
+      });
+    });
+  });
+}
+
+function setupFillBlanks(root) {
+  root.querySelectorAll('.fillBlanks').forEach((list) => {
+    const blanks = [...list.querySelectorAll('.blankAnswer')];
+    blanks.forEach((blank) => {
+      blank.addEventListener('click', (event) => {
+        event.stopPropagation();
+        blank.classList.toggle('is-revealed');
+        blank.setAttribute('aria-expanded', blank.classList.contains('is-revealed') ? 'true' : 'false');
+      });
+    });
+  });
 }
 
 function setupTaxSimulators(root) {
@@ -868,5 +1097,171 @@ function setupIndirectTaxSimulators(root) {
       });
     });
     update();
+  });
+}
+
+function setupMarketMechanismSimulators(root) {
+  const sims = [...root.querySelectorAll('.marketMechanismSim')];
+  const money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  });
+
+  const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+
+  sims.forEach((sim) => {
+    const demandInput = sim.querySelector('.marketDemandInput');
+    const costInput = sim.querySelector('.marketCostInput');
+    demandInput.value = sim.dataset.defaultDemand || 55;
+    costInput.value = sim.dataset.defaultCost || 18;
+
+    const update = () => {
+      const demand = Number(demandInput.value || 0);
+      const cost = Number(costInput.value || 0);
+      const price = clamp(8 + demand * 0.42, 8, 52);
+      const profit = price - cost;
+      const resourceScore = clamp(Math.round((profit * 2.2) + (demand * 0.45)), 0, 100);
+      const response = profit > 14
+        ? 'produce much more'
+        : profit > 4
+          ? 'produce more'
+          : profit > 0
+            ? 'produce cautiously'
+            : 'move resources away';
+
+      sim.querySelector('.marketDemandValue').textContent = `${demand}%`;
+      sim.querySelector('.marketPriceValue').textContent = money.format(price);
+      sim.querySelector('.marketResourceValue').textContent = `${resourceScore}%`;
+      sim.querySelector('.marketDemandBar').style.width = `${demand}%`;
+      sim.querySelector('.marketPriceBar').style.width = `${(price / 52) * 100}%`;
+      sim.querySelector('.marketResourceBar').style.width = `${resourceScore}%`;
+      sim.querySelector('.marketPriceMetric').textContent = money.format(price);
+      sim.querySelector('.marketProfitMetric').textContent = money.format(profit);
+      sim.querySelector('.marketProfitMetric').classList.toggle('is-negative', profit < 0);
+      sim.querySelector('.marketResponseMetric').textContent = response;
+      sim.querySelector('.marketChain').innerHTML = [
+        `${demand}% demand`,
+        `${money.format(price)} price`,
+        `${money.format(profit)} profit per unit`,
+        response,
+      ].map((text) => `<span>${esc(text)}</span>`).join('');
+      sim.querySelector('.marketTakeaway').textContent =
+        profit > 0
+          ? 'Higher demand raises the price signal and creates a profit incentive, so firms are likely to allocate more resources to this market.'
+          : 'Even when demand exists, high costs can remove the profit incentive, so private firms may allocate fewer resources.';
+    };
+
+    demandInput.addEventListener('input', update);
+    costInput.addEventListener('input', update);
+    update();
+  });
+}
+
+function setupMarketSignalGames(root) {
+  const games = [...root.querySelectorAll('.marketSignalGame')];
+  const rounds = [
+    {
+      scenario: 'A heat wave arrives and students queue for cold drinks after school.',
+      answer: 'bubble-tea',
+      correct: 'Correct. Higher demand for cold drinks can raise price and profit, attracting more resources into bubble tea.',
+      wrong: 'Not this signal. The clearest demand increase is for cold drinks, so resources should move into bubble tea.',
+    },
+    {
+      scenario: 'Weather forecasts predict two weeks of heavy rain.',
+      answer: 'umbrellas',
+      correct: 'Correct. Demand for umbrellas rises, so higher prices and profits can attract more resources.',
+      wrong: 'Not this signal. Rain increases demand for umbrellas most directly.',
+    },
+    {
+      scenario: 'Petrol prices rise and the city builds safer bicycle lanes.',
+      answer: 'e-bikes',
+      correct: 'Correct. Demand for cheaper transport can rise, attracting resources into electric bikes.',
+      wrong: 'Not this signal. The transport change most directly raises demand for electric bikes.',
+    },
+    {
+      scenario: 'Final exams are close and parents want extra revision support.',
+      answer: 'tutoring',
+      correct: 'Correct. Demand for tutoring rises, so profit incentives can pull labour into exam services.',
+      wrong: 'Not this signal. Exam pressure most directly increases demand for tutoring.',
+    },
+  ];
+
+  games.forEach((game) => {
+    const options = [...game.querySelectorAll('.marketOption')];
+    const next = game.querySelector('.marketNextSignal');
+    let roundIndex = 0;
+    let score = 0;
+    let answered = false;
+    let finished = false;
+
+    const render = () => {
+      const round = rounds[roundIndex];
+      answered = false;
+      finished = false;
+      game.querySelector('.marketGameRound').textContent = `Signal ${roundIndex + 1} of ${rounds.length}`;
+      game.querySelector('.marketGameScore').textContent = `Score ${score}/${rounds.length}`;
+      game.querySelector('.marketGameScenario').textContent = round.scenario;
+      game.querySelector('.marketGameFeedback').textContent = '';
+      game.querySelector('.marketGameFeedback').classList.remove('is-correct', 'is-wrong');
+      next.disabled = true;
+      next.textContent = roundIndex === rounds.length - 1 ? 'Finish round' : 'Next signal';
+      options.forEach((option) => {
+        option.disabled = false;
+        option.classList.remove('is-correct', 'is-wrong', 'is-muted');
+      });
+    };
+
+    options.forEach((option) => {
+      option.addEventListener('click', () => {
+        if (answered) return;
+        answered = true;
+        const round = rounds[roundIndex];
+        const isCorrect = option.dataset.choice === round.answer;
+        if (isCorrect) score += 1;
+        game.querySelector('.marketGameScore').textContent = `Score ${score}/${rounds.length}`;
+        game.querySelector('.marketGameFeedback').textContent = isCorrect ? round.correct : round.wrong;
+        game.querySelector('.marketGameFeedback').classList.add(isCorrect ? 'is-correct' : 'is-wrong');
+        options.forEach((item) => {
+          const isAnswer = item.dataset.choice === round.answer;
+          item.disabled = true;
+          item.classList.toggle('is-correct', isAnswer);
+          item.classList.toggle('is-wrong', item === option && !isCorrect);
+          item.classList.toggle('is-muted', !isAnswer && item !== option);
+        });
+        next.disabled = false;
+      });
+    });
+
+    next.addEventListener('click', () => {
+      if (finished) {
+        roundIndex = 0;
+        score = 0;
+        render();
+        return;
+      }
+      if (roundIndex < rounds.length - 1) {
+        roundIndex += 1;
+        render();
+      } else {
+        finished = true;
+        game.querySelector('.marketGameRound').textContent = 'Game complete';
+        game.querySelector('.marketGameScenario').textContent =
+          score === rounds.length
+            ? 'Perfect score. You followed each price signal.'
+            : 'Review the signals where demand changed, then try again.';
+        game.querySelector('.marketGameFeedback').textContent =
+          `Final score: ${score}/${rounds.length}. Exam link: demand changes create price and profit signals that move resources.`;
+        game.querySelector('.marketGameFeedback').classList.remove('is-correct', 'is-wrong');
+        game.querySelector('.marketGameFeedback').classList.add(score === rounds.length ? 'is-correct' : 'is-wrong');
+        next.textContent = 'Play again';
+        options.forEach((option) => {
+          option.disabled = true;
+          option.classList.remove('is-correct', 'is-wrong', 'is-muted');
+        });
+      }
+    });
+
+    render();
   });
 }
