@@ -1329,6 +1329,127 @@ h2 .inlineZh {
 .thumb .n { font-size: 12px; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; }
 .thumb .t { display: block; font-weight: 700; margin-top: .35em; font-size: 17px; line-height: 1.25; color: #fff; }
 
+/* ---------- Mobile reading mode ---------- */
+@media (max-width: 760px) {
+  html,
+  body {
+    height: auto;
+    min-height: 100%;
+  }
+
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  #deck {
+    height: auto;
+    min-height: 100dvh;
+  }
+
+  .slide {
+    position: relative;
+    inset: auto;
+    min-height: 100dvh;
+    padding: 24px 18px 58px;
+    grid-template-rows: auto auto auto;
+    gap: 18px;
+    overflow: visible;
+  }
+
+  .slide.is-active {
+    display: grid;
+  }
+
+  .content,
+  .content.is-section,
+  .slide.is-hero .content {
+    min-height: auto;
+    grid-template-columns: 1fr;
+    align-items: start;
+    gap: 18px;
+  }
+
+  .content main {
+    min-width: 0;
+    align-content: start;
+  }
+
+  .content main > div {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .content aside.visual {
+    min-height: 0;
+  }
+
+  .slide h1,
+  .slide h2,
+  .sectionTitle,
+  .lead,
+  .sub,
+  .kicker,
+  .slide p {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .vizPanel {
+    width: min(100%, 420px);
+    padding: 16px;
+  }
+
+  .photoPanel,
+  .slide.is-hero .photoPanel {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+
+  .slide.is-hero h1 {
+    font-size: clamp(32px, 9vw, 42px);
+    line-height: 1.06;
+  }
+
+  .sectionTitle {
+    font-size: clamp(42px, 14vw, 68px);
+  }
+
+  .topline,
+  .slide-footer {
+    gap: 10px;
+  }
+
+  .topline {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    white-space: normal;
+  }
+
+  .slide-footer {
+    align-items: start;
+  }
+
+  .slide-footer .creator,
+  .slide-footer span {
+    flex-basis: 100%;
+    text-align: left;
+  }
+
+  .slide-footer span:last-child {
+    text-align: left;
+  }
+
+  .help {
+    display: none;
+  }
+}
+
 /* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   .slide.is-active { animation: none; }

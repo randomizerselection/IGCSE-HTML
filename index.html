@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="A student-facing Cambridge IGCSE Economics 0455 lesson library with interactive lessons, examples and exam-style practice." />
+  <meta name="description" content="A student review hub for Cambridge IGCSE Economics 0455 class slide decks, examples and exam-style practice." />
   <meta name="author" content="Samuel Oehler-Huang, Suzhou Foreign Language School" />
   <title>Cambridge IGCSE Economics 0455 - Lesson Library</title>
 
@@ -72,15 +72,17 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       background:
-        linear-gradient(90deg, rgba(7,17,31,.98) 0%, rgba(7,17,31,.94) 37%, rgba(7,17,31,.58) 65%, rgba(7,17,31,.22) 100%),
-        linear-gradient(0deg, rgba(7,17,31,.88), rgba(7,17,31,.08) 50%, rgba(7,17,31,.65)),
-        url("assets/images/profile/samuel-oehler-huang.jpg") right 38% center / auto 118% no-repeat,
+        linear-gradient(90deg, rgba(7,17,31,.98) 0%, rgba(7,17,31,.93) 39%, rgba(7,17,31,.38) 67%, rgba(7,17,31,.04) 100%),
+        linear-gradient(0deg, rgba(7,17,31,.70), rgba(7,17,31,.04) 50%, rgba(7,17,31,.34)),
+        url("assets/images/profile/samuel-oehler-huang.jpg") right 26% center / auto 124% no-repeat,
         var(--bg-1);
       box-shadow: var(--shadow-lg);
     }
 
     .hero-inner {
-      width: min(720px, 62%);
+      position: relative;
+      z-index: 1;
+      width: min(720px, 61%);
       padding: clamp(34px, 6vw, 74px);
     }
 
@@ -105,18 +107,28 @@
     }
 
     .hero h1 {
-      max-width: 9.5ch;
-      font-size: clamp(54px, 7vw, 112px);
-      line-height: .93;
-      letter-spacing: -0.045em;
+      max-width: 10.8ch;
+      font-size: clamp(52px, 6.6vw, 108px);
+      line-height: 1.02;
+      letter-spacing: 0;
+      font-weight: 850;
       margin: 0;
+      text-wrap: balance;
+    }
+
+    .hero h1 span {
+      display: block;
+      background: linear-gradient(135deg, #ffffff 0%, var(--cyan) 48%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .hero .lead {
-      max-width: 31ch;
+      max-width: 34ch;
       margin-top: 1.1rem;
       color: var(--ink-dim);
-      font-size: clamp(20px, 2.15vw, 32px);
+      font-size: clamp(20px, 2vw, 30px);
       line-height: 1.25;
     }
 
@@ -159,10 +171,23 @@
     .author-line {
       margin-top: 2rem;
       display: grid;
+      grid-template-columns: 58px minmax(0, 1fr);
       gap: .35rem;
+      align-items: center;
       color: var(--muted);
       font-size: 15px;
       line-height: 1.45;
+    }
+
+    .author-line::before {
+      content: "";
+      grid-row: 1 / 3;
+      width: 52px;
+      aspect-ratio: 1;
+      border: 1px solid rgba(255,255,255,.38);
+      border-radius: 50%;
+      background: url("assets/images/profile/samuel-oehler-huang.jpg") center top / cover no-repeat;
+      box-shadow: 0 12px 28px rgba(0,0,0,.35);
     }
 
     .author-line strong {
@@ -242,13 +267,14 @@
 
     .lesson-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
       gap: 1rem;
     }
 
     .lesson-card {
       display: flex;
       flex-direction: column;
+      min-width: 0;
       min-height: 286px;
       padding: 1.35rem;
       border: 1px solid var(--line);
@@ -276,9 +302,11 @@
 
     .lesson-card h3 {
       margin: .75rem 0 .65rem;
-      font-size: clamp(25px, 2.4vw, 38px);
-      line-height: 1.04;
-      letter-spacing: -0.025em;
+      font-size: clamp(24px, 2vw, 33px);
+      line-height: 1.08;
+      letter-spacing: 0;
+      overflow-wrap: anywhere;
+      hyphens: auto;
     }
 
     .lesson-card p {
@@ -400,8 +428,8 @@
         min-height: auto;
         background:
           linear-gradient(90deg, rgba(7,17,31,.98) 0%, rgba(7,17,31,.88) 62%, rgba(7,17,31,.54) 100%),
-          linear-gradient(0deg, rgba(7,17,31,.92), rgba(7,17,31,.28)),
-          url("assets/images/profile/samuel-oehler-huang.jpg") right 30% center / auto 112% no-repeat,
+          linear-gradient(0deg, rgba(7,17,31,.82), rgba(7,17,31,.16)),
+          url("assets/images/profile/samuel-oehler-huang.jpg") right 22% center / auto 116% no-repeat,
           var(--bg-1);
       }
 
@@ -437,8 +465,8 @@
       .hero {
         background:
           linear-gradient(180deg, rgba(7,17,31,.99) 0%, rgba(7,17,31,.9) 48%, rgba(7,17,31,.34) 100%),
-          linear-gradient(90deg, rgba(7,17,31,.96), rgba(7,17,31,.5)),
-          url("assets/images/profile/samuel-oehler-huang.jpg") right 42% bottom -52px / auto 98% no-repeat,
+          linear-gradient(90deg, rgba(7,17,31,.94), rgba(7,17,31,.32)),
+          url("assets/images/profile/samuel-oehler-huang.jpg") right 42% bottom -32px / auto 106% no-repeat,
           var(--bg-1);
       }
 
@@ -448,7 +476,7 @@
 
       .hero h1 {
         font-size: clamp(40px, 11.4vw, 48px);
-        line-height: .96;
+        line-height: 1.03;
       }
 
       .hero .lead {
@@ -465,6 +493,11 @@
         max-width: 25ch;
         margin-top: 1.1rem;
         font-size: 13px;
+        grid-template-columns: 50px minmax(0, 1fr);
+      }
+
+      .author-line::before {
+        width: 44px;
       }
 
       .stats {
@@ -490,19 +523,19 @@
         <span class="brand-mark">E</span>
         <span>IGCSE Economics 0455</span>
       </div>
-      <div class="topbar-meta">Student lesson hub</div>
+      <div class="topbar-meta">Class slide deck review</div>
     </nav>
 
     <header class="hero">
       <div class="hero-inner">
-        <div class="eyebrow">Student lesson hub</div>
-        <h1>Study IGCSE Economics, one lesson at a time.</h1>
+        <div class="eyebrow">After-class study hub</div>
+        <h1><span>IGCSE Economics</span><span>lesson review</span></h1>
         <p class="lead">
-          Choose a topic, review the key ideas, practise calculations, and build
-          exam-style explanation chains.
+          Reopen the slide decks used in class, check the key examples again,
+          and practise the explanation chains before quizzes and exams.
         </p>
         <div class="hero-actions" aria-label="Featured links">
-          <a class="button primary" href="#available-lessons">Start studying</a>
+          <a class="button primary" href="#available-lessons">Review a deck</a>
           <a class="button" href="#course-map">See the course map</a>
         </div>
         <div class="author-line">
@@ -519,7 +552,7 @@
       </div>
       <div class="stat">
         <b>5</b>
-        <span>Lessons ready to study</span>
+        <span>Class decks ready to review</span>
       </div>
       <div class="stat">
         <b>2</b>
@@ -534,12 +567,12 @@
     <section class="section" id="available-lessons">
       <div class="section-head">
         <div>
-          <div class="section-kicker">Start here</div>
-          <h2>Choose your lesson</h2>
+          <div class="section-kicker">Start your review</div>
+          <h2>Choose the deck from class</h2>
         </div>
         <p class="section-intro">
-          Open the lessons in order, or jump straight to the topic you need to revise.
-          Each lesson is built to move from key terms to application and exam reasoning.
+          Open the lesson your class has just studied, or jump back to an older topic
+          when you need to revise definitions, diagrams, calculations or exam reasoning.
         </p>
       </div>
 
@@ -548,35 +581,35 @@
           <span class="code">2.8 - Unit 2</span>
           <h3>Market economic system</h3>
           <p>Definition of a market economy, resource allocation through the price mechanism, and arguments for and against markets.</p>
-          <span class="open">Start lesson</span>
+          <span class="open">Open slide deck</span>
         </a>
 
         <a class="lesson-card featured" href="lessons/unit-4-government/4-1-macroeconomic-aims/index.html">
           <span class="code">4.1.1 - Unit 4</span>
-          <h3>Macroeconomic aims</h3>
+          <h3>Macro<wbr>economic aims</h3>
           <p>Growth, employment, stable prices, balance of payments stability, redistribution of income and environmental sustainability.</p>
-          <span class="open">Start lesson</span>
+          <span class="open">Open slide deck</span>
         </a>
 
         <a class="lesson-card featured" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html">
           <span class="code">4.2.1-4.2.2 - Unit 4</span>
           <h3>Government budget and spending</h3>
           <p>Budget plans, deficit and surplus calculations, and the main areas, reasons and effects of government spending.</p>
-          <span class="open">Start lesson</span>
+          <span class="open">Open slide deck</span>
         </a>
 
         <a class="lesson-card featured" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html">
           <span class="code">4.2.3 - Unit 4</span>
           <h3>Taxation</h3>
           <p>Reasons for taxation and tax classifications: direct, indirect, progressive, regressive and proportional taxes.</p>
-          <span class="open">Start lesson</span>
+          <span class="open">Open slide deck</span>
         </a>
 
         <a class="lesson-card featured" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html">
           <span class="code">4.2.4-4.2.6 - Unit 4</span>
           <h3>Fiscal-policy measures and effects</h3>
           <p>Changes in taxes and government spending, with effects on growth, employment, prices, redistribution, external stability and sustainability.</p>
-          <span class="open">Start lesson</span>
+          <span class="open">Open slide deck</span>
         </a>
       </div>
 
@@ -584,16 +617,16 @@
         <div class="note-panel">
           <h3>How to use these lessons</h3>
           <p>
-            Work through the slides with your class, then return to a lesson when you need
-            to review definitions, calculations or cause-and-effect chains before a quiz.
+            Use these decks after class to revisit the exact sequence of ideas, examples
+            and questions from the lesson. Move at your own pace and pause on slides you found difficult.
           </p>
         </div>
         <div class="note-panel">
           <h3>What to practise</h3>
           <ul>
-            <li>Use precise Cambridge IGCSE Economics vocabulary.</li>
-            <li>Explain effects with clear cause-and-effect links.</li>
-            <li>Connect policy choices to macroeconomic aims.</li>
+            <li>Recall the key definition before checking the next slide.</li>
+            <li>Rebuild cause-and-effect chains in your own words.</li>
+            <li>Connect examples from class to Cambridge IGCSE command words.</li>
           </ul>
         </div>
       </div>
@@ -606,8 +639,8 @@
           <h2 id="roadmap-title">Where these lessons fit</h2>
         </div>
         <p class="section-intro">
-          The full syllabus structure is shown here so you can place each lesson in the
-          wider course. More units will be added as the library grows.
+          Use the syllabus map to place each class deck in the wider course.
+          More units will be added as new decks are used in class.
         </p>
       </div>
 
@@ -646,7 +679,7 @@
     </section>
 
     <footer class="site-foot">
-      <span>Built by Samuel Oehler-Huang for IGCSE Economics students.</span>
+      <span>Built by Samuel Oehler-Huang for IGCSE Economics class review.</span>
       <span>Cambridge IGCSE Economics 0455 - Suzhou Foreign Language School</span>
     </footer>
   </main>
