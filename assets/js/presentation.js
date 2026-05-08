@@ -754,10 +754,8 @@ function handoutChoices(choices = []) {
 
 function handoutBlock(slide, body, modifier = '') {
   if (!body.trim()) return '';
-  const eyebrow = slide.eyebrow || slide.type || '';
   return `
     <article class="handoutBlock${modifier ? ` ${modifier}` : ''}">
-      ${eyebrow ? `<div class="handoutLabel">${esc(eyebrow)}</div>` : ''}
       ${slide.title ? `<h3>${handoutTitle(slide)}</h3>` : ''}
       ${body}
     </article>
@@ -780,14 +778,14 @@ function shouldIncludeHandoutSlide(slide) {
 function renderHandoutBlock(slide) {
   switch (slide.type) {
     case 'cards':
-      return handoutBlock({ ...slide, eyebrow: 'Key points' }, `
+      return handoutBlock(slide, `
         ${handoutParagraph(slide.lead)}
         ${handoutPairs(slide.cards || [])}
         ${handoutParagraph(slide.footer, 'handoutNote')}
       `, 'is-key-points');
 
     case 'term':
-      return handoutBlock({ ...slide, eyebrow: 'Definition' }, `
+      return handoutBlock(slide, `
         ${handoutParagraph(slide.lead)}
         <div class="handoutDefinition">
           ${slide.term ? `<b>${esc(slide.term)}</b>` : ''}
@@ -799,7 +797,7 @@ function renderHandoutBlock(slide) {
 
     case 'compare':
     case 'split':
-      return handoutBlock({ ...slide, eyebrow: 'Compare' }, `
+      return handoutBlock(slide, `
         ${handoutParagraph(slide.question)}
         ${slide.term ? `
           <div class="handoutDefinition">
@@ -820,14 +818,14 @@ function renderHandoutBlock(slide) {
       `, 'is-compare');
 
     case 'flow':
-      return handoutBlock({ ...slide, eyebrow: 'Linked chain' }, `
+      return handoutBlock(slide, `
         ${handoutParagraph(slide.question)}
         ${handoutFlow(slide.nodes || [])}
         ${handoutParagraph(slide.prompt || slide.footer, 'handoutNote')}
       `, 'is-flow');
 
     case 'systemCompare':
-      return handoutBlock({ ...slide, eyebrow: 'Systems' }, `
+      return handoutBlock(slide, `
         ${handoutParagraph(slide.lead)}
         <div class="handoutColumns">
           ${(slide.systems || []).map((system) => `

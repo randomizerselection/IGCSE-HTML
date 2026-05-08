@@ -87,6 +87,7 @@ test.describe('site smoke', () => {
     await expect(page.locator('.slide')).toHaveCount(0);
     await expect(page.locator('.handoutBlock')).toHaveCount(4);
     await expect(page.locator('.handoutBlock').filter({ hasText: /What governments try to achieve/i })).toBeVisible();
+    await expect(page.locator('.handoutDocument')).not.toContainText(/Key points/i);
     await expect(page.locator('.handoutBlock').filter({ hasText: /Choose the priority/i })).toHaveCount(0);
 
     await expectNoHorizontalOverflow(page);

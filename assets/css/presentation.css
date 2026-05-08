@@ -1501,15 +1501,6 @@ body.is-handout-mode #deck {
   border-left-color: #64748b;
 }
 
-.handoutLabel {
-  margin-bottom: 5px;
-  color: #64748b;
-  font-size: 11px;
-  font-weight: 850;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-
 .handoutBlock h3 {
   margin: 0 0 10px;
   color: #111827;
