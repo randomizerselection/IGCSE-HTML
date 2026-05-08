@@ -301,10 +301,10 @@ h2 .inlineZh {
   vertical-align: middle;
 }
 .termBlock h2 .inlineZh {
-  display: block;
-  margin: .22em 0 0;
-  font-size: .38em;
-  line-height: 1.2;
+  display: inline;
+  margin: 0 0 0 .52em;
+  font-size: .34em;
+  line-height: 1.18;
   white-space: normal;
 }
 

@@ -84,8 +84,20 @@ IGCSE.lesson = {
       eyebrow: 'Formative assessment',
       question: '<Question>',
       choices: ['<Correct or plausible choice>', '<Distractor>', '<Distractor>'],
+      answer: 0,
       prompt: '<Follow-up explanation or application task>',
       visual: 'abstract',
+    },
+
+    {
+      type: 'answer',
+      eyebrow: 'Section check',
+      title:   'Fill in the blanks',
+      mode:    'fillBlanks',
+      steps: [
+        ['1', '<Statement with __________.>', '<answer>'],
+        ['2', '<Statement with __________.>', '<answer>'],
+      ],
     },
 
     // … add more slides here …

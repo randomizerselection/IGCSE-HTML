@@ -145,7 +145,18 @@ self-contained title, then move directly into the content.
 
 Quiz slides should not have display titles. Put the cognitive load into the
 question and answer options; the shared engine provides click feedback on the
-options.
+options. Always include an `answer` index on multiple-choice quiz slides so the
+visual feedback can show correct and incorrect choices.
+
+Use `answer` slides with `mode: 'fillBlanks'` for retrieval practice. Title
+these slides `Fill in the blanks`; show all statements immediately, and put the
+answer text in the third item of each step so it appears inside the blank when
+clicked.
+
+For bilingual slides, put Chinese translations on discussion and fact slides.
+Use `zhTitle` on important flow and definition slides so the Chinese appears
+inline with the English title. Keep the English title short enough that the
+bilingual title does not overflow.
 
 For list-like syllabus content, avoid putting all explanations on one dense
 slide. Prefer:
