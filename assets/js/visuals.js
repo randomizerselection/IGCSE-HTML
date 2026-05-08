@@ -29,7 +29,15 @@ const htmlEsc = (s) => String(s ?? '').replace(/[&<>"']/g, (m) => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
 }[m]));
 
+IGCSE.isRemoteImageUrl = IGCSE.isRemoteImageUrl || ((src) =>
+  /^(?:https?:)?\/\//i.test(String(src || '').trim()));
+IGCSE.localImageSrc = IGCSE.localImageSrc || ((src) =>
+  IGCSE.isRemoteImageUrl(src) ? '' : String(src || ''));
+
 const renderPhoto = (photo = {}) => {
+  const src = IGCSE.localImageSrc(photo.src);
+  if (!src) return '';
+
   const caption = photo.caption || photo.alt || '';
   const credit = photo.credit || '';
   const creditHtml = credit
@@ -46,7 +54,7 @@ const renderPhoto = (photo = {}) => {
 
   return `
     <figure class="photoPanel">
-      <img src="${htmlEsc(photo.src)}"
+      <img src="${htmlEsc(src)}"
            alt="${htmlEsc(photo.alt || '')}"
            loading="lazy"
            decoding="async" />

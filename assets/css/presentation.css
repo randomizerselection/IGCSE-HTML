@@ -1335,7 +1335,9 @@ h2 .inlineZh {
   top: 16px;
   right: 16px;
   z-index: 90;
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
   gap: 8px;
   align-items: center;
 }
@@ -1690,12 +1692,22 @@ body.is-handout-mode #deck {
     top: 10px;
     right: 10px;
     left: 10px;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-columns: auto;
     justify-content: flex-end;
+  }
+
+  .lessonModeButton {
+    min-height: 40px;
+    display: grid;
+    place-items: center;
+    padding: 9px 10px;
   }
 
   .handoutDeck {
     width: min(100% - 24px, 720px);
-    padding-top: 64px;
+    padding-top: 116px;
   }
 
   .handoutDocument {
@@ -1729,7 +1741,7 @@ body.is-handout-mode #deck {
     position: relative;
     inset: auto;
     min-height: 100dvh;
-    padding: 24px 18px 58px;
+    padding: 112px 18px 58px;
     grid-template-rows: auto auto auto;
     gap: 18px;
     overflow: visible;

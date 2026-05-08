@@ -15,6 +15,39 @@
       margin: 0 auto;
       padding: 9vh 0 8vh;
     }
+    .deck-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .7rem;
+      margin-bottom: 2rem;
+    }
+    .deck-nav a,
+    .deck-action {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.06);
+      color: var(--ink);
+      font-size: 14px;
+      font-weight: 850;
+      text-decoration: none;
+      transition: border-color .2s var(--ease), background .2s var(--ease), color .2s var(--ease);
+    }
+    .deck-nav a {
+      padding: 0 .95rem;
+      color: var(--cyan);
+    }
+    .deck-nav a:hover,
+    .deck-nav a:focus-visible,
+    .deck-action:hover,
+    .deck-action:focus-visible {
+      border-color: var(--line-strong);
+      background: rgba(255,255,255,.11);
+      outline: none;
+    }
     .deck-menu header { max-width: 760px; margin-bottom: 2.5rem; }
     .deck-menu h1 {
       font-size: clamp(44px, 6vw, 96px);
@@ -44,10 +77,10 @@
       background: var(--card-bg);
       box-shadow: var(--shadow-md);
       color: var(--ink);
-      text-decoration: none;
       transition: transform .25s var(--ease), border-color .25s var(--ease), background .25s var(--ease);
     }
-    .deck-card:hover {
+    .deck-card:hover,
+    .deck-card:focus-within {
       transform: translateY(-4px);
       border-color: var(--line-strong);
       background: var(--card-bg-hi);
@@ -71,15 +104,36 @@
       line-height: 1.45;
       margin: 0 0 1.2rem;
     }
-    .deck-card .open {
+    .deck-actions {
       margin-top: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .65rem;
+    }
+    .deck-action.primary {
       color: var(--cyan);
-      font-weight: 800;
+      border-color: rgba(86,216,255,.32);
+    }
+    .deck-action.secondary {
+      color: var(--green);
+      border-color: rgba(126,240,181,.28);
+    }
+    @media (max-width: 720px) {
+      .deck-menu {
+        width: min(100% - 28px, 1120px);
+      }
+      .deck-actions {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body class="bg-ambient">
   <main class="deck-menu">
+    <nav class="deck-nav" aria-label="Fiscal policy navigation">
+      <a href="../../../index.html#available-lessons">Course index</a>
+    </nav>
+
     <header>
       <div class="badge is-warm">Cambridge IGCSE Economics 0455</div>
       <h1>Fiscal policy</h1>
@@ -87,26 +141,35 @@
     </header>
 
     <div class="deck-grid">
-      <a class="deck-card" href="./lesson-1.html">
-        <span class="code">Lesson 1 · 4.2.1-4.2.2</span>
+      <article class="deck-card">
+        <span class="code">Lesson 1 - 4.2.1-4.2.2</span>
         <h2>Government budget and spending</h2>
         <p>Government budgets, deficit and surplus calculations, and the main areas, reasons and effects of government spending.</p>
-        <span class="open">Open deck</span>
-      </a>
+        <div class="deck-actions" aria-label="Government budget and spending views">
+          <a class="deck-action primary" href="./lesson-1.html">Slide view</a>
+          <a class="deck-action secondary" href="./lesson-1.html?view=print">Handout view</a>
+        </div>
+      </article>
 
-      <a class="deck-card" href="./lesson-2.html">
-        <span class="code">Lesson 2 · 4.2.3</span>
+      <article class="deck-card">
+        <span class="code">Lesson 2 - 4.2.3</span>
         <h2>Taxation</h2>
         <p>Reasons for taxation and tax classifications: direct, indirect, progressive, regressive and proportional taxes.</p>
-        <span class="open">Open deck</span>
-      </a>
+        <div class="deck-actions" aria-label="Taxation views">
+          <a class="deck-action primary" href="./lesson-2.html">Slide view</a>
+          <a class="deck-action secondary" href="./lesson-2.html?view=print">Handout view</a>
+        </div>
+      </article>
 
-      <a class="deck-card" href="./lesson-3.html">
-        <span class="code">Lesson 3 · 4.2.4-4.2.6</span>
+      <article class="deck-card">
+        <span class="code">Lesson 3 - 4.2.4-4.2.6</span>
         <h2>Fiscal-policy measures and effects</h2>
         <p>Changes in government spending and taxation, with effects on growth, employment, prices, redistribution, the balance of payments and sustainability.</p>
-        <span class="open">Open deck</span>
-      </a>
+        <div class="deck-actions" aria-label="Fiscal-policy measures and effects views">
+          <a class="deck-action primary" href="./lesson-3.html">Slide view</a>
+          <a class="deck-action secondary" href="./lesson-3.html?view=print">Handout view</a>
+        </div>
+      </article>
     </div>
   </main>
 </body>

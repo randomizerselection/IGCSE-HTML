@@ -15,6 +15,11 @@ const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (m) => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
 }[m]));
 
+const localImageSrc = (src) => {
+  if (window.IGCSE?.localImageSrc) return window.IGCSE.localImageSrc(src);
+  return /^(?:https?:)?\/\//i.test(String(src || '').trim()) ? '' : String(src || '');
+};
+
 const pad = (n) => String(n).padStart(2, '0');
 
 /* ---------- Slide chrome ---------- */
@@ -581,6 +586,7 @@ const renderers = {
 function renderSlide(meta, slide, idx, total) {
   if (slide.type === 'discussion') {
     const photo = slide.visual && typeof slide.visual === 'object' ? slide.visual : null;
+    const photoSrc = photo?.src ? localImageSrc(photo.src) : '';
     const caption = photo?.caption || photo?.alt || '';
     const credit = photo?.credit || '';
     const promptLength = String(slide.question || '').length + String(slide.zh || '').length;
@@ -588,9 +594,9 @@ function renderSlide(meta, slide, idx, total) {
     return `
       <section class="slide is-discussion${sizeClass}" data-idx="${idx}"
                data-notes="${esc(slide.notes || 'Teacher cue: let students discuss the question before taking responses.')}">
-        ${photo?.src ? `
+        ${photoSrc ? `
           <img class="discussionBg"
-               src="${esc(photo.src)}"
+               src="${esc(photoSrc)}"
                alt="${esc(photo.alt || '')}"
                loading="lazy"
                decoding="async" />` : ''}
@@ -671,17 +677,34 @@ function lessonViewUrl(view) {
   return url.href;
 }
 
+function courseIndexUrl() {
+  return new URL('../../../index.html#available-lessons', location.href).href;
+}
+
+function lessonStartUrl() {
+  const url = new URL(location.href);
+  url.searchParams.delete('view');
+  url.hash = '1';
+  return url.href;
+}
+
 function mountLessonModeSwitch(mode) {
   document.querySelector('.lessonModeSwitch')?.remove();
   const nav = document.createElement('nav');
   nav.className = 'lessonModeSwitch';
-  nav.setAttribute('aria-label', 'Lesson view options');
+  nav.setAttribute('aria-label', 'Lesson navigation');
   nav.innerHTML = mode === 'handout'
     ? `
+      <a class="lessonModeButton" href="${esc(courseIndexUrl())}">Course index</a>
+      <a class="lessonModeButton" href="${esc(lessonStartUrl())}">Lesson start</a>
       <button type="button" class="lessonModeButton" data-print-lesson>Print</button>
       <a class="lessonModeButton" href="${esc(lessonViewUrl('slides'))}">Slide mode</a>
     `
-    : `<a class="lessonModeButton" href="${esc(lessonViewUrl('handout'))}">Student print view</a>`;
+    : `
+      <a class="lessonModeButton" href="${esc(courseIndexUrl())}">Course index</a>
+      <a class="lessonModeButton" href="${esc(lessonStartUrl())}">Lesson start</a>
+      <a class="lessonModeButton" href="${esc(lessonViewUrl('handout'))}">Student print view</a>
+    `;
   nav.querySelector('[data-print-lesson]')?.addEventListener('click', () => window.print());
   document.body.appendChild(nav);
 }
@@ -1035,6 +1058,11 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
     }
   }
 
+  function showFromHash() {
+    const fromHash = parseInt(location.hash.replace('#', ''), 10);
+    if (Number.isFinite(fromHash)) show(fromHash - 1);
+  }
+
   function toggleNotes() {
     if (notesEl) notesEl.classList.toggle('is-visible');
   }
@@ -1120,6 +1148,7 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
   // Initial
   const fromHash = parseInt(location.hash.replace('#', ''), 10);
   show(Number.isFinite(fromHash) ? fromHash - 1 : 0);
+  window.addEventListener('hashchange', showFromHash);
 
   return { show, toggleNotes, toggleOverview };
 }

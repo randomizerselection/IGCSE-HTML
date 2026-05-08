@@ -1,9 +1,23 @@
 const { test, expect } = require('@playwright/test');
+const fs = require('fs');
 const path = require('path');
 const { pathToFileURL } = require('url');
 
 const root = path.resolve(__dirname, '..');
 const pageUrl = (relativePath) => pathToFileURL(path.join(root, relativePath)).toString();
+const remoteUrlPattern = /^https?:\/\//i;
+
+function findHtmlFiles(dir, base = dir) {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+    if (entry.name === 'node_modules' || entry.name === '.git') return [];
+
+    const absolutePath = path.join(dir, entry.name);
+    if (entry.isDirectory()) return findHtmlFiles(absolutePath, base);
+    if (!entry.name.endsWith('.html')) return [];
+
+    return [path.relative(base, absolutePath).replace(/\\/g, '/')];
+  });
+}
 
 async function expectNoHorizontalOverflow(page) {
   const metrics = await page.evaluate(() => ({
@@ -12,6 +26,29 @@ async function expectNoHorizontalOverflow(page) {
   }));
 
   expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.clientWidth + 1);
+}
+
+async function expectNoRemoteImageAssets(page) {
+  const remoteAssets = await page.evaluate(() => {
+    const isRemote = (value) => /(^|,\s*)https?:\/\//i.test(String(value || ''));
+    const assets = [];
+
+    document.querySelectorAll('img, source').forEach((node) => {
+      ['currentSrc', 'src', 'srcset'].forEach((attr) => {
+        const value = node[attr] || node.getAttribute(attr);
+        if (isRemote(value)) assets.push(value);
+      });
+    });
+
+    document.querySelectorAll('*').forEach((node) => {
+      const backgroundImage = window.getComputedStyle(node).backgroundImage;
+      if (/url\(["']?https?:\/\//i.test(backgroundImage)) assets.push(backgroundImage);
+    });
+
+    return assets;
+  });
+
+  expect(remoteAssets).toEqual([]);
 }
 
 test.describe('site smoke', () => {
@@ -46,6 +83,8 @@ test.describe('site smoke', () => {
     await expect(page.locator('.slide.is-active')).toBeVisible();
     await expect(page.locator('.slide.is-active h1')).toHaveText(/Macroeconomic aims/i);
     await expect(page.locator('#progress')).toBeVisible();
+    await expect(page.getByRole('link', { name: /Course index/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Lesson start/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Student print view/i })).toBeVisible();
 
     await expectNoHorizontalOverflow(page);
@@ -78,11 +117,22 @@ test.describe('site smoke', () => {
     }
   });
 
+  test('lesson start link returns slide view to the first slide', async ({ page }) => {
+    await page.goto(pageUrl('lessons/unit-4-government/4-1-macroeconomic-aims/index.html') + '#4');
+
+    await expect(page.locator('.slide.is-active h2')).toHaveText(/What governments try to achieve/i);
+    await page.getByRole('link', { name: /Lesson start/i }).click();
+    await expect(page.locator('.slide.is-active h1')).toHaveText(/Macroeconomic aims/i);
+    await expect(page).toHaveURL(/#1$/);
+  });
+
   test('student print view renders a full lesson handout', async ({ page }) => {
     await page.goto(pageUrl('lessons/unit-4-government/4-1-macroeconomic-aims/index.html') + '?view=print');
 
     await expect(page.getByRole('heading', { name: /Macroeconomic aims/i }).first()).toBeVisible();
     await expect(page.getByRole('button', { name: /^Print$/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Course index/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Lesson start/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Slide mode/i })).toBeVisible();
     await expect(page.locator('.slide')).toHaveCount(0);
     await expect(page.locator('.handoutBlock')).toHaveCount(4);
@@ -103,4 +153,31 @@ test.describe('site smoke', () => {
 
     await expectNoHorizontalOverflow(page);
   });
+
+  test('fiscal policy menu links back and offers both views', async ({ page }) => {
+    await page.goto(pageUrl('lessons/unit-4-government/4-2-fiscal-policy/index.html'));
+
+    await expect(page.getByRole('link', { name: /Course index/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(3);
+    await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(3);
+    await expect(page.getByRole('link', { name: /Handout view/i }).first()).toHaveAttribute('href', /view=print/);
+
+    await expectNoHorizontalOverflow(page);
+  });
+
+  for (const htmlPath of findHtmlFiles(root)) {
+    test(`does not render remote image assets in ${htmlPath}`, async ({ page }) => {
+      const remoteImageRequests = [];
+
+      page.on('request', (request) => {
+        if (request.resourceType() === 'image' && remoteUrlPattern.test(request.url())) {
+          remoteImageRequests.push(request.url());
+        }
+      });
+
+      await page.goto(pageUrl(htmlPath));
+      await expectNoRemoteImageAssets(page);
+      expect(remoteImageRequests).toEqual([]);
+    });
+  }
 });
