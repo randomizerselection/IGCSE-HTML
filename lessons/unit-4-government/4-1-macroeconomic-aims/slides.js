@@ -14,14 +14,14 @@ IGCSE.lesson = {
   slides: [
     {
       type: 'hero',
-      eyebrow: 'Cambridge IGCSE Economics 0455',
+      eyebrow: 'Lesson overview',
       title: 'Macroeconomic aims',
       subtitle: '4.1.1',
       kicker: 'What is the government trying to achieve for the whole economy?',
     },
     {
       type: 'outcomes',
-      eyebrow: 'Lesson objectives',
+      eyebrow: 'Objectives',
       title: 'By the end, you can',
       bullets: [
         'Identify the six main macroeconomic aims.',
@@ -43,7 +43,7 @@ IGCSE.lesson = {
     },
     {
       type: 'cards',
-      eyebrow: 'Six aims',
+      eyebrow: 'Learn',
       title: 'What governments try to achieve',
       lead: 'Macroeconomic aims focus on the performance of the whole economy.',
       cards: [
@@ -58,7 +58,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Why it matters',
+      eyebrow: 'Learn',
       title: 'Growth can raise living standards',
       nodes: [['higher real GDP', 'more goods and services', 'higher incomes may follow', 'living standards may improve']],
       footer: 'Evaluation: growth does not guarantee equal benefits or lower pollution.',
@@ -67,7 +67,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Why it matters',
+      eyebrow: 'Learn',
       title: 'Stable prices protect confidence',
       nodes: [['low and stable inflation', 'money keeps its purchasing power', 'firms can plan', 'investment may increase']],
       footer: 'High inflation creates uncertainty and can reduce real incomes.',
@@ -76,7 +76,7 @@ IGCSE.lesson = {
     },
     {
       type: 'cards',
-      eyebrow: 'Conflicts',
+      eyebrow: 'Learn',
       title: 'Aims can clash',
       lead: 'Good answers recognise trade-offs rather than assuming every aim improves together.',
       cards: [
@@ -108,7 +108,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Exit check',
+      eyebrow: 'Exit ticket',
       title: 'Three retrieval prompts',
       steps: [
         ['1', 'Name two macroeconomic aims.'],

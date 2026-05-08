@@ -172,7 +172,7 @@ IGCSE.lesson = {
   slides: [
     {
       type: 'hero',
-      eyebrow:  'Unit 4 - Government and the macroeconomy',
+      eyebrow:  'Lesson overview',
       title:    'Fiscal policy',
       subtitle: 'Fiscal policy lesson 3',
       kicker:   'How do changes in spending and taxation affect macroeconomic aims?',
@@ -180,7 +180,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Opening hook',
+      eyebrow: 'Starter',
       title:   'Changing the economy',
       question: 'Can a government change the whole economy by changing spending and taxes?',
       zh: '政府能通过改变支出和税收来影响整个经济吗？',
@@ -188,7 +188,7 @@ IGCSE.lesson = {
     },
     {
       type: 'outcomes',
-      eyebrow: 'Lesson objectives',
+      eyebrow: 'Objectives',
       title:   'By the end, you can',
       bullets: [
         'Define fiscal policy.',
@@ -199,12 +199,13 @@ IGCSE.lesson = {
     },
     {
       type: 'section',
-      eyebrow: '4.2.4-4.2.6',
+      eyebrow: 'New section',
       title:   'Fiscal policy basics',
+      subtitle: '4.2.4-4.2.6 - Fiscal policy basics',
     },
     {
       type: 'fact',
-      eyebrow: 'Real-world fact',
+      eyebrow: 'Example',
       flag:    '🇸🇬',
       country: 'Singapore',
       fact:    'Singapore Budget 2024 focused on cost-of-living relief, a stronger social compact and future resilience.',
@@ -214,7 +215,7 @@ IGCSE.lesson = {
     },
     {
       type: 'term',
-      eyebrow: 'Key term',
+      eyebrow: 'Learn',
       title:   'Fiscal policy',
       zhTitle: '财政政策',
       term:    'fiscal policy',
@@ -229,7 +230,7 @@ IGCSE.lesson = {
     },
     {
       type: 'compare',
-      eyebrow: 'Fiscal measures',
+      eyebrow: 'Learn',
       title:   'The two fiscal-policy measures',
       leftTitle:  'Government spending',
       left:  ['increase spending to raise demand or improve supply', 'reduce spending to lower demand or borrowing'],
@@ -241,7 +242,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Fiscal policy check',
+      eyebrow: 'Check',
       title:   'Fill in the blanks',
       mode:    'fillBlanks',
       steps: [
@@ -253,12 +254,13 @@ IGCSE.lesson = {
     },
     {
       type: 'section',
-      eyebrow: '4.2.5',
+      eyebrow: 'New section',
       title:   'Expansionary and\ncontractionary policy',
+      subtitle: '4.2.5 - Expansionary and contractionary policy',
     },
     {
       type: 'discussion',
-      eyebrow: 'Expansionary policy',
+      eyebrow: 'Explore',
       title:   'Stimulus',
       question: 'When unemployment is high, should the government cut taxes or increase spending?',
       zh: '当失业率较高时，政府应该减税还是增加支出？',
@@ -266,7 +268,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Fiscal policy',
+      eyebrow: 'Learn',
       title:   'Expansionary policy',
       zhTitle: '扩张性政策',
       nodes: [['higher spending or lower taxes', 'total demand rises', 'firms may increase output', 'growth and employment may rise']],
@@ -276,7 +278,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Contractionary policy',
+      eyebrow: 'Explore',
       title:   'Cooling demand',
       question: 'When prices are rising too quickly, should the government raise taxes or cut spending?',
       zh: '当价格上涨过快时，政府应该增税还是削减支出？',
@@ -284,7 +286,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Fiscal policy',
+      eyebrow: 'Learn',
       title:   'Contractionary policy',
       zhTitle: '紧缩性政策',
       nodes: [['lower spending or higher taxes', 'total demand falls', 'spending pressure eases', 'inflationary pressure may fall']],
@@ -294,7 +296,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Policy stance check',
+      eyebrow: 'Check',
       title:   'Fill in the blanks',
       mode:    'fillBlanks',
       steps: [
@@ -306,12 +308,13 @@ IGCSE.lesson = {
     },
     {
       type: 'section',
-      eyebrow: '4.2.6',
+      eyebrow: 'New section',
       title:   'Effects on\nmacroeconomic aims',
+      subtitle: '4.2.6 - Effects on macroeconomic aims',
     },
     {
       type: 'discussion',
-      eyebrow: 'Macro aims',
+      eyebrow: 'Explore',
       title:   'Policy conflicts',
       question: 'Which macroeconomic aim is most likely to conflict with lower inflation?',
       zh: '哪个宏观经济目标最可能与降低通货膨胀发生冲突？',
@@ -319,7 +322,7 @@ IGCSE.lesson = {
     },
     {
       type: 'cards',
-      eyebrow: 'Fiscal policy effects',
+      eyebrow: 'Learn',
       title:   'Fiscal policy and macro aims',
       cards: [
         ['Growth', 'raise demand or improve supply'],
@@ -335,7 +338,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Fiscal policy effects',
+      eyebrow: 'Learn',
       title:   'Economic growth',
       zhTitle: '经济增长',
       nodes: [['higher spending or lower taxes', 'total demand rises', 'firms produce more', 'real GDP may rise']],
@@ -345,7 +348,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Fiscal policy effects',
+      eyebrow: 'Learn',
       title:   'Employment',
       zhTitle: '就业',
       nodes: [['higher demand for goods', 'firms increase output', 'firms hire more workers', 'unemployment may fall']],
@@ -355,7 +358,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Fiscal policy effects',
+      eyebrow: 'Learn',
       title:   'Price stability',
       zhTitle: '价格稳定',
       nodes: [['higher taxes or lower spending', 'total demand falls', 'spending pressure eases', 'inflation may fall']],
@@ -365,7 +368,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Fiscal policy effects',
+      eyebrow: 'Learn',
       title:   'Redistribution',
       zhTitle: '再分配',
       nodes: [['progressive taxes', 'revenue funds welfare', 'poorer households receive support', 'inequality may fall']],
@@ -375,7 +378,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Fiscal policy effects',
+      eyebrow: 'Learn',
       title:   'Balance of payments',
       zhTitle: '国际收支',
       nodes: [['higher taxes', 'consumer spending falls', 'imports may fall', 'current account may improve']],
@@ -385,7 +388,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Fiscal policy effects',
+      eyebrow: 'Learn',
       title:   'Sustainability',
       zhTitle: '可持续发展',
       nodes: [['green taxes or spending', 'incentives change', 'pollution may fall', 'sustainability may improve']],
@@ -395,7 +398,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Effects check',
+      eyebrow: 'Check',
       title:   'Fill in the blanks',
       mode:    'fillBlanks',
       steps: [
@@ -407,12 +410,13 @@ IGCSE.lesson = {
     },
     {
       type: 'section',
-      eyebrow: '4.2.6',
+      eyebrow: 'New section',
       title:   'Exam evaluation',
+      subtitle: '4.2.6 - Exam evaluation',
     },
     {
       type: 'discussion',
-      eyebrow: 'Evaluation starter',
+      eyebrow: 'Exam practice',
       title:   'What could go wrong?',
       question: 'Why might a tax cut reduce unemployment but also create new economic problems?',
       zh: '为什么减税可能降低失业率，但也可能带来新的经济问题？',
@@ -430,7 +434,7 @@ IGCSE.lesson = {
     },
     {
       type: 'exam',
-      eyebrow: 'Evaluation practice',
+      eyebrow: 'Exam practice',
       title:   'Discuss two sides',
       question: 'Discuss whether cutting taxes is the best way for a government to reduce unemployment.',
       keywords: ['disposable income', 'total demand', 'employment', 'inflation', 'budget deficit'],
@@ -440,7 +444,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Exit check',
+      eyebrow: 'Exit ticket',
       title:   'Fill in the blanks',
       mode:    'fillBlanks',
       steps: [

@@ -172,7 +172,7 @@ IGCSE.lesson = {
   slides: [
     {
       type: 'hero',
-      eyebrow:  'Unit 4 - Government and the macroeconomy',
+      eyebrow:  'Lesson overview',
       title:    'Taxation',
       subtitle: 'Fiscal policy lesson 2',
       kicker:   'Why do governments tax, and how can taxes be classified?',
@@ -180,7 +180,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Opening hook',
+      eyebrow: 'Starter',
       title:   'Every receipt is a policy choice',
       question: 'When you buy something in a shop, which taxes might be hidden in the final price?',
       zh: '当你在商店买东西时，最终价格里可能隐藏着哪些税？',
@@ -188,7 +188,7 @@ IGCSE.lesson = {
     },
     {
       type: 'outcomes',
-      eyebrow: 'Lesson objectives',
+      eyebrow: 'Objectives',
       title:   'By the end, you can',
       bullets: [
         'Explain reasons for taxation.',
@@ -199,12 +199,13 @@ IGCSE.lesson = {
     },
     {
       type: 'section',
-      eyebrow: '4.2.3',
+      eyebrow: 'New section',
       title:   'Why governments tax',
+      subtitle: '4.2.3 - Why governments tax',
     },
     {
       type: 'fact',
-      eyebrow: 'Real-world fact',
+      eyebrow: 'Example',
       flag:    '🇩🇰',
       country: 'Denmark',
       fact:    'In 2024, Denmark had a tax-to-GDP ratio of 45.2%, compared with an OECD average of 34.1%.',
@@ -214,7 +215,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for taxation',
+      eyebrow: 'Learn',
       title:   '1. Raise revenue',
       zhTitle: '增加财政收入',
       nodes: [['government charges taxes', 'revenue rises', 'public services can be funded']],
@@ -224,7 +225,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for taxation',
+      eyebrow: 'Learn',
       title:   '2. Reduce demerit goods',
       zhTitle: '减少有害品',
       nodes: [['tax on cigarettes', 'price rises', 'quantity demanded may fall', 'health costs may fall']],
@@ -234,7 +235,7 @@ IGCSE.lesson = {
     },
     {
       type: 'fact',
-      eyebrow: 'Real-world fact',
+      eyebrow: 'Example',
       flag:    '🇵🇭',
       country: 'Philippines',
       fact:    'The Philippines passed a Sin Tax Reform Law in 2012 that raised indirect taxes on tobacco and alcohol.',
@@ -244,7 +245,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for taxation',
+      eyebrow: 'Learn',
       title:   '3. Reduce imports',
       zhTitle: '减少进口',
       nodes: [['tariff on imports', 'import prices rise', 'consumers may buy fewer imports', 'domestic firms may sell more']],
@@ -254,7 +255,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Quick check',
+      eyebrow: 'Check',
       question: 'A government increases tax on alcohol. Which reason for taxation is most direct?',
       choices: [
         'Raise revenue only',
@@ -267,7 +268,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for taxation',
+      eyebrow: 'Learn',
       title:   '4. Redistribute income',
       zhTitle: '收入再分配',
       nodes: [['higher taxes on high incomes', 'government revenue rises', 'welfare can be funded', 'inequality may fall']],
@@ -277,7 +278,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for taxation',
+      eyebrow: 'Learn',
       title:   '5. Influence demand',
       zhTitle: '影响需求',
       nodes: [['higher income tax', 'disposable income falls', 'consumer spending may fall', 'inflationary pressure may fall']],
@@ -287,7 +288,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for taxation',
+      eyebrow: 'Learn',
       title:   '6. Encourage sustainability',
       zhTitle: '鼓励可持续发展',
       nodes: [['pollution tax', 'firms face higher costs for polluting', 'cleaner methods become more attractive']],
@@ -297,7 +298,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Quick check',
+      eyebrow: 'Check',
       question: 'A pollution tax raises money and makes pollution more expensive. Which answer is strongest?',
       choices: [
         'It can raise revenue and encourage sustainability',
@@ -310,7 +311,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Reasons check',
+      eyebrow: 'Check',
       title:   'Fill in the blanks',
       mode:    'fillBlanks',
       steps: [
@@ -322,12 +323,13 @@ IGCSE.lesson = {
     },
     {
       type: 'section',
-      eyebrow: '4.2.3',
+      eyebrow: 'New section',
       title:   'Direct and indirect\ntaxes',
+      subtitle: '4.2.3 - Direct and indirect taxes',
     },
     {
       type: 'discussion',
-      eyebrow: 'Class discussion',
+      eyebrow: 'Explore',
       title:   'Who should pay?',
       question: 'If the government needs more revenue for hospitals, should it raise income tax, VAT, corporation tax or a tax on unhealthy products?',
       zh: '如果政府需要更多收入来资助医院，应该提高所得税、增值税、公司税，还是对不健康产品征税？',
@@ -335,7 +337,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Direct tax',
+      eyebrow: 'Explore',
       title:   'Income and wealth',
       question: 'Should higher-income households pay a higher percentage of their income in tax?',
       zh: '高收入家庭是否应该缴纳更高比例的收入作为税？',
@@ -343,7 +345,7 @@ IGCSE.lesson = {
     },
     {
       type: 'term',
-      eyebrow: 'Tax type',
+      eyebrow: 'Learn',
       title:   'Direct tax',
       zhTitle: '直接税',
       term:    'direct tax',
@@ -358,7 +360,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Indirect tax',
+      eyebrow: 'Explore',
       title:   'At the checkout',
       question: 'Is a tax added to prices fair if poorer households spend most of their income?',
       zh: '如果较贫困家庭会花掉大部分收入，加在价格上的税公平吗？',
@@ -366,7 +368,7 @@ IGCSE.lesson = {
     },
     {
       type: 'term',
-      eyebrow: 'Tax type',
+      eyebrow: 'Learn',
       title:   'Indirect tax',
       zhTitle: '间接税',
       term:    'indirect tax',
@@ -381,13 +383,13 @@ IGCSE.lesson = {
     },
     {
       type: 'indirectTaxSim',
-      eyebrow: 'Indirect tax simulator',
+      eyebrow: 'Explore',
       title:   'Why indirect taxes can be regressive',
       taxRate: 10,
     },
     {
       type: 'fact',
-      eyebrow: 'Real-world fact',
+      eyebrow: 'Example',
       flag:    '🇬🇧',
       country: 'United Kingdom',
       fact:    'Sugar in soft drinks covered by the UK Soft Drinks Industry Levy fell by 46% between 2015 and 2020.',
@@ -397,7 +399,7 @@ IGCSE.lesson = {
     },
     {
       type: 'compare',
-      eyebrow: 'Tax type',
+      eyebrow: 'Learn',
       title:   'Two direct taxes',
       leftTitle: 'Income tax',
       left: [
@@ -414,7 +416,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Class discussion',
+      eyebrow: 'Explore',
       title:   'Taxing company profits',
       question: 'If corporation tax rises, what might a firm do with prices, wages, investment or dividends?',
       zh: '如果公司税上升，企业可能会如何调整价格、工资、投资或股息？',
@@ -422,7 +424,7 @@ IGCSE.lesson = {
     },
     {
       type: 'compare',
-      eyebrow: 'Tax type',
+      eyebrow: 'Learn',
       title:   'VAT, sales tax and other indirect taxes',
       leftTitle: 'VAT or sales tax',
       left: [
@@ -441,7 +443,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Indirect tax',
+      eyebrow: 'Explore',
       title:   'Taxing harmful goods',
       question: 'Why might governments tax cigarettes more heavily than bread?',
       zh: '为什么政府可能对香烟征收比面包更高的税？',
@@ -449,7 +451,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Real-world example',
+      eyebrow: 'Example',
       title:   'Indirect tax on tobacco',
       zhTitle: '烟草间接税',
       question: 'Many governments put high indirect taxes on cigarettes.',
@@ -460,7 +462,7 @@ IGCSE.lesson = {
     },
     {
       type: 'term',
-      eyebrow: 'Tax type',
+      eyebrow: 'Learn',
       title:   'Import tariff',
       zhTitle: '进口关税',
       term:    'tariff',
@@ -475,7 +477,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Class discussion',
+      eyebrow: 'Explore',
       title:   'At the port',
       question: 'If a tariff makes imported phones more expensive, who might gain and who might lose?',
       zh: '如果关税使进口手机更贵，谁可能受益，谁可能受损？',
@@ -483,7 +485,7 @@ IGCSE.lesson = {
     },
     {
       type: 'fact',
-      eyebrow: 'Real-world fact',
+      eyebrow: 'Example',
       flag:    '🇸🇪',
       country: 'Sweden',
       fact:    'Sweden introduced a carbon tax in 1991 at SEK 250 per tonne of fossil CO2.',
@@ -493,7 +495,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Class discussion',
+      eyebrow: 'Explore',
       title:   'The smoke stack',
       question: 'Should a factory pay tax for pollution if it provides jobs in the local area?',
       zh: '如果工厂为当地提供就业，它还应该为污染纳税吗？',
@@ -501,7 +503,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Tax type check',
+      eyebrow: 'Check',
       title:   'Fill in the blanks',
       mode:    'fillBlanks',
       steps: [
@@ -513,12 +515,13 @@ IGCSE.lesson = {
     },
     {
       type: 'section',
-      eyebrow: '4.2.3',
+      eyebrow: 'New section',
       title:   'Progressive, regressive\nand proportional taxes',
+      subtitle: '4.2.3 - Progressive, regressive and proportional taxes',
     },
     {
       type: 'discussion',
-      eyebrow: 'Tax fairness',
+      eyebrow: 'Explore',
       title:   'Who pays a higher share?',
       question: 'Which tax structure more directly reduces inequality: progressive, regressive or proportional?',
       zh: '哪种税收结构更直接地减少不平等：累进税、累退税，还是比例税？',
@@ -526,7 +529,7 @@ IGCSE.lesson = {
     },
     {
       type: 'compare',
-      eyebrow: 'Tax structure',
+      eyebrow: 'Learn',
       title:   'Progressive and regressive taxes',
       leftTitle: 'Progressive tax',
       left: [
@@ -545,13 +548,13 @@ IGCSE.lesson = {
     },
     {
       type: 'taxSim',
-      eyebrow: 'Tax simulator',
+      eyebrow: 'Explore',
       title:   'Progressive or regressive?',
       defaultMode: 'progressive',
     },
     {
       type: 'chinaIncomeTaxSim',
-      eyebrow: 'Real-world simulator',
+      eyebrow: 'Example',
       title:   'Mainland China income tax',
       defaultIncome: 240000,
       standardDeduction: 60000,
@@ -560,7 +563,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Numerical example',
+      eyebrow: 'Example',
       title:   'Sales tax can be regressive',
       zhTitle: '销售税可能具有累退性',
       question: 'Two households both pay $500 sales tax in a year.',
@@ -571,7 +574,7 @@ IGCSE.lesson = {
     },
     {
       type: 'term',
-      eyebrow: 'Tax structure',
+      eyebrow: 'Learn',
       title:   'Proportional tax',
       zhTitle: '比例税',
       term:    'proportional tax',
@@ -586,7 +589,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Tax structure check',
+      eyebrow: 'Check',
       title:   'Fill in the blanks',
       mode:    'fillBlanks',
       steps: [
@@ -598,12 +601,13 @@ IGCSE.lesson = {
     },
     {
       type: 'section',
-      eyebrow: '4.2.3',
+      eyebrow: 'New section',
       title:   'Classify and explain',
+      subtitle: '4.2.3 - Classify and explain',
     },
     {
       type: 'discussion',
-      eyebrow: 'Exam starter',
+      eyebrow: 'Exam practice',
       title:   'Name it first',
       question: 'Why is it risky to explain the effect of a tax before classifying what type of tax it is?',
       zh: '为什么在判断税收类型之前就解释税收影响会有风险？',
@@ -611,7 +615,7 @@ IGCSE.lesson = {
     },
     {
       type: 'cards',
-      eyebrow: 'Exam trap',
+      eyebrow: 'Exam practice',
       title:   'Classify before explaining',
       cards: [
         ['Direct or indirect?', 'what is being taxed: income, wealth, profit or spending?'],
@@ -623,7 +627,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Formative assessment',
+      eyebrow: 'Check',
       question: 'A government charges a percentage tax on company profits and uses the revenue to fund schools.',
       choices: [
         'Direct tax and corporation tax',
@@ -636,7 +640,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Formative assessment',
+      eyebrow: 'Check',
       question: 'Why might a government increase tax on petrol?',
       choices: [
         'To raise revenue and discourage pollution from car use',
@@ -649,7 +653,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Taxation exit check',
+      eyebrow: 'Exit ticket',
       title:   'Fill in the blanks',
       mode:    'fillBlanks',
       steps: [

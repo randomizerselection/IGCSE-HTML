@@ -172,7 +172,7 @@ IGCSE.lesson = {
   slides: [
     {
       type: 'hero',
-      eyebrow:  'Unit 4 - Government and the macroeconomy',
+      eyebrow:  'Lesson overview',
       title:    'Government budget and spending',
       subtitle: 'Fiscal policy lesson 1',
       kicker:   'How do budgets and spending choices affect the economy?',
@@ -180,7 +180,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Opening hook',
+      eyebrow: 'Starter',
       title:   'Trade-offs',
       question: 'What should a government do first when it cannot achieve every aim at once?',
       zh: '当政府无法同时实现所有目标时，应该先做什么？',
@@ -188,7 +188,7 @@ IGCSE.lesson = {
     },
     {
       type: 'outcomes',
-      eyebrow: 'Lesson objectives',
+      eyebrow: 'Objectives',
       title:   'By the end, you can',
       bullets: [
         'Define a government budget.',
@@ -199,12 +199,13 @@ IGCSE.lesson = {
     },
     {
       type: 'section',
-      eyebrow: '4.2.1',
+      eyebrow: 'New section',
       title:   'Government budget',
+      subtitle: '4.2.1 - Government budget',
     },
     {
       type: 'discussion',
-      eyebrow: 'Budget discussion',
+      eyebrow: 'Explore',
       title:   'Public money',
       question: 'What should happen if a government spends more than it receives?',
       zh: '如果政府支出超过收入，应该怎么办？',
@@ -212,7 +213,7 @@ IGCSE.lesson = {
     },
     {
       type: 'term',
-      eyebrow: 'Government budget',
+      eyebrow: 'Learn',
       title:   'Budget balance',
       zhTitle: '预算差额',
       term:    'government budget',
@@ -227,7 +228,7 @@ IGCSE.lesson = {
     },
     {
       type: 'fact',
-      eyebrow: 'Real-world fact',
+      eyebrow: 'Example',
       flag:    '🇬🇧',
       country: 'United Kingdom',
       fact:    'In the financial year ending March 2024, UK public sector net borrowing was estimated at GBP 131.1 billion.',
@@ -237,7 +238,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Budget calculation',
+      eyebrow: 'Check',
       question: 'Government revenue = $420m. Government expenditure = $510m.',
       choices: ['$90m surplus', '$90m deficit', '$930m deficit'],
       answer: 1,
@@ -246,7 +247,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Budget calculation',
+      eyebrow: 'Check',
       title:   'Answer',
       answer:  '$90m deficit',
       body:    '$420m - $510m = -$90m. A deficit occurs because spending is greater than revenue.',
@@ -255,7 +256,7 @@ IGCSE.lesson = {
     },
     {
       type: 'compare',
-      eyebrow: 'Budget balance',
+      eyebrow: 'Learn',
       title:   'Deficit or surplus?',
       leftTitle:  'Budget deficit',
       left:  ['government spending exceeds government revenue', 'may require borrowing'],
@@ -267,7 +268,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Budget check',
+      eyebrow: 'Check',
       title:   'Fill in the blanks',
       mode:    'fillBlanks',
       steps: [
@@ -280,12 +281,13 @@ IGCSE.lesson = {
 
     {
       type: 'section',
-      eyebrow: '4.2.2',
+      eyebrow: 'New section',
       title:   'Government spending',
+      subtitle: '4.2.2 - Government spending',
     },
     {
       type: 'discussion',
-      eyebrow: 'Spending discussion',
+      eyebrow: 'Explore',
       title:   'Priorities',
       question: 'Which area of government spending should receive more money first?',
       zh: '政府支出的哪个领域应该最先获得更多资金？',
@@ -293,7 +295,7 @@ IGCSE.lesson = {
     },
     {
       type: 'cards',
-      eyebrow: 'Government spending',
+      eyebrow: 'Learn',
       title:   'Main areas of spending',
       cards: [
         ['Education', 'schools and training'],
@@ -308,7 +310,7 @@ IGCSE.lesson = {
     },
     {
       type: 'fact',
-      eyebrow: 'Real-world fact',
+      eyebrow: 'Example',
       flag:    '🇫🇮',
       country: 'Finland',
       fact:    'Government education spending in Finland was about 6.38% of GDP in 2022.',
@@ -318,7 +320,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Spending reasons',
+      eyebrow: 'Explore',
       title:   'Why spend?',
       question: 'Why might markets fail to provide enough education, healthcare or infrastructure?',
       zh: '为什么市场可能无法提供足够的教育、医疗或基础设施？',
@@ -326,7 +328,7 @@ IGCSE.lesson = {
     },
     {
       type: 'cards',
-      eyebrow: 'Government spending',
+      eyebrow: 'Learn',
       title:   'Why governments spend',
       cards: [
         ['Merit goods', 'education, healthcare', '1'],
@@ -341,7 +343,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Merit goods',
+      eyebrow: 'Explore',
       title:   'Education and healthcare',
       question: 'Why might a person consume too little education or healthcare if they must pay the full price?',
       zh: '如果必须支付全部价格，为什么人们可能消费太少的教育或医疗？',
@@ -349,7 +351,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for spending',
+      eyebrow: 'Learn',
       title:   '1. Provide merit goods',
       zhTitle: '提供有益品',
       question: 'Education and healthcare may be underprovided if people have to pay the full price.',
@@ -360,7 +362,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Public goods',
+      eyebrow: 'Explore',
       title:   'Free rider problem',
       question: 'Why is defence difficult to sell only to people who pay for it?',
       zh: '为什么国防很难只卖给付费的人？',
@@ -368,7 +370,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for spending',
+      eyebrow: 'Learn',
       title:   '2. Provide public goods',
       zhTitle: '提供公共物品',
       question: 'Some goods would not be provided by private firms because people can benefit without paying directly.',
@@ -379,7 +381,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Infrastructure',
+      eyebrow: 'Explore',
       title:   'Roads, rail and ports',
       question: 'How can a better road or railway help firms produce more?',
       zh: '更好的公路或铁路如何帮助企业生产更多？',
@@ -387,7 +389,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for spending',
+      eyebrow: 'Learn',
       title:   '3. Invest in infrastructure',
       zhTitle: '投资基础设施',
       nodes: [['more infrastructure spending', 'lower transport costs', 'firms may produce more', 'real GDP may rise']],
@@ -397,7 +399,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Quick check',
+      eyebrow: 'Check',
       question: 'The government builds a new railway between factories and a port. Which reason for spending is most direct?',
       choices: [
         'Provide a public good',
@@ -410,7 +412,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Industry support',
+      eyebrow: 'Explore',
       title:   'Picking winners',
       question: 'Should a government support an industry if it is important for future jobs?',
       zh: '如果某个产业对未来就业很重要，政府应该支持它吗？',
@@ -418,7 +420,7 @@ IGCSE.lesson = {
     },
     {
       type: 'fact',
-      eyebrow: 'Real-world fact',
+      eyebrow: 'Example',
       flag:    '🇺🇸',
       country: 'United States',
       fact:    'The CHIPS Act provided $52.7 billion to revive the US semiconductor industry.',
@@ -428,7 +430,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for spending',
+      eyebrow: 'Learn',
       title:   '4. Support key industries',
       zhTitle: '支持关键产业',
       question: 'Governments may support industries that are important for jobs, exports or future technology.',
@@ -439,7 +441,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Inequality',
+      eyebrow: 'Explore',
       title:   'Welfare support',
       question: 'How much responsibility should a government take for reducing poverty?',
       zh: '政府在减少贫困方面应该承担多大责任？',
@@ -447,7 +449,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for spending',
+      eyebrow: 'Learn',
       title:   '5. Reduce inequality',
       zhTitle: '减少不平等',
       nodes: [['higher welfare spending', 'poorer households receive support', 'income inequality may fall']],
@@ -457,7 +459,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Macroeconomy',
+      eyebrow: 'Explore',
       title:   'Managing demand',
       question: 'Should a government spend more when unemployment is rising?',
       zh: '当失业率上升时，政府应该增加支出吗？',
@@ -465,7 +467,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for spending',
+      eyebrow: 'Learn',
       title:   '6. Manage the macroeconomy',
       zhTitle: '管理宏观经济',
       question: 'Government spending can be changed to influence total demand.',
@@ -476,7 +478,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Quick check',
+      eyebrow: 'Check',
       question: 'The government increases unemployment benefits during a downturn. Which reason fits best?',
       choices: [
         'Reduce inequality',
@@ -489,7 +491,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Spending challenge',
+      eyebrow: 'Apply',
       question: 'Which spending decision most directly supports environmental sustainability?',
       choices: [
         'Build cleaner public transport',
@@ -502,7 +504,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Spending check',
+      eyebrow: 'Check',
       title:   'Fill in the blanks',
       mode:    'fillBlanks',
       steps: [

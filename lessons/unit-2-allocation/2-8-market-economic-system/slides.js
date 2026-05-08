@@ -133,7 +133,7 @@ IGCSE.lesson = {
   slides: [
     {
       type: 'hero',
-      eyebrow:  'Unit 2 - Allocation of resources',
+      eyebrow:  'Lesson overview',
       title:    'Market economic system',
       subtitle: 'Lesson 2.8',
       kicker:   'How do prices, profits and consumer choices allocate scarce resources?',
@@ -141,7 +141,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Opening hook',
+      eyebrow: 'Starter',
       title:   'Who decides?',
       question: 'If a new bubble tea shop opens near school, who decides what it sells, what price it charges and whether it survives?',
       zh: '如果学校附近新开一家奶茶店，谁决定它卖什么、定什么价格，以及它能否生存？',
@@ -149,7 +149,7 @@ IGCSE.lesson = {
     },
     {
       type: 'outcomes',
-      eyebrow: 'Lesson objectives',
+      eyebrow: 'Objectives',
       title:   'By the end, you can',
       bullets: [
         'Define a market economic system.',
@@ -161,12 +161,13 @@ IGCSE.lesson = {
     },
     {
       type: 'section',
-      eyebrow: '2.8.1',
+      eyebrow: 'New section',
       title:   'Market economy basics',
+      subtitle: '2.8.1 - Market economic system',
     },
     {
       type: 'discussion',
-      eyebrow: 'Definition starter',
+      eyebrow: 'Explore',
       title:   'No central planner',
       question: 'In a busy food street, why might some stalls expand while others disappear without anyone centrally planning the result?',
       zh: '在繁忙的小吃街，为什么有些摊位会扩大，而有些会消失，即使没有人统一计划？',
@@ -174,7 +175,7 @@ IGCSE.lesson = {
     },
     {
       type: 'systemCompare',
-      eyebrow: 'Economic systems',
+      eyebrow: 'Learn',
       title:   'Three economic systems',
       systems: [
         {
@@ -213,7 +214,7 @@ IGCSE.lesson = {
     },
     {
       type: 'term',
-      eyebrow: 'Key term',
+      eyebrow: 'Learn',
       title:   'Market economic system',
       zhTitle: '市场经济制度',
       term:    'market economic system',
@@ -228,7 +229,7 @@ IGCSE.lesson = {
     },
     {
       type: 'cards',
-      eyebrow: 'Definition ingredients',
+      eyebrow: 'Learn',
       title:   'Four features of a market economy',
       cards: [
         ['Private ownership', 'resources are owned by individuals and private firms', '1'],
@@ -241,7 +242,7 @@ IGCSE.lesson = {
     },
     {
       type: 'compare',
-      eyebrow: 'Ownership',
+      eyebrow: 'Learn',
       title:   'Private sector and public sector',
       leftTitle: 'Private sector',
       left: [
@@ -260,7 +261,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Formative assessment',
+      eyebrow: 'Check',
       question: 'Most resources are owned by private individuals and firms. Goods are produced mainly for profit, and prices are set by demand and supply.',
       choices: [
         'Market economic system',
@@ -273,7 +274,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Hinge question',
+      eyebrow: 'Check',
       question: 'What is an essential feature of a market economy?',
       choices: [
         'Central planners decide what, how and for whom to produce.',
@@ -287,12 +288,13 @@ IGCSE.lesson = {
     },
     {
       type: 'section',
-      eyebrow: '2.8.1',
+      eyebrow: 'New section',
       title:   'How markets allocate\nresources',
+      subtitle: '2.8.1 - Price mechanism and resource allocation',
     },
     {
       type: 'discussion',
-      eyebrow: 'Price mechanism',
+      eyebrow: 'Explore',
       title:   'Signals in a queue',
       question: 'If demand for milk tea rises and queues become longer, what might happen to price, profit and the number of firms selling milk tea?',
       zh: '如果奶茶需求上升、排队变长，价格、利润和卖奶茶的企业数量可能会怎样变化？',
@@ -300,14 +302,14 @@ IGCSE.lesson = {
     },
     {
       type: 'marketMechanismSim',
-      eyebrow: 'Interactive simulator',
+      eyebrow: 'Explore',
       title:   'Demand, price, profit and resources',
       defaultDemand: 55,
       defaultCost: 18,
     },
     {
       type: 'flow',
-      eyebrow: 'Price mechanism',
+      eyebrow: 'Learn',
       title:   'Demand rises',
       zhTitle: '需求上升',
       question: 'A rise in demand sends a signal through price.',
@@ -318,7 +320,7 @@ IGCSE.lesson = {
     },
     {
       type: 'fact',
-      eyebrow: 'Real-world fact',
+      eyebrow: 'Example',
       country: 'Electric vehicles',
       fact:    'As demand for electric cars rose, the global electric car fleet reached almost 58 million at the end of 2024, more than triple the 2021 total.',
       zh:      '随着电动汽车需求上升，2024年底全球电动汽车保有量接近5800万辆，是2021年的三倍多。',
@@ -327,7 +329,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Price mechanism',
+      eyebrow: 'Learn',
       title:   'Demand falls',
       zhTitle: '需求下降',
       question: 'A fall in demand sends the opposite signal.',
@@ -338,7 +340,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Market signal',
+      eyebrow: 'Apply',
       title:   'When demand disappears',
       question: 'If fewer students buy a drink from one shop, what should happen to its workers, stock and opening hours?',
       zh: '如果越来越少的学生在某家店买饮料，它的员工、库存和营业时间应该怎样调整？',
@@ -346,7 +348,7 @@ IGCSE.lesson = {
     },
     {
       type: 'term',
-      eyebrow: 'Key term',
+      eyebrow: 'Learn',
       title:   'Consumer sovereignty',
       zhTitle: '消费者主权',
       term:    'consumer sovereignty',
@@ -361,7 +363,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Price mechanism check',
+      eyebrow: 'Check',
       title:   'Fill in the blanks',
       mode:    'fillBlanks',
       steps: [
@@ -373,7 +375,7 @@ IGCSE.lesson = {
     },
     {
       type: 'fact',
-      eyebrow: 'Real-world fact',
+      eyebrow: 'Example',
       country: 'Plant-based food',
       fact:    'As consumers demand more plant-based options, the U.S. retail plant-based food market is already worth $8.1 billion.',
       zh:      '随着消费者对植物基选择的需求增加，美国植物基食品零售市场规模已经达到81亿美元。',
@@ -382,7 +384,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Application check',
+      eyebrow: 'Apply',
       question: 'Demand for electric bicycles rises. Which chain is strongest?',
       choices: [
         'Demand rises -> price may rise -> profit incentive rises -> firms allocate more resources to electric bicycles.',
@@ -395,7 +397,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Definition practice',
+      eyebrow: 'Review',
       title:   'Fill in the blanks',
       mode:    'fillBlanks',
       steps: [
@@ -407,12 +409,13 @@ IGCSE.lesson = {
     },
     {
       type: 'section',
-      eyebrow: '2.8.2',
+      eyebrow: 'New section',
       title:   'Arguments for\nmarket economies',
+      subtitle: '2.8.2 - Arguments for market economies',
     },
     {
       type: 'discussion',
-      eyebrow: 'Advantage hook',
+      eyebrow: 'Explore',
       title:   'Competing for customers',
       question: 'Why do rival phone companies keep improving cameras, batteries, designs and prices?',
       zh: '为什么相互竞争的手机企业会不断改进摄像头、电池、设计和价格？',
@@ -420,7 +423,7 @@ IGCSE.lesson = {
     },
     {
       type: 'cards',
-      eyebrow: 'Advantages',
+      eyebrow: 'Learn',
       title:   'Advantages of a market economy',
       cards: [
         ['Consumer sovereignty', 'firms respond to consumer demand', '1'],
@@ -433,7 +436,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Advantage',
+      eyebrow: 'Learn',
       title:   '1. Consumer sovereignty',
       zhTitle: '消费者主权',
       nodes: [['consumers spend on products they want', 'firms chase sales revenue', 'firms produce what consumers demand']],
@@ -443,7 +446,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Class discussion',
+      eyebrow: 'Explore',
       title:   'Do firms follow every signal?',
       question: 'If consumers want healthier meals but also low prices, what trade-offs do firms face?',
       zh: '如果消费者既想要更健康的餐食，又想要低价格，企业会面临什么取舍？',
@@ -451,7 +454,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Advantage',
+      eyebrow: 'Learn',
       title:   '2. Choice',
       zhTitle: '选择更多',
       nodes: [['many firms compete', 'different prices, styles and quality levels appear', 'consumers have wider choice']],
@@ -461,7 +464,7 @@ IGCSE.lesson = {
     },
     {
       type: 'fact',
-      eyebrow: 'Real-world fact',
+      eyebrow: 'Example',
       country: 'Digital markets',
       fact:    'Digital markets can create huge incentives: the global App Store ecosystem facilitated $1.3 trillion in developer billings and sales in 2024.',
       zh:      '数字市场可以创造巨大的激励：2024年全球App Store生态系统促成了1.3万亿美元的开发者账单和销售额。',
@@ -470,7 +473,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Advantage',
+      eyebrow: 'Learn',
       title:   '3. Quality and innovation',
       zhTitle: '质量和创新',
       nodes: [['firms want profit', 'better products attract consumers', 'quality and innovation may improve']],
@@ -480,7 +483,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Advantage',
+      eyebrow: 'Learn',
       title:   '4. Efficiency',
       zhTitle: '效率',
       nodes: [['competition pressures firms', 'firms reduce costs and waste', 'prices may be lower', 'resources may be used efficiently']],
@@ -490,7 +493,7 @@ IGCSE.lesson = {
     },
     {
       type: 'compare',
-      eyebrow: 'Exam wording',
+      eyebrow: 'Exam practice',
       title:   'Weak answer or strong answer?',
       leftTitle: 'Weak',
       left: [
@@ -510,7 +513,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Formative assessment',
+      eyebrow: 'Check',
       question: 'A supermarket increases its range of vegetarian meals after more customers ask for them. Which advantage is most direct?',
       choices: [
         'Consumer sovereignty',
@@ -523,7 +526,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Advantages check',
+      eyebrow: 'Check',
       title:   'Fill in the blanks',
       mode:    'fillBlanks',
       steps: [
@@ -535,7 +538,7 @@ IGCSE.lesson = {
     },
     {
       type: 'marketSignalGame',
-      eyebrow: 'Formative assessment',
+      eyebrow: 'Apply',
       title:   'Follow the market signal',
     },
     {
@@ -550,12 +553,13 @@ IGCSE.lesson = {
     },
     {
       type: 'section',
-      eyebrow: '2.8.2',
+      eyebrow: 'New section',
       title:   'Arguments against\nmarket economies',
+      subtitle: '2.8.2 - Arguments against market economies',
     },
     {
       type: 'discussion',
-      eyebrow: 'Disadvantage hook',
+      eyebrow: 'Explore',
       title:   'When profit is not enough',
       question: 'Which important goods or effects might firms ignore if they only produce what is profitable?',
       zh: '如果企业只生产有利润的东西，它们可能会忽视哪些重要产品或影响？',
@@ -563,7 +567,7 @@ IGCSE.lesson = {
     },
     {
       type: 'cards',
-      eyebrow: 'Disadvantages',
+      eyebrow: 'Learn',
       title:   'Disadvantages of a market economy',
       cards: [
         ['Inequality', 'income and wealth may become unevenly distributed', '1'],
@@ -578,7 +582,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Disadvantage',
+      eyebrow: 'Learn',
       title:   '1. Inequality',
       zhTitle: '不平等',
       nodes: [['high-income consumers have more spending power', 'firms respond to profitable demand', 'poorer households may have less access', 'inequality may increase']],
@@ -588,7 +592,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Disadvantage',
+      eyebrow: 'Learn',
       title:   '2. External costs',
       zhTitle: '外部成本',
       question: 'A factory may focus on private profit and ignore costs to third parties.',
@@ -599,7 +603,7 @@ IGCSE.lesson = {
     },
     {
       type: 'fact',
-      eyebrow: 'Real-world fact',
+      eyebrow: 'Example',
       country: 'Air pollution',
       fact:    'Air pollution shows how private decisions can create wider costs: ambient and household air pollution are associated with 6.7 million premature deaths annually.',
       zh:      '空气污染说明私人决策可能造成更广泛的成本：室外和家庭空气污染每年与670万例过早死亡有关。',
@@ -608,7 +612,7 @@ IGCSE.lesson = {
     },
     {
       type: 'compare',
-      eyebrow: 'Market failure',
+      eyebrow: 'Learn',
       title:   'Over-consumption and under-consumption',
       leftTitle: 'Demerit goods',
       left: [
@@ -627,7 +631,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Disadvantage',
+      eyebrow: 'Learn',
       title:   '3. Under-provision of merit goods',
       zhTitle: '有益品供给不足',
       nodes: [['consumers underestimate benefits of education', 'demand is too low', 'private firms provide too little', 'long-run productivity may be lower']],
@@ -637,7 +641,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Disadvantage',
+      eyebrow: 'Learn',
       title:   '4. Non-provision of public goods',
       zhTitle: '公共物品不被提供',
       question: 'Public goods are difficult to sell only to people who pay.',
@@ -648,7 +652,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Class discussion',
+      eyebrow: 'Explore',
       title:   'Who pays for the light?',
       question: 'If everyone benefits from a street light, why might a private firm struggle to charge each user?',
       zh: '如果每个人都能从路灯受益，为什么私人企业很难向每个使用者收费？',
@@ -656,7 +660,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Disadvantage',
+      eyebrow: 'Learn',
       title:   '5. Monopoly power',
       zhTitle: '垄断力量',
       nodes: [['one firm dominates a market', 'competition falls', 'output may be restricted', 'prices may be higher']],
@@ -666,7 +670,7 @@ IGCSE.lesson = {
     },
     {
       type: 'compare',
-      eyebrow: 'Balanced judgement',
+      eyebrow: 'Review',
       title:   'For and against markets',
       leftTitle: 'Arguments for',
       left: [
@@ -690,7 +694,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Formative assessment',
+      eyebrow: 'Check',
       question: 'A private firm will not provide street lighting because people can benefit even if they do not pay. Which problem is this?',
       choices: [
         'Non-provision of a public good',
@@ -703,7 +707,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Disadvantages check',
+      eyebrow: 'Check',
       title:   'Fill in the blanks',
       mode:    'fillBlanks',
       steps: [
@@ -715,7 +719,7 @@ IGCSE.lesson = {
     },
     {
       type: 'exam',
-      eyebrow: 'Evaluation practice',
+      eyebrow: 'Exam practice',
       title:   'Discuss two sides',
       question: 'Discuss whether a market economic system is the best way to allocate resources. [8]',
       keywords: ['price mechanism', 'consumer sovereignty', 'market failure', 'inequality'],
@@ -725,7 +729,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Exit check',
+      eyebrow: 'Exit ticket',
       title:   'Fill in the blanks',
       mode:    'fillBlanks',
       steps: [

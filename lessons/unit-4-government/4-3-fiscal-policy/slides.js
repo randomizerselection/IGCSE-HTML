@@ -105,14 +105,14 @@ IGCSE.lesson = {
   slides: [
     {
       type: 'hero',
-      eyebrow:  'Cambridge IGCSE Economics 0455',
+      eyebrow:  'Lesson overview',
       title:    'Fiscal policy',
       subtitle: 'Government spending and taxation',
       kicker:   'How can a budget help meet macroeconomic aims?',
     },
     {
       type: 'outcomes',
-      eyebrow: 'Lesson objectives',
+      eyebrow: 'Objectives',
       title:   'By the end, you can',
       bullets: [
         'Explain government budgets, deficits and surpluses, including calculations.',
@@ -125,7 +125,7 @@ IGCSE.lesson = {
     },
     {
       type: 'roadmap',
-      eyebrow: 'Lesson map',
+      eyebrow: 'Lesson overview',
       title:   'Today\'s route',
       items: [
         ['4.2.1', 'Budget', 'revenue, expenditure, deficit, surplus'],
@@ -137,7 +137,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Opening dilemma',
+      eyebrow: 'Starter',
       title:   'You control the budget',
       question: 'Growth is slowing, unemployment is rising, prices are still increasing, and pollution is high. What should the government prioritise?',
       choices: [
@@ -153,13 +153,13 @@ IGCSE.lesson = {
 
     {
       type: 'section',
-      eyebrow: '4.2.1',
+      eyebrow: 'New section',
       title:   'Government budget',
       subtitle: 'Revenue and expenditure decide whether there is a deficit or surplus.',
     },
     {
       type: 'term',
-      eyebrow: 'Government budget',
+      eyebrow: 'Learn',
       title:   'Budget balance',
       term:    'government budget',
       definition: 'A government budget is a plan for government revenue and government expenditure.',
@@ -170,7 +170,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Budget calculation',
+      eyebrow: 'Check',
       title:   'Deficit or surplus?',
       question: 'Government revenue = $420m. Government expenditure = $510m.',
       choices: ['$90m surplus', '$90m deficit', '$930m deficit'],
@@ -179,7 +179,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Budget calculation',
+      eyebrow: 'Check',
       title:   'Answer',
       answer:  '$90m deficit',
       body:    '$420m - $510m = -$90m. A deficit occurs because spending is greater than revenue.',
@@ -188,7 +188,7 @@ IGCSE.lesson = {
     },
     {
       type: 'compare',
-      eyebrow: 'Budget balance',
+      eyebrow: 'Learn',
       title:   'Deficit or surplus?',
       leftTitle:  'Budget deficit',
       left:  ['government spending exceeds government revenue', 'may require borrowing'],
@@ -201,13 +201,13 @@ IGCSE.lesson = {
 
     {
       type: 'section',
-      eyebrow: '4.2.2',
+      eyebrow: 'New section',
       title:   'Government spending',
       subtitle: 'Main areas of spending have different macroeconomic effects.',
     },
     {
       type: 'cards',
-      eyebrow: 'Government spending',
+      eyebrow: 'Learn',
       title:   'Where does the money go?',
       lead:    'The syllabus expects main areas of spending and the reasons/effects of spending in those areas.',
       cards: [
@@ -223,7 +223,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Government spending',
+      eyebrow: 'Learn',
       title:   'Spending can support growth',
       nodes: [['more infrastructure spending', 'lower transport costs', 'firms may produce more', 'real GDP may rise']],
       footer: 'Link the spending area to one macroeconomic aim.',
@@ -232,7 +232,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Government spending',
+      eyebrow: 'Learn',
       title:   'Spending can redistribute income',
       nodes: [['higher welfare spending', 'poorer households receive support', 'income inequality may fall']],
       footer: 'Add a cost: the government may need higher taxes or borrowing.',
@@ -241,7 +241,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Spending challenge',
+      eyebrow: 'Apply',
       title:   'Match policy to aim',
       question: 'Which spending decision most directly supports environmental sustainability?',
       choices: [
@@ -256,13 +256,13 @@ IGCSE.lesson = {
 
     {
       type: 'section',
-      eyebrow: '4.2.3',
+      eyebrow: 'New section',
       title:   'Taxation',
       subtitle: 'Taxes raise revenue, change behaviour and influence demand.',
     },
     {
       type: 'quiz',
-      eyebrow: 'Taxation',
+      eyebrow: 'Check',
       title:   'Why tax?',
       question: 'Which reason for taxation is shown by a tariff on imported cars?',
       choices: [
@@ -277,7 +277,7 @@ IGCSE.lesson = {
     },
     {
       type: 'cards',
-      eyebrow: 'Taxation',
+      eyebrow: 'Learn',
       title:   'Reasons for taxation',
       lead:    'The reason matters because it determines the expected effect.',
       cards: [
@@ -293,7 +293,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Taxation',
+      eyebrow: 'Learn',
       title:   'Tax can reduce demand-pull inflation',
       nodes: [['higher income tax', 'disposable income falls', 'consumer spending may fall', 'inflationary pressure may fall']],
       footer: 'This may conflict with growth and employment.',
@@ -302,7 +302,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Taxation',
+      eyebrow: 'Learn',
       title:   'Tax can encourage sustainability',
       nodes: [['pollution tax', 'firms face higher costs for polluting', 'cleaner methods become more attractive']],
       footer: 'Evaluate: firms may pass higher costs to consumers.',
@@ -311,7 +311,7 @@ IGCSE.lesson = {
     },
     {
       type: 'compare',
-      eyebrow: 'Tax types',
+      eyebrow: 'Learn',
       title:   'Direct or indirect?',
       leftTitle:  'Direct tax',
       left:  ['on income or wealth', 'paid directly to government'],
@@ -323,7 +323,7 @@ IGCSE.lesson = {
     },
     {
       type: 'compare',
-      eyebrow: 'Tax types',
+      eyebrow: 'Learn',
       title:   'Progressive or regressive?',
       leftTitle:  'Progressive',
       left:  ['higher proportion as income rises'],
@@ -335,7 +335,7 @@ IGCSE.lesson = {
     },
     {
       type: 'term',
-      eyebrow: 'Tax types',
+      eyebrow: 'Learn',
       title:   'Proportional tax',
       term:    'proportional tax',
       definition: 'A tax that takes the same proportion of income at all income levels.',
@@ -345,7 +345,7 @@ IGCSE.lesson = {
     },
     {
       type: 'cards',
-      eyebrow: 'Exam trap',
+      eyebrow: 'Exam practice',
       title:   'Classify before explaining',
       lead:    'A strong answer names the tax type, then links it to a macroeconomic aim.',
       cards: [
@@ -361,13 +361,13 @@ IGCSE.lesson = {
 
     {
       type: 'section',
-      eyebrow: '4.2.4-4.2.6',
+      eyebrow: 'New section',
       title:   'Fiscal policy',
       subtitle: 'Changes in spending and taxation are used to influence macroeconomic aims.',
     },
     {
       type: 'term',
-      eyebrow: 'Key term',
+      eyebrow: 'Learn',
       title:   'Fiscal policy',
       term:    'fiscal policy',
       definition: 'The use of government spending and taxation to influence economic activity and achieve macroeconomic aims.',
@@ -377,7 +377,7 @@ IGCSE.lesson = {
     },
     {
       type: 'compare',
-      eyebrow: 'Fiscal measures',
+      eyebrow: 'Learn',
       title:   'The two fiscal-policy measures',
       leftTitle:  'Government spending',
       left:  ['increase spending to raise demand or improve supply', 'reduce spending to lower demand or borrowing'],
@@ -389,7 +389,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Fiscal policy',
+      eyebrow: 'Learn',
       title:   'Expansionary policy',
       nodes: [['higher spending or lower taxes', 'total demand rises', 'firms may increase output', 'growth and employment may rise']],
       footer: 'Risk: inflation and imports may rise.',
@@ -398,7 +398,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Fiscal policy',
+      eyebrow: 'Learn',
       title:   'Contractionary policy',
       nodes: [['lower spending or higher taxes', 'total demand falls', 'spending pressure eases', 'inflationary pressure may fall']],
       footer: 'Risk: output and employment may fall.',
@@ -407,7 +407,7 @@ IGCSE.lesson = {
     },
     {
       type: 'cards',
-      eyebrow: 'Fiscal policy effects',
+      eyebrow: 'Learn',
       title:   'Link policy to aims',
       lead:    'Use the same chain structure for any macroeconomic aim.',
       cards: [
@@ -434,7 +434,7 @@ IGCSE.lesson = {
     },
     {
       type: 'exam',
-      eyebrow: 'Evaluation practice',
+      eyebrow: 'Exam practice',
       title:   'Discuss two sides',
       question: 'Discuss whether cutting taxes is the best way for a government to reduce unemployment.',
       keywords: ['disposable income', 'total demand', 'employment', 'inflation', 'budget deficit'],
@@ -444,7 +444,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Exit check',
+      eyebrow: 'Exit ticket',
       title:   'Three blanks',
       steps: [
         ['1', 'Fiscal policy uses government __________ and taxation.'],

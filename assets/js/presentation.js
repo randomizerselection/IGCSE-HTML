@@ -600,10 +600,7 @@ function renderSlide(meta, slide, idx, total) {
                alt="${esc(photo.alt || '')}"
                loading="lazy"
                decoding="async" />` : ''}
-        <div class="topline">
-          <span class="badge">${esc(slide._sectionStep ? `Section ${slide._sectionStep} of ${slide._sectionTotal}` : 'Section')}</span>
-          <span class="count">${pad(idx + 1)} / ${pad(total)}</span>
-        </div>
+        ${topline(slide, idx, total)}
         <div class="discussionContent">
           ${renderers.discussion(slide)}
         </div>
@@ -612,7 +609,7 @@ function renderSlide(meta, slide, idx, total) {
             ${caption ? `<span>${esc(caption)}</span>` : '<span></span>'}
             ${credit ? `<span>${esc(credit)}</span>` : ''}
           </div>` : ''}
-        ${footer(meta, { ...slide, eyebrow: meta.lessonLabel || '' })}
+        ${footer(meta, slide)}
       </section>
     `;
   }

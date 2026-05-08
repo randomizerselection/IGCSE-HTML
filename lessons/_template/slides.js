@@ -19,6 +19,12 @@
      partialReview: true reveals supported content blocks one at a time.
      Prefer full slides by default; use partialReview only for dense
      comparisons, answer steps, flow chains, or starter prompts.
+
+   Eyebrow convention:
+     Use eyebrow only as a student learning-stage cue:
+     Lesson overview | Starter | Objectives | New section | Learn | Explore
+     Example | Apply | Check | Exam practice | Review | Exit ticket
+     Put syllabus refs and topic breadcrumbs in section subtitles.
    ============================================================ */
 
 window.IGCSE = window.IGCSE || {};
@@ -36,7 +42,7 @@ IGCSE.lesson = {
   slides: [
     {
       type: 'hero',
-      eyebrow:  '<Unit or syllabus strand>',
+      eyebrow:  'Lesson overview',
       title:    '<Lesson title>',
       subtitle: '<Short subtitle>',
       kicker:   '<One-line hook>',
@@ -45,7 +51,7 @@ IGCSE.lesson = {
 
     {
       type: 'discussion',
-      eyebrow: 'Opening hook',
+      eyebrow: 'Starter',
       title:   '<Hook question>',
       question: '<Concrete scenario or puzzle that creates the need for the lesson>',
       visual: 'abstract',
@@ -53,7 +59,7 @@ IGCSE.lesson = {
 
     {
       type: 'outcomes',
-      eyebrow: 'Lesson objectives',
+      eyebrow: 'Objectives',
       title:   'By the end, you can',
       bullets: [
         '<Objective 1>',
@@ -64,13 +70,14 @@ IGCSE.lesson = {
 
     {
       type: 'section',
-      eyebrow: '<Syllabus ref>',
+      eyebrow: 'New section',
       title:   '<First section taught>',
+      subtitle: '<Syllabus ref> - <Topic breadcrumb>',
     },
 
     {
       type: 'discussion',
-      eyebrow: '<Section starter>',
+      eyebrow: 'Explore',
       title:   '<Starter question>',
       question: '<Fact or discussion prompt that introduces this section>',
       visual: 'abstract',
@@ -81,7 +88,7 @@ IGCSE.lesson = {
 
     {
       type: 'quiz',
-      eyebrow: 'Formative assessment',
+      eyebrow: 'Check',
       question: '<Question>',
       choices: ['<Correct or plausible choice>', '<Distractor>', '<Distractor>'],
       answer: 0,
@@ -91,7 +98,7 @@ IGCSE.lesson = {
 
     {
       type: 'answer',
-      eyebrow: 'Section check',
+      eyebrow: 'Review',
       title:   'Fill in the blanks',
       mode:    'fillBlanks',
       steps: [

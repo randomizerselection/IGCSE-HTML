@@ -172,14 +172,14 @@ IGCSE.lesson = {
   slides: [
     {
       type: 'hero',
-      eyebrow:  'Cambridge IGCSE Economics 0455',
+      eyebrow:  'Lesson overview',
       title:    'Fiscal policy',
       subtitle: 'Government spending and taxation',
       kicker:   'How can a budget help meet macroeconomic aims?',
     },
     {
       type: 'outcomes',
-      eyebrow: 'Lesson objectives',
+      eyebrow: 'Objectives',
       title:   'By the end, you can',
       bullets: [
         'Calculate deficits and surpluses.',
@@ -190,7 +190,7 @@ IGCSE.lesson = {
     },
     {
       type: 'roadmap',
-      eyebrow: 'Lesson map',
+      eyebrow: 'Lesson overview',
       title:   'Today\'s route',
       items: [
         ['4.2.1', 'Budget', 'revenue, expenditure, deficit, surplus'],
@@ -202,7 +202,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Opening dilemma',
+      eyebrow: 'Starter',
       title:   'You control the budget',
       question: 'Growth is slowing, unemployment is rising, prices are still increasing, and pollution is high. What should the government prioritise?',
       choices: [
@@ -216,7 +216,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Opening discussion',
+      eyebrow: 'Starter',
       title:   'Trade-offs',
       question: 'What should a government do first when it cannot achieve every aim at once?',
       zh: '当政府无法同时实现所有目标时，应该先做什么？',
@@ -225,13 +225,13 @@ IGCSE.lesson = {
 
     {
       type: 'section',
-      eyebrow: '4.2.1',
+      eyebrow: 'New section',
       title:   'Government budget',
       subtitle: 'Revenue and expenditure decide whether there is a deficit or surplus.',
     },
     {
       type: 'discussion',
-      eyebrow: 'Budget discussion',
+      eyebrow: 'Explore',
       title:   'Public money',
       question: 'What should happen if a government spends more than it receives?',
       zh: '如果政府支出超过收入，应该怎么办？',
@@ -239,7 +239,7 @@ IGCSE.lesson = {
     },
     {
       type: 'term',
-      eyebrow: 'Government budget',
+      eyebrow: 'Learn',
       title:   'Budget balance',
       term:    'government budget',
       definition: 'A government budget is a plan for government revenue and government expenditure.',
@@ -250,7 +250,7 @@ IGCSE.lesson = {
     },
     {
       type: 'fact',
-      eyebrow: 'Real-world fact',
+      eyebrow: 'Example',
       flag:    '🇬🇧',
       country: 'United Kingdom',
       fact:    'In the financial year ending March 2024, UK public sector net borrowing was estimated at GBP 131.1 billion.',
@@ -260,7 +260,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Budget calculation',
+      eyebrow: 'Check',
       title:   'Deficit or surplus?',
       question: 'Government revenue = $420m. Government expenditure = $510m.',
       choices: ['$90m surplus', '$90m deficit', '$930m deficit'],
@@ -269,7 +269,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Budget calculation',
+      eyebrow: 'Check',
       title:   'Answer',
       answer:  '$90m deficit',
       body:    '$420m - $510m = -$90m. A deficit occurs because spending is greater than revenue.',
@@ -278,7 +278,7 @@ IGCSE.lesson = {
     },
     {
       type: 'compare',
-      eyebrow: 'Budget balance',
+      eyebrow: 'Learn',
       title:   'Deficit or surplus?',
       leftTitle:  'Budget deficit',
       left:  ['government spending exceeds government revenue', 'may require borrowing'],
@@ -291,13 +291,13 @@ IGCSE.lesson = {
 
     {
       type: 'section',
-      eyebrow: '4.2.2',
+      eyebrow: 'New section',
       title:   'Government spending',
       subtitle: 'Main areas of spending have different macroeconomic effects.',
     },
     {
       type: 'discussion',
-      eyebrow: 'Spending discussion',
+      eyebrow: 'Explore',
       title:   'Priorities',
       question: 'Which area of government spending should receive more money first?',
       zh: '政府支出的哪个领域应该最先获得更多资金？',
@@ -305,7 +305,7 @@ IGCSE.lesson = {
     },
     {
       type: 'cards',
-      eyebrow: 'Government spending',
+      eyebrow: 'Learn',
       title:   'Main areas of spending',
       cards: [
         ['Education', 'schools and training'],
@@ -320,7 +320,7 @@ IGCSE.lesson = {
     },
     {
       type: 'fact',
-      eyebrow: 'Real-world fact',
+      eyebrow: 'Example',
       flag:    '🇫🇮',
       country: 'Finland',
       fact:    'World Bank data report Finland government expenditure on education at about 6.38% of GDP in 2022.',
@@ -330,7 +330,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Spending reasons',
+      eyebrow: 'Explore',
       title:   'Why spend?',
       question: 'Why might markets fail to provide enough education, healthcare or infrastructure?',
       zh: '为什么市场可能无法提供足够的教育、医疗或基础设施？',
@@ -338,7 +338,7 @@ IGCSE.lesson = {
     },
     {
       type: 'cards',
-      eyebrow: 'Government spending',
+      eyebrow: 'Learn',
       title:   'Why governments spend',
       cards: [
         ['Merit goods', 'education, healthcare', '1'],
@@ -353,7 +353,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Merit goods',
+      eyebrow: 'Explore',
       title:   'Education and healthcare',
       question: 'Why might a person consume too little education or healthcare if they must pay the full price?',
       zh: '如果必须支付全部价格，为什么人们可能消费太少的教育或医疗？',
@@ -361,7 +361,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for spending',
+      eyebrow: 'Learn',
       title:   '1. Provide merit goods',
       question: 'Education and healthcare may be underprovided if people have to pay the full price.',
       nodes: [['government funds schools or hospitals', 'more people can access them', 'skills and health improve', 'productivity may rise']],
@@ -371,7 +371,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Public goods',
+      eyebrow: 'Explore',
       title:   'Free rider problem',
       question: 'Why is defence difficult to sell only to people who pay for it?',
       zh: '为什么国防很难只卖给付费的人？',
@@ -379,7 +379,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for spending',
+      eyebrow: 'Learn',
       title:   '2. Provide public goods',
       question: 'Some goods would not be provided by private firms because people can benefit without paying directly.',
       nodes: [['government funds defence', 'the country is protected', 'people and firms face less risk', 'economic activity is protected']],
@@ -389,7 +389,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Infrastructure',
+      eyebrow: 'Explore',
       title:   'Roads, rail and ports',
       question: 'How can a better road or railway help firms produce more?',
       zh: '更好的公路或铁路如何帮助企业生产更多？',
@@ -397,7 +397,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for spending',
+      eyebrow: 'Learn',
       title:   '3. Invest in infrastructure',
       nodes: [['more infrastructure spending', 'lower transport costs', 'firms may produce more', 'real GDP may rise']],
       footer: 'This links spending to economic growth.',
@@ -406,7 +406,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Quick check',
+      eyebrow: 'Check',
       question: 'The government builds a new railway between factories and a port. Which reason for spending is most direct?',
       choices: [
         'Provide a public good',
@@ -418,7 +418,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Industry support',
+      eyebrow: 'Explore',
       title:   'Picking winners',
       question: 'Should a government support an industry if it is important for future jobs?',
       zh: '如果某个产业对未来就业很重要，政府应该支持它吗？',
@@ -426,7 +426,7 @@ IGCSE.lesson = {
     },
     {
       type: 'fact',
-      eyebrow: 'Real-world fact',
+      eyebrow: 'Example',
       flag:    '🇺🇸',
       country: 'United States',
       fact:    'The CHIPS Act provided $52.7 billion to revive the US semiconductor industry.',
@@ -436,7 +436,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for spending',
+      eyebrow: 'Learn',
       title:   '4. Support key industries',
       question: 'Governments may support industries that are important for jobs, exports or future technology.',
       nodes: [['subsidy for a key industry', 'firms face lower costs', 'investment or R&D may rise', 'competitiveness may improve']],
@@ -446,7 +446,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Inequality',
+      eyebrow: 'Explore',
       title:   'Welfare support',
       question: 'How much responsibility should a government take for reducing poverty?',
       zh: '政府在减少贫困方面应该承担多大责任？',
@@ -454,7 +454,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for spending',
+      eyebrow: 'Learn',
       title:   '5. Reduce inequality',
       nodes: [['higher welfare spending', 'poorer households receive support', 'income inequality may fall']],
       footer: 'Add a cost: the government may need higher taxes or borrowing.',
@@ -463,7 +463,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Macroeconomy',
+      eyebrow: 'Explore',
       title:   'Managing demand',
       question: 'Should a government spend more when unemployment is rising?',
       zh: '当失业率上升时，政府应该增加支出吗？',
@@ -471,7 +471,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for spending',
+      eyebrow: 'Learn',
       title:   '6. Manage the macroeconomy',
       question: 'Government spending can be changed to influence total demand.',
       nodes: [['higher government spending', 'total demand rises', 'firms may increase output', 'growth and employment may rise']],
@@ -481,7 +481,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Quick check',
+      eyebrow: 'Check',
       question: 'The government increases unemployment benefits during a downturn. Which reason fits best?',
       choices: [
         'Reduce inequality',
@@ -493,7 +493,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Spending challenge',
+      eyebrow: 'Apply',
       question: 'Which spending decision most directly supports environmental sustainability?',
       choices: [
         'Build cleaner public transport',
@@ -506,13 +506,13 @@ IGCSE.lesson = {
 
     {
       type: 'section',
-      eyebrow: '4.2.3',
+      eyebrow: 'New section',
       title:   'Taxation',
       subtitle: 'Taxes raise revenue, change behaviour and influence demand.',
     },
     {
       type: 'discussion',
-      eyebrow: 'Taxation hook',
+      eyebrow: 'Explore',
       title:   'Every receipt is a policy choice',
       question: 'Which taxes do you already know?',
       zh: '你已经知道哪些税？',
@@ -520,7 +520,7 @@ IGCSE.lesson = {
     },
     {
       type: 'outcomes',
-      eyebrow: 'Taxation objectives',
+      eyebrow: 'Objectives',
       title:   'By the end of the taxation lesson, you can',
       bullets: [
         'Explain reasons for taxation.',
@@ -532,7 +532,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Baseline check',
+      eyebrow: 'Starter',
       title:   'What do you already know?',
       question: 'Which statement is most accurate?',
       choices: [
@@ -545,7 +545,7 @@ IGCSE.lesson = {
     },
     {
       type: 'fact',
-      eyebrow: 'Real-world fact',
+      eyebrow: 'Example',
       flag:    '🇩🇰',
       country: 'Denmark',
       fact:    'In 2024, Denmark had a tax-to-GDP ratio of 45.2%, compared with an OECD average of 34.1%.',
@@ -555,7 +555,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for taxation',
+      eyebrow: 'Learn',
       title:   '1. Raise revenue',
       nodes: [['government charges taxes', 'revenue rises', 'public services can be funded']],
       footer: 'Example: income tax can help fund education and healthcare.',
@@ -564,7 +564,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for taxation',
+      eyebrow: 'Learn',
       title:   '2. Reduce demerit goods',
       nodes: [['tax on cigarettes', 'price rises', 'quantity demanded may fall', 'health costs may fall']],
       footer: 'Evaluation: demand may be price inelastic.',
@@ -573,7 +573,7 @@ IGCSE.lesson = {
     },
     {
       type: 'fact',
-      eyebrow: 'Real-world fact',
+      eyebrow: 'Example',
       flag:    '🇵🇭',
       country: 'Philippines',
       fact:    'The Philippines passed a Sin Tax Reform Law in 2012 that raised indirect taxes on tobacco and alcohol.',
@@ -583,7 +583,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for taxation',
+      eyebrow: 'Learn',
       title:   '3. Reduce imports',
       nodes: [['tariff on imports', 'import prices rise', 'consumers may buy fewer imports', 'domestic firms may sell more']],
       footer: 'Evaluation: other countries may retaliate.',
@@ -592,7 +592,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Quick check',
+      eyebrow: 'Check',
       question: 'A government increases tax on alcohol. Which reason for taxation is most direct?',
       choices: [
         'Raise revenue only',
@@ -604,7 +604,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for taxation',
+      eyebrow: 'Learn',
       title:   '4. Redistribute income',
       nodes: [['higher taxes on high incomes', 'government revenue rises', 'welfare can be funded', 'inequality may fall']],
       footer: 'Progressive taxes are usually linked most directly to redistribution.',
@@ -613,7 +613,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for taxation',
+      eyebrow: 'Learn',
       title:   '5. Influence demand',
       nodes: [['higher income tax', 'disposable income falls', 'consumer spending may fall', 'inflationary pressure may fall']],
       footer: 'This may conflict with growth and employment.',
@@ -622,7 +622,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Reason for taxation',
+      eyebrow: 'Learn',
       title:   '6. Encourage sustainability',
       nodes: [['pollution tax', 'firms face higher costs for polluting', 'cleaner methods become more attractive']],
       footer: 'Evaluate: firms may pass higher costs to consumers.',
@@ -631,7 +631,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Quick check',
+      eyebrow: 'Check',
       question: 'A pollution tax raises money and makes pollution more expensive. Which answer is strongest?',
       choices: [
         'It can raise revenue and encourage sustainability',
@@ -643,7 +643,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Class discussion',
+      eyebrow: 'Explore',
       title:   'Who should pay?',
       question: 'If the government needs more revenue for hospitals, should it raise income tax, VAT, corporation tax or a tax on unhealthy products?',
       zh: '如果政府需要更多收入来资助医院，应该提高所得税、增值税、公司税，还是对不健康产品征税？',
@@ -651,7 +651,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Direct tax',
+      eyebrow: 'Explore',
       title:   'Income and wealth',
       question: 'Should higher-income households pay a higher percentage of their income in tax?',
       zh: '高收入家庭是否应该缴纳更高比例的收入作为税？',
@@ -659,7 +659,7 @@ IGCSE.lesson = {
     },
     {
       type: 'term',
-      eyebrow: 'Tax type',
+      eyebrow: 'Learn',
       title:   'Direct tax',
       term:    'direct tax',
       definition: 'A direct tax is a tax on income, profit or wealth, paid directly by the taxpayer to the government.',
@@ -669,7 +669,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Indirect tax',
+      eyebrow: 'Explore',
       title:   'At the checkout',
       question: 'Is a tax added to prices fair if poorer households spend most of their income?',
       zh: '如果较贫困家庭会花掉大部分收入，加在价格上的税公平吗？',
@@ -677,7 +677,7 @@ IGCSE.lesson = {
     },
     {
       type: 'term',
-      eyebrow: 'Tax type',
+      eyebrow: 'Learn',
       title:   'Indirect tax',
       term:    'indirect tax',
       definition: 'An indirect tax is a tax on spending. It is added to the price of goods or services and collected by the seller for the government.',
@@ -687,13 +687,13 @@ IGCSE.lesson = {
     },
     {
       type: 'indirectTaxSim',
-      eyebrow: 'Indirect tax simulator',
+      eyebrow: 'Explore',
       title:   'Why indirect taxes can be regressive',
       taxRate: 10,
     },
     {
       type: 'fact',
-      eyebrow: 'Real-world fact',
+      eyebrow: 'Example',
       flag:    '🇬🇧',
       country: 'United Kingdom',
       fact:    'The UK government says sugar in soft drinks within the Soft Drinks Industry Levy fell by 46% between 2015 and 2020.',
@@ -703,7 +703,7 @@ IGCSE.lesson = {
     },
     {
       type: 'compare',
-      eyebrow: 'Tax type',
+      eyebrow: 'Learn',
       title:   'Two direct taxes',
       leftTitle: 'Income tax',
       left: [
@@ -720,7 +720,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Class discussion',
+      eyebrow: 'Explore',
       title:   'Taxing company profits',
       question: 'If corporation tax rises, what might a firm do with prices, wages, investment or dividends?',
       zh: '如果公司税上升，企业可能会如何调整价格、工资、投资或股息？',
@@ -728,7 +728,7 @@ IGCSE.lesson = {
     },
     {
       type: 'compare',
-      eyebrow: 'Tax type',
+      eyebrow: 'Learn',
       title:   'VAT, sales tax and other indirect taxes',
       leftTitle: 'VAT or sales tax',
       left: [
@@ -747,7 +747,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Indirect tax',
+      eyebrow: 'Explore',
       title:   'Taxing harmful goods',
       question: 'Why might governments tax cigarettes more heavily than bread?',
       zh: '为什么政府可能对香烟征收比面包更高的税？',
@@ -755,7 +755,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Real-world example',
+      eyebrow: 'Example',
       title:   'Indirect tax on tobacco',
       question: 'Many governments put high indirect taxes on cigarettes.',
       nodes: [['tax per packet rises', 'retail price rises', 'some smokers buy fewer cigarettes', 'health costs may fall']],
@@ -765,7 +765,7 @@ IGCSE.lesson = {
     },
     {
       type: 'term',
-      eyebrow: 'Tax type',
+      eyebrow: 'Learn',
       title:   'Import tariff',
       term:    'tariff',
       definition: 'A tariff is an indirect tax on imported goods. It raises the price of imports and may protect domestic producers.',
@@ -775,7 +775,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Class discussion',
+      eyebrow: 'Explore',
       title:   'At the port',
       question: 'If a tariff makes imported phones more expensive, who might gain and who might lose?',
       zh: '如果关税使进口手机更贵，谁可能受益，谁可能受损？',
@@ -783,7 +783,7 @@ IGCSE.lesson = {
     },
     {
       type: 'fact',
-      eyebrow: 'Real-world fact',
+      eyebrow: 'Example',
       flag:    '🇸🇪',
       country: 'Sweden',
       fact:    'Sweden introduced a carbon tax in 1991 at SEK 250 per tonne of fossil CO2.',
@@ -793,7 +793,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Class discussion',
+      eyebrow: 'Explore',
       title:   'The smoke stack',
       question: 'Should a factory pay tax for pollution if it provides jobs in the local area?',
       zh: '如果工厂为当地提供就业，它还应该为污染纳税吗？',
@@ -801,7 +801,7 @@ IGCSE.lesson = {
     },
     {
       type: 'compare',
-      eyebrow: 'Tax structure',
+      eyebrow: 'Learn',
       title:   'Progressive and regressive taxes',
       leftTitle: 'Progressive tax',
       left: [
@@ -820,13 +820,13 @@ IGCSE.lesson = {
     },
     {
       type: 'taxSim',
-      eyebrow: 'Tax simulator',
+      eyebrow: 'Explore',
       title:   'Progressive or regressive?',
       defaultMode: 'progressive',
     },
     {
       type: 'chinaIncomeTaxSim',
-      eyebrow: 'Real-world simulator',
+      eyebrow: 'Example',
       title:   'Mainland China income tax',
       defaultIncome: 240000,
       standardDeduction: 60000,
@@ -835,7 +835,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Numerical example',
+      eyebrow: 'Example',
       title:   'Why a sales tax can be regressive',
       question: 'Two households both pay $500 sales tax in a year.',
       nodes: [['low income: $10,000', '$500 is 5% of income', 'high income: $100,000', '$500 is 0.5% of income']],
@@ -845,7 +845,7 @@ IGCSE.lesson = {
     },
     {
       type: 'term',
-      eyebrow: 'Tax structure',
+      eyebrow: 'Learn',
       title:   'Proportional tax',
       term:    'proportional tax',
       definition: 'A proportional tax takes the same percentage of income from all taxpayers, even though higher earners pay more money in total.',
@@ -855,7 +855,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Formative assessment',
+      eyebrow: 'Check',
       title:   'Classify the tax',
       question: 'A government charges a percentage tax on company profits and uses the revenue to fund schools.',
       choices: [
@@ -868,7 +868,7 @@ IGCSE.lesson = {
     },
     {
       type: 'quiz',
-      eyebrow: 'Formative assessment',
+      eyebrow: 'Check',
       title:   'Pick the best explanation',
       question: 'Why might a government increase tax on petrol?',
       choices: [
@@ -881,7 +881,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Taxation exit check',
+      eyebrow: 'Exit ticket',
       title:   'Four blanks',
       steps: [
         ['1', 'A direct tax is paid on income, profit or __________.'],
@@ -895,7 +895,7 @@ IGCSE.lesson = {
     },
     {
       type: 'compare',
-      eyebrow: 'Tax types',
+      eyebrow: 'Learn',
       title:   'Direct or indirect?',
       leftTitle:  'Direct tax',
       left:  ['on income or wealth', 'paid directly to government'],
@@ -907,7 +907,7 @@ IGCSE.lesson = {
     },
     {
       type: 'compare',
-      eyebrow: 'Tax types',
+      eyebrow: 'Learn',
       title:   'Progressive or regressive?',
       leftTitle:  'Progressive',
       left:  ['higher proportion as income rises'],
@@ -918,7 +918,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Redistribution',
+      eyebrow: 'Explore',
       title:   'Reducing inequality',
       question: 'Which tax structure reduces inequality more directly?',
       zh: '哪种税收结构更直接地减少不平等？',
@@ -926,7 +926,7 @@ IGCSE.lesson = {
     },
     {
       type: 'term',
-      eyebrow: 'Tax types',
+      eyebrow: 'Learn',
       title:   'Proportional tax',
       term:    'proportional tax',
       definition: 'A tax that takes the same proportion of income at all income levels.',
@@ -936,7 +936,7 @@ IGCSE.lesson = {
     },
     {
       type: 'cards',
-      eyebrow: 'Exam trap',
+      eyebrow: 'Exam practice',
       title:   'Classify before explaining',
       lead:    'A strong answer names the tax type, then links it to a macroeconomic aim.',
       cards: [
@@ -950,7 +950,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Exam trap',
+      eyebrow: 'Exam practice',
       title:   'Regressive taxes',
       question: 'Why might a sales tax be called regressive?',
       zh: '为什么销售税可能被称为累退税？',
@@ -959,13 +959,13 @@ IGCSE.lesson = {
 
     {
       type: 'section',
-      eyebrow: '4.2.4-4.2.6',
+      eyebrow: 'New section',
       title:   'Fiscal policy',
       subtitle: 'Changes in spending and taxation are used to influence macroeconomic aims.',
     },
     {
       type: 'discussion',
-      eyebrow: 'Fiscal policy discussion',
+      eyebrow: 'Explore',
       title:   'Changing the economy',
       question: 'Can a government change the whole economy by changing spending and taxes?',
       zh: '政府能通过改变支出和税收来影响整个经济吗？',
@@ -973,7 +973,7 @@ IGCSE.lesson = {
     },
     {
       type: 'term',
-      eyebrow: 'Key term',
+      eyebrow: 'Learn',
       title:   'Fiscal policy',
       term:    'fiscal policy',
       definition: 'The use of government spending and taxation to influence economic activity and achieve macroeconomic aims.',
@@ -983,7 +983,7 @@ IGCSE.lesson = {
     },
     {
       type: 'compare',
-      eyebrow: 'Fiscal measures',
+      eyebrow: 'Learn',
       title:   'The two fiscal-policy measures',
       leftTitle:  'Government spending',
       left:  ['increase spending to raise demand or improve supply', 'reduce spending to lower demand or borrowing'],
@@ -995,7 +995,7 @@ IGCSE.lesson = {
     },
     {
       type: 'fact',
-      eyebrow: 'Real-world fact',
+      eyebrow: 'Example',
       flag:    '🇸🇬',
       country: 'Singapore',
       fact:    'Singapore Budget 2024 focused on cost-of-living relief, a stronger social compact and future resilience.',
@@ -1005,7 +1005,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Expansionary policy',
+      eyebrow: 'Explore',
       title:   'Stimulus',
       question: 'When unemployment is high, should the government cut taxes or increase spending?',
       zh: '当失业率较高时，政府应该减税还是增加支出？',
@@ -1013,7 +1013,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Fiscal policy',
+      eyebrow: 'Learn',
       title:   'Expansionary policy',
       nodes: [['higher spending or lower taxes', 'total demand rises', 'firms may increase output', 'growth and employment may rise']],
       footer: 'Risk: inflation and imports may rise.',
@@ -1022,7 +1022,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Contractionary policy',
+      eyebrow: 'Explore',
       title:   'Cooling demand',
       question: 'When prices are rising too quickly, should the government raise taxes or cut spending?',
       zh: '当价格上涨过快时，政府应该增税还是削减支出？',
@@ -1030,7 +1030,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Fiscal policy',
+      eyebrow: 'Learn',
       title:   'Contractionary policy',
       nodes: [['lower spending or higher taxes', 'total demand falls', 'spending pressure eases', 'inflationary pressure may fall']],
       footer: 'Risk: output and employment may fall.',
@@ -1039,7 +1039,7 @@ IGCSE.lesson = {
     },
     {
       type: 'discussion',
-      eyebrow: 'Macro aims',
+      eyebrow: 'Explore',
       title:   'Policy conflicts',
       question: 'Which macroeconomic aim is most likely to conflict with lower inflation?',
       zh: '哪个宏观经济目标最可能与降低通货膨胀发生冲突？',
@@ -1047,7 +1047,7 @@ IGCSE.lesson = {
     },
     {
       type: 'cards',
-      eyebrow: 'Fiscal policy effects',
+      eyebrow: 'Learn',
       title:   'Fiscal policy and macro aims',
       lead:    'Each aim needs a clear spending or tax chain.',
       cards: [
@@ -1064,7 +1064,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Fiscal policy effects',
+      eyebrow: 'Learn',
       title:   'Economic growth',
       nodes: [['higher spending or lower taxes', 'total demand rises', 'firms produce more', 'real GDP may rise']],
       footer: 'Risk: inflation or imports may also rise.',
@@ -1073,7 +1073,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Fiscal policy effects',
+      eyebrow: 'Learn',
       title:   'Employment',
       nodes: [['higher demand for goods', 'firms increase output', 'firms hire more workers', 'unemployment may fall']],
       footer: 'Risk: this may be slow if workers lack the right skills.',
@@ -1082,7 +1082,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Fiscal policy effects',
+      eyebrow: 'Learn',
       title:   'Price stability',
       nodes: [['higher taxes or lower spending', 'total demand falls', 'spending pressure eases', 'inflation may fall']],
       footer: 'Risk: output and employment may fall.',
@@ -1091,7 +1091,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Fiscal policy effects',
+      eyebrow: 'Learn',
       title:   'Redistribution',
       nodes: [['progressive taxes', 'revenue funds welfare', 'poorer households receive support', 'inequality may fall']],
       footer: 'Risk: high tax rates may reduce incentives for some workers or firms.',
@@ -1100,7 +1100,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Fiscal policy effects',
+      eyebrow: 'Learn',
       title:   'Balance of payments',
       nodes: [['higher taxes', 'consumer spending falls', 'imports may fall', 'current account may improve']],
       footer: 'Risk: lower demand can also reduce economic growth.',
@@ -1109,7 +1109,7 @@ IGCSE.lesson = {
     },
     {
       type: 'flow',
-      eyebrow: 'Fiscal policy effects',
+      eyebrow: 'Learn',
       title:   'Sustainability',
       nodes: [['green taxes or spending', 'incentives change', 'pollution may fall', 'sustainability may improve']],
       footer: 'Risk: firms may pass higher costs to consumers.',
@@ -1128,7 +1128,7 @@ IGCSE.lesson = {
     },
     {
       type: 'exam',
-      eyebrow: 'Evaluation practice',
+      eyebrow: 'Exam practice',
       title:   'Discuss two sides',
       question: 'Discuss whether cutting taxes is the best way for a government to reduce unemployment.',
       keywords: ['disposable income', 'total demand', 'employment', 'inflation', 'budget deficit'],
@@ -1138,7 +1138,7 @@ IGCSE.lesson = {
     },
     {
       type: 'answer',
-      eyebrow: 'Exit check',
+      eyebrow: 'Exit ticket',
       title:   'Three blanks',
       steps: [
         ['1', 'Fiscal policy uses government __________ and taxation.'],
