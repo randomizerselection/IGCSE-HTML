@@ -51,6 +51,17 @@ async function expectNoRemoteImageAssets(page) {
   expect(remoteAssets).toEqual([]);
 }
 
+async function fillPerfectMacroeconomicAimsQuiz(page) {
+  await page.locator('.quizQuestion').nth(0).getByLabel('The whole economy').check();
+  await page.locator('.quizQuestion').nth(1).getByLabel('Answer').fill('real GDP');
+  await page.locator('.quizQuestion').nth(2).getByLabel('Stable prices').check();
+  await page.locator('.quizQuestion').nth(3).getByLabel('Answer').fill('employment');
+  await page.locator('.quizQuestion').nth(4).getByLabel('Balance of payments stability').check();
+  await page.locator('.quizQuestion').nth(5).getByLabel('Answer').fill('income');
+  await page.locator('.quizQuestion').nth(6).getByLabel('More output may use more resources and create more pollution.').check();
+  await page.locator('.quizQuestion').nth(7).getByLabel('Answer').fill('payments');
+}
+
 test.describe('site smoke', () => {
   test('landing page renders at desktop and phone widths', async ({ page }) => {
     await page.goto(pageUrl('index.html'));
@@ -213,12 +224,57 @@ test.describe('site smoke', () => {
       await page.goto(pageUrl(quizPath) + '?view=quiz');
       await expect(page.locator('.quizDeck')).toBeVisible();
       await expect(page.locator('.quizQuestion')).toHaveCount(8);
+      await expect(page.locator('.quizAnsweredCount')).toHaveText('0/8 answered');
+      await expect(page.locator('.quizProgressTrack')).toHaveAttribute('aria-valuemax', '8');
       await expect(page.getByRole('textbox', { name: /^Name$/i })).toBeVisible();
       await expect(page.getByRole('textbox', { name: /^Class$/i })).toBeVisible();
       await expect(page.getByRole('link', { name: /Slide mode/i })).toBeVisible();
       await expect(page.getByRole('link', { name: /Student print view/i })).toBeVisible();
       await expectNoHorizontalOverflow(page);
     }
+  });
+
+  test('student quiz progress updates and try again unlocks the form', async ({ page }) => {
+    await page.goto(pageUrl('lessons/unit-4-government/4-1-macroeconomic-aims/index.html') + '?view=quiz');
+
+    await expect(page.locator('.quizAnsweredCount')).toHaveText('0/8 answered');
+    await expect(page.locator('.quizProgressTrack')).toHaveAttribute('aria-valuenow', '0');
+
+    await page.getByRole('textbox', { name: /^Name$/i }).fill('Test Student');
+    await page.getByRole('textbox', { name: /^Class$/i }).fill('10E');
+    await page.locator('.quizQuestion').nth(0).getByLabel('The whole economy').check();
+    await expect(page.locator('.quizAnsweredCount')).toHaveText('1/8 answered');
+    await expect(page.locator('.quizProgressTrack')).toHaveAttribute('aria-valuenow', '1');
+    await expect(page.locator('.quizQuestion').nth(0)).toHaveClass(/is-answered/);
+
+    await page.locator('.quizQuestion').nth(1).getByLabel('Answer').fill('real GDP');
+    await expect(page.locator('.quizAnsweredCount')).toHaveText('2/8 answered');
+    await page.locator('.quizQuestion').nth(1).getByLabel('Answer').fill('   ');
+    await expect(page.locator('.quizAnsweredCount')).toHaveText('1/8 answered');
+
+    await page.getByRole('button', { name: /Mark quiz/i }).click();
+    await expect(page.locator('.quizResult')).toBeHidden();
+
+    await fillPerfectMacroeconomicAimsQuiz(page);
+    await expect(page.locator('.quizAnsweredCount')).toHaveText('8/8 answered');
+    await page.getByRole('button', { name: /Mark quiz/i }).click();
+
+    await expect(page.locator('.quizScore')).toHaveText('8/8 (100%)');
+    await expect(page.locator('.quizCorrectCount')).toHaveText('8/8');
+    await expect(page.locator('.quizReviewCount')).toHaveText('0');
+    await expect(page.locator('.quizPercent')).toHaveText('100%');
+    await expect(page.getByRole('textbox', { name: /^Name$/i })).toBeDisabled();
+    await expect(page.locator('.quizQuestion').nth(0).getByLabel('The whole economy')).toBeDisabled();
+    await expect(page.getByRole('button', { name: /Mark quiz/i })).toBeDisabled();
+
+    await page.getByRole('button', { name: /Try again/i }).click();
+    await expect(page.getByRole('textbox', { name: /^Name$/i })).toBeEnabled();
+    await expect(page.getByRole('textbox', { name: /^Name$/i })).toHaveValue('');
+    await expect(page.locator('.quizAnsweredCount')).toHaveText('0/8 answered');
+    await expect(page.locator('.quizProgressTrack')).toHaveAttribute('aria-valuenow', '0');
+    await expect(page.locator('.quizResult')).toBeHidden();
+    await expect(page.getByRole('button', { name: /Mark quiz/i })).toBeEnabled();
+    await expectNoHorizontalOverflow(page);
   });
 
   test('student quiz marks answers and preserves score when submission fails', async ({ page }) => {
@@ -241,22 +297,18 @@ test.describe('site smoke', () => {
     await page.getByRole('textbox', { name: /^Name$/i }).fill('Test Student');
     await page.getByRole('textbox', { name: /^Class$/i }).fill('10E');
 
-    await page.locator('.quizQuestion').nth(0).getByLabel('The whole economy').check();
-    await page.locator('.quizQuestion').nth(1).getByLabel('Answer').fill('real GDP');
-    await page.locator('.quizQuestion').nth(2).getByLabel('Stable prices').check();
-    await page.locator('.quizQuestion').nth(3).getByLabel('Answer').fill('employment');
-    await page.locator('.quizQuestion').nth(4).getByLabel('Balance of payments stability').check();
-    await page.locator('.quizQuestion').nth(5).getByLabel('Answer').fill('income');
-    await page.locator('.quizQuestion').nth(6).getByLabel('More output may use more resources and create more pollution.').check();
-    await page.locator('.quizQuestion').nth(7).getByLabel('Answer').fill('payments');
+    await fillPerfectMacroeconomicAimsQuiz(page);
 
     await page.getByRole('button', { name: /Mark quiz/i }).click();
 
     await expect(page.locator('.quizScore')).toHaveText('8/8 (100%)');
+    await expect(page.locator('.quizCorrectCount')).toHaveText('8/8');
+    await expect(page.locator('.quizReviewCount')).toHaveText('0');
     await expect(page.locator('.quizQuestion.is-correct')).toHaveCount(8);
     await expect(page.locator('.quizCorrection').filter({ hasText: /Correct: gdp/i })).toBeVisible();
     await expect(page.locator('.quizSubmitStatus')).toHaveText(/Submission failed - retry/i);
     await expect(page.getByRole('button', { name: /Retry submission/i })).toBeVisible();
+    await expect(page.getByRole('textbox', { name: /^Class$/i })).toBeDisabled();
     await expectNoHorizontalOverflow(page);
   });
 
@@ -280,14 +332,7 @@ test.describe('site smoke', () => {
     await page.getByRole('textbox', { name: /^Name$/i }).fill('Test Student');
     await page.getByRole('textbox', { name: /^Class$/i }).fill('10E');
 
-    await page.locator('.quizQuestion').nth(0).getByLabel('The whole economy').check();
-    await page.locator('.quizQuestion').nth(1).getByLabel('Answer').fill('real GDP');
-    await page.locator('.quizQuestion').nth(2).getByLabel('Stable prices').check();
-    await page.locator('.quizQuestion').nth(3).getByLabel('Answer').fill('employment');
-    await page.locator('.quizQuestion').nth(4).getByLabel('Balance of payments stability').check();
-    await page.locator('.quizQuestion').nth(5).getByLabel('Answer').fill('income');
-    await page.locator('.quizQuestion').nth(6).getByLabel('More output may use more resources and create more pollution.').check();
-    await page.locator('.quizQuestion').nth(7).getByLabel('Answer').fill('payments');
+    await fillPerfectMacroeconomicAimsQuiz(page);
 
     await page.getByRole('button', { name: /Mark quiz/i }).click();
 

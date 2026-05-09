@@ -16,13 +16,27 @@ window.IGCSE = window.IGCSE || {};
   };
 
   const questionMaxPoints = (question) => Number.isFinite(question.points) ? question.points : 1;
+  const questionTypeLabel = (question) => question.type === 'fillBlank' ? 'Short answer' : 'Multiple choice';
+  const pointsLabel = (question) => {
+    const points = questionMaxPoints(question);
+    return `${points} ${points === 1 ? 'point' : 'points'}`;
+  };
+
+  const renderQuestionLegend = (question, index) => `
+    <legend>
+      <span class="quizQuestionNumber">Question ${index + 1}</span>
+      <b>${esc(question.prompt)}</b>
+      <span class="quizQuestionMeta">
+        <span>${esc(questionTypeLabel(question))}</span>
+        <span>${esc(pointsLabel(question))}</span>
+        <span class="quizQuestionState">Unanswered</span>
+      </span>
+    </legend>
+  `;
 
   const renderChoiceQuestion = (question, index) => `
     <fieldset class="quizQuestion" data-question-index="${index}">
-      <legend>
-        <span>Question ${index + 1}</span>
-        <b>${esc(question.prompt)}</b>
-      </legend>
+      ${renderQuestionLegend(question, index)}
       <div class="quizChoices">
         ${(question.choices || []).map((choice, choiceIndex) => `
           <label class="quizChoice">
@@ -38,10 +52,7 @@ window.IGCSE = window.IGCSE || {};
 
   const renderFillBlankQuestion = (question, index) => `
     <fieldset class="quizQuestion" data-question-index="${index}">
-      <legend>
-        <span>Question ${index + 1}</span>
-        <b>${esc(question.prompt)}</b>
-      </legend>
+      ${renderQuestionLegend(question, index)}
       <label class="quizBlank">
         <span>Answer</span>
         <input type="text" name="q-${index}" autocomplete="off" required />
@@ -89,6 +100,12 @@ window.IGCSE = window.IGCSE || {};
     };
   };
 
+  const isQuestionAnswered = (form, question, index) => {
+    const answer = readStudentAnswer(form, question, index);
+    if (question.type === 'fillBlank') return normalizeAnswer(answer).length > 0;
+    return answer !== null;
+  };
+
   const gradeQuiz = (form, questions) => {
     const responses = questions.map((question, index) => {
       const answer = readStudentAnswer(form, question, index);
@@ -113,6 +130,7 @@ window.IGCSE = window.IGCSE || {};
 
       fieldset.classList.toggle('is-correct', response.correct);
       fieldset.classList.toggle('is-incorrect', !response.correct);
+      fieldset.querySelector('.quizQuestionState').textContent = response.correct ? 'Correct' : 'Review';
       fieldset.querySelectorAll('.quizChoice').forEach((label) => {
         const input = label.querySelector('input');
         const isAnswer = Number(input?.value) === Number(question.answer);
@@ -201,6 +219,14 @@ window.IGCSE = window.IGCSE || {};
     statusEl.textContent = message;
   };
 
+  const setFormLocked = (form, locked) => {
+    form.classList.toggle('is-locked', locked);
+    form.querySelectorAll('.quizIdentity input, .quizQuestions input').forEach((input) => {
+      input.disabled = locked;
+    });
+    form.querySelector('[data-quiz-submit]').disabled = locked;
+  };
+
   IGCSE.mountQuizLesson = function mountQuizLesson(lesson, quiz, mountEl = document.getElementById('deck')) {
     const meta = lesson?.meta || {};
     const questions = Array.isArray(quiz?.questions) ? quiz.questions : [];
@@ -245,20 +271,45 @@ window.IGCSE = window.IGCSE || {};
             </label>
           </section>
 
+          <section class="quizStatus" aria-label="Quiz progress" aria-live="polite">
+            <div class="quizStatusText">
+              <span>Progress</span>
+              <strong class="quizAnsweredCount">0/${questions.length} answered</strong>
+            </div>
+            <div class="quizStatusTotal">${questions.length} questions</div>
+            <div class="quizProgressTrack" role="progressbar" aria-label="Answered questions" aria-valuemin="0" aria-valuemax="${questions.length}" aria-valuenow="0">
+              <span class="quizProgressFill"></span>
+            </div>
+          </section>
+
           <section class="quizQuestions" aria-label="Quiz questions">
             ${questions.map(renderQuestion).join('')}
           </section>
 
           <section class="quizActions">
-            <button class="quizPrimaryButton" type="submit">Mark quiz</button>
+            <button class="quizPrimaryButton" type="submit" data-quiz-submit>Mark quiz</button>
             <button class="quizSecondaryButton" type="button" data-quiz-reset hidden>Try again</button>
           </section>
 
           <section class="quizResult" aria-live="polite" hidden>
-            <div>
+            <div class="quizScoreBlock">
               <span>Score</span>
               <strong class="quizScore"></strong>
             </div>
+            <dl class="quizResultStats">
+              <div>
+                <dt>Correct</dt>
+                <dd class="quizCorrectCount"></dd>
+              </div>
+              <div>
+                <dt>Review</dt>
+                <dd class="quizReviewCount"></dd>
+              </div>
+              <div>
+                <dt>Percent</dt>
+                <dd class="quizPercent"></dd>
+              </div>
+            </dl>
             <p class="quizSubmitStatus"></p>
             <button class="quizSecondaryButton" type="button" data-quiz-retry hidden>Retry submission</button>
           </section>
@@ -269,10 +320,33 @@ window.IGCSE = window.IGCSE || {};
     const form = mountEl.querySelector('.quizForm');
     const resultEl = mountEl.querySelector('.quizResult');
     const scoreEl = mountEl.querySelector('.quizScore');
+    const correctCountEl = mountEl.querySelector('.quizCorrectCount');
+    const reviewCountEl = mountEl.querySelector('.quizReviewCount');
+    const percentEl = mountEl.querySelector('.quizPercent');
     const statusEl = mountEl.querySelector('.quizSubmitStatus');
     const retryButton = mountEl.querySelector('[data-quiz-retry]');
     const resetButton = mountEl.querySelector('[data-quiz-reset]');
+    const answeredCountEl = mountEl.querySelector('.quizAnsweredCount');
+    const progressBar = mountEl.querySelector('.quizProgressTrack');
+    const progressFill = mountEl.querySelector('.quizProgressFill');
     let lastPayload = null;
+
+    const updateProgress = () => {
+      const answered = questions.filter((question, index) => {
+        const hasAnswer = isQuestionAnswered(form, question, index);
+        const fieldset = form.querySelector(`[data-question-index="${index}"]`);
+        fieldset?.classList.toggle('is-answered', hasAnswer);
+        const stateEl = fieldset?.querySelector('.quizQuestionState');
+        if (stateEl && !fieldset.classList.contains('is-correct') && !fieldset.classList.contains('is-incorrect')) {
+          stateEl.textContent = hasAnswer ? 'Answered' : 'Unanswered';
+        }
+        return hasAnswer;
+      }).length;
+      const percent = questions.length ? (answered / questions.length) * 100 : 0;
+      answeredCountEl.textContent = `${answered}/${questions.length} answered`;
+      progressBar.setAttribute('aria-valuenow', String(answered));
+      progressFill.style.width = `${percent}%`;
+    };
 
     const runSubmission = async () => {
       if (!lastPayload) return;
@@ -304,28 +378,40 @@ window.IGCSE = window.IGCSE || {};
 
       applyCorrections(form, questions, result.responses);
       scoreEl.textContent = `${result.score}/${result.maxScore} (${result.percentage}%)`;
+      const correctCount = result.responses.filter((response) => response.correct).length;
+      correctCountEl.textContent = `${correctCount}/${questions.length}`;
+      reviewCountEl.textContent = `${questions.length - correctCount}`;
+      percentEl.textContent = `${result.percentage}%`;
       resultEl.hidden = false;
       resetButton.hidden = false;
+      setFormLocked(form, true);
       await runSubmission();
       resultEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
     });
 
     retryButton.addEventListener('click', runSubmission);
     resetButton.addEventListener('click', () => {
+      setFormLocked(form, false);
       form.reset();
       resultEl.hidden = true;
       retryButton.hidden = true;
       resetButton.hidden = true;
       lastPayload = null;
       form.querySelectorAll('.quizQuestion').forEach((question) => {
-        question.classList.remove('is-correct', 'is-incorrect');
+        question.classList.remove('is-answered', 'is-correct', 'is-incorrect');
         question.querySelector('.quizCorrection').hidden = true;
+        question.querySelector('.quizQuestionState').textContent = 'Unanswered';
         question.querySelectorAll('.quizChoice').forEach((choice) => {
           choice.classList.remove('is-answer', 'is-selected');
         });
       });
+      updateProgress();
       mountEl.querySelector('.quizIdentity input')?.focus();
     });
+
+    form.addEventListener('input', updateProgress);
+    form.addEventListener('change', updateProgress);
+    updateProgress();
 
     return { mode: 'quiz' };
   };
