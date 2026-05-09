@@ -70,8 +70,8 @@ test.describe('site smoke', () => {
   test('landing page renders at desktop and phone widths', async ({ page }) => {
     await page.goto(pageUrl('index.html'));
 
-    await expect(page.getByRole('heading', { name: /IGCSE Economics Lesson Library/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /^Class materials$/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /IGCSE Economics lesson review/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /^Review lessons$/i })).toBeVisible();
     await expect(page.getByRole('heading', { name: /^Class materials$/i })).toBeVisible();
     await expect(page.getByRole('img', { name: /Samuel Oehler-Huang/i })).toBeVisible();
     await expect(page.getByText(/Economics teacher, Suzhou Foreign Language School/i)).toBeVisible();

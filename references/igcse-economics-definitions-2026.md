@@ -2,7 +2,7 @@
 title: "Cambridge IGCSE Economics 0455 Definition Overview"
 course: "Cambridge IGCSE Economics"
 syllabus_code: "0455"
-document_type: "definitions_glossary"
+document_type: "mark_scheme_definitions_overview"
 source_file: "IGCSE Economics Definitions 2026 v2(1).docx"
 converted_on: "2026-05-06"
 ---
@@ -12,10 +12,12 @@ converted_on: "2026-05-06"
 **Definition Overview**
 
 > Current syllabus note: for 2027-2029 planning, use
-> `references/igcse-economics-syllabus-2027-2029.md`. This 2026 file is kept as
-> a historical definition glossary for older lesson decks.
+> `references/igcse-economics-syllabus-2027-2029.md` for syllabus coverage.
+> This file is the shared definitions source: an up-to-date overview of
+> definitions and mark-scheme wording as Cambridge IGCSE Economics 0455 has used
+> them in recent years.
 
-Each table row contains a syllabus reference, a term, and exam-ready definition wording for lesson planning, retrieval, and assessment design.
+Each table row contains a syllabus reference, a term, and exam-ready definition wording for lesson planning, retrieval, and assessment design. Lesson materials should typically align with these definitions, though wording may be made more concise and student-understandable where appropriate while still helping students perform well in exams.
 
 ## 1 The basic economic problem
 

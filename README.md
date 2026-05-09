@@ -36,7 +36,7 @@ IGCSE HTML/
 ├── README.md                          ← this file
 ├── references/
 │   ├── igcse-economics-syllabus-2027-2029.md ← current syllabus reference
-│   └── igcse-economics-definitions-2026.md ← historical definition overview
+│   └── igcse-economics-definitions-2026.md ← recent mark-scheme definitions overview
 ├── assets/
 │   ├── css/
 │   │   ├── theme.css                  ← design tokens + primitives (buttons, cards, chips)
@@ -65,26 +65,32 @@ Naming rules:
 
 ## Reference source for lesson content
 
-Use `references/igcse-economics-syllabus-2027-2029.md` as the shared content
+Use `references/igcse-economics-syllabus-2027-2029.md` as the shared syllabus
 source when building or revising decks for the current syllabus. It contains
 the revised 2027-2029 syllabus references, assessment overview, command words,
 formulas, and planning notes.
 
-The older `references/igcse-economics-definitions-2026.md` file is retained as
-a historical definition glossary for previously built lessons.
+Use `references/igcse-economics-definitions-2026.md` as the shared definitions
+source. It is an up-to-date overview of definitions and mark-scheme wording as
+Cambridge IGCSE Economics 0455 has used them in recent years. Lesson materials
+should typically align with these definitions, though slide wording may be made
+more concise and student-understandable where appropriate, provided it still
+prepares students to earn marks in exams.
 
 Recommended workflow:
 
 1. Find the relevant syllabus rows, e.g. `4.2` for fiscal policy.
-2. Use the planning notes on `term` slides where possible.
-3. Shorten wording only when needed for slide clarity.
-4. Keep detailed wording in speaker explanation or follow-up practice slides.
-5. Add a short source comment near the top of each lesson `slides.js`.
+2. Check the definitions overview for key terms and exam-ready wording.
+3. Use the planning notes on `term` slides where possible.
+4. Shorten wording only when needed for slide clarity or student access.
+5. Keep detailed wording in speaker explanation or follow-up practice slides.
+6. Add a short source comment near the top of each lesson `slides.js`.
 
 Example comment:
 
 ```
 Syllabus source: ../../../references/igcse-economics-syllabus-2027-2029.md
+Definitions source: ../../../references/igcse-economics-definitions-2026.md
 Use the 4.2 rows for fiscal-policy wording when creating slides.
 ```
 

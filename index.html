@@ -30,41 +30,6 @@
       padding: 28px 0 56px;
     }
 
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 18px;
-      color: var(--ink-dim);
-      font-size: 14px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: .75rem;
-      font-weight: 800;
-      letter-spacing: .02em;
-    }
-
-    .brand-mark {
-      display: inline-grid;
-      width: 36px;
-      height: 36px;
-      place-items: center;
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 8px;
-      background: rgba(255,255,255,.06);
-      color: var(--gold);
-      font-weight: 900;
-    }
-
-    .topbar-meta {
-      color: var(--muted);
-      text-align: right;
-    }
-
     .hero {
       position: relative;
       overflow: hidden;
@@ -79,17 +44,13 @@
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
-      grid-template-areas:
-        "copy teacher"
-        "actions teacher";
-      gap: clamp(18px, 3vw, 42px);
-      align-items: center;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.7rem;
+      align-items: start;
       padding: clamp(24px, 4.4vw, 54px);
     }
 
     .hero-copy {
-      grid-area: copy;
       min-width: 0;
     }
 
@@ -114,9 +75,9 @@
     }
 
     .hero h1 {
-      max-width: 13ch;
-      font-size: clamp(46px, 5.7vw, 92px);
-      line-height: 1.06;
+      max-width: 18ch;
+      font-size: clamp(50px, 7.8vw, 112px);
+      line-height: .99;
       letter-spacing: 0;
       font-weight: 900;
       margin: 0;
@@ -125,60 +86,54 @@
 
     .hero h1 span {
       display: block;
-      color: var(--cyan);
+      background: linear-gradient(135deg, #ffffff 0%, var(--cyan) 48%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .hero .lead {
-      max-width: 42ch;
-      margin-top: 1rem;
-      color: var(--ink-dim);
-      font-size: clamp(19px, 1.7vw, 26px);
-      line-height: 1.3;
+      max-width: 39ch;
+      margin-top: 1.1rem;
+      color: var(--ink);
+      font-size: clamp(20px, 2.8vw, 40px);
+      line-height: 1.2;
     }
 
-    .teacher-card {
-      grid-area: teacher;
+    .author-line {
       display: grid;
-      grid-template-columns: 82px minmax(0, 1fr);
-      gap: .4rem 1rem;
+      grid-template-columns: 58px minmax(0, 1fr);
+      gap: .35rem .85rem;
       align-items: center;
-      justify-self: stretch;
-      padding: 1rem;
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 8px;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,.085), rgba(255,255,255,.035)),
-        rgba(7,17,31,.32);
+      max-width: 46rem;
+      margin-top: .35rem;
       color: var(--muted);
       font-size: 15px;
-      line-height: 1.4;
-      box-shadow: var(--shadow-sm);
+      line-height: 1.45;
     }
 
-    .teacher-avatar {
+    .author-avatar {
       grid-row: 1 / 3;
-      width: 76px;
+      width: 52px;
       aspect-ratio: 1;
-      border: 1px solid rgba(255,255,255,.34);
+      border: 1px solid rgba(255,255,255,.38);
       border-radius: 50%;
       object-fit: cover;
       object-position: center top;
-      box-shadow: 0 10px 24px rgba(0,0,0,.28);
+      box-shadow: 0 12px 28px rgba(0,0,0,.35);
     }
 
-    .teacher-card strong {
+    .author-line strong {
       color: var(--ink);
       font-size: 16px;
     }
 
     .hero-actions {
-      grid-area: actions;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: .8rem;
       justify-content: flex-start;
-      align-self: start;
     }
 
     .button {
@@ -575,22 +530,9 @@
 
     @media (max-width: 900px) {
       .hero-inner {
-        grid-template-areas:
-          "copy"
-          "teacher"
-          "actions";
         grid-template-columns: 1fr;
-        gap: 1.1rem;
+        gap: 1.35rem;
         min-height: 0;
-      }
-
-      .hero-copy {
-        grid-area: copy;
-      }
-
-      .teacher-card {
-        grid-area: teacher;
-        max-width: none;
       }
 
       .hero-actions {
@@ -622,14 +564,6 @@
         padding-top: 18px;
       }
 
-      .topbar {
-        align-items: flex-start;
-      }
-
-      .topbar-meta {
-        display: none;
-      }
-
       .hero-inner {
         padding: 20px;
       }
@@ -649,14 +583,15 @@
         font-size: 14px;
       }
 
-      .teacher-card {
-        grid-template-columns: 58px minmax(0, 1fr);
+      .author-line {
+        grid-template-columns: 50px minmax(0, 1fr);
         min-width: 0;
+        margin-top: 0;
         font-size: 13px;
       }
 
-      .teacher-avatar {
-        width: 52px;
+      .author-avatar {
+        width: 44px;
       }
 
       .course-roadmap {
@@ -731,31 +666,27 @@
   </form>
 
   <main class="site">
-    <nav class="topbar" aria-label="Site">
-      <div class="brand">
-        <span class="brand-mark">E</span>
-        <span>IGCSE Economics</span>
-      </div>
-      <div class="topbar-meta">Class review materials</div>
-    </nav>
-
     <header class="hero">
       <div class="hero-inner">
         <div class="hero-copy">
           <div class="eyebrow">After-class study hub</div>
-          <h1>IGCSE Economics <span>Lesson Library</span></h1>
+          <h1>
+            <span>IGCSE</span>
+            <span>Economics</span>
+            <span>lesson review</span>
+          </h1>
           <p class="lead">
-            Choose the topic you studied, then open the slide deck, handout
-            view, or quiz before your next class.
+            Reopen the slide decks used in class, check the key examples again,
+            and practise the explanation chains before quizzes and exams.
           </p>
         </div>
-        <div class="teacher-card" aria-label="Teacher and school">
-          <img class="teacher-avatar" src="assets/images/profile/samuel-oehler-huang.jpg" alt="Samuel Oehler-Huang" loading="lazy" />
+        <div class="hero-actions" aria-label="Featured links">
+          <a class="button primary" href="#course-map">Review lessons</a>
+        </div>
+        <div class="author-line" aria-label="Teacher and school">
+          <img class="author-avatar" src="assets/images/profile/samuel-oehler-huang.jpg" alt="Samuel Oehler-Huang" loading="lazy" />
           <span><strong>Samuel Oehler-Huang</strong></span>
           <span>Economics teacher, Suzhou Foreign Language School</span>
-        </div>
-        <div class="hero-actions" aria-label="Featured links">
-          <a class="button primary" href="#course-map">Class materials</a>
         </div>
       </div>
     </header>
