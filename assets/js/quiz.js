@@ -155,6 +155,35 @@ window.IGCSE = window.IGCSE || {};
       return { state: 'disabled' };
     }
 
+    if (config.provider === 'netlify-forms') {
+      const body = new URLSearchParams({
+        'form-name': config.formName || 'quiz-submissions',
+        attemptId: payload.attemptId,
+        submittedAt: payload.submittedAt,
+        studentName: payload.student.name,
+        studentClass: payload.student.className,
+        lessonCode: payload.lesson.code,
+        lessonTitle: payload.lesson.title,
+        lessonUnit: payload.lesson.unit,
+        quizId: payload.quiz.id,
+        quizVersion: payload.quiz.version,
+        quizTitle: payload.quiz.title,
+        score: String(payload.score),
+        maxScore: String(payload.maxScore),
+        percentage: String(payload.percentage),
+        responsesJson: JSON.stringify(payload.responses),
+      });
+
+      const response = await fetch(config.submitEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString(),
+      });
+
+      if (!response.ok) throw new Error(`Submission failed with HTTP ${response.status}`);
+      return { state: 'submitted' };
+    }
+
     const response = await fetch(config.submitEndpoint, {
       method: 'POST',
       mode: 'cors',
