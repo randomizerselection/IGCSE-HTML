@@ -67,21 +67,25 @@ test.describe('site smoke', () => {
     await page.goto(pageUrl('index.html'));
 
     await expect(page.getByRole('heading', { name: /IGCSE Economics lesson review/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /Review a deck/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Review lessons/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /^Course map$/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Slide view/i }).first()).toBeVisible();
     await expect(page.getByRole('link', { name: /Handout view/i }).first()).toBeVisible();
     await expect(page.getByRole('link', { name: /^Quiz$/i }).first()).toBeVisible();
-    await expect(page.getByRole('heading', { name: /Macroeconomic aims/i })).toBeVisible();
+    const macroLessonCard = page.locator('.lesson-card').filter({ hasText: /4\.1\.1 - Unit 4/i });
+    await expect(macroLessonCard.getByRole('heading', { name: /Macroeconomic aims/i })).toBeVisible();
 
-    await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(6);
-    await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(6);
-    await expect(page.getByRole('link', { name: /^Quiz$/i })).toHaveCount(6);
+    await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(7);
+    await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(7);
+    await expect(page.getByRole('link', { name: /^Quiz$/i })).toHaveCount(7);
     await expect(page.getByRole('link', { name: /Handout view/i }).first()).toHaveAttribute('href', /view=print/);
     await expect(page.getByRole('link', { name: /^Quiz$/i }).first()).toHaveAttribute('href', /view=quiz/);
 
     await expectNoHorizontalOverflow(page);
 
     const macroHeadingBox = await page
+      .locator('.lesson-card')
+      .filter({ hasText: /4\.1\.1 - Unit 4/i })
       .getByRole('heading', { name: /Macroeconomic aims/i })
       .boundingBox();
     const viewport = page.viewportSize();
@@ -218,6 +222,7 @@ test.describe('site smoke', () => {
       'lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html',
       'lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html',
       'lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html',
+      'lessons/unit-4-government/4-2-fiscal-policy/lesson-4.html',
     ];
 
     for (const quizPath of quizPaths) {
@@ -227,7 +232,17 @@ test.describe('site smoke', () => {
       await expect(page.locator('.quizAnsweredCount')).toHaveText('0/8 answered');
       await expect(page.locator('.quizProgressTrack')).toHaveAttribute('aria-valuemax', '8');
       await expect(page.getByRole('textbox', { name: /^Name$/i })).toBeVisible();
-      await expect(page.getByRole('textbox', { name: /^Class$/i })).toBeVisible();
+      await expect(page.getByRole('combobox', { name: /^Class$/i })).toBeVisible();
+      await expect(page.getByRole('combobox', { name: /^Class$/i }).locator('option')).toHaveText([
+        'Choose class',
+        'IC 1.1',
+        'IC 1.2',
+        'IC 1.3',
+        'IC 2.1',
+        'IC 2.2',
+        'IC 3.1',
+        'IC 3.2',
+      ]);
       await expect(page.getByRole('link', { name: /Slide mode/i })).toBeVisible();
       await expect(page.getByRole('link', { name: /Student print view/i })).toBeVisible();
       await expectNoHorizontalOverflow(page);
@@ -241,7 +256,7 @@ test.describe('site smoke', () => {
     await expect(page.locator('.quizProgressTrack')).toHaveAttribute('aria-valuenow', '0');
 
     await page.getByRole('textbox', { name: /^Name$/i }).fill('Test Student');
-    await page.getByRole('textbox', { name: /^Class$/i }).fill('10E');
+    await page.getByRole('combobox', { name: /^Class$/i }).selectOption('IC 1.1');
     await page.locator('.quizQuestion').nth(0).getByLabel('The whole economy').check();
     await expect(page.locator('.quizAnsweredCount')).toHaveText('1/8 answered');
     await expect(page.locator('.quizProgressTrack')).toHaveAttribute('aria-valuenow', '1');
@@ -295,7 +310,7 @@ test.describe('site smoke', () => {
     });
 
     await page.getByRole('textbox', { name: /^Name$/i }).fill('Test Student');
-    await page.getByRole('textbox', { name: /^Class$/i }).fill('10E');
+    await page.getByRole('combobox', { name: /^Class$/i }).selectOption('IC 1.1');
 
     await fillPerfectMacroeconomicAimsQuiz(page);
 
@@ -308,7 +323,7 @@ test.describe('site smoke', () => {
     await expect(page.locator('.quizCorrection').filter({ hasText: /Correct: gdp/i })).toBeVisible();
     await expect(page.locator('.quizSubmitStatus')).toHaveText(/Submission failed - retry/i);
     await expect(page.getByRole('button', { name: /Retry submission/i })).toBeVisible();
-    await expect(page.getByRole('textbox', { name: /^Class$/i })).toBeDisabled();
+    await expect(page.getByRole('combobox', { name: /^Class$/i })).toBeDisabled();
     await expectNoHorizontalOverflow(page);
   });
 
@@ -330,7 +345,7 @@ test.describe('site smoke', () => {
     });
 
     await page.getByRole('textbox', { name: /^Name$/i }).fill('Test Student');
-    await page.getByRole('textbox', { name: /^Class$/i }).fill('10E');
+    await page.getByRole('combobox', { name: /^Class$/i }).selectOption('IC 1.1');
 
     await fillPerfectMacroeconomicAimsQuiz(page);
 
@@ -342,7 +357,7 @@ test.describe('site smoke', () => {
     const submitted = new URLSearchParams(submissionBody);
     expect(submitted.get('form-name')).toBe('quiz-submissions');
     expect(submitted.get('studentName')).toBe('Test Student');
-    expect(submitted.get('studentClass')).toBe('10E');
+    expect(submitted.get('studentClass')).toBe('IC 1.1');
     expect(submitted.get('lessonCode')).toBe('4.1.1');
     expect(submitted.get('score')).toBe('8');
     expect(submitted.get('maxScore')).toBe('8');
@@ -353,9 +368,9 @@ test.describe('site smoke', () => {
     await page.goto(pageUrl('lessons/unit-4-government/4-2-fiscal-policy/index.html'));
 
     await expect(page.getByRole('link', { name: /Course index/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(3);
-    await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(3);
-    await expect(page.getByRole('link', { name: /^Quiz$/i })).toHaveCount(3);
+    await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(4);
+    await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(4);
+    await expect(page.getByRole('link', { name: /^Quiz$/i })).toHaveCount(4);
     await expect(page.getByRole('link', { name: /Handout view/i }).first()).toHaveAttribute('href', /view=print/);
     await expect(page.getByRole('link', { name: /^Quiz$/i }).first()).toHaveAttribute('href', /view=quiz/);
 

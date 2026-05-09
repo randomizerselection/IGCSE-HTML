@@ -1,0 +1,90 @@
+window.IGCSE = window.IGCSE || {};
+
+IGCSE.quiz = {
+  id: '4-2-fiscal-policy-lesson-4',
+  version: '1.0.0',
+  title: 'Fiscal-policy measures and effects quiz',
+  description: 'Check fiscal policy, expansionary and contractionary measures, and effects on macroeconomic aims.',
+  questions: [
+    {
+      id: 'fiscal-policy-definition',
+      type: 'multipleChoice',
+      prompt: 'What is fiscal policy?',
+      choices: [
+        'The use of government spending and taxation to influence economic activity.',
+        'The use of interest rates by private banks only.',
+        'The buying and selling decisions of households.',
+        'The rules firms use to set wages.',
+      ],
+      answer: 0,
+      explanation: 'Fiscal policy uses government spending and taxation to influence macroeconomic performance.',
+    },
+    {
+      id: 'fiscal-tools',
+      type: 'fillBlank',
+      prompt: 'Fiscal policy uses government spending and __________.',
+      acceptedAnswers: ['taxation', 'taxes', 'tax'],
+      explanation: 'Spending and taxation are the two main fiscal-policy instruments.',
+    },
+    {
+      id: 'expansionary',
+      type: 'multipleChoice',
+      prompt: 'Which is an expansionary fiscal policy?',
+      choices: [
+        'Increasing government spending or cutting taxes.',
+        'Cutting government spending and raising taxes.',
+        'Banning all imports.',
+        'Removing all public services.',
+      ],
+      answer: 0,
+      explanation: 'Expansionary policy raises aggregate demand by increasing spending or reducing taxes.',
+    },
+    {
+      id: 'contractionary',
+      type: 'fillBlank',
+      prompt: 'Raising taxes or cutting government spending is usually __________ fiscal policy.',
+      acceptedAnswers: ['contractionary', 'deflationary'],
+      explanation: 'Contractionary fiscal policy reduces aggregate demand pressures.',
+    },
+    {
+      id: 'unemployment',
+      type: 'multipleChoice',
+      prompt: 'How can increased government spending reduce unemployment?',
+      choices: [
+        'It can raise demand for goods, services, and labour.',
+        'It always reduces all prices instantly.',
+        'It stops firms from hiring workers.',
+        'It removes consumer spending from GDP.',
+      ],
+      answer: 0,
+      explanation: 'Higher spending can raise aggregate demand, output, and derived demand for labour.',
+    },
+    {
+      id: 'inflation-risk',
+      type: 'fillBlank',
+      prompt: 'Expansionary fiscal policy may create demand-pull __________ if the economy is near full capacity.',
+      acceptedAnswers: ['inflation', 'demand-pull inflation'],
+      explanation: 'If aggregate demand rises faster than output, prices may rise.',
+    },
+    {
+      id: 'tax-cut',
+      type: 'multipleChoice',
+      prompt: 'What is a likely short-run effect of cutting income tax?',
+      choices: [
+        'Households may have more disposable income and spend more.',
+        'Households must have less disposable income.',
+        'Government spending automatically becomes zero.',
+        'Exports must fall to zero.',
+      ],
+      answer: 0,
+      explanation: 'Lower income tax can raise disposable income, consumption, and aggregate demand.',
+    },
+    {
+      id: 'trade-off',
+      type: 'fillBlank',
+      prompt: 'A fiscal policy that increases growth may also worsen inflation, showing a policy __________.',
+      acceptedAnswers: ['trade-off', 'tradeoff', 'conflict'],
+      explanation: 'Fiscal policy can help one macroeconomic aim while creating pressure on another.',
+    },
+  ],
+};

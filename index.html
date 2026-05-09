@@ -340,18 +340,12 @@
       line-height: 1.55;
     }
 
-    .lesson-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
-      gap: 1rem;
-    }
-
     .lesson-card {
       display: flex;
       flex-direction: column;
       min-width: 0;
-      min-height: 286px;
-      padding: 1.45rem;
+      min-height: 0;
+      padding: .9rem;
       border: 1px solid var(--line);
       border-radius: var(--card-radius);
       background:
@@ -371,19 +365,19 @@
 
     .lesson-card .code {
       color: var(--accent, var(--gold));
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 900;
       letter-spacing: .13em;
       text-transform: uppercase;
     }
 
     .lesson-card h3 {
-      margin: .75rem 0 .65rem;
-      font-size: clamp(24px, 2vw, 33px);
-      line-height: 1.08;
+      margin: .4rem 0 0;
+      font-size: clamp(18px, 1.45vw, 23px);
+      line-height: 1.12;
       letter-spacing: 0;
-      overflow-wrap: anywhere;
-      hyphens: auto;
+      overflow-wrap: break-word;
+      hyphens: manual;
     }
 
     .lesson-card p {
@@ -394,22 +388,22 @@
 
     .lesson-actions {
       margin-top: auto;
-      padding-top: 1.3rem;
+      padding-top: .75rem;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: .65rem;
+      gap: .5rem;
     }
 
     .lesson-action {
       display: flex;
-      min-height: 46px;
+      min-height: 38px;
       align-items: center;
       justify-content: center;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: rgba(255,255,255,.06);
       color: var(--ink);
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 850;
       text-align: center;
       text-decoration: none;
@@ -456,66 +450,185 @@
       border-color: rgba(255,209,102,.26);
     }
 
-    .library-note {
+    .course-roadmap {
+      position: relative;
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(240px, .9fr);
+      gap: .85rem;
+    }
+
+    .unit-step {
+      --unit-accent: var(--muted);
+      position: relative;
+      display: grid;
+      grid-template-columns: 68px minmax(0, 1fr);
       gap: 1rem;
-      margin-top: 1rem;
+      min-width: 0;
     }
 
-    .note-panel {
-      padding: 1.2rem;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255,255,255,.04);
+    .unit-step.is-live {
+      --unit-accent: var(--cyan);
     }
 
-    .note-panel h3 {
-      margin-bottom: .5rem;
-      color: var(--ink);
-      font-size: clamp(22px, 2vw, 30px);
-      letter-spacing: -0.015em;
+    .unit-step.unit-4 {
+      --unit-accent: var(--green);
     }
 
-    .note-panel p,
-    .note-panel li {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.52;
-    }
-
-    .note-panel ul {
-      margin: .35rem 0 0;
-      padding-left: 1.1rem;
-    }
-
-    .roadmap {
+    .unit-rail {
+      position: relative;
       display: grid;
-      gap: .75rem;
+      justify-items: center;
     }
 
-    .unit-row {
+    .unit-rail::before {
+      content: "";
+      position: absolute;
+      top: 54px;
+      bottom: -1.05rem;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,.08));
+    }
+
+    .unit-step:last-child .unit-rail::before {
+      display: none;
+    }
+
+    .unit-marker {
+      position: sticky;
+      top: 18px;
+      z-index: 1;
       display: grid;
-      grid-template-columns: 88px minmax(0, 1fr) auto;
-      gap: 1rem;
-      align-items: center;
-      padding: .98rem 1rem;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: linear-gradient(90deg, rgba(255,255,255,.052), rgba(255,255,255,.028));
-    }
-
-    .unit-row strong {
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.11), rgba(255,255,255,.035)),
+        var(--bg-1);
       color: var(--gold);
+      box-shadow: var(--shadow-sm);
       font-size: 13px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .unit-step.is-live .unit-marker {
+      border-color: color-mix(in srgb, var(--unit-accent) 58%, transparent);
+      background:
+        radial-gradient(circle at 28% 20%, color-mix(in srgb, var(--unit-accent) 36%, transparent), transparent 48%),
+        linear-gradient(145deg, rgba(255,255,255,.13), rgba(255,255,255,.04)),
+        var(--bg-1);
+      color: #fff;
+    }
+
+    .unit-content {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.062), rgba(255,255,255,.028)),
+        rgba(255,255,255,.025);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .unit-step.is-live .unit-content {
+      border-color: color-mix(in srgb, var(--unit-accent) 28%, rgba(255,255,255,.12));
+      background:
+        linear-gradient(135deg, color-mix(in srgb, var(--unit-accent) 10%, transparent), rgba(255,255,255,.034) 45%),
+        rgba(255,255,255,.03);
+    }
+
+    .unit-step.is-empty .unit-content {
+      opacity: .82;
+    }
+
+    .unit-summary {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: .9rem;
+      align-items: center;
+      padding: 1rem 1.05rem;
+    }
+
+    .unit-kicker,
+    .topic-ref {
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 900;
       letter-spacing: .11em;
       text-transform: uppercase;
     }
 
-    .unit-row span {
-      color: var(--ink-dim);
-      font-size: 16px;
-      line-height: 1.35;
+    .unit-step.is-live .unit-kicker,
+    .unit-step.is-live .topic-ref {
+      color: var(--unit-accent);
+    }
+
+    .unit-summary h3 {
+      margin-top: .25rem;
+      font-size: clamp(21px, 2vw, 30px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .unit-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: .45rem;
+    }
+
+    .lesson-count {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: .32rem .55rem;
+      border: 1px solid color-mix(in srgb, var(--unit-accent) 42%, transparent);
+      border-radius: 999px;
+      color: var(--unit-accent);
+      background: color-mix(in srgb, var(--unit-accent) 9%, transparent);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .unit-topics {
+      display: grid;
+      gap: 1rem;
+      padding: 0 1.05rem 1.05rem;
+    }
+
+    .topic-group {
+      display: grid;
+      grid-template-columns: 74px minmax(0, 1fr);
+      gap: 1rem;
+      min-width: 0;
+      padding-top: .9rem;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+
+    .topic-copy {
+      min-width: 0;
+      padding-left: .9rem;
+      border-left: 3px solid color-mix(in srgb, var(--unit-accent) 56%, transparent);
+    }
+
+    .topic-copy h4 {
+      color: var(--ink);
+      font-size: clamp(18px, 1.45vw, 23px);
+      line-height: 1.14;
+      letter-spacing: 0;
+    }
+
+    .topic-lessons {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+      gap: .65rem;
+      margin-top: .7rem;
     }
 
     .status {
@@ -535,6 +648,12 @@
       border-color: rgba(126,240,181,.38);
       color: var(--green);
       background: rgba(126,240,181,.08);
+    }
+
+    .status.soon {
+      border-color: rgba(86,216,255,.28);
+      color: var(--cyan);
+      background: rgba(86,216,255,.07);
     }
 
     .site-foot {
@@ -593,7 +712,8 @@
 
       .stats,
       .section-head,
-      .library-note {
+      .unit-summary,
+      .topic-group {
         grid-template-columns: 1fr;
       }
 
@@ -601,8 +721,16 @@
         gap: .65rem;
       }
 
+      .unit-meta {
+        justify-content: flex-start;
+      }
+
       .lesson-actions {
         grid-template-columns: 1fr;
+      }
+
+      .status {
+        justify-self: start;
       }
     }
 
@@ -688,16 +816,57 @@
         font-size: 14px;
       }
 
-      .unit-row {
-        grid-template-columns: 1fr;
-        gap: .35rem;
+      .course-roadmap {
+        gap: .7rem;
       }
 
-      .status {
-        justify-self: start;
+      .unit-step {
+        grid-template-columns: 44px minmax(0, 1fr);
+        gap: .65rem;
+      }
+
+      .unit-marker {
+        position: relative;
+        top: 0;
+        width: 38px;
+        height: 38px;
+        font-size: 11px;
+      }
+
+      .unit-rail::before {
+        top: 42px;
+        bottom: -.9rem;
+      }
+
+      .unit-summary {
+        gap: .55rem;
+        padding: .9rem;
+      }
+
+      .unit-summary h3 {
+        font-size: clamp(20px, 6vw, 25px);
+      }
+
+      .unit-topics {
+        padding: 0 .9rem .9rem;
+        gap: .8rem;
+      }
+
+      .topic-group {
+        gap: .5rem;
+        padding-top: .75rem;
+      }
+
+      .topic-copy {
+        padding-left: .7rem;
+      }
+
+      .lesson-card {
+        padding: .95rem;
       }
     }
   </style>
+  <script src="assets/js/baidu-analytics.js"></script>
 </head>
 <body class="bg-ambient">
   <form name="quiz-submissions" data-netlify="true" hidden>
@@ -737,7 +906,7 @@
             and practise the explanation chains before quizzes and exams.
           </p>
           <div class="hero-actions" aria-label="Featured links">
-            <a class="button primary" href="#available-lessons">Review a deck</a>
+            <a class="button primary" href="#course-map">Review lessons</a>
             <a class="button" href="#course-map">See the course map</a>
           </div>
           <div class="author-line">
@@ -762,7 +931,7 @@
             </div>
           </div>
           <div class="hero-tags" aria-hidden="true">
-            <span class="hero-tag is-live">6 decks</span>
+            <span class="hero-tag is-live">7 decks</span>
             <span class="hero-tag">Slide view</span>
             <span class="hero-tag">Handout view</span>
             <span class="hero-tag">Quiz</span>
@@ -777,7 +946,7 @@
         <span>Cambridge IGCSE Economics</span>
       </div>
       <div class="stat">
-        <b>6</b>
+        <b>7</b>
         <span>Class decks ready to review</span>
       </div>
       <div class="stat">
@@ -790,148 +959,213 @@
       </div>
     </section>
 
-    <section class="section" id="available-lessons">
-      <div class="section-head">
-        <div>
-          <div class="section-kicker">Start your review</div>
-          <h2>Choose the deck from class</h2>
-        </div>
-        <p class="section-intro">
-          Open the lesson your class has just studied, or jump back to an older topic
-          when you need to revise definitions, diagrams, calculations or exam reasoning.
-        </p>
-      </div>
-
-      <div class="lesson-grid">
-        <article class="lesson-card featured">
-          <span class="code">2.8 - Unit 2</span>
-          <h3>Market economic system</h3>
-          <p>Definition of a market economy, resource allocation through the price mechanism, and arguments for markets.</p>
-          <div class="lesson-actions" aria-label="Market economic system views">
-            <a class="lesson-action primary" href="lessons/unit-2-allocation/2-8-market-economic-system/index.html">Slide view</a>
-            <a class="lesson-action secondary" href="lessons/unit-2-allocation/2-8-market-economic-system/index.html?view=print">Handout view</a>
-            <a class="lesson-action quiz" href="lessons/unit-2-allocation/2-8-market-economic-system/index.html?view=quiz">Quiz</a>
-          </div>
-        </article>
-
-        <article class="lesson-card featured">
-          <span class="code">2.8.2 - Unit 2</span>
-          <h3>Market failure and arguments against markets</h3>
-          <p>Disadvantages of market economies, including inequality, external costs, merit goods, public goods, demerit goods and monopoly power.</p>
-          <div class="lesson-actions" aria-label="Market failure and arguments against markets views">
-            <a class="lesson-action primary" href="lessons/unit-2-allocation/2-8-market-failure/index.html">Slide view</a>
-            <a class="lesson-action secondary" href="lessons/unit-2-allocation/2-8-market-failure/index.html?view=print">Handout view</a>
-            <a class="lesson-action quiz" href="lessons/unit-2-allocation/2-8-market-failure/index.html?view=quiz">Quiz</a>
-          </div>
-        </article>
-
-        <article class="lesson-card featured">
-          <span class="code">4.1.1 - Unit 4</span>
-          <h3>Macro<wbr>economic aims</h3>
-          <p>Growth, employment, stable prices, balance of payments stability, redistribution of income and environmental sustainability.</p>
-          <div class="lesson-actions" aria-label="Macroeconomic aims views">
-            <a class="lesson-action primary" href="lessons/unit-4-government/4-1-macroeconomic-aims/index.html">Slide view</a>
-            <a class="lesson-action secondary" href="lessons/unit-4-government/4-1-macroeconomic-aims/index.html?view=print">Handout view</a>
-            <a class="lesson-action quiz" href="lessons/unit-4-government/4-1-macroeconomic-aims/index.html?view=quiz">Quiz</a>
-          </div>
-        </article>
-
-        <article class="lesson-card featured">
-          <span class="code">4.2.1-4.2.2 - Unit 4</span>
-          <h3>Government budget and spending</h3>
-          <p>Budget plans, deficit and surplus calculations, and the main areas, reasons and effects of government spending.</p>
-          <div class="lesson-actions" aria-label="Government budget and spending views">
-            <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html">Slide view</a>
-            <a class="lesson-action secondary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html?view=print">Handout view</a>
-            <a class="lesson-action quiz" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html?view=quiz">Quiz</a>
-          </div>
-        </article>
-
-        <article class="lesson-card featured">
-          <span class="code">4.2.3 - Unit 4</span>
-          <h3>Taxation</h3>
-          <p>Reasons for taxation and tax classifications: direct, indirect, progressive, regressive and proportional taxes.</p>
-          <div class="lesson-actions" aria-label="Taxation views">
-            <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html">Slide view</a>
-            <a class="lesson-action secondary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html?view=print">Handout view</a>
-            <a class="lesson-action quiz" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html?view=quiz">Quiz</a>
-          </div>
-        </article>
-
-        <article class="lesson-card featured">
-          <span class="code">4.2.4-4.2.6 - Unit 4</span>
-          <h3>Fiscal-policy measures and effects</h3>
-          <p>Changes in taxes and government spending, with effects on growth, employment, prices, redistribution, external stability and sustainability.</p>
-          <div class="lesson-actions" aria-label="Fiscal-policy measures and effects views">
-            <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html">Slide view</a>
-            <a class="lesson-action secondary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html?view=print">Handout view</a>
-            <a class="lesson-action quiz" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html?view=quiz">Quiz</a>
-          </div>
-        </article>
-      </div>
-
-      <div class="library-note">
-        <div class="note-panel">
-          <h3>How to use these lessons</h3>
-          <p>
-            Use these decks after class to revisit the exact sequence of ideas, examples
-            and questions from the lesson. Move at your own pace and pause on slides you found difficult.
-          </p>
-        </div>
-        <div class="note-panel">
-          <h3>What to practise</h3>
-          <ul>
-            <li>Recall the key definition before checking the next slide.</li>
-            <li>Rebuild cause-and-effect chains in your own words.</li>
-            <li>Connect examples from class to Cambridge IGCSE command words.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
     <section class="section" id="course-map" aria-labelledby="roadmap-title">
       <div class="section-head">
         <div>
-          <div class="section-kicker">Course map</div>
-          <h2 id="roadmap-title">Where these lessons fit</h2>
+          <div class="section-kicker">Syllabus order</div>
+          <h2 id="roadmap-title">Course map</h2>
         </div>
         <p class="section-intro">
-          Use the syllabus map to place each class deck in the wider course.
-          More units will be added as new decks are used in class.
+          Choose the topic your class has studied. Units without published
+          materials stay as compact placeholders.
         </p>
       </div>
 
-      <div class="roadmap">
-        <div class="unit-row">
-          <strong>Unit 1</strong>
-          <span>The basic economic problem</span>
-          <span class="status">Coming later</span>
-        </div>
-        <div class="unit-row">
-          <strong>Unit 2</strong>
-          <span>The allocation of resources</span>
-          <span class="status live">Available</span>
-        </div>
-        <div class="unit-row">
-          <strong>Unit 3</strong>
-          <span>Microeconomic decision makers</span>
-          <span class="status">Coming later</span>
-        </div>
-        <div class="unit-row">
-          <strong>Unit 4</strong>
-          <span>Government and the macroeconomy</span>
-          <span class="status live">Available</span>
-        </div>
-        <div class="unit-row">
-          <strong>Unit 5</strong>
-          <span>Economic development</span>
-          <span class="status">Coming later</span>
-        </div>
-        <div class="unit-row">
-          <strong>Unit 6</strong>
-          <span>International trade and globalisation</span>
-          <span class="status">Coming later</span>
-        </div>
+      <div class="course-roadmap">
+        <article class="unit-step is-empty">
+          <div class="unit-rail" aria-hidden="true">
+            <span class="unit-marker">1</span>
+          </div>
+          <div class="unit-content">
+            <header class="unit-summary">
+              <div>
+                <span class="unit-kicker">Unit 1</span>
+                <h3>The basic economic problem</h3>
+              </div>
+              <div class="unit-meta">
+                <span class="status">Coming later</span>
+              </div>
+            </header>
+          </div>
+        </article>
+
+        <article class="unit-step is-live unit-2">
+          <div class="unit-rail" aria-hidden="true">
+            <span class="unit-marker">2</span>
+          </div>
+          <div class="unit-content">
+            <header class="unit-summary">
+              <div>
+                <span class="unit-kicker">Unit 2</span>
+                <h3>The allocation of resources</h3>
+              </div>
+              <div class="unit-meta">
+                <span class="lesson-count">2 decks</span>
+                <span class="status live">Lessons available</span>
+              </div>
+            </header>
+            <div class="unit-topics">
+              <div class="topic-group">
+                <span class="topic-ref">2.8</span>
+                <div class="topic-copy">
+                  <h4>Market economic systems and market arguments</h4>
+                  <div class="topic-lessons">
+                    <article class="lesson-card featured">
+                      <span class="code">2.8 - Unit 2</span>
+                      <h3>Market economic system</h3>
+                      <div class="lesson-actions" aria-label="Market economic system views">
+                        <a class="lesson-action primary" href="lessons/unit-2-allocation/2-8-market-economic-system/index.html">Slide view</a>
+                        <a class="lesson-action secondary" href="lessons/unit-2-allocation/2-8-market-economic-system/index.html?view=print">Handout view</a>
+                        <a class="lesson-action quiz" href="lessons/unit-2-allocation/2-8-market-economic-system/index.html?view=quiz">Quiz</a>
+                      </div>
+                    </article>
+                    <article class="lesson-card featured">
+                      <span class="code">2.8.2 - Unit 2</span>
+                      <h3>Market failure and arguments against markets</h3>
+                      <div class="lesson-actions" aria-label="Market failure and arguments against markets views">
+                        <a class="lesson-action primary" href="lessons/unit-2-allocation/2-8-market-failure/index.html">Slide view</a>
+                        <a class="lesson-action secondary" href="lessons/unit-2-allocation/2-8-market-failure/index.html?view=print">Handout view</a>
+                        <a class="lesson-action quiz" href="lessons/unit-2-allocation/2-8-market-failure/index.html?view=quiz">Quiz</a>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="unit-step is-empty">
+          <div class="unit-rail" aria-hidden="true">
+            <span class="unit-marker">3</span>
+          </div>
+          <div class="unit-content">
+            <header class="unit-summary">
+              <div>
+                <span class="unit-kicker">Unit 3</span>
+                <h3>Microeconomic decision makers</h3>
+              </div>
+              <div class="unit-meta">
+                <span class="status">Coming later</span>
+              </div>
+            </header>
+          </div>
+        </article>
+
+        <article class="unit-step is-live unit-4">
+          <div class="unit-rail" aria-hidden="true">
+            <span class="unit-marker">4</span>
+          </div>
+          <div class="unit-content">
+            <header class="unit-summary">
+              <div>
+                <span class="unit-kicker">Unit 4</span>
+                <h3>Government and the macroeconomy</h3>
+              </div>
+              <div class="unit-meta">
+                <span class="lesson-count">5 decks</span>
+                <span class="status live">Lessons available</span>
+              </div>
+            </header>
+            <div class="unit-topics">
+              <div class="topic-group">
+                <span class="topic-ref">4.1</span>
+                <div class="topic-copy">
+                  <h4>Macroeconomic aims</h4>
+                  <div class="topic-lessons">
+                    <article class="lesson-card featured">
+                      <span class="code">4.1.1 - Unit 4</span>
+                      <h3>Macro<wbr>economic aims</h3>
+                      <div class="lesson-actions" aria-label="Macroeconomic aims views">
+                        <a class="lesson-action primary" href="lessons/unit-4-government/4-1-macroeconomic-aims/index.html">Slide view</a>
+                        <a class="lesson-action secondary" href="lessons/unit-4-government/4-1-macroeconomic-aims/index.html?view=print">Handout view</a>
+                        <a class="lesson-action quiz" href="lessons/unit-4-government/4-1-macroeconomic-aims/index.html?view=quiz">Quiz</a>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+              <div class="topic-group">
+                <span class="topic-ref">4.2</span>
+                <div class="topic-copy">
+                  <h4>Fiscal policy</h4>
+                  <div class="topic-lessons">
+                    <article class="lesson-card featured">
+                      <span class="code">4.2.1-4.2.2 - Unit 4</span>
+                      <h3>Government budget and spending</h3>
+                      <div class="lesson-actions" aria-label="Government budget and spending views">
+                        <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html">Slide view</a>
+                        <a class="lesson-action secondary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html?view=print">Handout view</a>
+                        <a class="lesson-action quiz" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html?view=quiz">Quiz</a>
+                      </div>
+                    </article>
+                    <article class="lesson-card featured">
+                      <span class="code">4.2.3 - Unit 4</span>
+                      <h3>Taxation foundations</h3>
+                      <div class="lesson-actions" aria-label="Taxation foundations views">
+                        <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html">Slide view</a>
+                        <a class="lesson-action secondary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html?view=print">Handout view</a>
+                        <a class="lesson-action quiz" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html?view=quiz">Quiz</a>
+                      </div>
+                    </article>
+                    <article class="lesson-card featured">
+                      <span class="code">4.2.3 - Unit 4</span>
+                      <h3>Tax structures</h3>
+                      <div class="lesson-actions" aria-label="Tax structures views">
+                        <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html">Slide view</a>
+                        <a class="lesson-action secondary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html?view=print">Handout view</a>
+                        <a class="lesson-action quiz" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html?view=quiz">Quiz</a>
+                      </div>
+                    </article>
+                    <article class="lesson-card featured">
+                      <span class="code">4.2.4-4.2.6 - Unit 4</span>
+                      <h3>Fiscal-policy measures and effects</h3>
+                      <div class="lesson-actions" aria-label="Fiscal-policy measures and effects views">
+                        <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-4.html">Slide view</a>
+                        <a class="lesson-action secondary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-4.html?view=print">Handout view</a>
+                        <a class="lesson-action quiz" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-4.html?view=quiz">Quiz</a>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="unit-step is-empty">
+          <div class="unit-rail" aria-hidden="true">
+            <span class="unit-marker">5</span>
+          </div>
+          <div class="unit-content">
+            <header class="unit-summary">
+              <div>
+                <span class="unit-kicker">Unit 5</span>
+                <h3>Economic development</h3>
+              </div>
+              <div class="unit-meta">
+                <span class="status">Coming later</span>
+              </div>
+            </header>
+          </div>
+        </article>
+
+        <article class="unit-step is-empty">
+          <div class="unit-rail" aria-hidden="true">
+            <span class="unit-marker">6</span>
+          </div>
+          <div class="unit-content">
+            <header class="unit-summary">
+              <div>
+                <span class="unit-kicker">Unit 6</span>
+                <h3>International trade and globalisation</h3>
+              </div>
+              <div class="unit-meta">
+                <span class="status">Coming later</span>
+              </div>
+            </header>
+          </div>
+        </article>
       </div>
     </section>
 

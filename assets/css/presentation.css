@@ -1660,6 +1660,7 @@ body.is-quiz-mode #deck {
 }
 
 .quizIdentity input,
+.quizIdentity select,
 .quizBlank input {
   width: 100%;
   min-height: 42px;
@@ -1672,18 +1673,21 @@ body.is-quiz-mode #deck {
 }
 
 .quizIdentity input:focus,
+.quizIdentity select:focus,
 .quizBlank input:focus {
   border-color: #2563eb;
   outline: 3px solid rgba(37, 99, 235, .16);
 }
 
 .quizIdentity input:disabled,
+.quizIdentity select:disabled,
 .quizBlank input:disabled,
 .quizChoice input:disabled {
   cursor: not-allowed;
 }
 
 .quizIdentity input:disabled,
+.quizIdentity select:disabled,
 .quizBlank input:disabled {
   color: #475569;
   background: #f1f5f9;

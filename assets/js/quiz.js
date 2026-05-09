@@ -16,6 +16,7 @@ window.IGCSE = window.IGCSE || {};
   };
 
   const questionMaxPoints = (question) => Number.isFinite(question.points) ? question.points : 1;
+  const classOptions = ['IC 1.1', 'IC 1.2', 'IC 1.3', 'IC 2.1', 'IC 2.2', 'IC 3.1', 'IC 3.2'];
   const questionTypeLabel = (question) => question.type === 'fillBlank' ? 'Short answer' : 'Multiple choice';
   const pointsLabel = (question) => {
     const points = questionMaxPoints(question);
@@ -221,7 +222,7 @@ window.IGCSE = window.IGCSE || {};
 
   const setFormLocked = (form, locked) => {
     form.classList.toggle('is-locked', locked);
-    form.querySelectorAll('.quizIdentity input, .quizQuestions input').forEach((input) => {
+    form.querySelectorAll('.quizIdentity input, .quizIdentity select, .quizQuestions input').forEach((input) => {
       input.disabled = locked;
     });
     form.querySelector('[data-quiz-submit]').disabled = locked;
@@ -267,7 +268,10 @@ window.IGCSE = window.IGCSE || {};
             </label>
             <label>
               <span>Class</span>
-              <input name="studentClass" type="text" autocomplete="off" required />
+              <select name="studentClass" required>
+                <option value="">Choose class</option>
+                ${classOptions.map((className) => `<option value="${esc(className)}">${esc(className)}</option>`).join('')}
+              </select>
             </label>
           </section>
 

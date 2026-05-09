@@ -725,7 +725,7 @@ function lessonViewUrl(view) {
 }
 
 function courseIndexUrl() {
-  return new URL('../../../index.html#available-lessons', location.href).href;
+  return new URL('../../../index.html#course-map', location.href).href;
 }
 
 function lessonStartUrl() {
