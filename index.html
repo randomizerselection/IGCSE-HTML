@@ -35,7 +35,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      margin-bottom: 28px;
+      margin-bottom: 18px;
       color: var(--ink-dim);
       font-size: 14px;
     }
@@ -67,14 +67,11 @@
 
     .hero {
       position: relative;
-      min-height: clamp(430px, 50vh, 560px);
       overflow: hidden;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
+      border: 1px solid var(--line);
+      border-radius: 8px;
       background:
-        linear-gradient(120deg, rgba(7,17,31,.98) 0%, rgba(9,26,43,.96) 48%, rgba(18,51,44,.86) 100%),
-        repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 1px, transparent 1px 118px),
-        repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 118px),
+        linear-gradient(135deg, rgba(86,216,255,.12), rgba(255,255,255,.035) 42%, rgba(255,209,102,.07)),
         var(--bg-1);
     }
 
@@ -82,15 +79,17 @@
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: minmax(0, 1.08fr) minmax(280px, .72fr);
-      gap: clamp(32px, 6vw, 86px);
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
+      grid-template-areas:
+        "copy teacher"
+        "actions teacher";
+      gap: clamp(18px, 3vw, 42px);
       align-items: center;
-      width: 100%;
-      min-height: inherit;
-      padding: clamp(30px, 4.5vw, 54px) clamp(20px, 5vw, 72px);
+      padding: clamp(24px, 4.4vw, 54px);
     }
 
     .hero-copy {
+      grid-area: copy;
       min-width: 0;
     }
 
@@ -98,8 +97,8 @@
       display: inline-flex;
       align-items: center;
       gap: .55rem;
-      margin-bottom: 1.1rem;
-      color: var(--gold);
+      margin-bottom: .7rem;
+      color: var(--green);
       font-size: 13px;
       font-weight: 850;
       letter-spacing: .13em;
@@ -111,41 +110,75 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: var(--gold);
+      background: var(--green);
     }
 
     .hero h1 {
-      max-width: 18ch;
-      font-size: clamp(50px, 5.5vw, 84px);
-      line-height: 1.02;
+      max-width: 13ch;
+      font-size: clamp(46px, 5.7vw, 92px);
+      line-height: 1.06;
       letter-spacing: 0;
-      font-weight: 850;
+      font-weight: 900;
       margin: 0;
       text-wrap: balance;
     }
 
     .hero h1 span {
       display: block;
-      background: linear-gradient(135deg, #ffffff 0%, var(--cyan) 48%, var(--gold) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      color: var(--cyan);
     }
 
     .hero .lead {
-      max-width: 39ch;
-      margin-top: 1.1rem;
+      max-width: 42ch;
+      margin-top: 1rem;
       color: var(--ink-dim);
-      font-size: clamp(19px, 1.65vw, 26px);
-      line-height: 1.25;
+      font-size: clamp(19px, 1.7vw, 26px);
+      line-height: 1.3;
+    }
+
+    .teacher-card {
+      grid-area: teacher;
+      display: grid;
+      grid-template-columns: 82px minmax(0, 1fr);
+      gap: .4rem 1rem;
+      align-items: center;
+      justify-self: stretch;
+      padding: 1rem;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 8px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.085), rgba(255,255,255,.035)),
+        rgba(7,17,31,.32);
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.4;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .teacher-avatar {
+      grid-row: 1 / 3;
+      width: 76px;
+      aspect-ratio: 1;
+      border: 1px solid rgba(255,255,255,.34);
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      box-shadow: 0 10px 24px rgba(0,0,0,.28);
+    }
+
+    .teacher-card strong {
+      color: var(--ink);
+      font-size: 16px;
     }
 
     .hero-actions {
+      grid-area: actions;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: .8rem;
-      margin-top: 1.7rem;
+      justify-content: flex-start;
+      align-self: start;
     }
 
     .button {
@@ -176,137 +209,8 @@
       color: #fff;
     }
 
-    .author-line {
-      margin-top: 2rem;
-      display: grid;
-      grid-template-columns: 58px minmax(0, 1fr);
-      gap: .35rem .8rem;
-      align-items: center;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.45;
-    }
-
-    .author-avatar {
-      grid-row: 1 / 3;
-      width: 52px;
-      aspect-ratio: 1;
-      border: 1px solid rgba(255,255,255,.38);
-      border-radius: 50%;
-      object-fit: cover;
-      object-position: center top;
-      box-shadow: 0 12px 28px rgba(0,0,0,.35);
-    }
-
-    .author-line strong {
-      color: var(--ink);
-    }
-
-    .hero-visual {
-      display: grid;
-      gap: 1rem;
-      align-self: stretch;
-      align-content: center;
-      min-width: 0;
-    }
-
-    .course-index {
-      display: grid;
-      gap: .65rem;
-      padding-left: 1.15rem;
-      border-left: 1px solid rgba(255,255,255,.2);
-    }
-
-    .course-index-row {
-      display: grid;
-      grid-template-columns: 4.35rem minmax(0, 1fr);
-      gap: .9rem;
-      align-items: center;
-      min-height: 58px;
-      padding: .7rem 0;
-    }
-
-    .course-index-row + .course-index-row {
-      border-top: 1px solid rgba(255,255,255,.1);
-    }
-
-    .course-index-row b {
-      color: var(--gold);
-      font-size: 28px;
-      line-height: 1;
-      letter-spacing: 0;
-    }
-
-    .course-index-row span {
-      color: var(--ink-dim);
-      font-size: 16px;
-      font-weight: 760;
-      line-height: 1.3;
-    }
-
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .55rem;
-      padding-left: 1.15rem;
-    }
-
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      min-height: 32px;
-      padding: .35rem .62rem;
-      border: 1px solid rgba(255,255,255,.16);
-      border-radius: 999px;
-      color: var(--muted);
-      background: rgba(255,255,255,.045);
-      font-size: 12px;
-      font-weight: 850;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .hero-tag.is-live {
-      border-color: rgba(126,240,181,.35);
-      color: var(--green);
-      background: rgba(126,240,181,.08);
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: .75rem;
-      margin: 1rem 0 54px;
-    }
-
-    .stat {
-      min-height: 94px;
-      padding: 1rem 1.05rem;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: linear-gradient(145deg, rgba(255,255,255,.065), rgba(255,255,255,.03));
-    }
-
-    .stat b {
-      display: block;
-      color: var(--ink);
-      font-size: clamp(26px, 3vw, 42px);
-      line-height: 1;
-      letter-spacing: -0.035em;
-    }
-
-    .stat span {
-      display: block;
-      margin-top: .45rem;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.35;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-    }
-
     .section {
-      margin: 54px 0;
+      margin: 34px 0 54px;
     }
 
     .section-head {
@@ -345,12 +249,12 @@
       flex-direction: column;
       min-width: 0;
       min-height: 0;
-      padding: .9rem;
-      border: 1px solid var(--line);
+      padding: 1rem;
+      border: 1px solid rgba(86,216,255,.24);
       border-radius: var(--card-radius);
       background:
-        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.035)),
-        rgba(255,255,255,.035);
+        linear-gradient(180deg, rgba(86,216,255,.075), rgba(255,255,255,.035)),
+        rgba(255,255,255,.045);
       color: var(--ink);
       box-shadow: var(--shadow-sm);
       transition: transform .22s var(--ease), border-color .22s var(--ease), background .22s var(--ease);
@@ -435,8 +339,8 @@
     .lesson-card.featured {
       --accent: var(--cyan);
       background:
-        linear-gradient(145deg, color-mix(in srgb, var(--accent) 14%, transparent), rgba(255,255,255,.045) 42%, rgba(255,255,255,.025));
-      border-color: rgba(86,216,255,.28);
+        linear-gradient(145deg, color-mix(in srgb, var(--accent) 18%, transparent), rgba(255,255,255,.052) 42%, rgba(255,255,255,.03));
+      border-color: rgba(86,216,255,.34);
     }
 
     .lesson-card.featured:nth-child(2),
@@ -541,7 +445,23 @@
     }
 
     .unit-step.is-empty .unit-content {
-      opacity: .82;
+      background: rgba(255,255,255,.018);
+      box-shadow: none;
+      opacity: .66;
+    }
+
+    .unit-step.is-empty .unit-summary {
+      padding: .72rem .9rem;
+    }
+
+    .unit-step.is-empty .unit-marker {
+      color: var(--muted);
+      box-shadow: none;
+    }
+
+    .unit-step.is-empty .unit-summary h3 {
+      color: var(--ink-dim);
+      font-size: clamp(18px, 1.5vw, 23px);
     }
 
     .unit-summary {
@@ -578,22 +498,6 @@
       flex-wrap: wrap;
       justify-content: flex-end;
       gap: .45rem;
-    }
-
-    .lesson-count {
-      display: inline-flex;
-      align-items: center;
-      min-height: 28px;
-      padding: .32rem .55rem;
-      border: 1px solid color-mix(in srgb, var(--unit-accent) 42%, transparent);
-      border-radius: 999px;
-      color: var(--unit-accent);
-      background: color-mix(in srgb, var(--unit-accent) 9%, transparent);
-      font-size: 12px;
-      font-weight: 850;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      white-space: nowrap;
     }
 
     .unit-topics {
@@ -670,55 +574,33 @@
     }
 
     @media (max-width: 900px) {
-      .hero {
-        min-height: auto;
-        background:
-          linear-gradient(135deg, rgba(7,17,31,.99) 0%, rgba(10,33,53,.95) 54%, rgba(16,45,43,.86) 100%),
-          repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 96px),
-          var(--bg-1);
-      }
-
       .hero-inner {
+        grid-template-areas:
+          "copy"
+          "teacher"
+          "actions";
         grid-template-columns: 1fr;
-        gap: 1.65rem;
+        gap: 1.1rem;
         min-height: 0;
       }
 
-      .hero-visual {
-        align-content: start;
+      .hero-copy {
+        grid-area: copy;
       }
 
-      .course-index {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        padding-left: 0;
-        border-left: 0;
-        border-top: 1px solid rgba(255,255,255,.16);
-        padding-top: 1rem;
+      .teacher-card {
+        grid-area: teacher;
+        max-width: none;
       }
 
-      .course-index-row {
-        grid-template-columns: 3.8rem minmax(0, 1fr);
-        min-height: 0;
-        padding: .2rem 0;
+      .hero-actions {
+        justify-content: flex-start;
       }
 
-      .course-index-row + .course-index-row {
-        border-top: 0;
-      }
-
-      .hero-tags {
-        padding-left: 0;
-      }
-
-      .stats,
       .section-head,
       .unit-summary,
       .topic-group {
         grid-template-columns: 1fr;
-      }
-
-      .stats {
-        gap: .65rem;
       }
 
       .unit-meta {
@@ -748,19 +630,12 @@
         display: none;
       }
 
-      .hero {
-        background:
-          linear-gradient(180deg, rgba(7,17,31,.99) 0%, rgba(10,33,53,.95) 56%, rgba(16,45,43,.88) 100%),
-          repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 82px),
-          var(--bg-1);
-      }
-
       .hero-inner {
-        padding: 24px 22px 28px;
+        padding: 20px;
       }
 
       .hero h1 {
-        font-size: clamp(40px, 11.4vw, 48px);
+        font-size: clamp(38px, 10.8vw, 50px);
         line-height: 1.03;
       }
 
@@ -774,46 +649,14 @@
         font-size: 14px;
       }
 
-      .author-line {
-        max-width: none;
-        margin-top: 1.1rem;
+      .teacher-card {
+        grid-template-columns: 58px minmax(0, 1fr);
+        min-width: 0;
         font-size: 13px;
-        grid-template-columns: 50px minmax(0, 1fr);
       }
 
-      .author-avatar {
-        width: 44px;
-      }
-
-      .hero-visual {
-        display: none;
-      }
-
-      .stats {
-        grid-template-columns: 1fr 1fr;
-        margin-bottom: 40px;
-      }
-
-      .stat {
-        min-height: 100px;
-        padding: .9rem;
-      }
-
-      .course-index {
-        grid-template-columns: 1fr;
-        gap: .3rem;
-      }
-
-      .course-index-row {
-        grid-template-columns: 3.2rem minmax(0, 1fr);
-      }
-
-      .course-index-row b {
-        font-size: 23px;
-      }
-
-      .course-index-row span {
-        font-size: 14px;
+      .teacher-avatar {
+        width: 52px;
       }
 
       .course-roadmap {
@@ -891,84 +734,38 @@
     <nav class="topbar" aria-label="Site">
       <div class="brand">
         <span class="brand-mark">E</span>
-        <span>IGCSE Economics 0455</span>
+        <span>IGCSE Economics</span>
       </div>
-      <div class="topbar-meta">Class slide deck review</div>
+      <div class="topbar-meta">Class review materials</div>
     </nav>
 
     <header class="hero">
       <div class="hero-inner">
         <div class="hero-copy">
           <div class="eyebrow">After-class study hub</div>
-          <h1><span>IGCSE Economics</span><span>lesson review</span></h1>
+          <h1>IGCSE Economics <span>Lesson Library</span></h1>
           <p class="lead">
-            Reopen the slide decks used in class, check the key examples again,
-            and practise the explanation chains before quizzes and exams.
+            Choose the topic you studied, then open the slide deck, handout
+            view, or quiz before your next class.
           </p>
-          <div class="hero-actions" aria-label="Featured links">
-            <a class="button primary" href="#course-map">Review lessons</a>
-            <a class="button" href="#course-map">See the course map</a>
-          </div>
-          <div class="author-line">
-            <img class="author-avatar" src="assets/images/profile/samuel-oehler-huang.jpg" alt="" loading="lazy" />
-            <span><strong>Samuel Oehler-Huang</strong></span>
-            <span>Economics teacher, Suzhou Foreign Language School</span>
-          </div>
         </div>
-        <div class="hero-visual" aria-label="Landing page lesson summary">
-          <div class="course-index">
-            <div class="course-index-row">
-              <b>2.8</b>
-              <span>Market economic system and failure</span>
-            </div>
-            <div class="course-index-row">
-              <b>4.1</b>
-              <span>Macroeconomic aims</span>
-            </div>
-            <div class="course-index-row">
-              <b>4.2</b>
-              <span>Fiscal policy lessons</span>
-            </div>
-          </div>
-          <div class="hero-tags" aria-hidden="true">
-            <span class="hero-tag is-live">7 decks</span>
-            <span class="hero-tag">Slide view</span>
-            <span class="hero-tag">Handout view</span>
-            <span class="hero-tag">Quiz</span>
-          </div>
+        <div class="teacher-card" aria-label="Teacher and school">
+          <img class="teacher-avatar" src="assets/images/profile/samuel-oehler-huang.jpg" alt="Samuel Oehler-Huang" loading="lazy" />
+          <span><strong>Samuel Oehler-Huang</strong></span>
+          <span>Economics teacher, Suzhou Foreign Language School</span>
+        </div>
+        <div class="hero-actions" aria-label="Featured links">
+          <a class="button primary" href="#course-map">Class materials</a>
         </div>
       </div>
     </header>
 
-    <section class="stats" aria-label="Library summary">
-      <div class="stat">
-        <b>0455</b>
-        <span>Cambridge IGCSE Economics</span>
-      </div>
-      <div class="stat">
-        <b>7</b>
-        <span>Class decks ready to review</span>
-      </div>
-      <div class="stat">
-        <b>2</b>
-        <span>Units represented</span>
-      </div>
-      <div class="stat">
-        <b>2027</b>
-        <span>Syllabus-aligned content</span>
-      </div>
-    </section>
-
-    <section class="section" id="course-map" aria-labelledby="roadmap-title">
+    <section class="section" id="course-map" aria-labelledby="materials-title">
       <div class="section-head">
         <div>
-          <div class="section-kicker">Syllabus order</div>
-          <h2 id="roadmap-title">Course map</h2>
+          <div class="section-kicker">Lesson access</div>
+          <h2 id="materials-title">Class materials</h2>
         </div>
-        <p class="section-intro">
-          Choose the topic your class has studied. Units without published
-          materials stay as compact placeholders.
-        </p>
       </div>
 
       <div class="course-roadmap">
@@ -1000,7 +797,6 @@
                 <h3>The allocation of resources</h3>
               </div>
               <div class="unit-meta">
-                <span class="lesson-count">2 decks</span>
                 <span class="status live">Lessons available</span>
               </div>
             </header>
@@ -1011,7 +807,7 @@
                   <h4>Market economic systems and market arguments</h4>
                   <div class="topic-lessons">
                     <article class="lesson-card featured">
-                      <span class="code">2.8 - Unit 2</span>
+                      <span class="code">2.8</span>
                       <h3>Market economic system</h3>
                       <div class="lesson-actions" aria-label="Market economic system views">
                         <a class="lesson-action primary" href="lessons/unit-2-allocation/2-8-market-economic-system/index.html">Slide view</a>
@@ -1020,7 +816,7 @@
                       </div>
                     </article>
                     <article class="lesson-card featured">
-                      <span class="code">2.8.2 - Unit 2</span>
+                      <span class="code">2.8.2</span>
                       <h3>Market failure and arguments against markets</h3>
                       <div class="lesson-actions" aria-label="Market failure and arguments against markets views">
                         <a class="lesson-action primary" href="lessons/unit-2-allocation/2-8-market-failure/index.html">Slide view</a>
@@ -1063,7 +859,6 @@
                 <h3>Government and the macroeconomy</h3>
               </div>
               <div class="unit-meta">
-                <span class="lesson-count">5 decks</span>
                 <span class="status live">Lessons available</span>
               </div>
             </header>
@@ -1074,7 +869,7 @@
                   <h4>Macroeconomic aims</h4>
                   <div class="topic-lessons">
                     <article class="lesson-card featured">
-                      <span class="code">4.1.1 - Unit 4</span>
+                      <span class="code">4.1.1</span>
                       <h3>Macro<wbr>economic aims</h3>
                       <div class="lesson-actions" aria-label="Macroeconomic aims views">
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-1-macroeconomic-aims/index.html">Slide view</a>
@@ -1091,7 +886,7 @@
                   <h4>Fiscal policy</h4>
                   <div class="topic-lessons">
                     <article class="lesson-card featured">
-                      <span class="code">4.2.1-4.2.2 - Unit 4</span>
+                      <span class="code">4.2.1-4.2.2</span>
                       <h3>Government budget and spending</h3>
                       <div class="lesson-actions" aria-label="Government budget and spending views">
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html">Slide view</a>
@@ -1100,7 +895,7 @@
                       </div>
                     </article>
                     <article class="lesson-card featured">
-                      <span class="code">4.2.3 - Unit 4</span>
+                      <span class="code">4.2.3</span>
                       <h3>Taxation foundations</h3>
                       <div class="lesson-actions" aria-label="Taxation foundations views">
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html">Slide view</a>
@@ -1109,7 +904,7 @@
                       </div>
                     </article>
                     <article class="lesson-card featured">
-                      <span class="code">4.2.3 - Unit 4</span>
+                      <span class="code">4.2.3</span>
                       <h3>Tax structures</h3>
                       <div class="lesson-actions" aria-label="Tax structures views">
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html">Slide view</a>
@@ -1118,7 +913,7 @@
                       </div>
                     </article>
                     <article class="lesson-card featured">
-                      <span class="code">4.2.4-4.2.6 - Unit 4</span>
+                      <span class="code">4.2.4-4.2.6</span>
                       <h3>Fiscal-policy measures and effects</h3>
                       <div class="lesson-actions" aria-label="Fiscal-policy measures and effects views">
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-4.html">Slide view</a>

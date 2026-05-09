@@ -63,16 +63,23 @@ async function fillPerfectMacroeconomicAimsQuiz(page) {
 }
 
 test.describe('site smoke', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.route('https://hm.baidu.com/**', (route) => route.abort());
+  });
+
   test('landing page renders at desktop and phone widths', async ({ page }) => {
     await page.goto(pageUrl('index.html'));
 
-    await expect(page.getByRole('heading', { name: /IGCSE Economics lesson review/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /Review lessons/i })).toBeVisible();
-    await expect(page.getByRole('heading', { name: /^Course map$/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /IGCSE Economics Lesson Library/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /^Class materials$/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /^Class materials$/i })).toBeVisible();
+    await expect(page.getByRole('img', { name: /Samuel Oehler-Huang/i })).toBeVisible();
+    await expect(page.getByText(/Economics teacher, Suzhou Foreign Language School/i)).toBeVisible();
+    await expect(page.getByText(/Cambridge IGCSE Economics 0455 - Suzhou Foreign Language School/i)).toBeVisible();
     await expect(page.getByRole('link', { name: /Slide view/i }).first()).toBeVisible();
     await expect(page.getByRole('link', { name: /Handout view/i }).first()).toBeVisible();
     await expect(page.getByRole('link', { name: /^Quiz$/i }).first()).toBeVisible();
-    const macroLessonCard = page.locator('.lesson-card').filter({ hasText: /4\.1\.1 - Unit 4/i });
+    const macroLessonCard = page.locator('.lesson-card').filter({ hasText: /4\.1\.1/i });
     await expect(macroLessonCard.getByRole('heading', { name: /Macroeconomic aims/i })).toBeVisible();
 
     await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(7);
@@ -85,7 +92,7 @@ test.describe('site smoke', () => {
 
     const macroHeadingBox = await page
       .locator('.lesson-card')
-      .filter({ hasText: /4\.1\.1 - Unit 4/i })
+      .filter({ hasText: /4\.1\.1/i })
       .getByRole('heading', { name: /Macroeconomic aims/i })
       .boundingBox();
     const viewport = page.viewportSize();
