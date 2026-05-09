@@ -14,6 +14,8 @@
       --page-max: 1180px;
       --panel-radius: 8px;
       --philosophy-line: rgba(255, 255, 255, .13);
+      --copy-size: clamp(16px, 1.12vw, 20px);
+      --compact-copy-size: clamp(15px, 1vw, 18px);
     }
 
     body {
@@ -67,10 +69,16 @@
 
     .hero-inner {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr);
+      grid-template-columns: minmax(0, 1fr) minmax(280px, .86fr);
       gap: clamp(22px, 4vw, 48px);
-      align-items: end;
+      align-items: start;
       padding: clamp(24px, 4.2vw, 54px);
+    }
+
+    .hero-main {
+      display: grid;
+      gap: 1.2rem;
+      align-content: start;
     }
 
     .eyebrow {
@@ -118,8 +126,48 @@
     }
 
     .lead-grid p {
-      font-size: clamp(18px, 1.75vw, 28px);
-      line-height: 1.32;
+      font-size: clamp(17px, 1.38vw, 23px);
+      line-height: 1.45;
+    }
+
+    .author-card {
+      display: grid;
+      grid-template-columns: 78px minmax(0, 1fr);
+      gap: .9rem;
+      align-items: center;
+      width: min(100%, 520px);
+      padding: .9rem 1rem;
+      border: 1px solid rgba(255,209,102,.34);
+      border-radius: var(--panel-radius);
+      background:
+        linear-gradient(135deg, rgba(255,209,102,.14), rgba(86,216,255,.08)),
+        rgba(255,255,255,.055);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .author-card img {
+      width: 70px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.42);
+      object-fit: cover;
+      object-position: center top;
+    }
+
+    .author-card strong {
+      display: block;
+      color: #fff;
+      font-size: clamp(20px, 1.7vw, 29px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .author-card span {
+      display: block;
+      margin-top: .28rem;
+      color: var(--ink-dim);
+      font-size: var(--compact-copy-size);
+      line-height: 1.38;
     }
 
     .zh {
@@ -158,42 +206,8 @@
 
     .section-intro {
       color: var(--muted);
-      font-size: 16px;
+      font-size: var(--copy-size);
       line-height: 1.55;
-    }
-
-    .evidence-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: .75rem;
-    }
-
-    .metric {
-      min-height: 128px;
-      padding: 1rem;
-      border: 1px solid rgba(86,216,255,.24);
-      border-radius: var(--panel-radius);
-      background:
-        linear-gradient(180deg, rgba(86,216,255,.085), rgba(255,255,255,.035)),
-        rgba(255,255,255,.04);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .metric strong {
-      display: block;
-      color: var(--gold);
-      font-size: clamp(32px, 4vw, 58px);
-      line-height: .98;
-      font-weight: 900;
-      letter-spacing: 0;
-    }
-
-    .metric span {
-      display: block;
-      margin-top: .55rem;
-      color: var(--ink-dim);
-      font-size: 15px;
-      line-height: 1.35;
     }
 
     .bilingual-stack {
@@ -228,7 +242,7 @@
     .panel p,
     .panel li {
       color: var(--ink-dim);
-      font-size: clamp(16px, 1.16vw, 20px);
+      font-size: var(--copy-size);
       line-height: 1.52;
     }
 
@@ -247,14 +261,14 @@
 
     .cycle {
       display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: .65rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: .85rem;
     }
 
     .cycle-step {
       position: relative;
-      min-height: 160px;
-      padding: .95rem;
+      min-height: 226px;
+      padding: 1rem;
       border: 1px solid var(--line);
       border-radius: var(--panel-radius);
       background:
@@ -285,8 +299,12 @@
 
     .cycle-step p {
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.38;
+      font-size: var(--compact-copy-size);
+      line-height: 1.45;
+    }
+
+    .cycle-step p + p {
+      margin-top: .45rem;
     }
 
     .matrix {
@@ -315,8 +333,12 @@
 
     .matrix-card p {
       color: var(--ink-dim);
-      font-size: 15px;
-      line-height: 1.48;
+      font-size: var(--compact-copy-size);
+      line-height: 1.5;
+    }
+
+    .matrix-card p + p {
+      margin-top: .5rem;
     }
 
     .attribute-strip {
@@ -340,6 +362,7 @@
     }
 
     .source-note {
+      margin-top: 2rem;
       padding: 1rem;
       border: 1px solid rgba(255,209,102,.28);
       border-radius: var(--panel-radius);
@@ -347,6 +370,16 @@
       color: var(--ink-dim);
       font-size: 15px;
       line-height: 1.55;
+    }
+
+    .source-note b {
+      display: block;
+      margin-bottom: .35rem;
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: .1em;
+      text-transform: uppercase;
     }
 
     .source-note a {
@@ -384,10 +417,6 @@
         grid-template-columns: 1fr;
       }
 
-      .evidence-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
       .cycle {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -416,14 +445,20 @@
         font-size: 17px;
       }
 
-      .evidence-grid,
       .cycle {
         grid-template-columns: 1fr;
       }
 
-      .metric,
       .cycle-step {
         min-height: 0;
+      }
+
+      .author-card {
+        grid-template-columns: 58px minmax(0, 1fr);
+      }
+
+      .author-card img {
+        width: 54px;
       }
     }
   </style>
@@ -433,18 +468,28 @@
   <main class="site">
     <nav class="topbar" aria-label="Page navigation">
       <a href="index.html">Course index</a>
-      <span>Cambridge IGCSE Economics 0455 - Suzhou Foreign Language School</span>
+      <span>Cambridge IGCSE Economics 0455 - Suzhou Foreign Language School / 苏州外国语学校</span>
     </nav>
 
     <header class="hero">
       <div class="hero-inner">
-        <div>
-          <div class="eyebrow">For teachers and parents</div>
+        <div class="hero-main">
+          <div>
+          <div class="eyebrow">For teachers and parents / 面向教师与家长</div>
           <h1>
             <span>Teaching</span>
             <span>Philosophy</span>
             <span class="zh" lang="zh-CN">教学理念</span>
           </h1>
+          </div>
+          <div class="author-card" aria-label="Author information">
+            <img src="assets/images/profile/samuel-oehler-huang.jpg" alt="Samuel Oehler-Huang" loading="lazy" />
+            <div>
+              <strong>Samuel Oehler-Huang</strong>
+              <span>Economics teacher, Suzhou Foreign Language School</span>
+              <span class="zh" lang="zh-CN">苏州外国语学校经济学教师</span>
+            </div>
+          </div>
         </div>
         <div class="lead-grid">
           <p>
@@ -459,45 +504,15 @@
       </div>
     </header>
 
-    <section class="section" aria-labelledby="evidence-title">
-      <div class="section-head">
-        <div>
-          <div class="section-kicker">Evidence from the lesson library</div>
-          <h2 id="evidence-title">What the materials show</h2>
-        </div>
-        <p class="section-intro">
-          The philosophy below is based on the lesson files already in this site, not on a generic statement of intent.
-        </p>
-      </div>
-
-      <div class="evidence-grid" aria-label="Lesson design evidence">
-        <div class="metric">
-          <strong>322</strong>
-          <span>slide objects across the current lesson data files</span>
-        </div>
-        <div class="metric">
-          <strong>57</strong>
-          <span>discussion prompts that ask students to think before being told</span>
-        </div>
-        <div class="metric">
-          <strong>63</strong>
-          <span>flow chains that make cause and effect visible</span>
-        </div>
-        <div class="metric">
-          <strong>29</strong>
-          <span>in-lesson quiz checks, plus separate after-class quiz modes</span>
-        </div>
-      </div>
-    </section>
-
     <section class="section" aria-labelledby="cycle-title">
       <div class="section-head">
         <div>
           <div class="section-kicker">Core pedagogy cycle</div>
-          <h2 id="cycle-title">From curiosity to exam explanation</h2>
+          <h2 id="cycle-title">From curiosity to exam explanation / 从好奇到考试表达</h2>
         </div>
-        <p class="section-intro zh" lang="zh-CN">
-          每节课通过清晰的学习循环，把生活情境、概念理解、应用练习和考试表达连接起来。
+        <p class="section-intro">
+          Each lesson connects real-world context, conceptual understanding, application practice and exam communication.
+          <br><span class="zh" lang="zh-CN">每节课通过清晰的学习循环，把现实情境、概念理解、应用练习和考试表达连接起来。</span>
         </p>
       </div>
 
@@ -506,31 +521,37 @@
           <b>1</b>
           <h3>Hook<br><span class="zh" lang="zh-CN">情境导入</span></h3>
           <p>Start with a policy problem, market puzzle or real example so the lesson has a reason.</p>
+          <p class="zh" lang="zh-CN">从政策问题、市场现象或真实案例出发，让学生知道为什么要学习这个概念。</p>
         </article>
         <article class="cycle-step">
           <b>2</b>
           <h3>Inquiry<br><span class="zh" lang="zh-CN">探究讨论</span></h3>
           <p>Students discuss before answers appear, building confidence and oracy.</p>
+          <p class="zh" lang="zh-CN">在呈现答案前先讨论，培养学生的表达、自信和参与感。</p>
         </article>
         <article class="cycle-step">
           <b>3</b>
           <h3>Explicit concepts<br><span class="zh" lang="zh-CN">明确概念</span></h3>
           <p>Definitions, diagrams and comparisons are taught with concise exam wording.</p>
+          <p class="zh" lang="zh-CN">用简洁、符合考试要求的语言讲清定义、图示和对比关系。</p>
         </article>
         <article class="cycle-step">
           <b>4</b>
           <h3>Application<br><span class="zh" lang="zh-CN">迁移应用</span></h3>
           <p>Students connect concepts to taxation, market failure, budgets and policy choices.</p>
+          <p class="zh" lang="zh-CN">把概念应用到税收、市场失灵、政府预算和政策选择等真实语境中。</p>
         </article>
         <article class="cycle-step">
           <b>5</b>
           <h3>Retrieval<br><span class="zh" lang="zh-CN">提取练习</span></h3>
           <p>Fill-in blanks and quizzes make students recall, not just reread.</p>
+          <p class="zh" lang="zh-CN">通过填空和测验促进主动回忆，而不是停留在被动阅读。</p>
         </article>
         <article class="cycle-step">
           <b>6</b>
           <h3>Exam explanation<br><span class="zh" lang="zh-CN">考试表达</span></h3>
           <p>Students practise chains, balance, limitations and judgement.</p>
+          <p class="zh" lang="zh-CN">训练因果链、正反平衡、局限性和判断，形成可得分的考试表达。</p>
         </article>
       </div>
     </section>
@@ -539,10 +560,11 @@
       <div class="section-head">
         <div>
           <div class="section-kicker">Cambridge alignment</div>
-          <h2 id="cambridge-title">Aligned with Cambridge teaching principles</h2>
+          <h2 id="cambridge-title">Aligned with Cambridge teaching principles / 对齐剑桥教学原则</h2>
         </div>
         <p class="section-intro">
           This course is aligned with Cambridge guidance while remaining adapted to our students, language context and classroom needs.
+          <br><span class="zh" lang="zh-CN">本课程对齐剑桥教学指导，同时根据学生特点、语言环境和课堂需要进行本地化设计。</span>
         </p>
       </div>
 
@@ -553,36 +575,42 @@
             Students participate through discussion, prediction, simulations and policy choices. The slide deck is a classroom sequence,
             not a reading script.
           </p>
+          <p class="zh" lang="zh-CN">学生通过讨论、预测、模拟和政策选择参与学习；课件是课堂学习流程，而不是阅读稿。</p>
         </article>
         <article class="matrix-card">
           <h3>Assessment for learning / 促进学习的评价</h3>
           <p>
             Hinge questions, in-lesson quizzes and after-class quizzes create feedback for students and for the teacher's next lesson decisions.
           </p>
+          <p class="zh" lang="zh-CN">关键问题、课堂测验和课后测验为学生提供反馈，也帮助教师判断下一步教学重点。</p>
         </article>
         <article class="matrix-card">
           <h3>Curriculum coherence / 课程连贯性</h3>
           <p>
             Lessons follow Cambridge IGCSE Economics 0455 syllabus references and use exam-ready definitions, examples and command-word practice.
           </p>
+          <p class="zh" lang="zh-CN">课程依据 Cambridge IGCSE Economics 0455 考纲，使用适合考试的定义、案例和指令词练习。</p>
         </article>
         <article class="matrix-card">
           <h3>Inclusive bilingual access / 双语支持</h3>
           <p>
             Chinese support appears where it lowers access barriers, while the final academic target remains clear English economic explanation.
           </p>
+          <p class="zh" lang="zh-CN">中文支持用于降低理解门槛，但最终目标仍是清晰、准确的英文经济学表达。</p>
         </article>
         <article class="matrix-card">
           <h3>Metacognition and self-management / 元认知与自我管理</h3>
           <p>
             Handout and quiz modes help students revisit learning independently, identify gaps and practise before formal assessment.
           </p>
+          <p class="zh" lang="zh-CN">讲义和测验模式帮助学生自主复习、发现薄弱点，并在正式评价前进行练习。</p>
         </article>
         <article class="matrix-card">
           <h3>Technology-supported learning / 技术支持学习</h3>
           <p>
             The site gives every learner access to slide view, print view and quiz view, so class teaching continues into structured review.
           </p>
+          <p class="zh" lang="zh-CN">网站为每位学生提供幻灯片、打印讲义和测验入口，让课堂学习延伸为有结构的复习。</p>
         </article>
       </div>
 
@@ -599,7 +627,7 @@
       <div class="section-head">
         <div>
           <div class="section-kicker">For home and school</div>
-          <h2 id="audience-title">What this means in practice</h2>
+          <h2 id="audience-title">What this means in practice / 课堂内外的实际意义</h2>
         </div>
       </div>
 
@@ -660,25 +688,21 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="sources-title">
-      <div class="section-head">
-        <div>
-          <div class="section-kicker">Sources and positioning</div>
-          <h2 id="sources-title">Not endorsed, but deliberately aligned</h2>
-        </div>
-      </div>
-      <p class="source-note">
+    <aside class="source-note" aria-label="Sources and positioning">
+      <b>Sources and positioning / 来源与说明</b>
+      <p>
         This teaching philosophy is an independent classroom statement. It is aligned with Cambridge International guidance on
         <a href="https://www.cambridgeinternational.org/support-and-training-for-schools/leading-learning-and-teaching-with-cambridge/">leading, learning and teaching</a>,
         the <a href="https://www.cambridgeinternational.org/why-choose-us/parents-and-students/learning-with-lasting-impact/cambridge-learner-attributes/">Cambridge learner attributes</a>,
         and the <a href="https://www.cambridgeinternational.org/teacher-standards">Cambridge school leader and teacher standards</a>.
         It does not claim formal endorsement by Cambridge International Education.
+        <br><span class="zh" lang="zh-CN">本教学理念是独立的课堂说明，参考并对齐剑桥关于教学与学习、学习者素养以及教师标准的指导，但不代表 Cambridge International Education 的正式背书。</span>
       </p>
-    </section>
+    </aside>
 
     <footer class="site-foot">
-      <span>Built by Samuel Oehler-Huang for IGCSE Economics class review.</span>
-      <span><a href="index.html">Return to lesson library</a></span>
+      <span>Built by Samuel Oehler-Huang for IGCSE Economics class review. / 为 IGCSE 经济学课堂复习而建</span>
+      <span><a href="index.html">Return to lesson library / 返回课程主页</a></span>
     </footer>
   </main>
 </body>

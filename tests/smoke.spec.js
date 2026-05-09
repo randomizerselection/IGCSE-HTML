@@ -108,14 +108,17 @@ test.describe('site smoke', () => {
 
     await expect(page.getByRole('link', { name: /Course index/i })).toBeVisible();
     await expect(page.getByRole('heading', { name: /Teaching Philosophy/i })).toBeVisible();
-    await expect(page.getByText(/教学理念/)).toBeVisible();
-    await expect(page.getByRole('heading', { name: /What the materials show/i })).toBeVisible();
-    await expect(page.getByText(/322/).first()).toBeVisible();
-    await expect(page.getByText(/slide objects across the current lesson data files/i)).toBeVisible();
+    await expect(page.getByText('教学理念', { exact: true })).toBeVisible();
+    await expect(page.getByRole('img', { name: /Samuel Oehler-Huang/i })).toBeVisible();
+    await expect(page.getByText(/Economics teacher, Suzhou Foreign Language School/i)).toBeVisible();
+    await expect(page.getByText(/苏州外国语学校经济学教师/)).toBeVisible();
+    await expect(page.getByRole('heading', { name: /What the materials show/i })).toHaveCount(0);
     await expect(page.getByRole('heading', { name: /From curiosity to exam explanation/i })).toBeVisible();
     await expect(page.getByText(/情境导入/)).toBeVisible();
+    await expect(page.getByText(/从政策问题、市场现象或真实案例出发/)).toBeVisible();
     await expect(page.getByRole('heading', { name: /Aligned with Cambridge teaching principles/i })).toBeVisible();
     await expect(page.getByText(/Confident 自信/)).toBeVisible();
+    await expect(page.getByText(/本课程对齐剑桥教学指导/)).toBeVisible();
     await expect(page.getByRole('heading', { name: /For parents/i })).toBeVisible();
     await expect(page.getByRole('heading', { name: /面向家长/i })).toBeVisible();
     await expect(page.getByRole('heading', { name: /For teachers/i })).toBeVisible();
