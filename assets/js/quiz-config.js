@@ -5,4 +5,5 @@ IGCSE.quizConfig = {
   provider: 'netlify-forms',
   formName: 'quiz-submissions',
   submitEndpoint: '/',
+  localSubmitEndpoint: 'https://oehlerhuang.com/',
 };

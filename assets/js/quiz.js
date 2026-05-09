@@ -170,7 +170,13 @@ window.IGCSE = window.IGCSE || {};
 
   async function submitPayload(payload) {
     const config = window.IGCSE.quizConfig || {};
-    if (!config.submissionEnabled || !config.submitEndpoint) {
+    const openedLocally = window.location.protocol === 'file:';
+    const submitEndpoint = openedLocally && config.localSubmitEndpoint
+      ? config.localSubmitEndpoint
+      : config.submitEndpoint;
+    const useOpaqueSubmit = openedLocally && Boolean(config.localSubmitEndpoint);
+
+    if (!config.submissionEnabled || !submitEndpoint) {
       return { state: 'disabled' };
     }
 
@@ -193,17 +199,20 @@ window.IGCSE = window.IGCSE || {};
         responsesJson: JSON.stringify(payload.responses),
       });
 
-      const response = await fetch(config.submitEndpoint, {
+      const response = await fetch(submitEndpoint, {
         method: 'POST',
+        mode: useOpaqueSubmit ? 'no-cors' : 'cors',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: body.toString(),
       });
 
-      if (!response.ok) throw new Error(`Submission failed with HTTP ${response.status}`);
+      if (response.type !== 'opaque' && !response.ok) {
+        throw new Error(`Submission failed with HTTP ${response.status}`);
+      }
       return { state: 'submitted' };
     }
 
-    const response = await fetch(config.submitEndpoint, {
+    const response = await fetch(submitEndpoint, {
       method: 'POST',
       mode: 'cors',
       credentials: 'omit',

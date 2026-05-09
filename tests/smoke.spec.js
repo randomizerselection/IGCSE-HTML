@@ -65,6 +65,14 @@ async function fillPerfectMacroeconomicAimsQuiz(page) {
 test.describe('site smoke', () => {
   test.beforeEach(async ({ page }) => {
     await page.route('https://hm.baidu.com/**', (route) => route.abort());
+    await page.route('https://oehlerhuang.com/', async (route) => {
+      if (route.request().method() === 'POST') {
+        await route.fulfill({ status: 200, body: 'ok' });
+        return;
+      }
+
+      await route.continue();
+    });
   });
 
   test('landing page renders at desktop and phone widths', async ({ page }) => {
