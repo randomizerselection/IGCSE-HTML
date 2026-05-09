@@ -1,0 +1,90 @@
+window.IGCSE = window.IGCSE || {};
+
+IGCSE.quiz = {
+  id: '2-8-market-failure',
+  version: '1.0.0',
+  title: 'Market failure and arguments against markets quiz',
+  description: 'Check your understanding of disadvantages of market economies and causes of market failure.',
+  questions: [
+    {
+      id: 'market-failure-example',
+      type: 'multipleChoice',
+      prompt: 'Which example shows market failure?',
+      choices: [
+        'A factory creates pollution costs not paid by the producer.',
+        'A popular product attracts more producers.',
+        'A higher price encourages more supply.',
+        'A firm improves quality to win customers.',
+      ],
+      answer: 0,
+      explanation: 'Pollution is an external cost, so the market price may not reflect the full social cost.',
+    },
+    {
+      id: 'external-cost',
+      type: 'fillBlank',
+      prompt: 'Pollution from production is an example of an external __________.',
+      acceptedAnswers: ['cost', 'costs'],
+      explanation: 'External costs are imposed on third parties who are not directly involved in the transaction.',
+    },
+    {
+      id: 'public-good',
+      type: 'fillBlank',
+      prompt: 'Street lighting is often provided by government because it has features of a public __________.',
+      acceptedAnswers: ['good', 'public good'],
+      explanation: 'Public goods are difficult to exclude non-payers from and may be underprovided by markets.',
+    },
+    {
+      id: 'merit-good',
+      type: 'multipleChoice',
+      prompt: 'Why might education be under-consumed in a market economy?',
+      choices: [
+        'Consumers may underestimate its long-term private and social benefits.',
+        'Education always creates external costs.',
+        'Education is always a demerit good.',
+        'Private firms never respond to demand.',
+      ],
+      answer: 0,
+      explanation: 'Merit goods may be under-consumed when consumers underestimate benefits or cannot afford enough.',
+    },
+    {
+      id: 'demerit-good',
+      type: 'fillBlank',
+      prompt: 'Goods that may be over-consumed because consumers underestimate costs are called __________ goods.',
+      acceptedAnswers: ['demerit', 'demerit goods'],
+      explanation: 'Demerit goods such as cigarettes or sugary drinks may be over-consumed in a free market.',
+    },
+    {
+      id: 'inequality',
+      type: 'multipleChoice',
+      prompt: 'Why can a market economy increase inequality?',
+      choices: [
+        'Firms respond to profitable demand, and richer consumers have more spending power.',
+        'All consumers always have equal income.',
+        'The price mechanism guarantees equal access to every good.',
+        'Competition removes all differences in wages.',
+      ],
+      answer: 0,
+      explanation: 'Market demand reflects ability to pay as well as wants, so poorer households may have less access.',
+    },
+    {
+      id: 'monopoly-power',
+      type: 'multipleChoice',
+      prompt: 'What is a likely problem when one firm dominates a market?',
+      choices: [
+        'Competition falls, so output may be restricted and prices may be higher.',
+        'Consumer choice always increases.',
+        'External costs automatically disappear.',
+        'All public goods become profitable.',
+      ],
+      answer: 0,
+      explanation: 'Monopoly power weakens competitive pressure and can harm consumers.',
+    },
+    {
+      id: 'market-failure-blank',
+      type: 'fillBlank',
+      prompt: 'When markets allocate resources inefficiently, this is called market __________.',
+      acceptedAnswers: ['failure', 'market failure'],
+      explanation: 'Market failure means the free market does not allocate resources in the best way for society.',
+    },
+  ],
+};

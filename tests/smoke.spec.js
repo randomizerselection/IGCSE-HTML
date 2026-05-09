@@ -62,9 +62,9 @@ test.describe('site smoke', () => {
     await expect(page.getByRole('link', { name: /^Quiz$/i }).first()).toBeVisible();
     await expect(page.getByRole('heading', { name: /Macroeconomic aims/i })).toBeVisible();
 
-    await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(5);
-    await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(5);
-    await expect(page.getByRole('link', { name: /^Quiz$/i })).toHaveCount(5);
+    await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(6);
+    await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(6);
+    await expect(page.getByRole('link', { name: /^Quiz$/i })).toHaveCount(6);
     await expect(page.getByRole('link', { name: /Handout view/i }).first()).toHaveAttribute('href', /view=print/);
     await expect(page.getByRole('link', { name: /^Quiz$/i }).first()).toHaveAttribute('href', /view=quiz/);
 
@@ -202,6 +202,7 @@ test.describe('site smoke', () => {
   test('lesson quiz views render for every available deck', async ({ page }) => {
     const quizPaths = [
       'lessons/unit-2-allocation/2-8-market-economic-system/index.html',
+      'lessons/unit-2-allocation/2-8-market-failure/index.html',
       'lessons/unit-4-government/4-1-macroeconomic-aims/index.html',
       'lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html',
       'lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html',
