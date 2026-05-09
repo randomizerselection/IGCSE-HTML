@@ -1,0 +1,75 @@
+window.IGCSE = window.IGCSE || {};
+
+IGCSE.quiz = {
+  id: '4-1-1-macroeconomic-aims',
+  version: '1.0.0',
+  title: 'Macroeconomic aims quiz',
+  description: 'Check the six macroeconomic aims and common conflicts between them.',
+  questions: [
+    {
+      id: 'macro-focus',
+      type: 'multipleChoice',
+      prompt: 'Macroeconomic aims focus mainly on which level of the economy?',
+      choices: ['The whole economy', 'One household only', 'One firm only', 'One product market only'],
+      answer: 0,
+      explanation: 'Macroeconomics studies economy-wide performance such as output, employment, inflation, and trade.',
+    },
+    {
+      id: 'growth-measure',
+      type: 'fillBlank',
+      prompt: 'Economic growth means an increase in real __________.',
+      acceptedAnswers: ['gdp', 'gross domestic product', 'real gdp'],
+      explanation: 'Growth is usually measured by an increase in real GDP.',
+    },
+    {
+      id: 'stable-prices',
+      type: 'multipleChoice',
+      prompt: 'Which aim is most directly linked to keeping inflation low and predictable?',
+      choices: ['Stable prices', 'Full employment', 'Redistribution of income', 'Environmental sustainability'],
+      answer: 0,
+      explanation: 'Stable prices means avoiding rapid or unpredictable inflation.',
+    },
+    {
+      id: 'employment',
+      type: 'fillBlank',
+      prompt: 'Keeping unemployment low is the aim of full __________.',
+      acceptedAnswers: ['employment', 'full employment'],
+      explanation: 'Full employment means most people who are willing and able to work can find jobs.',
+    },
+    {
+      id: 'external-stability',
+      type: 'multipleChoice',
+      prompt: 'Which aim is most connected to avoiding persistent current account problems?',
+      choices: ['Balance of payments stability', 'Stable prices', 'Redistribution of income', 'Economic growth'],
+      answer: 0,
+      explanation: 'Balance of payments stability is about the economy relationship with the rest of the world.',
+    },
+    {
+      id: 'inequality',
+      type: 'fillBlank',
+      prompt: 'Reducing excessive income inequality is called redistribution of __________.',
+      acceptedAnswers: ['income', 'income redistribution'],
+      explanation: 'Redistribution of income aims to reduce large gaps between high and low income groups.',
+    },
+    {
+      id: 'growth-sustainability-conflict',
+      type: 'multipleChoice',
+      prompt: 'Why may economic growth conflict with environmental sustainability?',
+      choices: [
+        'More output may use more resources and create more pollution.',
+        'More output always reduces pollution.',
+        'Growth means imports must fall to zero.',
+        'Growth automatically makes income equal.',
+      ],
+      answer: 0,
+      explanation: 'Growth can create environmental costs if output rises through greater resource use or pollution.',
+    },
+    {
+      id: 'employment-bop',
+      type: 'fillBlank',
+      prompt: 'Higher employment may raise incomes, causing consumers to buy more imports and worsening the balance of __________.',
+      acceptedAnswers: ['payments', 'balance of payments'],
+      explanation: 'A rise in imports can worsen the current account position.',
+    },
+  ],
+};

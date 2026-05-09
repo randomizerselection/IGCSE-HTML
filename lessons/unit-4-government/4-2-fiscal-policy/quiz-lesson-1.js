@@ -1,0 +1,80 @@
+window.IGCSE = window.IGCSE || {};
+
+IGCSE.quiz = {
+  id: '4-2-fiscal-policy-lesson-1',
+  version: '1.0.0',
+  title: 'Government budget and spending quiz',
+  description: 'Check government budgets, deficits, surpluses, and reasons for government spending.',
+  questions: [
+    {
+      id: 'budget-definition',
+      type: 'multipleChoice',
+      prompt: 'What is a government budget?',
+      choices: [
+        'A plan for government revenue and government expenditure.',
+        'A list of only private-sector spending.',
+        'A rule that all taxes must be equal.',
+        'A measure of exports minus imports.',
+      ],
+      answer: 0,
+      explanation: 'A budget sets out expected revenue and spending for a period.',
+    },
+    {
+      id: 'budget-formula',
+      type: 'fillBlank',
+      prompt: 'Budget balance = government revenue - government __________.',
+      acceptedAnswers: ['expenditure', 'spending', 'government expenditure'],
+      explanation: 'Subtract expenditure from revenue to find the budget balance.',
+    },
+    {
+      id: 'deficit-calculation',
+      type: 'multipleChoice',
+      prompt: 'Government revenue is $420m and expenditure is $510m. What is the budget balance?',
+      choices: ['$90m deficit', '$90m surplus', '$930m deficit', '$930m surplus'],
+      answer: 0,
+      explanation: '420 - 510 = -90, so the government has a $90m deficit.',
+    },
+    {
+      id: 'surplus',
+      type: 'fillBlank',
+      prompt: 'When government revenue is greater than government expenditure, there is a budget __________.',
+      acceptedAnswers: ['surplus'],
+      explanation: 'A surplus is a positive budget balance.',
+    },
+    {
+      id: 'spending-area',
+      type: 'multipleChoice',
+      prompt: 'Which is a common area of government spending?',
+      choices: ['Education and healthcare', 'Only luxury goods', 'Only private profit', 'Only foreign holidays'],
+      answer: 0,
+      explanation: 'Education, healthcare, defence, infrastructure, and welfare are common public spending areas.',
+    },
+    {
+      id: 'infrastructure',
+      type: 'fillBlank',
+      prompt: 'Roads, bridges, ports and schools are examples of public __________.',
+      acceptedAnswers: ['infrastructure', 'capital', 'capital goods'],
+      explanation: 'Infrastructure can support production and long-term economic growth.',
+    },
+    {
+      id: 'human-capital',
+      type: 'multipleChoice',
+      prompt: 'How can spending on education improve the economy?',
+      choices: [
+        'It can improve skills and productivity.',
+        'It immediately removes all inflation.',
+        'It guarantees a trade surplus.',
+        'It prevents all unemployment forever.',
+      ],
+      answer: 0,
+      explanation: 'Education can raise human capital, productivity, incomes, and long-term growth.',
+    },
+    {
+      id: 'welfare',
+      type: 'fillBlank',
+      prompt: 'Government welfare payments can help redistribute __________.',
+      acceptedAnswers: ['income', 'wealth'],
+      explanation: 'Transfers can support lower-income households and reduce inequality.',
+    },
+  ],
+};

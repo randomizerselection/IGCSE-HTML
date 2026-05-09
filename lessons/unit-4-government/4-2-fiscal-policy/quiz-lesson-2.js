@@ -1,0 +1,85 @@
+window.IGCSE = window.IGCSE || {};
+
+IGCSE.quiz = {
+  id: '4-2-fiscal-policy-lesson-2',
+  version: '1.0.0',
+  title: 'Taxation quiz',
+  description: 'Check reasons for taxation and the main tax classifications.',
+  questions: [
+    {
+      id: 'tax-revenue',
+      type: 'multipleChoice',
+      prompt: 'Why do governments collect taxes?',
+      choices: [
+        'To raise revenue for public spending.',
+        'To make every market private.',
+        'To remove the need for a budget.',
+        'To guarantee zero inflation.',
+      ],
+      answer: 0,
+      explanation: 'A main reason for taxation is to raise revenue to fund public services and other spending.',
+    },
+    {
+      id: 'demerit',
+      type: 'fillBlank',
+      prompt: 'A tax on cigarettes can be used to reduce consumption of a __________ good.',
+      acceptedAnswers: ['demerit', 'demerit good'],
+      explanation: 'Demerit goods create private or external costs, so governments may tax them to reduce consumption.',
+    },
+    {
+      id: 'direct-tax',
+      type: 'multipleChoice',
+      prompt: 'Which is the best example of a direct tax?',
+      choices: ['Income tax', 'Value added tax', 'Sales tax', 'Excise duty on cigarettes'],
+      answer: 0,
+      explanation: 'A direct tax is paid straight from income, profit, or wealth to the government.',
+    },
+    {
+      id: 'indirect-tax',
+      type: 'fillBlank',
+      prompt: 'A tax placed on spending on goods and services is an __________ tax.',
+      acceptedAnswers: ['indirect', 'indirect tax'],
+      explanation: 'Indirect taxes are added to the price of goods and services.',
+    },
+    {
+      id: 'progressive',
+      type: 'multipleChoice',
+      prompt: 'What happens in a progressive tax system?',
+      choices: [
+        'The percentage of income paid in tax rises as income rises.',
+        'Everyone pays exactly the same amount of tax.',
+        'Lower-income households always pay a higher percentage.',
+        'Only firms pay tax.',
+      ],
+      answer: 0,
+      explanation: 'Progressive taxes take a higher proportion from people with higher incomes.',
+    },
+    {
+      id: 'proportional',
+      type: 'fillBlank',
+      prompt: 'A tax where everyone pays the same percentage of income is called __________ tax.',
+      acceptedAnswers: ['proportional', 'proportional tax'],
+      explanation: 'A proportional tax uses one constant tax rate.',
+    },
+    {
+      id: 'regressive',
+      type: 'multipleChoice',
+      prompt: 'Why can an indirect tax be regressive?',
+      choices: [
+        'It may take a larger percentage of income from lower-income households.',
+        'It always makes rich people pay no tax.',
+        'It only applies to exports.',
+        'It must be paid directly from wages.',
+      ],
+      answer: 0,
+      explanation: 'The same tax on a product can be a larger share of a lower income.',
+    },
+    {
+      id: 'redistribution',
+      type: 'fillBlank',
+      prompt: 'Progressive taxes can help redistribute __________ from higher-income to lower-income groups.',
+      acceptedAnswers: ['income', 'wealth'],
+      explanation: 'Tax revenue can fund transfers or services that support lower-income households.',
+    },
+  ],
+};

@@ -98,11 +98,18 @@ Use the 4.2 rows for fiscal-policy wording when creating slides.
    ```
 2. Edit **`slides.js`** — change the `meta` block and rewrite the `slides` array.
    Each slide is a plain object with a `type` and fields for that type.
-3. Leave **`index.html`** alone unless you're customising the page itself.
+3. Edit **`quiz.js`** for the separate after-class quiz shown at `?view=quiz`.
+   Keep it to short retrieval questions by default, using `multipleChoice` and
+   `fillBlank` question objects.
+4. Leave **`index.html`** alone unless you're customising the page itself.
    It simply imports the engine and your slide data.
-4. Add a card to `index.html` (the landing page) under the matching unit.
+5. Add a card to `index.html` (the landing page) under the matching unit.
 
 That's it. No CSS or JavaScript changes are needed for a new lesson.
+
+Quiz score submission is configured in `assets/js/quiz-config.js`. By default,
+quizzes mark locally only. Set `submissionEnabled: true` and `submitEndpoint`
+to a reachable POST endpoint when you have a score collection service ready.
 
 ### Lesson structure preferences
 

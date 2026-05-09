@@ -107,7 +107,7 @@
     .deck-actions {
       margin-top: auto;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: .65rem;
     }
     .deck-action.primary {
@@ -117,6 +117,10 @@
     .deck-action.secondary {
       color: var(--green);
       border-color: rgba(126,240,181,.28);
+    }
+    .deck-action.quiz {
+      color: var(--gold);
+      border-color: rgba(255,209,102,.34);
     }
     @media (max-width: 720px) {
       .deck-menu {
@@ -148,6 +152,7 @@
         <div class="deck-actions" aria-label="Government budget and spending views">
           <a class="deck-action primary" href="./lesson-1.html">Slide view</a>
           <a class="deck-action secondary" href="./lesson-1.html?view=print">Handout view</a>
+          <a class="deck-action quiz" href="./lesson-1.html?view=quiz">Quiz</a>
         </div>
       </article>
 
@@ -158,6 +163,7 @@
         <div class="deck-actions" aria-label="Taxation views">
           <a class="deck-action primary" href="./lesson-2.html">Slide view</a>
           <a class="deck-action secondary" href="./lesson-2.html?view=print">Handout view</a>
+          <a class="deck-action quiz" href="./lesson-2.html?view=quiz">Quiz</a>
         </div>
       </article>
 
@@ -168,6 +174,7 @@
         <div class="deck-actions" aria-label="Fiscal-policy measures and effects views">
           <a class="deck-action primary" href="./lesson-3.html">Slide view</a>
           <a class="deck-action secondary" href="./lesson-3.html?view=print">Handout view</a>
+          <a class="deck-action quiz" href="./lesson-3.html?view=quiz">Quiz</a>
         </div>
       </article>
     </div>

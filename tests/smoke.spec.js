@@ -59,11 +59,14 @@ test.describe('site smoke', () => {
     await expect(page.getByRole('link', { name: /Review a deck/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Slide view/i }).first()).toBeVisible();
     await expect(page.getByRole('link', { name: /Handout view/i }).first()).toBeVisible();
+    await expect(page.getByRole('link', { name: /^Quiz$/i }).first()).toBeVisible();
     await expect(page.getByRole('heading', { name: /Macroeconomic aims/i })).toBeVisible();
 
     await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(5);
     await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(5);
+    await expect(page.getByRole('link', { name: /^Quiz$/i })).toHaveCount(5);
     await expect(page.getByRole('link', { name: /Handout view/i }).first()).toHaveAttribute('href', /view=print/);
+    await expect(page.getByRole('link', { name: /^Quiz$/i }).first()).toHaveAttribute('href', /view=quiz/);
 
     await expectNoHorizontalOverflow(page);
 
@@ -86,6 +89,7 @@ test.describe('site smoke', () => {
     await expect(page.getByRole('link', { name: /Course index/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Lesson start/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Student print view/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /^Quiz$/i })).toBeVisible();
 
     await expectNoHorizontalOverflow(page);
 
@@ -195,13 +199,75 @@ test.describe('site smoke', () => {
     await expectNoHorizontalOverflow(page);
   });
 
+  test('lesson quiz views render for every available deck', async ({ page }) => {
+    const quizPaths = [
+      'lessons/unit-2-allocation/2-8-market-economic-system/index.html',
+      'lessons/unit-4-government/4-1-macroeconomic-aims/index.html',
+      'lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html',
+      'lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html',
+      'lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html',
+    ];
+
+    for (const quizPath of quizPaths) {
+      await page.goto(pageUrl(quizPath) + '?view=quiz');
+      await expect(page.locator('.quizDeck')).toBeVisible();
+      await expect(page.locator('.quizQuestion')).toHaveCount(8);
+      await expect(page.getByRole('textbox', { name: /^Name$/i })).toBeVisible();
+      await expect(page.getByRole('textbox', { name: /^Class$/i })).toBeVisible();
+      await expect(page.getByRole('link', { name: /Slide mode/i })).toBeVisible();
+      await expect(page.getByRole('link', { name: /Student print view/i })).toBeVisible();
+      await expectNoHorizontalOverflow(page);
+    }
+  });
+
+  test('student quiz marks answers and preserves score when submission fails', async ({ page }) => {
+    await page.route('https://quiz.invalid/submit', async (route) => {
+      await route.fulfill({
+        status: 500,
+        headers: { 'access-control-allow-origin': '*' },
+        body: 'failed',
+      });
+    });
+
+    await page.goto(pageUrl('lessons/unit-4-government/4-1-macroeconomic-aims/index.html') + '?view=quiz');
+    await page.evaluate(() => {
+      window.IGCSE.quizConfig = {
+        submissionEnabled: true,
+        submitEndpoint: 'https://quiz.invalid/submit',
+      };
+    });
+
+    await page.getByRole('textbox', { name: /^Name$/i }).fill('Test Student');
+    await page.getByRole('textbox', { name: /^Class$/i }).fill('10E');
+
+    await page.locator('.quizQuestion').nth(0).getByLabel('The whole economy').check();
+    await page.locator('.quizQuestion').nth(1).getByLabel('Answer').fill('real GDP');
+    await page.locator('.quizQuestion').nth(2).getByLabel('Stable prices').check();
+    await page.locator('.quizQuestion').nth(3).getByLabel('Answer').fill('employment');
+    await page.locator('.quizQuestion').nth(4).getByLabel('Balance of payments stability').check();
+    await page.locator('.quizQuestion').nth(5).getByLabel('Answer').fill('income');
+    await page.locator('.quizQuestion').nth(6).getByLabel('More output may use more resources and create more pollution.').check();
+    await page.locator('.quizQuestion').nth(7).getByLabel('Answer').fill('payments');
+
+    await page.getByRole('button', { name: /Mark quiz/i }).click();
+
+    await expect(page.locator('.quizScore')).toHaveText('8/8 (100%)');
+    await expect(page.locator('.quizQuestion.is-correct')).toHaveCount(8);
+    await expect(page.locator('.quizCorrection').filter({ hasText: /Correct: gdp/i })).toBeVisible();
+    await expect(page.locator('.quizSubmitStatus')).toHaveText(/Submission failed - retry/i);
+    await expect(page.getByRole('button', { name: /Retry submission/i })).toBeVisible();
+    await expectNoHorizontalOverflow(page);
+  });
+
   test('fiscal policy menu links back and offers both views', async ({ page }) => {
     await page.goto(pageUrl('lessons/unit-4-government/4-2-fiscal-policy/index.html'));
 
     await expect(page.getByRole('link', { name: /Course index/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(3);
     await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(3);
+    await expect(page.getByRole('link', { name: /^Quiz$/i })).toHaveCount(3);
     await expect(page.getByRole('link', { name: /Handout view/i }).first()).toHaveAttribute('href', /view=print/);
+    await expect(page.getByRole('link', { name: /^Quiz$/i }).first()).toHaveAttribute('href', /view=quiz/);
 
     await expectNoHorizontalOverflow(page);
   });

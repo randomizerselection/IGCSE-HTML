@@ -1557,6 +1557,328 @@ body.is-handout-mode #deck {
   height: auto;
 }
 
+/* ---------- Student quiz view ---------- */
+body.is-quiz-mode {
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #f6f7f9;
+  color: #172033;
+}
+
+body.is-quiz-mode::before,
+body.is-quiz-mode::after,
+body.is-quiz-mode #notes,
+body.is-quiz-mode #overview,
+body.is-quiz-mode #progress,
+body.is-quiz-mode .help {
+  display: none !important;
+}
+
+body.is-quiz-mode #deck {
+  height: auto;
+}
+
+.quizDeck {
+  width: min(980px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 72px 0 56px;
+}
+
+.quizShell {
+  display: grid;
+  gap: 24px;
+}
+
+.quizHero {
+  border-bottom: 2px solid #172033;
+  padding-bottom: 18px;
+}
+
+.quizKicker,
+.quizHero p {
+  color: #526176;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.quizHero h1 {
+  max-width: 900px;
+  margin: 7px 0;
+  color: #111827;
+  font-size: clamp(34px, 4.8vw, 58px);
+  line-height: 1.02;
+  letter-spacing: 0;
+}
+
+.quizHero p {
+  max-width: 70ch;
+  margin: 0;
+  line-height: 1.45;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.quizForm {
+  display: grid;
+  gap: 22px;
+  background: #fff;
+  border: 1px solid #dde3ec;
+  border-radius: 8px;
+  box-shadow: 0 18px 42px rgba(15, 23, 42, .08);
+  padding: clamp(18px, 4vw, 36px);
+}
+
+.quizIdentity {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  border: 1px solid #dbe3ee;
+  border-radius: 8px;
+  background: #f8fafc;
+  padding: 14px;
+}
+
+.quizIdentity label,
+.quizBlank {
+  display: grid;
+  gap: 6px;
+}
+
+.quizIdentity span,
+.quizBlank span {
+  color: #334155;
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.quizIdentity input,
+.quizBlank input {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #fff;
+  color: #111827;
+  font: 650 15px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  padding: 9px 11px;
+}
+
+.quizIdentity input:focus,
+.quizBlank input:focus {
+  border-color: #2563eb;
+  outline: 3px solid rgba(37, 99, 235, .16);
+}
+
+.quizQuestions {
+  display: grid;
+  gap: 16px;
+}
+
+.quizQuestion {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  border: 1px solid #dbe3ee;
+  border-left: 5px solid #cad3df;
+  border-radius: 8px;
+  background: #fff;
+  padding: 16px;
+}
+
+.quizQuestion.is-correct {
+  border-left-color: #0f766e;
+}
+
+.quizQuestion.is-incorrect {
+  border-left-color: #dc2626;
+}
+
+.quizQuestion legend {
+  display: grid;
+  gap: 5px;
+  padding: 0;
+  color: #111827;
+}
+
+.quizQuestion legend span {
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.quizQuestion legend b {
+  display: block;
+  color: #111827;
+  font-size: 18px;
+  line-height: 1.32;
+}
+
+.quizChoices {
+  display: grid;
+  gap: 8px;
+}
+
+.quizChoice {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: 10px;
+  align-items: center;
+  min-height: 44px;
+  border: 1px solid #dbe3ee;
+  border-radius: 8px;
+  background: #fbfcfe;
+  color: #263244;
+  padding: 9px 11px;
+  cursor: pointer;
+}
+
+.quizChoice:has(input:focus-visible) {
+  border-color: #2563eb;
+  outline: 3px solid rgba(37, 99, 235, .16);
+}
+
+.quizChoice.is-selected {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.quizChoice.is-answer {
+  border-color: #0f766e;
+  background: #ecfdf5;
+}
+
+.quizChoice input {
+  margin: 0;
+}
+
+.quizChoiceLetter {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: #e0f2fe;
+  color: #0369a1;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.quizCorrection {
+  border: 1px solid #dbe3ee;
+  border-radius: 8px;
+  background: #f8fafc;
+  padding: 10px 12px;
+}
+
+.quizCorrection[hidden],
+.quizResult[hidden],
+[data-quiz-retry][hidden],
+[data-quiz-reset][hidden] {
+  display: none !important;
+}
+
+.quizCorrection b {
+  display: block;
+  color: #111827;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.quizCorrection p {
+  margin: 4px 0 0;
+  color: #475569;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.quizActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.quizPrimaryButton,
+.quizSecondaryButton {
+  appearance: none;
+  min-height: 44px;
+  border-radius: 8px;
+  font: 850 14px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.quizPrimaryButton {
+  border: 1px solid #1d4ed8;
+  background: #2563eb;
+  color: #fff;
+}
+
+.quizSecondaryButton {
+  border: 1px solid #cbd5e1;
+  background: #fff;
+  color: #172033;
+}
+
+.quizResult {
+  display: grid;
+  gap: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #f8fafc;
+  padding: 14px;
+}
+
+.quizResult div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.quizResult span {
+  color: #526176;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.quizResult strong {
+  color: #111827;
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1;
+}
+
+.quizSubmitStatus {
+  margin: 0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #334155;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.quizSubmitStatus.is-submitted {
+  color: #065f46;
+  background: #d1fae5;
+}
+
+.quizSubmitStatus.is-failed {
+  color: #991b1b;
+  background: #fee2e2;
+}
+
+.quizSubmitStatus.is-pending {
+  color: #1e3a8a;
+  background: #dbeafe;
+}
+
 .handoutDeck {
   width: min(920px, calc(100% - 40px));
   margin: 0 auto;
@@ -1879,6 +2201,31 @@ body.is-handout-mode #deck {
   .handoutDeck {
     width: min(100% - 24px, 720px);
     padding-top: 116px;
+  }
+
+  .quizDeck {
+    width: min(100% - 24px, 720px);
+    padding-top: 116px;
+  }
+
+  .quizIdentity {
+    grid-template-columns: 1fr;
+  }
+
+  .quizForm {
+    padding: 18px;
+  }
+
+  .quizChoice {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .quizChoice input {
+    grid-row: 1;
+  }
+
+  .quizChoiceLetter {
+    display: none;
   }
 
   .handoutDocument {

@@ -1,0 +1,90 @@
+window.IGCSE = window.IGCSE || {};
+
+IGCSE.quiz = {
+  id: '2-8-market-economic-system',
+  version: '1.0.0',
+  title: 'Market economic system quiz',
+  description: 'Check your understanding of market economies, the price mechanism, and market failures.',
+  questions: [
+    {
+      id: 'market-definition',
+      type: 'multipleChoice',
+      prompt: 'Which statement best defines a market economic system?',
+      choices: [
+        'Resources are allocated mainly by demand and supply through prices.',
+        'The government owns all resources and sets all prices.',
+        'All goods and services are provided free by the public sector.',
+        'Firms produce only what the government orders them to produce.',
+      ],
+      answer: 0,
+      explanation: 'A market economy relies mainly on private ownership, demand, supply, prices, and profit incentives.',
+    },
+    {
+      id: 'price-signal',
+      type: 'fillBlank',
+      prompt: 'In a market economy, prices act as signals and __________ for firms and consumers.',
+      acceptedAnswers: ['incentives', 'an incentive'],
+      explanation: 'Higher prices can encourage firms to supply more and consumers to demand less.',
+    },
+    {
+      id: 'demand-price',
+      type: 'multipleChoice',
+      prompt: 'If demand for bubble tea rises and supply is unchanged, what is the most likely short-run effect?',
+      choices: [
+        'Price rises and firms have an incentive to supply more.',
+        'Price falls and firms leave the market immediately.',
+        'The government must set a new price.',
+        'Profit disappears because consumers want more.',
+      ],
+      answer: 0,
+      explanation: 'Higher demand usually raises price, which can raise profit and attract more resources.',
+    },
+    {
+      id: 'private-sector',
+      type: 'fillBlank',
+      prompt: 'Businesses owned by individuals or shareholders are in the __________ sector.',
+      acceptedAnswers: ['private', 'private sector'],
+      explanation: 'The private sector contains firms owned by private individuals or shareholders.',
+    },
+    {
+      id: 'profit-motive',
+      type: 'multipleChoice',
+      prompt: 'Why can profit help allocate resources in a market economy?',
+      choices: [
+        'Profit encourages firms to move resources toward goods consumers want.',
+        'Profit guarantees that every good is affordable.',
+        'Profit removes all external costs.',
+        'Profit means the government controls production.',
+      ],
+      answer: 0,
+      explanation: 'Profit is a reward signal that can pull land, labour, capital, and enterprise into a market.',
+    },
+    {
+      id: 'consumer-sovereignty',
+      type: 'fillBlank',
+      prompt: 'Consumer choices influence production in a market economy; this is often called consumer __________.',
+      acceptedAnswers: ['sovereignty', 'consumer sovereignty'],
+      explanation: 'Consumer sovereignty means consumer demand helps decide what firms produce.',
+    },
+    {
+      id: 'market-failure',
+      type: 'multipleChoice',
+      prompt: 'Which example shows a disadvantage of a market economy?',
+      choices: [
+        'A factory creates pollution costs not paid by the producer.',
+        'A popular product attracts more producers.',
+        'A higher price encourages more supply.',
+        'A firm improves quality to win customers.',
+      ],
+      answer: 0,
+      explanation: 'Pollution is an external cost, so the market price may not reflect the full social cost.',
+    },
+    {
+      id: 'public-good',
+      type: 'fillBlank',
+      prompt: 'Street lighting is often provided by government because it has features of a public __________.',
+      acceptedAnswers: ['good', 'public good'],
+      explanation: 'Public goods are difficult to exclude non-payers from and may be underprovided by markets.',
+    },
+  ],
+};

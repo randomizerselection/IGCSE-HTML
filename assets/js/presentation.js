@@ -705,10 +705,18 @@ function isHandoutView() {
   return ['print', 'handout', 'student'].includes(String(view || '').toLowerCase());
 }
 
+function isQuizView() {
+  const view = new URLSearchParams(location.search).get('view');
+  return String(view || '').toLowerCase() === 'quiz';
+}
+
 function lessonViewUrl(view) {
   const url = new URL(location.href);
   if (view === 'handout') {
     url.searchParams.set('view', 'print');
+    url.hash = '';
+  } else if (view === 'quiz') {
+    url.searchParams.set('view', 'quiz');
     url.hash = '';
   } else {
     url.searchParams.delete('view');
@@ -732,18 +740,29 @@ function mountLessonModeSwitch(mode) {
   const nav = document.createElement('nav');
   nav.className = 'lessonModeSwitch';
   nav.setAttribute('aria-label', 'Lesson navigation');
-  nav.innerHTML = mode === 'handout'
-    ? `
+  if (mode === 'handout') {
+    nav.innerHTML = `
       <a class="lessonModeButton" href="${esc(courseIndexUrl())}">Course index</a>
       <a class="lessonModeButton" href="${esc(lessonStartUrl())}">Lesson start</a>
       <button type="button" class="lessonModeButton" data-print-lesson>Print</button>
       <a class="lessonModeButton" href="${esc(lessonViewUrl('slides'))}">Slide mode</a>
-    `
-    : `
+      <a class="lessonModeButton" href="${esc(lessonViewUrl('quiz'))}">Quiz</a>
+    `;
+  } else if (mode === 'quiz') {
+    nav.innerHTML = `
       <a class="lessonModeButton" href="${esc(courseIndexUrl())}">Course index</a>
       <a class="lessonModeButton" href="${esc(lessonStartUrl())}">Lesson start</a>
       <a class="lessonModeButton" href="${esc(lessonViewUrl('handout'))}">Student print view</a>
+      <a class="lessonModeButton" href="${esc(lessonViewUrl('slides'))}">Slide mode</a>
     `;
+  } else {
+    nav.innerHTML = `
+      <a class="lessonModeButton" href="${esc(courseIndexUrl())}">Course index</a>
+      <a class="lessonModeButton" href="${esc(lessonStartUrl())}">Lesson start</a>
+      <a class="lessonModeButton" href="${esc(lessonViewUrl('handout'))}">Student print view</a>
+      <a class="lessonModeButton" href="${esc(lessonViewUrl('quiz'))}">Quiz</a>
+    `;
+  }
   nav.querySelector('[data-print-lesson]')?.addEventListener('click', () => window.print());
   document.body.appendChild(nav);
 }
@@ -952,6 +971,7 @@ function renderHandoutSections(slides) {
 
 function mountHandoutLesson(meta, slides, mountEl) {
   document.body.classList.add('is-handout-mode');
+  document.body.classList.remove('is-quiz-mode');
   if (meta.title) document.title = `${meta.lessonLabel || meta.title} - Student print view`;
   mountLessonModeSwitch('handout');
 
@@ -1037,6 +1057,16 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
     return { mode: 'handout' };
   }
 
+  if (isQuizView()) {
+    mountLessonModeSwitch('quiz');
+    if (typeof IGCSE.mountQuizLesson === 'function') {
+      return IGCSE.mountQuizLesson(lesson, IGCSE.quiz, mountEl);
+    }
+    console.error('mountLesson: quiz runtime is required for quiz view');
+    return { mode: 'quiz' };
+  }
+
+  document.body.classList.remove('is-quiz-mode');
   document.body.classList.remove('is-handout-mode');
   mountLessonModeSwitch('slides');
 
