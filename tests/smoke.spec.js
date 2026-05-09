@@ -259,6 +259,50 @@ test.describe('site smoke', () => {
     await expectNoHorizontalOverflow(page);
   });
 
+  test('student quiz submits to configured Netlify form endpoint', async ({ page }) => {
+    let submissionBody = '';
+    await page.route('https://example.test/', async (route) => {
+      submissionBody = route.request().postData() || '';
+      await route.fulfill({ status: 200, body: 'ok' });
+    });
+
+    await page.goto(pageUrl('lessons/unit-4-government/4-1-macroeconomic-aims/index.html') + '?view=quiz');
+    await page.evaluate(() => {
+      window.IGCSE.quizConfig = {
+        submissionEnabled: true,
+        provider: 'netlify-forms',
+        formName: 'quiz-submissions',
+        submitEndpoint: 'https://example.test/',
+      };
+    });
+
+    await page.getByRole('textbox', { name: /^Name$/i }).fill('Test Student');
+    await page.getByRole('textbox', { name: /^Class$/i }).fill('10E');
+
+    await page.locator('.quizQuestion').nth(0).getByLabel('The whole economy').check();
+    await page.locator('.quizQuestion').nth(1).getByLabel('Answer').fill('real GDP');
+    await page.locator('.quizQuestion').nth(2).getByLabel('Stable prices').check();
+    await page.locator('.quizQuestion').nth(3).getByLabel('Answer').fill('employment');
+    await page.locator('.quizQuestion').nth(4).getByLabel('Balance of payments stability').check();
+    await page.locator('.quizQuestion').nth(5).getByLabel('Answer').fill('income');
+    await page.locator('.quizQuestion').nth(6).getByLabel('More output may use more resources and create more pollution.').check();
+    await page.locator('.quizQuestion').nth(7).getByLabel('Answer').fill('payments');
+
+    await page.getByRole('button', { name: /Mark quiz/i }).click();
+
+    await expect(page.locator('.quizScore')).toHaveText('8/8 (100%)');
+    await expect(page.locator('.quizSubmitStatus')).toHaveText(/Score submitted to your teacher/i);
+
+    const submitted = new URLSearchParams(submissionBody);
+    expect(submitted.get('form-name')).toBe('quiz-submissions');
+    expect(submitted.get('studentName')).toBe('Test Student');
+    expect(submitted.get('studentClass')).toBe('10E');
+    expect(submitted.get('lessonCode')).toBe('4.1.1');
+    expect(submitted.get('score')).toBe('8');
+    expect(submitted.get('maxScore')).toBe('8');
+    expect(submitted.get('responsesJson')).toContain('growth-measure');
+  });
+
   test('fiscal policy menu links back and offers both views', async ({ page }) => {
     await page.goto(pageUrl('lessons/unit-4-government/4-2-fiscal-policy/index.html'));
 

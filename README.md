@@ -107,9 +107,11 @@ Use the 4.2 rows for fiscal-policy wording when creating slides.
 
 That's it. No CSS or JavaScript changes are needed for a new lesson.
 
-Quiz score submission is configured in `assets/js/quiz-config.js`. By default,
-quizzes mark locally only. Set `submissionEnabled: true` and `submitEndpoint`
-to a reachable POST endpoint when you have a score collection service ready.
+Quiz score submission is configured in `assets/js/quiz-config.js`. The site is
+set up for Netlify Forms: quiz attempts post to the hidden
+`quiz-submissions` form in `index.html`, and Netlify stores the submissions for
+dashboard review and CSV export. After deployment, check Netlify → Forms →
+`quiz-submissions`.
 
 ### Lesson structure preferences
 
