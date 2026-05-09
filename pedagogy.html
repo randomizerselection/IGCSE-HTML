@@ -13,9 +13,9 @@
     :root {
       --page-max: 1180px;
       --panel-radius: 8px;
-      --philosophy-line: rgba(255, 255, 255, .13);
-      --copy-size: clamp(16px, 1.12vw, 20px);
-      --compact-copy-size: clamp(15px, 1vw, 18px);
+      --philosophy-line: rgba(255, 255, 255, .14);
+      --copy-size: clamp(16px, 1.05vw, 19px);
+      --compact-copy-size: clamp(14px, .95vw, 17px);
     }
 
     body {
@@ -30,7 +30,7 @@
     .site {
       width: min(var(--page-max), calc(100% - 40px));
       margin: 0 auto;
-      padding: 24px 0 58px;
+      padding: 22px 0 58px;
     }
 
     .topbar {
@@ -38,7 +38,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 1rem;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       color: var(--muted);
       font-size: 14px;
       line-height: 1.35;
@@ -47,8 +47,8 @@
     .topbar a {
       display: inline-flex;
       align-items: center;
-      min-height: 38px;
-      padding: .6rem .78rem;
+      min-height: 36px;
+      padding: .55rem .75rem;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: rgba(255,255,255,.055);
@@ -57,27 +57,32 @@
       text-decoration: none;
     }
 
+    .topbar span {
+      text-align: right;
+    }
+
     .hero {
       position: relative;
       overflow: hidden;
       border: 1px solid var(--line);
       border-radius: var(--panel-radius);
       background:
-        linear-gradient(135deg, rgba(86,216,255,.12), rgba(255,255,255,.035) 44%, rgba(255,209,102,.08)),
+        linear-gradient(135deg, rgba(86,216,255,.13), rgba(255,255,255,.04) 46%, rgba(255,209,102,.09)),
         var(--bg-1);
+      box-shadow: var(--shadow-sm);
     }
 
     .hero-inner {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(280px, .86fr);
-      gap: clamp(22px, 4vw, 48px);
-      align-items: start;
-      padding: clamp(24px, 4.2vw, 54px);
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, .72fr);
+      gap: clamp(24px, 4vw, 52px);
+      align-items: stretch;
+      padding: clamp(24px, 4.4vw, 56px);
     }
 
     .hero-main {
       display: grid;
-      gap: 1.2rem;
+      gap: 1.25rem;
       align-content: start;
     }
 
@@ -102,10 +107,10 @@
     }
 
     h1 {
-      max-width: 12ch;
+      max-width: 11ch;
       margin: 0;
-      font-size: clamp(48px, 7.3vw, 104px);
-      line-height: 1;
+      font-size: clamp(48px, 7vw, 96px);
+      line-height: .98;
       letter-spacing: 0;
       font-weight: 900;
       text-wrap: balance;
@@ -121,22 +126,23 @@
 
     .lead-grid {
       display: grid;
-      gap: 1rem;
+      gap: .9rem;
+      max-width: 56ch;
       color: var(--ink-dim);
     }
 
     .lead-grid p {
-      font-size: clamp(17px, 1.38vw, 23px);
+      font-size: clamp(17px, 1.22vw, 22px);
       line-height: 1.45;
     }
 
     .author-card {
       display: grid;
-      grid-template-columns: 78px minmax(0, 1fr);
-      gap: .9rem;
+      grid-template-columns: 68px minmax(0, 1fr);
+      gap: .85rem;
       align-items: center;
-      width: min(100%, 520px);
-      padding: .9rem 1rem;
+      width: min(100%, 500px);
+      padding: .85rem .95rem;
       border: 1px solid rgba(255,209,102,.34);
       border-radius: var(--panel-radius);
       background:
@@ -146,7 +152,7 @@
     }
 
     .author-card img {
-      width: 70px;
+      width: 60px;
       aspect-ratio: 1;
       border-radius: 50%;
       border: 1px solid rgba(255,255,255,.42);
@@ -157,7 +163,7 @@
     .author-card strong {
       display: block;
       color: #fff;
-      font-size: clamp(20px, 1.7vw, 29px);
+      font-size: clamp(20px, 1.45vw, 26px);
       line-height: 1.08;
       letter-spacing: 0;
     }
@@ -170,22 +176,94 @@
       line-height: 1.38;
     }
 
+    .model-panel {
+      display: grid;
+      align-content: start;
+      gap: 1rem;
+      min-height: 100%;
+      padding: clamp(18px, 2.4vw, 28px);
+      border: 1px solid rgba(86,216,255,.24);
+      border-radius: var(--panel-radius);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.03)),
+        rgba(7,17,31,.42);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .model-kicker {
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .model-panel h2 {
+      color: #fff;
+      font-size: clamp(27px, 2.5vw, 42px);
+      line-height: 1.06;
+      letter-spacing: 0;
+    }
+
+    .model-panel p {
+      color: var(--ink-dim);
+      font-size: var(--copy-size);
+      line-height: 1.5;
+    }
+
+    .model-list {
+      display: grid;
+      gap: .65rem;
+      margin-top: .25rem;
+    }
+
+    .model-item {
+      display: grid;
+      grid-template-columns: 2.35rem minmax(0, 1fr);
+      gap: .75rem;
+      align-items: start;
+      padding: .75rem;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--panel-radius);
+      background: rgba(255,255,255,.045);
+    }
+
+    .model-item b {
+      display: grid;
+      place-items: center;
+      width: 2.2rem;
+      aspect-ratio: 1;
+      border-radius: 999px;
+      background: rgba(126,240,181,.14);
+      border: 1px solid rgba(126,240,181,.38);
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .model-item span {
+      color: #fff;
+      font-size: var(--compact-copy-size);
+      font-weight: 800;
+      line-height: 1.25;
+    }
+
     .zh {
       color: #edf4ff;
       font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", ui-sans-serif, system-ui, sans-serif;
     }
 
     .section {
-      margin: 38px 0 0;
+      margin: 50px 0 0;
     }
 
     .section-head {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(260px, 430px);
-      gap: 2rem;
-      align-items: end;
-      margin-bottom: 1rem;
-      padding-bottom: 1rem;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+      gap: clamp(1.2rem, 3vw, 2.4rem);
+      align-items: start;
+      margin-bottom: 1.4rem;
+      padding-bottom: 1.05rem;
       border-bottom: 1px solid var(--line);
     }
 
@@ -199,9 +277,10 @@
     }
 
     h2 {
-      font-size: clamp(32px, 4vw, 62px);
-      line-height: 1.02;
+      font-size: clamp(30px, 3.35vw, 52px);
+      line-height: 1.04;
       letter-spacing: 0;
+      text-wrap: balance;
     }
 
     .section-intro {
@@ -210,32 +289,193 @@
       line-height: 1.55;
     }
 
-    .bilingual-stack {
+    .cycle {
       display: grid;
-      gap: .85rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border: 1px solid rgba(86,216,255,.18);
+      border-radius: var(--panel-radius);
+      background:
+        linear-gradient(180deg, rgba(86,216,255,.055), rgba(255,255,255,.025)),
+        rgba(255,255,255,.025);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
     }
 
-    .bilingual-row {
+    .cycle-step {
+      position: relative;
+      display: grid;
+      grid-template-columns: 3rem minmax(0, 1fr);
+      gap: .9rem;
+      min-height: 178px;
+      padding: 1.1rem;
+      border-right: 1px solid rgba(255,255,255,.1);
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .cycle-step:nth-child(2n) {
+      border-right: 0;
+    }
+
+    .cycle-step:nth-last-child(-n + 2) {
+      border-bottom: 0;
+    }
+
+    .cycle-step b {
+      display: grid;
+      place-items: center;
+      grid-row: 1 / span 3;
+      width: 2.65rem;
+      height: 2.65rem;
+      border-radius: 999px;
+      background: var(--gold);
+      color: #07111f;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .cycle-step h3 {
+      grid-column: 2;
+      margin: 0 0 .45rem;
+      color: #fff;
+      font-size: clamp(20px, 1.35vw, 25px);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .cycle-step p {
+      grid-column: 2;
+      color: var(--muted);
+      font-size: var(--compact-copy-size);
+      line-height: 1.45;
+    }
+
+    .cycle-step p + p {
+      margin-top: .45rem;
+    }
+
+    .matrix {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: .75rem;
+    }
+
+    .matrix-card {
+      position: relative;
+      min-height: 232px;
+      padding: 1rem 1rem 1.1rem;
+      border: 1px solid rgba(126,240,181,.24);
+      border-radius: var(--panel-radius);
+      background:
+        linear-gradient(180deg, rgba(126,240,181,.07), rgba(255,255,255,.035)),
+        rgba(255,255,255,.03);
+      overflow: hidden;
+    }
+
+    .matrix-card::before {
+      content: "";
+      display: block;
+      width: 44px;
+      height: 3px;
+      margin-bottom: .8rem;
+      border-radius: 999px;
+      background: var(--green);
+    }
+
+    .matrix-card h3 {
+      margin: 0 0 .55rem;
+      color: var(--green);
+      font-size: clamp(19px, 1.35vw, 25px);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .matrix-card p {
+      color: var(--ink-dim);
+      font-size: var(--compact-copy-size);
+      line-height: 1.5;
+    }
+
+    .matrix-card p + p {
+      margin-top: .5rem;
+    }
+
+    .attribute-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      margin-top: 1rem;
+    }
+
+    .attribute-strip span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: .45rem .65rem;
+      border: 1px solid rgba(255,209,102,.32);
+      border-radius: 999px;
+      background: rgba(255,209,102,.08);
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .audience-bands {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .audience-band {
+      display: grid;
+      grid-template-columns: minmax(180px, .42fr) minmax(0, 1fr);
+      gap: 1.2rem;
+      padding: clamp(16px, 2vw, 24px);
+      border: 1px solid var(--philosophy-line);
+      border-radius: var(--panel-radius);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.075), rgba(255,255,255,.025)),
+        rgba(255,255,255,.03);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .audience-label {
+      display: grid;
+      align-content: start;
+      gap: .55rem;
+      padding-right: 1rem;
+      border-right: 1px solid rgba(255,255,255,.12);
+    }
+
+    .audience-label span {
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .audience-label h3 {
+      color: #fff;
+      font-size: clamp(24px, 2vw, 34px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .audience-copy {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: .9rem;
-      align-items: stretch;
+      gap: 1rem;
+      align-items: start;
     }
 
     .panel {
       min-width: 0;
-      padding: 1rem 1.05rem;
-      border: 1px solid var(--philosophy-line);
-      border-radius: var(--panel-radius);
-      background: rgba(255,255,255,.045);
-      box-shadow: var(--shadow-sm);
     }
 
     .panel h3 {
       margin: 0 0 .55rem;
       color: #fff;
-      font-size: clamp(22px, 2vw, 33px);
-      line-height: 1.08;
+      font-size: clamp(20px, 1.45vw, 27px);
+      line-height: 1.1;
       letter-spacing: 0;
     }
 
@@ -255,114 +495,12 @@
     .panel ul {
       display: grid;
       gap: .45rem;
-      margin: .7rem 0 0;
+      margin: .75rem 0 0;
       padding-left: 1.15rem;
     }
 
-    .cycle {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: .85rem;
-    }
-
-    .cycle-step {
-      position: relative;
-      min-height: 226px;
-      padding: 1rem;
-      border: 1px solid var(--line);
-      border-radius: var(--panel-radius);
-      background:
-        linear-gradient(145deg, rgba(255,255,255,.085), rgba(255,255,255,.035)),
-        rgba(255,255,255,.025);
-    }
-
-    .cycle-step b {
-      display: grid;
-      place-items: center;
-      width: 2.35rem;
-      height: 2.35rem;
-      margin-bottom: .8rem;
-      border-radius: 999px;
-      background: var(--gold);
-      color: #07111f;
-      font-size: 18px;
-      font-weight: 900;
-    }
-
-    .cycle-step h3 {
-      margin: 0 0 .45rem;
-      color: #fff;
-      font-size: clamp(18px, 1.35vw, 24px);
-      line-height: 1.12;
-      letter-spacing: 0;
-    }
-
-    .cycle-step p {
-      color: var(--muted);
-      font-size: var(--compact-copy-size);
-      line-height: 1.45;
-    }
-
-    .cycle-step p + p {
-      margin-top: .45rem;
-    }
-
-    .matrix {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: .8rem;
-    }
-
-    .matrix-card {
-      min-height: 212px;
-      padding: 1rem;
-      border: 1px solid rgba(126,240,181,.24);
-      border-radius: var(--panel-radius);
-      background:
-        linear-gradient(145deg, rgba(126,240,181,.075), rgba(255,255,255,.035)),
-        rgba(255,255,255,.03);
-    }
-
-    .matrix-card h3 {
-      margin: 0 0 .55rem;
-      color: var(--green);
-      font-size: clamp(20px, 1.55vw, 27px);
-      line-height: 1.12;
-      letter-spacing: 0;
-    }
-
-    .matrix-card p {
-      color: var(--ink-dim);
-      font-size: var(--compact-copy-size);
-      line-height: 1.5;
-    }
-
-    .matrix-card p + p {
-      margin-top: .5rem;
-    }
-
-    .attribute-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .55rem;
-      margin-top: .95rem;
-    }
-
-    .attribute-strip span {
-      display: inline-flex;
-      align-items: center;
-      min-height: 34px;
-      padding: .45rem .65rem;
-      border: 1px solid rgba(255,209,102,.32);
-      border-radius: 999px;
-      background: rgba(255,209,102,.08);
-      color: var(--gold);
-      font-size: 13px;
-      font-weight: 850;
-    }
-
     .source-note {
-      margin-top: 2rem;
+      margin-top: 2.2rem;
       padding: 1rem;
       border: 1px solid rgba(255,209,102,.28);
       border-radius: var(--panel-radius);
@@ -380,6 +518,12 @@
       font-weight: 850;
       letter-spacing: .1em;
       text-transform: uppercase;
+    }
+
+    .source-note p {
+      color: var(--ink-dim);
+      font-size: 15px;
+      line-height: 1.55;
     }
 
     .source-note a {
@@ -412,13 +556,21 @@
     @media (max-width: 980px) {
       .hero-inner,
       .section-head,
-      .bilingual-row,
+      .audience-band,
+      .audience-copy,
       .matrix {
         grid-template-columns: 1fr;
       }
 
-      .cycle {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .topbar span {
+        text-align: left;
+      }
+
+      .audience-label {
+        padding-right: 0;
+        padding-bottom: .9rem;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,.12);
       }
     }
 
@@ -438,11 +590,11 @@
       }
 
       h1 {
-        font-size: clamp(39px, 10.6vw, 52px);
+        font-size: clamp(38px, 10.4vw, 50px);
       }
 
       .lead-grid p {
-        font-size: 17px;
+        font-size: 16px;
       }
 
       .cycle {
@@ -451,6 +603,12 @@
 
       .cycle-step {
         min-height: 0;
+        grid-template-columns: 2.8rem minmax(0, 1fr);
+        border-right: 0;
+      }
+
+      .cycle-step:nth-last-child(2) {
+        border-bottom: 1px solid rgba(255,255,255,.1);
       }
 
       .author-card {
@@ -459,6 +617,10 @@
 
       .author-card img {
         width: 54px;
+      }
+
+      .model-item {
+        grid-template-columns: 2.25rem minmax(0, 1fr);
       }
     }
   </style>
@@ -475,12 +637,22 @@
       <div class="hero-inner">
         <div class="hero-main">
           <div>
-          <div class="eyebrow">For teachers and parents / 面向教师与家长</div>
-          <h1>
-            <span>Teaching</span>
-            <span>Philosophy</span>
-            <span class="zh" lang="zh-CN">教学理念</span>
-          </h1>
+            <div class="eyebrow">For teachers and parents / 面向教师与家长</div>
+            <h1>
+              <span>Teaching</span>
+              <span>Philosophy</span>
+              <span class="zh" lang="zh-CN">教学理念</span>
+            </h1>
+          </div>
+          <div class="lead-grid">
+            <p>
+              These IGCSE Economics lessons are designed so students do more than remember definitions.
+              They learn to explain mechanisms, test ideas, use evidence and build exam-ready judgement.
+            </p>
+            <p class="zh" lang="zh-CN">
+              这些 IGCSE 经济学课程不只帮助学生记忆定义，更强调解释经济机制、检验观点、使用证据，
+              并逐步形成适合考试要求的分析和判断能力。
+            </p>
           </div>
           <div class="author-card" aria-label="Author information">
             <img src="assets/images/profile/samuel-oehler-huang.jpg" alt="Samuel Oehler-Huang" loading="lazy" />
@@ -491,16 +663,30 @@
             </div>
           </div>
         </div>
-        <div class="lead-grid">
+        <aside class="model-panel" aria-label="Learning model summary">
+          <div class="model-kicker">Learning model</div>
+          <h2>Context, concepts, retrieval, judgement.</h2>
           <p>
-            These IGCSE Economics lessons are designed so students do more than remember definitions.
-            They learn to explain mechanisms, test ideas, use evidence and build exam-ready judgement.
+            The course is built around a repeatable classroom sequence that moves from curiosity to confident explanation.
           </p>
           <p class="zh" lang="zh-CN">
-            这些 IGCSE 经济学课程不只帮助学生记忆定义，更强调解释经济机制、检验观点、使用证据，
-            并逐步形成适合考试要求的分析和判断能力。
+            课程围绕可重复的课堂学习序列设计，帮助学生从好奇进入概念理解，并逐步形成有信心的考试表达。
           </p>
-        </div>
+          <div class="model-list">
+            <div class="model-item">
+              <b>01</b>
+              <span>Real economic problems create a reason to learn.</span>
+            </div>
+            <div class="model-item">
+              <b>02</b>
+              <span>Concepts are taught in small, exam-ready steps.</span>
+            </div>
+            <div class="model-item">
+              <b>03</b>
+              <span>Quizzes and prompts turn knowledge into explanation.</span>
+            </div>
+          </div>
+        </aside>
       </div>
     </header>
 
@@ -631,60 +817,70 @@
         </div>
       </div>
 
-      <div class="bilingual-stack">
-        <div class="bilingual-row">
-          <article class="panel">
+      <div class="audience-bands">
+        <article class="audience-band">
+          <div class="audience-label">
+            <span>Home review</span>
             <h3>For parents</h3>
-            <p>
-              Students can reopen the exact lesson sequence used in class. This matters because effective revision is not simply reading notes:
-              students need to retrieve ideas, explain links and notice where their understanding is incomplete.
-            </p>
-            <ul>
-              <li>Slide view recreates the classroom learning path.</li>
-              <li>Handout view supports calmer review and printing.</li>
-              <li>Quiz view gives quick feedback after independent study.</li>
-            </ul>
-          </article>
-          <article class="panel zh" lang="zh-CN">
-            <h3>面向家长</h3>
-            <p>
-              学生可以课后重新打开课堂上使用的同一套学习流程。有效复习不是简单看笔记，
-              而是要主动回忆概念、解释因果链条，并发现自己还不清楚的地方。
-            </p>
-            <ul>
-              <li>幻灯片模式帮助学生重走课堂学习路径。</li>
-              <li>讲义模式适合安静复习，也便于打印。</li>
-              <li>测验模式让学生在自主学习后获得即时反馈。</li>
-            </ul>
-          </article>
-        </div>
+            <h3 class="zh" lang="zh-CN">面向家长</h3>
+          </div>
+          <div class="audience-copy">
+            <div class="panel">
+              <p>
+                Students can reopen the exact lesson sequence used in class. This matters because effective revision is not simply reading notes:
+                students need to retrieve ideas, explain links and notice where their understanding is incomplete.
+              </p>
+              <ul>
+                <li>Slide view recreates the classroom learning path.</li>
+                <li>Handout view supports calmer review and printing.</li>
+                <li>Quiz view gives quick feedback after independent study.</li>
+              </ul>
+            </div>
+            <div class="panel zh" lang="zh-CN">
+              <p>
+                学生可以课后重新打开课堂上使用的同一套学习流程。有效复习不是简单看笔记，
+                而是要主动回忆概念、解释因果链条，并发现自己还不清楚的地方。
+              </p>
+              <ul>
+                <li>幻灯片模式帮助学生重走课堂学习路径。</li>
+                <li>讲义模式适合安静复习，也便于打印。</li>
+                <li>测验模式让学生在自主学习后获得即时反馈。</li>
+              </ul>
+            </div>
+          </div>
+        </article>
 
-        <div class="bilingual-row">
-          <article class="panel">
+        <article class="audience-band">
+          <div class="audience-label">
+            <span>Classroom design</span>
             <h3>For teachers</h3>
-            <p>
-              Each lesson is built as a teachable sequence: attention is focused first, concepts are introduced in small steps,
-              checks are placed before misconceptions harden, and exam prompts require students to turn knowledge into explanation.
-            </p>
-            <ul>
-              <li>Partial reveals manage cognitive load when a chain or comparison is dense.</li>
-              <li>Real-world facts make abstract syllabus points concrete.</li>
-              <li>Exam prompts rehearse analysis, balance, limitation and judgement.</li>
-            </ul>
-          </article>
-          <article class="panel zh" lang="zh-CN">
-            <h3>面向教师</h3>
-            <p>
-              每节课都被设计成可教学的序列：先集中注意力，再分步骤建立概念，
-              在错误理解固定下来之前进行检查，最后用考试题型促使学生把知识转化为解释。
-            </p>
-            <ul>
-              <li>逐步呈现用于降低复杂因果链和对比内容的认知负荷。</li>
-              <li>真实案例让抽象考纲内容变得具体。</li>
-              <li>考试练习训练分析、正反平衡、局限性和判断。</li>
-            </ul>
-          </article>
-        </div>
+            <h3 class="zh" lang="zh-CN">面向教师</h3>
+          </div>
+          <div class="audience-copy">
+            <div class="panel">
+              <p>
+                Each lesson is built as a teachable sequence: attention is focused first, concepts are introduced in small steps,
+                checks are placed before misconceptions harden, and exam prompts require students to turn knowledge into explanation.
+              </p>
+              <ul>
+                <li>Partial reveals manage cognitive load when a chain or comparison is dense.</li>
+                <li>Real-world facts make abstract syllabus points concrete.</li>
+                <li>Exam prompts rehearse analysis, balance, limitation and judgement.</li>
+              </ul>
+            </div>
+            <div class="panel zh" lang="zh-CN">
+              <p>
+                每节课都被设计成可教学的序列：先集中注意力，再分步骤建立概念，
+                在错误理解固定下来之前进行检查，最后用考试题型促使学生把知识转化为解释。
+              </p>
+              <ul>
+                <li>逐步呈现用于降低复杂因果链和对比内容的认知负荷。</li>
+                <li>真实案例让抽象考纲内容变得具体。</li>
+                <li>考试练习训练分析、正反平衡、局限性和判断。</li>
+              </ul>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 
