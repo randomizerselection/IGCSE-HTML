@@ -308,6 +308,128 @@ h2 .inlineZh {
   white-space: normal;
 }
 
+/* ---------- Private / external / social relationship diagram ---------- */
+.socialEffectsVenn {
+  display: grid;
+  gap: .85rem;
+}
+.socialEffectsVenn .lead {
+  max-width: 72ch;
+  font-size: clamp(18px, 1.35vw, 25px);
+  line-height: 1.22;
+}
+.vennGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.vennBox {
+  min-width: 0;
+  display: grid;
+  gap: .65rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: rgba(255,255,255,.055);
+}
+.vennBox h3 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(24px, 1.9vw, 34px);
+  line-height: 1.08;
+}
+.vennDiagram {
+  position: relative;
+  height: clamp(190px, 27vh, 280px);
+  border-radius: var(--r-md);
+  background: rgba(0,0,0,.14);
+  overflow: hidden;
+}
+.vennSocial {
+  position: absolute;
+  inset: 7%;
+  display: grid;
+  align-items: start;
+  justify-items: center;
+  padding-top: .9rem;
+  border: 2px solid rgba(255,209,102,.58);
+  border-radius: 999px;
+  background: rgba(255,209,102,.09);
+}
+.vennSocial span {
+  color: var(--gold);
+  font-size: clamp(17px, 1.25vw, 24px);
+  line-height: 1;
+  font-weight: 920;
+}
+.vennPrivate,
+.vennExternal {
+  position: absolute;
+  top: 34%;
+  width: 34%;
+  height: 42%;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: .25rem;
+  padding: .65rem .5rem;
+  border-radius: calc(var(--r-md) - 2px);
+  text-align: center;
+}
+.vennPrivate {
+  left: 14%;
+  background: rgba(86,216,255,.22);
+  border: 1px solid rgba(86,216,255,.52);
+}
+.vennPrivate::after {
+  content: "+";
+  position: absolute;
+  left: calc(100% + .38rem);
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255,.82);
+  font-size: clamp(24px, 2vw, 36px);
+  line-height: 1;
+  font-weight: 920;
+}
+.vennExternal {
+  right: 14%;
+  background: rgba(126,240,181,.18);
+  border: 1px solid rgba(126,240,181,.48);
+}
+.vennPrivate b,
+.vennExternal b {
+  color: #fff;
+  font-size: clamp(18px, 1.35vw, 26px);
+  line-height: 1.04;
+}
+.vennPrivate em,
+.vennExternal em {
+  color: rgba(255,255,255,.76);
+  font-style: normal;
+  font-size: clamp(12px, .88vw, 16px);
+  line-height: 1.12;
+}
+.vennFormula {
+  min-height: 42px;
+  display: grid;
+  place-items: center;
+  padding: .55rem .75rem;
+  border-radius: calc(var(--r-md) - 4px);
+  background: rgba(86,216,255,.08);
+  border: 1px solid rgba(86,216,255,.22);
+  color: #fff;
+  font-size: clamp(18px, 1.3vw, 26px);
+  line-height: 1.12;
+  font-weight: 860;
+  text-align: center;
+}
+
+@media (max-width: 960px) {
+  .vennGrid { grid-template-columns: 1fr; }
+  .vennDiagram { height: 260px; }
+}
+
 /* ---------- Full-screen discussion slide ---------- */
 .slide.is-discussion {
   isolation: isolate;
@@ -420,7 +542,8 @@ h2 .inlineZh {
   }
   .discussionCredit {
     left: 5vw;
-    right: 5vw;
+    right: auto;
+    width: 88vw;
     bottom: 7vh;
     flex-direction: column;
     align-items: flex-start;
@@ -667,7 +790,8 @@ h2 .inlineZh {
   border-radius: var(--r-md);
   background: rgba(255,255,255,.045);
 }
-.simMode {
+.simMode,
+.failureMode {
   cursor: pointer;
   border: 1px solid transparent;
   border-radius: calc(var(--r-md) - 6px);
@@ -678,7 +802,8 @@ h2 .inlineZh {
   font-weight: 750;
   padding: .65rem .75rem;
 }
-.simMode.is-active {
+.simMode.is-active,
+.failureMode.is-active {
   background: rgba(86,216,255,.16);
   border-color: rgba(86,216,255,.55);
   color: #fff;
@@ -1186,16 +1311,22 @@ h2 .inlineZh {
 
 /* ---------- Market economy interactives ---------- */
 .marketMechanismSim,
+.marketFailureExternalitySim,
+.publicGoodFreeRiderSim,
+.monopolyPowerSim,
+.marketFailureScenarioGame,
 .marketSignalGame {
   display: grid;
   gap: 1rem;
 }
-.marketSimGrid {
+.marketSimGrid,
+.failureSimGrid {
   display: grid;
   grid-template-columns: minmax(320px, .95fr) minmax(360px, 1.05fr);
   gap: 1rem;
 }
-.marketSimPanel {
+.marketSimPanel,
+.failurePanel {
   display: grid;
   gap: .9rem;
   padding: 1rem;
@@ -1203,14 +1334,16 @@ h2 .inlineZh {
   border-radius: var(--r-md);
   background: rgba(255,255,255,.055);
 }
-.marketSimPanel label {
+.marketSimPanel label,
+.failurePanel label {
   display: grid;
   gap: .45rem;
   color: #fff;
   font-size: clamp(16px, 1.05vw, 21px);
   font-weight: 800;
 }
-.marketSimPanel input[type="range"] {
+.marketSimPanel input[type="range"],
+.failurePanel input[type="range"] {
   width: 100%;
   accent-color: var(--gold);
 }
@@ -1251,7 +1384,8 @@ h2 .inlineZh {
   background: linear-gradient(90deg, var(--cyan), var(--gold));
   transition: width .22s var(--ease);
 }
-.marketSimResults {
+.marketSimResults,
+.failureResults {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   align-content: start;
 }
@@ -1386,6 +1520,49 @@ h2 .inlineZh {
 .marketOption.is-muted {
   opacity: .48;
 }
+.failureScenarioGrid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: .65rem;
+}
+.failureScenarioOption {
+  cursor: pointer;
+  min-height: 120px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: .5rem;
+  justify-items: start;
+  align-items: start;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: rgba(255,255,255,.055);
+  color: #fff;
+  font: inherit;
+  padding: .8rem;
+  text-align: left;
+  transition: transform .2s var(--ease), border-color .2s var(--ease), background .2s var(--ease), opacity .2s var(--ease);
+}
+.failureScenarioOption:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: rgba(255,209,102,.55);
+  background: rgba(255,209,102,.12);
+}
+.failureScenarioOption b {
+  align-self: end;
+  font-size: clamp(15px, 1.02vw, 20px);
+  line-height: 1.1;
+}
+.failureScenarioOption.is-correct {
+  border-color: rgba(126,240,181,.72);
+  background: rgba(126,240,181,.14);
+}
+.failureScenarioOption.is-wrong {
+  border-color: rgba(255,107,107,.75);
+  background: rgba(255,107,107,.13);
+}
+.failureScenarioOption.is-muted {
+  opacity: .48;
+}
 .marketGameFeedback:empty {
   display: none;
 }
@@ -1415,14 +1592,18 @@ h2 .inlineZh {
   opacity: .45;
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 960px) {
   .marketSimGrid,
+  .failureSimGrid,
   .marketSimResults,
+  .failureResults,
   .marketGameGrid,
+  .failureScenarioGrid,
   .marketChain,
   .marketGameChain { grid-template-columns: 1fr; }
   .marketSimBars div { grid-template-columns: 1fr; }
-  .marketOption { min-height: 132px; }
+  .marketOption,
+  .failureScenarioOption { min-height: 132px; }
 }
 
 /* ---------- Progress bar ---------- */

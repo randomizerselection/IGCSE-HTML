@@ -291,6 +291,38 @@ const renderers = {
     </div>
   `,
 
+  socialEffectsVenn: (s) => `
+    <div class="socialEffectsVenn">
+      <h2>${esc(s.title)}</h2>
+      ${s.lead ? `<p class="lead">${esc(s.lead)}</p>` : ''}
+      <div class="vennGrid">
+        ${['costs', 'benefits'].map((key) => {
+          const item = s[key] || {};
+          return `
+            <section class="vennBox">
+              <h3>${esc(item.title || '')}</h3>
+              <div class="vennDiagram" aria-label="${esc(item.title || '')}">
+                <div class="vennSocial">
+                  <span>${esc(item.social || '')}</span>
+                </div>
+                <div class="vennPrivate">
+                  <b>${esc(item.private || '')}</b>
+                  <em>${esc(item.privateNote || '')}</em>
+                </div>
+                <div class="vennExternal">
+                  <b>${esc(item.external || '')}</b>
+                  <em>${esc(item.externalNote || '')}</em>
+                </div>
+              </div>
+              <div class="vennFormula">${esc(item.formula || '')}</div>
+            </section>
+          `;
+        }).join('')}
+      </div>
+      ${s.prompt ? `<div class="prompt">${esc(s.prompt)}</div>` : ''}
+    </div>
+  `,
+
   quiz: (s) => `
     <div class="quizBlock">
       ${s.question ? `<p class="lead">${esc(s.question)}</p>` : ''}
@@ -581,6 +613,151 @@ const renderers = {
     </div>
   `,
 
+  marketFailureExternalitySim: (s) => `
+    <div class="marketFailureExternalitySim"
+      data-default-private-benefit="${esc(s.defaultPrivateBenefit ?? 56)}"
+      data-default-private-cost="${esc(s.defaultPrivateCost ?? 44)}"
+      data-default-spillover="${esc(s.defaultSpillover ?? 24)}">
+      <h2>${esc(s.title || 'External cost simulator')}</h2>
+      ${s.lead ? `<p class="lead">${esc(s.lead)}</p>` : ''}
+      <div class="failureSimGrid">
+        <div class="failurePanel">
+          <label>
+            <span class="failureSpilloverLabel">External cost</span>
+            <input class="failureSpillover" type="range" min="0" max="70" step="2" />
+          </label>
+          <div class="marketSimBars">
+            <div><span>Private benefit</span><b class="failurePrivateBenefitValue"></b><i><em class="failurePrivateBenefitBar"></em></i></div>
+            <div><span>Private cost</span><b class="failurePrivateCostValue"></b><i><em class="failurePrivateCostBar"></em></i></div>
+            <div><span class="failureSocialLabel">Social cost</span><b class="failureSocialValue"></b><i><em class="failureSocialBar"></em></i></div>
+          </div>
+        </div>
+        <div class="failurePanel failureResults">
+          <div class="marketMetric">
+            <span>Private cost</span>
+            <b class="failurePrivateCostMetric"></b>
+          </div>
+          <div class="marketMetric">
+            <span>External cost</span>
+            <b class="failureExternalCostMetric"></b>
+          </div>
+          <div class="marketMetric">
+            <span>Social cost</span>
+            <b class="failureSocialCostMetric"></b>
+          </div>
+          <div class="marketChain"></div>
+        </div>
+      </div>
+      <div class="marketTakeaway"></div>
+    </div>
+  `,
+
+  publicGoodFreeRiderSim: (s) => `
+    <div class="publicGoodFreeRiderSim"
+      data-default-people="${esc(s.defaultPeople ?? 80)}"
+      data-default-benefit="${esc(s.defaultBenefit ?? 12)}"
+      data-default-paying="${esc(s.defaultPaying ?? 25)}"
+      data-default-cost="${esc(s.defaultCost ?? 700)}">
+      <h2>${esc(s.title || 'Public good free-rider problem')}</h2>
+      ${s.lead ? `<p class="lead">${esc(s.lead)}</p>` : ''}
+      <div class="failureSimGrid">
+        <div class="failurePanel">
+          <label>
+            <span>Share willing to pay</span>
+            <input class="publicPaying" type="range" min="0" max="100" step="5" />
+          </label>
+          <div class="marketSimBars">
+            <div><span>Willing to pay</span><b class="publicPayingValue"></b><i><em class="publicPayingBar"></em></i></div>
+            <div><span>Private revenue</span><b class="publicRevenueBarValue"></b><i><em class="publicRevenueBar"></em></i></div>
+            <div><span>Cost of provision</span><b class="publicCostBarValue"></b><i><em class="publicCostBar"></em></i></div>
+          </div>
+        </div>
+        <div class="failurePanel failureResults">
+          <div class="marketMetric">
+            <span>Private revenue</span>
+            <b class="publicRevenue"></b>
+          </div>
+          <div class="marketMetric">
+            <span>Social benefit</span>
+            <b class="publicSocialBenefit"></b>
+          </div>
+          <div class="marketMetric">
+            <span>Private outcome</span>
+            <b class="publicOutcome"></b>
+          </div>
+          <div class="marketChain"></div>
+        </div>
+      </div>
+      <div class="marketTakeaway"></div>
+    </div>
+  `,
+
+  monopolyPowerSim: (s) => `
+    <div class="monopolyPowerSim"
+      data-default-competition="${esc(s.defaultCompetition ?? 35)}">
+      <h2>${esc(s.title || 'Monopoly power simulator')}</h2>
+      ${s.lead ? `<p class="lead">${esc(s.lead)}</p>` : ''}
+      <div class="failureSimGrid">
+        <div class="failurePanel">
+          <label>
+            <span>Competition level</span>
+            <input class="monopolyCompetition" type="range" min="0" max="100" step="5" />
+          </label>
+          <div class="marketSimBars">
+            <div><span>Competition</span><b class="monopolyCompetitionValue"></b><i><em class="monopolyCompetitionBar"></em></i></div>
+            <div><span>Price</span><b class="monopolyPriceValue"></b><i><em class="monopolyPriceBar"></em></i></div>
+            <div><span>Output</span><b class="monopolyOutputValue"></b><i><em class="monopolyOutputBar"></em></i></div>
+          </div>
+        </div>
+        <div class="failurePanel failureResults">
+          <div class="marketMetric">
+            <span>Market power</span>
+            <b class="monopolyPowerValue"></b>
+          </div>
+          <div class="marketMetric">
+            <span>Price effect</span>
+            <b class="monopolyImpact"></b>
+          </div>
+          <div class="marketMetric">
+            <span>Output effect</span>
+            <b class="monopolyExam"></b>
+          </div>
+          <div class="marketChain"></div>
+        </div>
+      </div>
+      <div class="marketTakeaway"></div>
+    </div>
+  `,
+
+  marketFailureScenarioGame: (s) => `
+    <div class="marketFailureScenarioGame">
+      <h2>${esc(s.title || 'Classify the market failure')}</h2>
+      ${s.lead ? `<p class="lead">${esc(s.lead)}</p>` : ''}
+      <div class="marketGameTop">
+        <div class="marketGameRound"></div>
+        <div class="marketGameScore"></div>
+      </div>
+      <div class="marketGameScenario"></div>
+      <div class="failureScenarioGrid">
+        <button type="button" class="failureScenarioOption" data-choice="external-cost"><span class="marketOptionCode">EC</span><b>External cost</b></button>
+        <button type="button" class="failureScenarioOption" data-choice="external-benefit"><span class="marketOptionCode">EB</span><b>External benefit</b></button>
+        <button type="button" class="failureScenarioOption" data-choice="merit-good"><span class="marketOptionCode">MG</span><b>Merit good</b></button>
+        <button type="button" class="failureScenarioOption" data-choice="demerit-good"><span class="marketOptionCode">DG</span><b>Demerit good</b></button>
+        <button type="button" class="failureScenarioOption" data-choice="public-good"><span class="marketOptionCode">PG</span><b>Public good</b></button>
+        <button type="button" class="failureScenarioOption" data-choice="inequality"><span class="marketOptionCode">IN</span><b>Inequality</b></button>
+        <button type="button" class="failureScenarioOption" data-choice="monopoly"><span class="marketOptionCode">MO</span><b>Monopoly power</b></button>
+      </div>
+      <div class="marketGameFeedback"></div>
+      <div class="marketGameChain">
+        <span>Identify</span>
+        <span>Explain cause</span>
+        <span>Show consequence</span>
+        <span>Judge market limit</span>
+      </div>
+      <button type="button" class="marketNextSignal">Next scenario</button>
+    </div>
+  `,
+
   marketSignalGame: (s) => `
     <div class="marketSignalGame">
       <h2>${esc(s.title || 'Resource allocation game')}</h2>
@@ -847,6 +1024,7 @@ const handoutContentTypes = new Set([
   'cards',
   'compare',
   'flow',
+  'socialEffectsVenn',
   'split',
   'systemCompare',
   'term',
@@ -904,6 +1082,27 @@ function renderHandoutBlock(slide) {
         ${handoutFlow(slide.nodes || [])}
         ${handoutParagraph(slide.prompt || slide.footer, 'handoutNote')}
       `, 'is-flow');
+
+    case 'socialEffectsVenn':
+      return handoutBlock(slide, `
+        ${handoutParagraph(slide.lead)}
+        <div class="handoutColumns">
+          ${['costs', 'benefits'].map((key) => {
+            const item = slide[key] || {};
+            return `
+              <section>
+                <h4>${esc(item.title || '')}</h4>
+                ${handoutList([
+                  `${item.private || 'Private'}: ${item.privateNote || ''}`,
+                  `${item.external || 'External'}: ${item.externalNote || ''}`,
+                  item.formula || '',
+                ].filter(Boolean))}
+              </section>
+            `;
+          }).join('')}
+        </div>
+        ${handoutParagraph(slide.prompt, 'handoutNote')}
+      `, 'is-compare');
 
     case 'systemCompare':
       return handoutBlock(slide, `
@@ -1089,6 +1288,10 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
   setupChinaIncomeTaxSimulators(mountEl);
   setupIndirectTaxSimulators(mountEl);
   setupMarketMechanismSimulators(mountEl);
+  setupMarketFailureExternalitySimulators(mountEl);
+  setupPublicGoodFreeRiderSimulators(mountEl);
+  setupMonopolyPowerSimulators(mountEl);
+  setupMarketFailureScenarioGames(mountEl);
   setupMarketSignalGames(mountEl);
   setupQuizChoices(mountEl);
   setupFillBlanks(mountEl);
@@ -1270,7 +1473,7 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
   // Click-to-advance (but not on overview / notes / controls)
   mountEl.addEventListener('click', (e) => {
     const target = e.target?.closest ? e.target : null;
-    if (target?.closest('.thumb, #notes, .help, button, a, input, label, select, .taxSim, .chinaTaxSim, .indirectTaxSim, .marketMechanismSim, .marketSignalGame')) return;
+    if (target?.closest('.thumb, #notes, .help, button, a, input, label, select, .taxSim, .chinaTaxSim, .indirectTaxSim, .marketMechanismSim, .marketFailureExternalitySim, .publicGoodFreeRiderSim, .monopolyPowerSim, .marketFailureScenarioGame, .marketSignalGame')) return;
     if (revealNextPartial()) return;
     show(idx + 1);
   });
@@ -1589,6 +1792,258 @@ function setupMarketMechanismSimulators(root) {
     demandInput.addEventListener('input', update);
     costInput.addEventListener('input', update);
     update();
+  });
+}
+
+function setupMarketFailureExternalitySimulators(root) {
+  const sims = [...root.querySelectorAll('.marketFailureExternalitySim')];
+  const number = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
+
+  sims.forEach((sim) => {
+    const spilloverInput = sim.querySelector('.failureSpillover');
+    const privateBenefit = Number(sim.dataset.defaultPrivateBenefit || 56);
+    const privateCost = Number(sim.dataset.defaultPrivateCost || 44);
+    spilloverInput.value = sim.dataset.defaultSpillover || 24;
+
+    const update = () => {
+      const spillover = Number(spilloverInput.value || 0);
+      const socialCost = privateCost + spillover;
+
+      sim.querySelector('.failurePrivateBenefitValue').textContent = number.format(privateBenefit);
+      sim.querySelector('.failurePrivateCostValue').textContent = number.format(privateCost);
+      sim.querySelector('.failureSocialValue').textContent = number.format(socialCost);
+      sim.querySelector('.failurePrivateBenefitBar').style.width = `${privateBenefit}%`;
+      sim.querySelector('.failurePrivateCostBar').style.width = `${privateCost}%`;
+      sim.querySelector('.failureSocialBar').style.width = `${Math.min(100, socialCost)}%`;
+      sim.querySelector('.failurePrivateCostMetric').textContent = number.format(privateCost);
+      sim.querySelector('.failureExternalCostMetric').textContent = number.format(spillover);
+      sim.querySelector('.failureSocialCostMetric').textContent = number.format(socialCost);
+
+      const chain = ['private cost', '+ external cost', '= social cost', 'output may be too high'];
+      sim.querySelector('.marketChain').innerHTML = chain.map((text) => `<span>${esc(text)}</span>`).join('');
+      sim.querySelector('.marketTakeaway').textContent =
+        `Social cost is ${number.format(socialCost)} because it includes the ${number.format(spillover)} external cost. If firms ignore this, the market may produce too much.`;
+    };
+
+    spilloverInput.addEventListener('input', update);
+    update();
+  });
+}
+
+function setupPublicGoodFreeRiderSimulators(root) {
+  const sims = [...root.querySelectorAll('.publicGoodFreeRiderSim')];
+  const money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  });
+
+  sims.forEach((sim) => {
+    const payingInput = sim.querySelector('.publicPaying');
+    const people = Number(sim.dataset.defaultPeople || 80);
+    const benefit = Number(sim.dataset.defaultBenefit || 12);
+    const cost = Number(sim.dataset.defaultCost || 700);
+    payingInput.value = sim.dataset.defaultPaying || 25;
+
+    const update = () => {
+      const paying = Number(payingInput.value || 0);
+      const privateRevenue = people * (paying / 100) * benefit;
+      const socialBenefit = people * benefit;
+      const privateProvides = privateRevenue >= cost;
+      const sociallyWorthwhile = socialBenefit >= cost;
+      const outcome = privateProvides ? 'provided' : 'not provided';
+
+      sim.querySelector('.publicPayingValue').textContent = `${paying}%`;
+      sim.querySelector('.publicRevenueBarValue').textContent = money.format(privateRevenue);
+      sim.querySelector('.publicCostBarValue').textContent = money.format(cost);
+      sim.querySelector('.publicPayingBar').style.width = `${paying}%`;
+      sim.querySelector('.publicRevenueBar').style.width = `${Math.min(100, (privateRevenue / Math.max(cost, 1)) * 100)}%`;
+      sim.querySelector('.publicCostBar').style.width = '100%';
+      sim.querySelector('.publicRevenue').textContent = money.format(privateRevenue);
+      sim.querySelector('.publicSocialBenefit').textContent = money.format(socialBenefit);
+      sim.querySelector('.publicOutcome').textContent = outcome;
+      sim.querySelector('.publicOutcome').classList.toggle('is-negative', !privateProvides && sociallyWorthwhile);
+      sim.querySelector('.marketChain').innerHTML = [
+        `${people} people benefit`,
+        `${paying}% pay voluntarily`,
+        `${money.format(privateRevenue)} private revenue`,
+        outcome,
+      ].map((text) => `<span>${esc(text)}</span>`).join('');
+      sim.querySelector('.marketTakeaway').textContent = !privateProvides && sociallyWorthwhile
+        ? 'The good has enough social benefit, but too few users can be charged, so a private firm may not provide it.'
+        : privateProvides
+          ? 'Enough users pay to cover private cost, so private provision is possible in this setting.'
+          : 'Private provision is unlikely, and the total social benefit is also below the cost in this setting.';
+    };
+
+    payingInput.addEventListener('input', update);
+    update();
+  });
+}
+
+function setupMonopolyPowerSimulators(root) {
+  const sims = [...root.querySelectorAll('.monopolyPowerSim')];
+  const money = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0,
+  });
+
+  sims.forEach((sim) => {
+    const competitionInput = sim.querySelector('.monopolyCompetition');
+    competitionInput.value = sim.dataset.defaultCompetition || 35;
+
+    const update = () => {
+      const competition = Number(competitionInput.value || 0);
+      const marketPower = 100 - competition;
+      const price = Math.round(35 + marketPower * 0.5);
+      const output = Math.round(35 + competition * 0.55);
+      const impact = marketPower > 50 ? 'price rises' : 'price pressure';
+      const exam = marketPower > 50 ? 'output restricted' : 'output protected';
+
+      sim.querySelector('.monopolyCompetitionValue').textContent = `${competition}%`;
+      sim.querySelector('.monopolyPriceValue').textContent = money.format(price);
+      sim.querySelector('.monopolyOutputValue').textContent = `${output}%`;
+      sim.querySelector('.monopolyCompetitionBar').style.width = `${competition}%`;
+      sim.querySelector('.monopolyPriceBar').style.width = `${Math.min(100, (price / 85) * 100)}%`;
+      sim.querySelector('.monopolyOutputBar').style.width = `${output}%`;
+      sim.querySelector('.monopolyPowerValue').textContent = `${marketPower}%`;
+      sim.querySelector('.monopolyImpact').textContent = impact;
+      sim.querySelector('.monopolyExam').textContent = exam;
+      sim.querySelector('.monopolyExam').classList.toggle('is-negative', marketPower > 50);
+      sim.querySelector('.marketChain').innerHTML = [
+        `${marketPower}% market power`,
+        `${money.format(price)} price`,
+        `${output}% output`,
+        exam,
+      ].map((text) => `<span>${esc(text)}</span>`).join('');
+      sim.querySelector('.marketTakeaway').textContent = marketPower > 50
+        ? 'Weak competition can allow a dominant firm to restrict output and charge higher prices.'
+        : 'Stronger competition limits market power, so firms face more pressure on price and output.';
+    };
+
+    competitionInput.addEventListener('input', update);
+    update();
+  });
+}
+
+function setupMarketFailureScenarioGames(root) {
+  const games = [...root.querySelectorAll('.marketFailureScenarioGame')];
+  const rounds = [
+    {
+      scenario: 'A factory sells cement cheaply, but nearby residents suffer dirty air and health costs.',
+      answer: 'external-cost',
+      correct: 'Correct. Pollution is an external cost, so social cost exceeds private cost and output may be too high.',
+      wrong: 'Look for the cost imposed on people outside the transaction. This is an external cost.',
+    },
+    {
+      scenario: 'Vaccination protects the patient and also reduces disease spread to other people.',
+      answer: 'external-benefit',
+      correct: 'Correct. Other people gain external benefits, so social benefit exceeds private benefit.',
+      wrong: 'The clue is a wider benefit to people beyond the consumer. This is an external benefit.',
+    },
+    {
+      scenario: 'Some families buy less education than is socially desirable because they underestimate long-run benefits.',
+      answer: 'merit-good',
+      correct: 'Correct. Education is a merit good that can be under-consumed.',
+      wrong: 'The clue is under-consumption of a beneficial good. This is a merit good.',
+    },
+    {
+      scenario: 'Consumers buy too many sugary drinks because they focus on short-run enjoyment and ignore health costs.',
+      answer: 'demerit-good',
+      correct: 'Correct. A demerit good may be over-consumed when costs are underestimated.',
+      wrong: 'The clue is over-consumption of a harmful good. This is a demerit good.',
+    },
+    {
+      scenario: 'Street lighting benefits everyone on the road, including people who do not pay directly.',
+      answer: 'public-good',
+      correct: 'Correct. Non-payers can benefit, so the free-rider problem may cause non-provision.',
+      wrong: 'The clue is that non-payers cannot easily be excluded. This is a public good.',
+    },
+    {
+      scenario: 'One dominant firm buys rivals, reduces output and raises prices.',
+      answer: 'monopoly',
+      correct: 'Correct. Monopoly power can restrict supply and reduce consumer benefits.',
+      wrong: 'The clue is one dominant firm with power over output and price. This is monopoly power.',
+    },
+  ];
+
+  games.forEach((game) => {
+    const options = [...game.querySelectorAll('.failureScenarioOption')];
+    const next = game.querySelector('.marketNextSignal');
+    let roundIndex = 0;
+    let score = 0;
+    let answered = false;
+    let finished = false;
+
+    const render = () => {
+      const round = rounds[roundIndex];
+      answered = false;
+      finished = false;
+      game.querySelector('.marketGameRound').textContent = `Scenario ${roundIndex + 1} of ${rounds.length}`;
+      game.querySelector('.marketGameScore').textContent = `Score ${score}/${rounds.length}`;
+      game.querySelector('.marketGameScenario').textContent = round.scenario;
+      game.querySelector('.marketGameFeedback').textContent = '';
+      game.querySelector('.marketGameFeedback').classList.remove('is-correct', 'is-wrong');
+      next.disabled = true;
+      next.textContent = roundIndex === rounds.length - 1 ? 'Finish round' : 'Next scenario';
+      options.forEach((option) => {
+        option.disabled = false;
+        option.classList.remove('is-correct', 'is-wrong', 'is-muted');
+      });
+    };
+
+    options.forEach((option) => {
+      option.addEventListener('click', () => {
+        if (answered) return;
+        answered = true;
+        const round = rounds[roundIndex];
+        const isCorrect = option.dataset.choice === round.answer;
+        if (isCorrect) score += 1;
+        game.querySelector('.marketGameScore').textContent = `Score ${score}/${rounds.length}`;
+        game.querySelector('.marketGameFeedback').textContent = isCorrect ? round.correct : round.wrong;
+        game.querySelector('.marketGameFeedback').classList.add(isCorrect ? 'is-correct' : 'is-wrong');
+        options.forEach((item) => {
+          const isAnswer = item.dataset.choice === round.answer;
+          item.disabled = true;
+          item.classList.toggle('is-correct', isAnswer);
+          item.classList.toggle('is-wrong', item === option && !isCorrect);
+          item.classList.toggle('is-muted', !isAnswer && item !== option);
+        });
+        next.disabled = false;
+      });
+    });
+
+    next.addEventListener('click', () => {
+      if (finished) {
+        roundIndex = 0;
+        score = 0;
+        render();
+        return;
+      }
+      if (roundIndex < rounds.length - 1) {
+        roundIndex += 1;
+        render();
+      } else {
+        finished = true;
+        game.querySelector('.marketGameRound').textContent = 'Game complete';
+        game.querySelector('.marketGameScenario').textContent =
+          score === rounds.length
+            ? 'Perfect score. You can classify each market failure.'
+            : 'Review the clues: who pays, who benefits, and whether the market produces too much or too little.';
+        game.querySelector('.marketGameFeedback').textContent =
+          `Final score: ${score}/${rounds.length}. Exam link: identify the cause, then explain the consequence for resource allocation.`;
+        game.querySelector('.marketGameFeedback').classList.remove('is-correct', 'is-wrong');
+        game.querySelector('.marketGameFeedback').classList.add(score === rounds.length ? 'is-correct' : 'is-wrong');
+        next.textContent = 'Play again';
+        options.forEach((option) => {
+          option.disabled = true;
+          option.classList.remove('is-correct', 'is-wrong', 'is-muted');
+        });
+      }
+    });
+
+    render();
   });
 }
 
