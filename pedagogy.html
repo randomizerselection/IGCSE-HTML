@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="A bilingual explanation of the teaching philosophy and pedagogy behind Samuel Oehler-Huang's Cambridge IGCSE Economics 0455 lessons." />
+  <meta name="author" content="Samuel Oehler-Huang, Suzhou Foreign Language School" />
+  <title>Teaching Philosophy - Cambridge IGCSE Economics 0455</title>
+
+  <link rel="stylesheet" href="assets/css/theme.css" />
+
+  <style>
+    :root {
+      --page-max: 1180px;
+      --panel-radius: 8px;
+      --philosophy-line: rgba(255, 255, 255, .13);
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-y: auto;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .site {
+      width: min(var(--page-max), calc(100% - 40px));
+      margin: 0 auto;
+      padding: 24px 0 58px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 20px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .topbar a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: .6rem .78rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255,255,255,.055);
+      color: var(--ink);
+      font-weight: 850;
+      text-decoration: none;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--panel-radius);
+      background:
+        linear-gradient(135deg, rgba(86,216,255,.12), rgba(255,255,255,.035) 44%, rgba(255,209,102,.08)),
+        var(--bg-1);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr);
+      gap: clamp(22px, 4vw, 48px);
+      align-items: end;
+      padding: clamp(24px, 4.2vw, 54px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      margin-bottom: .75rem;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    h1 {
+      max-width: 12ch;
+      margin: 0;
+      font-size: clamp(48px, 7.3vw, 104px);
+      line-height: 1;
+      letter-spacing: 0;
+      font-weight: 900;
+      text-wrap: balance;
+    }
+
+    h1 span {
+      display: block;
+      background: linear-gradient(135deg, #ffffff 0%, var(--cyan) 50%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead-grid {
+      display: grid;
+      gap: 1rem;
+      color: var(--ink-dim);
+    }
+
+    .lead-grid p {
+      font-size: clamp(18px, 1.75vw, 28px);
+      line-height: 1.32;
+    }
+
+    .zh {
+      color: #edf4ff;
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", ui-sans-serif, system-ui, sans-serif;
+    }
+
+    .section {
+      margin: 38px 0 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 430px);
+      gap: 2rem;
+      align-items: end;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-kicker {
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: .55rem;
+    }
+
+    h2 {
+      font-size: clamp(32px, 4vw, 62px);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: .75rem;
+    }
+
+    .metric {
+      min-height: 128px;
+      padding: 1rem;
+      border: 1px solid rgba(86,216,255,.24);
+      border-radius: var(--panel-radius);
+      background:
+        linear-gradient(180deg, rgba(86,216,255,.085), rgba(255,255,255,.035)),
+        rgba(255,255,255,.04);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--gold);
+      font-size: clamp(32px, 4vw, 58px);
+      line-height: .98;
+      font-weight: 900;
+      letter-spacing: 0;
+    }
+
+    .metric span {
+      display: block;
+      margin-top: .55rem;
+      color: var(--ink-dim);
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .bilingual-stack {
+      display: grid;
+      gap: .85rem;
+    }
+
+    .bilingual-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: .9rem;
+      align-items: stretch;
+    }
+
+    .panel {
+      min-width: 0;
+      padding: 1rem 1.05rem;
+      border: 1px solid var(--philosophy-line);
+      border-radius: var(--panel-radius);
+      background: rgba(255,255,255,.045);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .panel h3 {
+      margin: 0 0 .55rem;
+      color: #fff;
+      font-size: clamp(22px, 2vw, 33px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .panel p,
+    .panel li {
+      color: var(--ink-dim);
+      font-size: clamp(16px, 1.16vw, 20px);
+      line-height: 1.52;
+    }
+
+    .panel .zh,
+    .panel.zh p,
+    .panel.zh li {
+      color: #edf4ff;
+    }
+
+    .panel ul {
+      display: grid;
+      gap: .45rem;
+      margin: .7rem 0 0;
+      padding-left: 1.15rem;
+    }
+
+    .cycle {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: .65rem;
+    }
+
+    .cycle-step {
+      position: relative;
+      min-height: 160px;
+      padding: .95rem;
+      border: 1px solid var(--line);
+      border-radius: var(--panel-radius);
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.085), rgba(255,255,255,.035)),
+        rgba(255,255,255,.025);
+    }
+
+    .cycle-step b {
+      display: grid;
+      place-items: center;
+      width: 2.35rem;
+      height: 2.35rem;
+      margin-bottom: .8rem;
+      border-radius: 999px;
+      background: var(--gold);
+      color: #07111f;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .cycle-step h3 {
+      margin: 0 0 .45rem;
+      color: #fff;
+      font-size: clamp(18px, 1.35vw, 24px);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .cycle-step p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.38;
+    }
+
+    .matrix {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .8rem;
+    }
+
+    .matrix-card {
+      min-height: 212px;
+      padding: 1rem;
+      border: 1px solid rgba(126,240,181,.24);
+      border-radius: var(--panel-radius);
+      background:
+        linear-gradient(145deg, rgba(126,240,181,.075), rgba(255,255,255,.035)),
+        rgba(255,255,255,.03);
+    }
+
+    .matrix-card h3 {
+      margin: 0 0 .55rem;
+      color: var(--green);
+      font-size: clamp(20px, 1.55vw, 27px);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .matrix-card p {
+      color: var(--ink-dim);
+      font-size: 15px;
+      line-height: 1.48;
+    }
+
+    .attribute-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      margin-top: .95rem;
+    }
+
+    .attribute-strip span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: .45rem .65rem;
+      border: 1px solid rgba(255,209,102,.32);
+      border-radius: 999px;
+      background: rgba(255,209,102,.08);
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .source-note {
+      padding: 1rem;
+      border: 1px solid rgba(255,209,102,.28);
+      border-radius: var(--panel-radius);
+      background: rgba(255,209,102,.075);
+      color: var(--ink-dim);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .source-note a {
+      color: #fff;
+      font-weight: 800;
+      text-decoration-color: rgba(255,209,102,.55);
+      text-underline-offset: 3px;
+    }
+
+    .site-foot {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 52px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .site-foot a {
+      color: var(--ink);
+      font-weight: 800;
+      text-decoration-color: rgba(86,216,255,.5);
+      text-underline-offset: 3px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-inner,
+      .section-head,
+      .bilingual-row,
+      .matrix {
+        grid-template-columns: 1fr;
+      }
+
+      .evidence-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .cycle {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .site {
+        width: min(100% - 28px, var(--page-max));
+        padding-top: 16px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero-inner {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: clamp(39px, 10.6vw, 52px);
+      }
+
+      .lead-grid p {
+        font-size: 17px;
+      }
+
+      .evidence-grid,
+      .cycle {
+        grid-template-columns: 1fr;
+      }
+
+      .metric,
+      .cycle-step {
+        min-height: 0;
+      }
+    }
+  </style>
+  <script src="assets/js/baidu-analytics.js"></script>
+</head>
+<body class="bg-ambient">
+  <main class="site">
+    <nav class="topbar" aria-label="Page navigation">
+      <a href="index.html">Course index</a>
+      <span>Cambridge IGCSE Economics 0455 - Suzhou Foreign Language School</span>
+    </nav>
+
+    <header class="hero">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">For teachers and parents</div>
+          <h1>
+            <span>Teaching</span>
+            <span>Philosophy</span>
+            <span class="zh" lang="zh-CN">教学理念</span>
+          </h1>
+        </div>
+        <div class="lead-grid">
+          <p>
+            These IGCSE Economics lessons are designed so students do more than remember definitions.
+            They learn to explain mechanisms, test ideas, use evidence and build exam-ready judgement.
+          </p>
+          <p class="zh" lang="zh-CN">
+            这些 IGCSE 经济学课程不只帮助学生记忆定义，更强调解释经济机制、检验观点、使用证据，
+            并逐步形成适合考试要求的分析和判断能力。
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <section class="section" aria-labelledby="evidence-title">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Evidence from the lesson library</div>
+          <h2 id="evidence-title">What the materials show</h2>
+        </div>
+        <p class="section-intro">
+          The philosophy below is based on the lesson files already in this site, not on a generic statement of intent.
+        </p>
+      </div>
+
+      <div class="evidence-grid" aria-label="Lesson design evidence">
+        <div class="metric">
+          <strong>322</strong>
+          <span>slide objects across the current lesson data files</span>
+        </div>
+        <div class="metric">
+          <strong>57</strong>
+          <span>discussion prompts that ask students to think before being told</span>
+        </div>
+        <div class="metric">
+          <strong>63</strong>
+          <span>flow chains that make cause and effect visible</span>
+        </div>
+        <div class="metric">
+          <strong>29</strong>
+          <span>in-lesson quiz checks, plus separate after-class quiz modes</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="cycle-title">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Core pedagogy cycle</div>
+          <h2 id="cycle-title">From curiosity to exam explanation</h2>
+        </div>
+        <p class="section-intro zh" lang="zh-CN">
+          每节课通过清晰的学习循环，把生活情境、概念理解、应用练习和考试表达连接起来。
+        </p>
+      </div>
+
+      <div class="cycle">
+        <article class="cycle-step">
+          <b>1</b>
+          <h3>Hook<br><span class="zh" lang="zh-CN">情境导入</span></h3>
+          <p>Start with a policy problem, market puzzle or real example so the lesson has a reason.</p>
+        </article>
+        <article class="cycle-step">
+          <b>2</b>
+          <h3>Inquiry<br><span class="zh" lang="zh-CN">探究讨论</span></h3>
+          <p>Students discuss before answers appear, building confidence and oracy.</p>
+        </article>
+        <article class="cycle-step">
+          <b>3</b>
+          <h3>Explicit concepts<br><span class="zh" lang="zh-CN">明确概念</span></h3>
+          <p>Definitions, diagrams and comparisons are taught with concise exam wording.</p>
+        </article>
+        <article class="cycle-step">
+          <b>4</b>
+          <h3>Application<br><span class="zh" lang="zh-CN">迁移应用</span></h3>
+          <p>Students connect concepts to taxation, market failure, budgets and policy choices.</p>
+        </article>
+        <article class="cycle-step">
+          <b>5</b>
+          <h3>Retrieval<br><span class="zh" lang="zh-CN">提取练习</span></h3>
+          <p>Fill-in blanks and quizzes make students recall, not just reread.</p>
+        </article>
+        <article class="cycle-step">
+          <b>6</b>
+          <h3>Exam explanation<br><span class="zh" lang="zh-CN">考试表达</span></h3>
+          <p>Students practise chains, balance, limitations and judgement.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="cambridge-title">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Cambridge alignment</div>
+          <h2 id="cambridge-title">Aligned with Cambridge teaching principles</h2>
+        </div>
+        <p class="section-intro">
+          This course is aligned with Cambridge guidance while remaining adapted to our students, language context and classroom needs.
+        </p>
+      </div>
+
+      <div class="matrix">
+        <article class="matrix-card">
+          <h3>Active learning / 主动学习</h3>
+          <p>
+            Students participate through discussion, prediction, simulations and policy choices. The slide deck is a classroom sequence,
+            not a reading script.
+          </p>
+        </article>
+        <article class="matrix-card">
+          <h3>Assessment for learning / 促进学习的评价</h3>
+          <p>
+            Hinge questions, in-lesson quizzes and after-class quizzes create feedback for students and for the teacher's next lesson decisions.
+          </p>
+        </article>
+        <article class="matrix-card">
+          <h3>Curriculum coherence / 课程连贯性</h3>
+          <p>
+            Lessons follow Cambridge IGCSE Economics 0455 syllabus references and use exam-ready definitions, examples and command-word practice.
+          </p>
+        </article>
+        <article class="matrix-card">
+          <h3>Inclusive bilingual access / 双语支持</h3>
+          <p>
+            Chinese support appears where it lowers access barriers, while the final academic target remains clear English economic explanation.
+          </p>
+        </article>
+        <article class="matrix-card">
+          <h3>Metacognition and self-management / 元认知与自我管理</h3>
+          <p>
+            Handout and quiz modes help students revisit learning independently, identify gaps and practise before formal assessment.
+          </p>
+        </article>
+        <article class="matrix-card">
+          <h3>Technology-supported learning / 技术支持学习</h3>
+          <p>
+            The site gives every learner access to slide view, print view and quiz view, so class teaching continues into structured review.
+          </p>
+        </article>
+      </div>
+
+      <div class="attribute-strip" aria-label="Cambridge learner attributes">
+        <span>Confident 自信</span>
+        <span>Responsible 负责</span>
+        <span>Reflective 反思</span>
+        <span>Innovative 创新</span>
+        <span>Engaged 投入</span>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="audience-title">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">For home and school</div>
+          <h2 id="audience-title">What this means in practice</h2>
+        </div>
+      </div>
+
+      <div class="bilingual-stack">
+        <div class="bilingual-row">
+          <article class="panel">
+            <h3>For parents</h3>
+            <p>
+              Students can reopen the exact lesson sequence used in class. This matters because effective revision is not simply reading notes:
+              students need to retrieve ideas, explain links and notice where their understanding is incomplete.
+            </p>
+            <ul>
+              <li>Slide view recreates the classroom learning path.</li>
+              <li>Handout view supports calmer review and printing.</li>
+              <li>Quiz view gives quick feedback after independent study.</li>
+            </ul>
+          </article>
+          <article class="panel zh" lang="zh-CN">
+            <h3>面向家长</h3>
+            <p>
+              学生可以课后重新打开课堂上使用的同一套学习流程。有效复习不是简单看笔记，
+              而是要主动回忆概念、解释因果链条，并发现自己还不清楚的地方。
+            </p>
+            <ul>
+              <li>幻灯片模式帮助学生重走课堂学习路径。</li>
+              <li>讲义模式适合安静复习，也便于打印。</li>
+              <li>测验模式让学生在自主学习后获得即时反馈。</li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="bilingual-row">
+          <article class="panel">
+            <h3>For teachers</h3>
+            <p>
+              Each lesson is built as a teachable sequence: attention is focused first, concepts are introduced in small steps,
+              checks are placed before misconceptions harden, and exam prompts require students to turn knowledge into explanation.
+            </p>
+            <ul>
+              <li>Partial reveals manage cognitive load when a chain or comparison is dense.</li>
+              <li>Real-world facts make abstract syllabus points concrete.</li>
+              <li>Exam prompts rehearse analysis, balance, limitation and judgement.</li>
+            </ul>
+          </article>
+          <article class="panel zh" lang="zh-CN">
+            <h3>面向教师</h3>
+            <p>
+              每节课都被设计成可教学的序列：先集中注意力，再分步骤建立概念，
+              在错误理解固定下来之前进行检查，最后用考试题型促使学生把知识转化为解释。
+            </p>
+            <ul>
+              <li>逐步呈现用于降低复杂因果链和对比内容的认知负荷。</li>
+              <li>真实案例让抽象考纲内容变得具体。</li>
+              <li>考试练习训练分析、正反平衡、局限性和判断。</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="sources-title">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">Sources and positioning</div>
+          <h2 id="sources-title">Not endorsed, but deliberately aligned</h2>
+        </div>
+      </div>
+      <p class="source-note">
+        This teaching philosophy is an independent classroom statement. It is aligned with Cambridge International guidance on
+        <a href="https://www.cambridgeinternational.org/support-and-training-for-schools/leading-learning-and-teaching-with-cambridge/">leading, learning and teaching</a>,
+        the <a href="https://www.cambridgeinternational.org/why-choose-us/parents-and-students/learning-with-lasting-impact/cambridge-learner-attributes/">Cambridge learner attributes</a>,
+        and the <a href="https://www.cambridgeinternational.org/teacher-standards">Cambridge school leader and teacher standards</a>.
+        It does not claim formal endorsement by Cambridge International Education.
+      </p>
+    </section>
+
+    <footer class="site-foot">
+      <span>Built by Samuel Oehler-Huang for IGCSE Economics class review.</span>
+      <span><a href="index.html">Return to lesson library</a></span>
+    </footer>
+  </main>
+</body>
+</html>

@@ -72,6 +72,7 @@ test.describe('site smoke', () => {
 
     await expect(page.getByRole('heading', { name: /IGCSE Economics lesson review/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /^Review lessons$/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Teaching philosophy \/ 教学理念/i }).first()).toBeVisible();
     await expect(page.getByRole('heading', { name: /^Class materials$/i })).toBeVisible();
     await expect(page.getByRole('img', { name: /Samuel Oehler-Huang/i })).toBeVisible();
     await expect(page.getByText(/Economics teacher, Suzhou Foreign Language School/i)).toBeVisible();
@@ -100,6 +101,28 @@ test.describe('site smoke', () => {
     expect(macroHeadingBox).not.toBeNull();
     expect(macroHeadingBox.x).toBeGreaterThanOrEqual(0);
     expect(macroHeadingBox.x + macroHeadingBox.width).toBeLessThanOrEqual(viewport.width + 1);
+  });
+
+  test('teaching philosophy page renders bilingual pedagogy at desktop and phone widths', async ({ page }) => {
+    await page.goto(pageUrl('pedagogy.html'));
+
+    await expect(page.getByRole('link', { name: /Course index/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Teaching Philosophy/i })).toBeVisible();
+    await expect(page.getByText(/教学理念/)).toBeVisible();
+    await expect(page.getByRole('heading', { name: /What the materials show/i })).toBeVisible();
+    await expect(page.getByText(/322/).first()).toBeVisible();
+    await expect(page.getByText(/slide objects across the current lesson data files/i)).toBeVisible();
+    await expect(page.getByRole('heading', { name: /From curiosity to exam explanation/i })).toBeVisible();
+    await expect(page.getByText(/情境导入/)).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Aligned with Cambridge teaching principles/i })).toBeVisible();
+    await expect(page.getByText(/Confident 自信/)).toBeVisible();
+    await expect(page.getByRole('heading', { name: /For parents/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /面向家长/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /For teachers/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /面向教师/i })).toBeVisible();
+    await expect(page.getByText(/does not claim formal endorsement/i)).toBeVisible();
+
+    await expectNoHorizontalOverflow(page);
   });
 
   test('macroeconomic aims deck renders at desktop and phone widths', async ({ page }, testInfo) => {
