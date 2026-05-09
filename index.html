@@ -67,23 +67,31 @@
 
     .hero {
       position: relative;
-      min-height: 64vh;
+      min-height: clamp(430px, 50vh, 560px);
       overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 8px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
       background:
-        linear-gradient(90deg, rgba(7,17,31,.98) 0%, rgba(7,17,31,.93) 39%, rgba(7,17,31,.38) 67%, rgba(7,17,31,.04) 100%),
-        linear-gradient(0deg, rgba(7,17,31,.70), rgba(7,17,31,.04) 50%, rgba(7,17,31,.34)),
-        url("assets/images/profile/samuel-oehler-huang.jpg") right 26% center / auto 124% no-repeat,
+        linear-gradient(120deg, rgba(7,17,31,.98) 0%, rgba(9,26,43,.96) 48%, rgba(18,51,44,.86) 100%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 1px, transparent 1px 118px),
+        repeating-linear-gradient(0deg, rgba(255,255,255,.035) 0 1px, transparent 1px 118px),
         var(--bg-1);
-      box-shadow: var(--shadow-lg);
     }
 
     .hero-inner {
       position: relative;
       z-index: 1;
-      width: min(720px, 61%);
-      padding: clamp(34px, 6vw, 74px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(280px, .72fr);
+      gap: clamp(32px, 6vw, 86px);
+      align-items: center;
+      width: 100%;
+      min-height: inherit;
+      padding: clamp(30px, 4.5vw, 54px) clamp(20px, 5vw, 72px);
+    }
+
+    .hero-copy {
+      min-width: 0;
     }
 
     .eyebrow {
@@ -107,8 +115,8 @@
     }
 
     .hero h1 {
-      max-width: 10.8ch;
-      font-size: clamp(52px, 6.6vw, 108px);
+      max-width: 18ch;
+      font-size: clamp(50px, 5.5vw, 84px);
       line-height: 1.02;
       letter-spacing: 0;
       font-weight: 850;
@@ -125,10 +133,10 @@
     }
 
     .hero .lead {
-      max-width: 34ch;
+      max-width: 39ch;
       margin-top: 1.1rem;
       color: var(--ink-dim);
-      font-size: clamp(20px, 2vw, 30px);
+      font-size: clamp(19px, 1.65vw, 26px);
       line-height: 1.25;
     }
 
@@ -172,21 +180,21 @@
       margin-top: 2rem;
       display: grid;
       grid-template-columns: 58px minmax(0, 1fr);
-      gap: .35rem;
+      gap: .35rem .8rem;
       align-items: center;
       color: var(--muted);
       font-size: 15px;
       line-height: 1.45;
     }
 
-    .author-line::before {
-      content: "";
+    .author-avatar {
       grid-row: 1 / 3;
       width: 52px;
       aspect-ratio: 1;
       border: 1px solid rgba(255,255,255,.38);
       border-radius: 50%;
-      background: url("assets/images/profile/samuel-oehler-huang.jpg") center top / cover no-repeat;
+      object-fit: cover;
+      object-position: center top;
       box-shadow: 0 12px 28px rgba(0,0,0,.35);
     }
 
@@ -194,22 +202,89 @@
       color: var(--ink);
     }
 
+    .hero-visual {
+      display: grid;
+      gap: 1rem;
+      align-self: stretch;
+      align-content: center;
+      min-width: 0;
+    }
+
+    .course-index {
+      display: grid;
+      gap: .65rem;
+      padding-left: 1.15rem;
+      border-left: 1px solid rgba(255,255,255,.2);
+    }
+
+    .course-index-row {
+      display: grid;
+      grid-template-columns: 4.35rem minmax(0, 1fr);
+      gap: .9rem;
+      align-items: center;
+      min-height: 58px;
+      padding: .7rem 0;
+    }
+
+    .course-index-row + .course-index-row {
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+
+    .course-index-row b {
+      color: var(--gold);
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .course-index-row span {
+      color: var(--ink-dim);
+      font-size: 16px;
+      font-weight: 760;
+      line-height: 1.3;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      padding-left: 1.15rem;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: .35rem .62rem;
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,.045);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .hero-tag.is-live {
+      border-color: rgba(126,240,181,.35);
+      color: var(--green);
+      background: rgba(126,240,181,.08);
+    }
+
     .stats {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      margin: 1px 0 54px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-top: 0;
-      border-radius: 0 0 8px 8px;
-      background: var(--line);
+      gap: .75rem;
+      margin: 1rem 0 54px;
     }
 
     .stat {
       min-height: 94px;
-      padding: 1rem;
-      background: rgba(9,23,39,.84);
+      padding: 1rem 1.05rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: linear-gradient(145deg, rgba(255,255,255,.065), rgba(255,255,255,.03));
     }
 
     .stat b {
@@ -276,10 +351,12 @@
       flex-direction: column;
       min-width: 0;
       min-height: 286px;
-      padding: 1.35rem;
+      padding: 1.45rem;
       border: 1px solid var(--line);
       border-radius: var(--card-radius);
-      background: rgba(255,255,255,.055);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.035)),
+        rgba(255,255,255,.035);
       color: var(--ink);
       box-shadow: var(--shadow-sm);
       transition: transform .22s var(--ease), border-color .22s var(--ease), background .22s var(--ease);
@@ -293,7 +370,7 @@
     }
 
     .lesson-card .code {
-      color: var(--gold);
+      color: var(--accent, var(--gold));
       font-size: 12px;
       font-weight: 900;
       letter-spacing: .13em;
@@ -357,9 +434,21 @@
     }
 
     .lesson-card.featured {
+      --accent: var(--cyan);
       background:
-        linear-gradient(145deg, rgba(86,216,255,.12), rgba(255,255,255,.055) 42%, rgba(126,240,181,.07));
+        linear-gradient(145deg, color-mix(in srgb, var(--accent) 14%, transparent), rgba(255,255,255,.045) 42%, rgba(255,255,255,.025));
       border-color: rgba(86,216,255,.28);
+    }
+
+    .lesson-card.featured:nth-child(2),
+    .lesson-card.featured:nth-child(5) {
+      --accent: var(--green);
+      border-color: rgba(126,240,181,.26);
+    }
+
+    .lesson-card.featured:nth-child(3) {
+      --accent: var(--gold);
+      border-color: rgba(255,209,102,.26);
     }
 
     .library-note {
@@ -405,10 +494,10 @@
       grid-template-columns: 88px minmax(0, 1fr) auto;
       gap: 1rem;
       align-items: center;
-      padding: .9rem 1rem;
+      padding: .98rem 1rem;
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: rgba(255,255,255,.04);
+      background: linear-gradient(90deg, rgba(255,255,255,.052), rgba(255,255,255,.028));
     }
 
     .unit-row strong {
@@ -460,14 +549,41 @@
       .hero {
         min-height: auto;
         background:
-          linear-gradient(90deg, rgba(7,17,31,.98) 0%, rgba(7,17,31,.88) 62%, rgba(7,17,31,.54) 100%),
-          linear-gradient(0deg, rgba(7,17,31,.82), rgba(7,17,31,.16)),
-          url("assets/images/profile/samuel-oehler-huang.jpg") right 22% center / auto 116% no-repeat,
+          linear-gradient(135deg, rgba(7,17,31,.99) 0%, rgba(10,33,53,.95) 54%, rgba(16,45,43,.86) 100%),
+          repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 96px),
           var(--bg-1);
       }
 
       .hero-inner {
-        width: min(680px, 100%);
+        grid-template-columns: 1fr;
+        gap: 1.65rem;
+        min-height: 0;
+      }
+
+      .hero-visual {
+        align-content: start;
+      }
+
+      .course-index {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding-left: 0;
+        border-left: 0;
+        border-top: 1px solid rgba(255,255,255,.16);
+        padding-top: 1rem;
+      }
+
+      .course-index-row {
+        grid-template-columns: 3.8rem minmax(0, 1fr);
+        min-height: 0;
+        padding: .2rem 0;
+      }
+
+      .course-index-row + .course-index-row {
+        border-top: 0;
+      }
+
+      .hero-tags {
+        padding-left: 0;
       }
 
       .stats,
@@ -477,7 +593,7 @@
       }
 
       .stats {
-        border-top: 1px solid var(--line);
+        gap: .65rem;
       }
 
       .lesson-actions {
@@ -501,14 +617,13 @@
 
       .hero {
         background:
-          linear-gradient(180deg, rgba(7,17,31,.99) 0%, rgba(7,17,31,.9) 48%, rgba(7,17,31,.34) 100%),
-          linear-gradient(90deg, rgba(7,17,31,.94), rgba(7,17,31,.32)),
-          url("assets/images/profile/samuel-oehler-huang.jpg") right 42% bottom -32px / auto 106% no-repeat,
+          linear-gradient(180deg, rgba(7,17,31,.99) 0%, rgba(10,33,53,.95) 56%, rgba(16,45,43,.88) 100%),
+          repeating-linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 82px),
           var(--bg-1);
       }
 
       .hero-inner {
-        padding: 24px 22px 72px;
+        padding: 24px 22px 28px;
       }
 
       .hero h1 {
@@ -527,19 +642,45 @@
       }
 
       .author-line {
-        max-width: 25ch;
+        max-width: none;
         margin-top: 1.1rem;
         font-size: 13px;
         grid-template-columns: 50px minmax(0, 1fr);
       }
 
-      .author-line::before {
+      .author-avatar {
         width: 44px;
+      }
+
+      .hero-visual {
+        display: none;
       }
 
       .stats {
         grid-template-columns: 1fr 1fr;
         margin-bottom: 40px;
+      }
+
+      .stat {
+        min-height: 100px;
+        padding: .9rem;
+      }
+
+      .course-index {
+        grid-template-columns: 1fr;
+        gap: .3rem;
+      }
+
+      .course-index-row {
+        grid-template-columns: 3.2rem minmax(0, 1fr);
+      }
+
+      .course-index-row b {
+        font-size: 23px;
+      }
+
+      .course-index-row span {
+        font-size: 14px;
       }
 
       .unit-row {
@@ -565,19 +706,43 @@
 
     <header class="hero">
       <div class="hero-inner">
-        <div class="eyebrow">After-class study hub</div>
-        <h1><span>IGCSE Economics</span><span>lesson review</span></h1>
-        <p class="lead">
-          Reopen the slide decks used in class, check the key examples again,
-          and practise the explanation chains before quizzes and exams.
-        </p>
-        <div class="hero-actions" aria-label="Featured links">
-          <a class="button primary" href="#available-lessons">Review a deck</a>
-          <a class="button" href="#course-map">See the course map</a>
+        <div class="hero-copy">
+          <div class="eyebrow">After-class study hub</div>
+          <h1><span>IGCSE Economics</span><span>lesson review</span></h1>
+          <p class="lead">
+            Reopen the slide decks used in class, check the key examples again,
+            and practise the explanation chains before quizzes and exams.
+          </p>
+          <div class="hero-actions" aria-label="Featured links">
+            <a class="button primary" href="#available-lessons">Review a deck</a>
+            <a class="button" href="#course-map">See the course map</a>
+          </div>
+          <div class="author-line">
+            <img class="author-avatar" src="assets/images/profile/samuel-oehler-huang.jpg" alt="" loading="lazy" />
+            <span><strong>Samuel Oehler-Huang</strong></span>
+            <span>Economics teacher, Suzhou Foreign Language School</span>
+          </div>
         </div>
-        <div class="author-line">
-          <span><strong>Samuel Oehler-Huang</strong></span>
-          <span>Economics teacher, Suzhou Foreign Language School</span>
+        <div class="hero-visual" aria-label="Landing page lesson summary">
+          <div class="course-index">
+            <div class="course-index-row">
+              <b>2.8</b>
+              <span>Market economic system</span>
+            </div>
+            <div class="course-index-row">
+              <b>4.1</b>
+              <span>Macroeconomic aims</span>
+            </div>
+            <div class="course-index-row">
+              <b>4.2</b>
+              <span>Fiscal policy lessons</span>
+            </div>
+          </div>
+          <div class="hero-tags" aria-hidden="true">
+            <span class="hero-tag is-live">5 decks</span>
+            <span class="hero-tag">Slide view</span>
+            <span class="hero-tag">Handout view</span>
+          </div>
         </div>
       </div>
     </header>
