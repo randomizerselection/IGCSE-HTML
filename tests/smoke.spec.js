@@ -126,6 +126,47 @@ test.describe('site smoke', () => {
     await expect(page).toHaveURL(/#1$/);
   });
 
+  test('rapid keyboard navigation advances after the final partial reveal', async ({ page }) => {
+    await page.goto(pageUrl('lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html') + '#6');
+    await expect(page.locator('.slide.is-active h2')).toHaveText(/Raise revenue/i);
+
+    const partialCount = await page.locator('.slide.is-active .partial-item').count();
+    expect(partialCount).toBeGreaterThan(0);
+
+    for (let i = 0; i < partialCount; i += 1) {
+      await page.keyboard.press('ArrowRight');
+    }
+
+    await expect(page.locator('.slide.is-active .partial-item.is-visible')).toHaveCount(partialCount);
+    await expect(page).toHaveURL(/#6$/);
+
+    await page.keyboard.press('ArrowRight');
+    await expect(page).toHaveURL(/#7$/);
+  });
+
+  test('rapid click navigation advances after the final partial reveal', async ({ page }) => {
+    await page.goto(pageUrl('lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html') + '#6');
+    await expect(page.locator('.slide.is-active h2')).toHaveText(/Raise revenue/i);
+
+    const partialCount = await page.locator('.slide.is-active .partial-item').count();
+    expect(partialCount).toBeGreaterThan(0);
+    const viewport = page.viewportSize();
+    const clickPoint = {
+      x: Math.floor((viewport?.width || 1024) / 2),
+      y: Math.floor((viewport?.height || 768) / 2),
+    };
+
+    for (let i = 0; i < partialCount; i += 1) {
+      await page.mouse.click(clickPoint.x, clickPoint.y);
+    }
+
+    await expect(page.locator('.slide.is-active .partial-item.is-visible')).toHaveCount(partialCount);
+    await expect(page).toHaveURL(/#6$/);
+
+    await page.mouse.click(clickPoint.x, clickPoint.y);
+    await expect(page).toHaveURL(/#7$/);
+  });
+
   test('student print view renders a full lesson handout', async ({ page }) => {
     await page.goto(pageUrl('lessons/unit-4-government/4-1-macroeconomic-aims/index.html') + '?view=print');
 

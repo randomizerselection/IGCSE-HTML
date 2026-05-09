@@ -206,11 +206,22 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Example',
-      flag:    '🇸🇬',
-      country: 'Singapore',
-      fact:    'Singapore Budget 2024 focused on cost-of-living relief, a stronger social compact and future resilience.',
-      zh:      '新加坡2024年预算重点关注生活成本援助、更强的社会契约和未来韧性。',
-      source: 'Source: Singapore Ministry of Finance, Budget 2024.',
+      facts: {
+        left: {
+          flag: '🇸🇬',
+          country: 'Singapore',
+          fact: 'Singapore added S$1.9 billion (about RMB 10 billion) for cost-of-living relief in Budget 2024.',
+          zh: '新加坡2024年预算案增加19亿新元（约100亿元人民币）缓解生活成本压力。',
+          source: 'Source: Singapore Ministry of Finance; RMB conversion approximate.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: 'China planned RMB 28.5 trillion in general public budget spending for 2024.',
+          zh: '中国2024年一般公共预算支出安排28.5万亿元人民币。',
+          source: 'Source: 2024 Government Work Report.',
+        },
+      },
       visual: factPhotos.singaporeBudget,
     },
     {

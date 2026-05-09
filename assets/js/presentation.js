@@ -146,6 +146,58 @@ const fillBlankList = (items = []) => {
   `;
 };
 
+const factPanel = (fact = {}, modifier = '') => `
+  <article class="factPanel${modifier ? ` ${modifier}` : ''}">
+    <div class="factCountry">
+      ${fact.flag ? `<span class="factFlag">${esc(fact.flag)}</span>` : ''}
+      <span>${esc(fact.country || '')}</span>
+    </div>
+    <p class="factText">${esc(fact.fact || '')}</p>
+    ${fact.zh ? `<p class="factZh">${esc(fact.zh)}</p>` : ''}
+    ${fact.source ? `<div class="factSource">${esc(fact.source)}</div>` : ''}
+  </article>
+`;
+
+const chinaFactPanel = (fact = {}, modifier = '') => `
+  <aside class="chinaFactPanel${modifier ? ` ${modifier}` : ''}" aria-label="China comparison">
+    <div class="chinaFactHeader">
+      ${fact.flag ? `<span class="factFlag">${esc(fact.flag)}</span>` : ''}
+      <span>${esc(fact.country || 'China')} comparison</span>
+    </div>
+    <p class="chinaFactText">${esc(fact.fact || '')}</p>
+    ${fact.zh ? `<p class="chinaFactZh">${esc(fact.zh)}</p>` : ''}
+    ${fact.source ? `<div class="factSource">${esc(fact.source)}</div>` : ''}
+  </aside>
+`;
+
+const factBlock = (s) => {
+  if (s.facts?.left || s.facts?.china) {
+    return `
+      <div class="factBlock has-china-reveal">
+        ${factPanel(s.facts.left || {}, 'is-main')}
+        ${s.facts.china ? `
+          <button type="button" class="chinaCompareButton" data-china-compare="${s.chinaCompareIndex ?? ''}" aria-haspopup="dialog">
+            <span class="factFlag">🇨🇳</span>
+            <span>China comparison</span>
+          </button>
+        ` : ''}
+      </div>
+    `;
+  }
+
+  return `
+    <div class="factBlock">
+      ${factPanel({
+        flag: s.flag,
+        country: s.country,
+        fact: s.fact || (s.facts || [])[0] || '',
+        zh: s.zh,
+        source: s.source,
+      })}
+    </div>
+  `;
+};
+
 const systemCompare = (systems = []) => `
   <div class="systemCompare">
     ${systems.map((system, i) => `
@@ -313,17 +365,7 @@ const renderers = {
     </div>
   `,
 
-  fact: (s) => `
-    <div class="factBlock">
-      <div class="factCountry">
-        ${s.flag ? `<span class="factFlag">${esc(s.flag)}</span>` : ''}
-        <span>${esc(s.country || '')}</span>
-      </div>
-      <p class="factText">${esc(s.fact || (s.facts || [])[0] || '')}</p>
-      ${s.zh ? `<p class="factZh">${esc(s.zh)}</p>` : ''}
-      ${s.source ? `<div class="factSource">${esc(s.source)}</div>` : ''}
-    </div>
-  `,
+  fact: (s) => factBlock(s),
 
   systemCompare: (s) => `
     <div>
@@ -634,15 +676,15 @@ function renderSlide(meta, slide, idx, total) {
     `;
   }
 
-  const r = renderers[slide.type];
-  const body = r ? r(slide) : `<div><h2>${esc(slide.title || '')}</h2></div>`;
-
   const isHero = slide.type === 'hero';
   const isFact = slide.type === 'fact';
   const typeClass = slide.type && !['hero', 'fact'].includes(slide.type)
     ? ` is-${String(slide.type).replace(/[^a-z0-9_-]/gi, '')}`
     : '';
   const visual = IGCSE.renderVisual(slide.visual, `viz-${idx}`);
+  const r = renderers[slide.type];
+  const renderSlide = isFact ? { ...slide, chinaCompareIndex: idx } : slide;
+  const body = r ? r(renderSlide) : `<div><h2>${esc(slide.title || '')}</h2></div>`;
 
   return `
     <section class="slide${typeClass}${isHero ? ' is-hero' : ''}${isFact ? ' is-fact' : ''}" data-idx="${idx}"
@@ -1010,6 +1052,7 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
 
   let idx = 0;
   const partialProgress = slides.map(() => 0);
+  const chinaDialog = mountChinaComparisonDialog();
 
   setupPartialReview(slideEls, slides, meta);
   setupTaxSimulators(mountEl);
@@ -1045,6 +1088,7 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
   }
 
   function show(n) {
+    closeChinaComparison();
     idx = Math.max(0, Math.min(slides.length - 1, n));
     slideEls.forEach((el, i) => el.classList.toggle('is-active', i === idx));
     syncPartials(idx);
@@ -1097,15 +1141,80 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
     else document.documentElement.requestFullscreen().catch(() => {});
   }
 
+  function openChinaComparison(slideIndex) {
+    const fact = slides[slideIndex]?.facts?.china;
+    if (!fact || !chinaDialog) return;
+    chinaDialog.querySelector('.chinaDialogHeader').innerHTML = `
+      ${fact.flag ? `<span class="factFlag">${esc(fact.flag)}</span>` : ''}
+      <span>${esc(fact.country || 'China')} comparison</span>
+    `;
+    chinaDialog.querySelector('.chinaDialogText').textContent = fact.fact || '';
+    const zhEl = chinaDialog.querySelector('.chinaDialogZh');
+    zhEl.textContent = fact.zh || '';
+    zhEl.hidden = !fact.zh;
+    const sourceEl = chinaDialog.querySelector('.chinaDialogSource');
+    sourceEl.textContent = fact.source || '';
+    sourceEl.hidden = !fact.source;
+    chinaDialog.hidden = false;
+    chinaDialog.classList.add('is-visible');
+    chinaDialog.setAttribute('aria-hidden', 'false');
+    chinaDialog.querySelector('.chinaDialogClose')?.focus({ preventScroll: true });
+  }
+
+  function closeChinaComparison() {
+    if (!chinaDialog || chinaDialog.hidden) return false;
+    chinaDialog.classList.remove('is-visible');
+    chinaDialog.setAttribute('aria-hidden', 'true');
+    chinaDialog.hidden = true;
+    return true;
+  }
+
+  function mountChinaComparisonDialog() {
+    document.querySelector('.chinaCompareDialog')?.remove();
+    const dialog = document.createElement('aside');
+    dialog.className = 'chinaCompareDialog';
+    dialog.hidden = true;
+    dialog.setAttribute('aria-hidden', 'true');
+    dialog.setAttribute('role', 'dialog');
+    dialog.setAttribute('aria-modal', 'true');
+    dialog.setAttribute('aria-label', 'China comparison');
+    dialog.innerHTML = `
+      <div class="chinaDialogPanel">
+        <button type="button" class="chinaDialogClose" aria-label="Close China comparison">×</button>
+        <div class="chinaDialogHeader"></div>
+        <p class="chinaDialogText"></p>
+        <p class="chinaDialogZh"></p>
+        <div class="chinaDialogSource"></div>
+      </div>
+    `;
+    dialog.addEventListener('click', (event) => event.stopPropagation());
+    dialog.querySelector('.chinaDialogClose')?.addEventListener('click', (event) => {
+      event.stopPropagation();
+      closeChinaComparison();
+    });
+    document.body.appendChild(dialog);
+    return dialog;
+  }
+
   // Keyboard
   document.addEventListener('keydown', (e) => {
     // Don't hijack keys when typing somewhere
     const target = e.target?.closest ? e.target : null;
     if (target?.closest('input, textarea, [contenteditable]')) return;
     const k = e.key;
+    if (chinaDialog && !chinaDialog.hidden) {
+      if (['Escape', 'ArrowLeft', 'PageUp'].includes(k)) {
+        e.preventDefault();
+        closeChinaComparison();
+      } else if (['ArrowRight', 'PageDown', ' '].includes(k)) {
+        e.preventDefault();
+      }
+      return;
+    }
     if (['ArrowRight', 'PageDown', ' '].includes(k)) {
       e.preventDefault();
-      if (!revealNextPartial()) show(idx + 1);
+      if (revealNextPartial()) return;
+      show(idx + 1);
     }
     else if (['ArrowLeft', 'PageUp'].includes(k)) {
       e.preventDefault();
@@ -1119,11 +1228,21 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
     else if (k === 'Escape')                          { overviewEl?.classList.remove('is-visible'); }
   });
 
+  mountEl.querySelectorAll('.chinaCompareButton').forEach((button) => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const slideIndex = Number.parseInt(button.dataset.chinaCompare || '', 10);
+      if (Number.isFinite(slideIndex)) openChinaComparison(slideIndex);
+    });
+  });
+
   // Click-to-advance (but not on overview / notes / controls)
   mountEl.addEventListener('click', (e) => {
     const target = e.target?.closest ? e.target : null;
     if (target?.closest('.thumb, #notes, .help, button, a, input, label, select, .taxSim, .chinaTaxSim, .indirectTaxSim, .marketMechanismSim, .marketSignalGame')) return;
-    if (!revealNextPartial()) show(idx + 1);
+    if (revealNextPartial()) return;
+    show(idx + 1);
   });
 
   // Touch-swipe
@@ -1134,7 +1253,8 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
     const dx = e.changedTouches[0].clientX - touchX;
     if (Math.abs(dx) > 60) {
       if (dx < 0) {
-        if (!revealNextPartial()) show(idx + 1);
+        if (revealNextPartial()) return;
+        show(idx + 1);
       } else if (!hidePreviousPartial()) {
         show(idx - 1);
       }
@@ -1173,14 +1293,11 @@ function setupQuizChoices(root) {
 }
 
 function setupFillBlanks(root) {
-  root.querySelectorAll('.fillBlanks').forEach((list) => {
-    const blanks = [...list.querySelectorAll('.blankAnswer')];
-    blanks.forEach((blank) => {
-      blank.addEventListener('click', (event) => {
-        event.stopPropagation();
-        blank.classList.toggle('is-revealed');
-        blank.setAttribute('aria-expanded', blank.classList.contains('is-revealed') ? 'true' : 'false');
-      });
+  root.querySelectorAll('.blankAnswer').forEach((blank) => {
+    blank.addEventListener('click', (event) => {
+      event.stopPropagation();
+      blank.classList.toggle('is-revealed');
+      blank.setAttribute('aria-expanded', blank.classList.contains('is-revealed') ? 'true' : 'false');
     });
   });
 }

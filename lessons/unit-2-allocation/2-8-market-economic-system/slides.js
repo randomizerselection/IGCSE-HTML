@@ -321,10 +321,22 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Example',
-      country: 'Electric vehicles',
-      fact:    'As demand for electric cars rose, the global electric car fleet reached almost 58 million at the end of 2024, more than triple the 2021 total.',
-      zh:      '随着电动汽车需求上升，2024年底全球电动汽车保有量接近5800万辆，是2021年的三倍多。',
-      source:  'Source: International Energy Agency, Global EV Outlook 2025.',
+      facts: {
+        left: {
+          flag: '🌍',
+          country: 'World',
+          fact: 'Electric car demand passed 17 million sales in 2024.',
+          zh: '2024年，全球电动汽车销量超过1700万辆。',
+          source: 'Source: IEA Global EV Outlook 2025.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: 'China sold over 11 million electric cars in 2024, almost half of new car sales.',
+          zh: '2024年中国电动汽车销量超过1100万辆，接近新车销量的一半。',
+          source: 'Source: IEA Global EV Outlook 2025.',
+        },
+      },
       visual:  photos.evCharging,
     },
     {
@@ -376,10 +388,22 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Example',
-      country: 'Plant-based food',
-      fact:    'As consumers demand more plant-based options, the U.S. retail plant-based food market is already worth $8.1 billion.',
-      zh:      '随着消费者对植物基选择的需求增加，美国植物基食品零售市场规模已经达到81亿美元。',
-      source:  'Source: Good Food Institute, Plant-based retail market overview.',
+      facts: {
+        left: {
+          flag: '🇺🇸',
+          country: 'United States',
+          fact: 'U.S. plant-based food sales reached $8.1 billion (about RMB 58 billion) in 2024.',
+          zh: '2024年，美国植物基食品销售额达到81亿美元（约580亿元人民币）。',
+          source: 'Source: Good Food Institute; RMB conversion approximate.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: 'China’s plant-based meat market was about $427.8 million (about RMB 3.1 billion) in 2023.',
+          zh: '2023年，中国植物肉市场约为4.278亿美元（约31亿元人民币）。',
+          source: 'Source: Grand View Research; RMB conversion approximate.',
+        },
+      },
       visual:  photos.vegetables,
     },
     {
@@ -439,7 +463,7 @@ IGCSE.lesson = {
       eyebrow: 'Learn',
       title:   '1. Consumer sovereignty',
       zhTitle: '消费者主权',
-      nodes: [['consumers spend on products they want', 'firms chase sales revenue', 'firms produce what consumers demand']],
+      nodes: [['consumers spend on products they want', 'firms try to attract consumers', 'firms produce what consumers demand']],
       footer: 'Strong phrase: producers are responsive to consumer demand.',
       visual: photos.shopping,
       partialReview: ['.flowRow > .flowChip', '.prompt'],
@@ -465,10 +489,22 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Example',
-      country: 'Digital markets',
-      fact:    'Digital markets can create huge incentives: the global App Store ecosystem facilitated $1.3 trillion in developer billings and sales in 2024.',
-      zh:      '数字市场可以创造巨大的激励：2024年全球App Store生态系统促成了1.3万亿美元的开发者账单和销售额。',
-      source:  'Source: Apple Newsroom, June 2025.',
+      facts: {
+        left: {
+          flag: '🇺🇸',
+          country: 'United States',
+          fact: 'The U.S. App Store economy reached $406 billion (about RMB 2.9 trillion) in 2024.',
+          zh: '2024年，美国App Store经济规模达到4060亿美元（约2.9万亿元人民币）。',
+          source: 'Source: Apple Newsroom; RMB conversion approximate.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: 'China’s App Store economy reached RMB 3.76 trillion in 2023.',
+          zh: '2023年，中国App Store经济规模达到3.76万亿元人民币。',
+          source: 'Source: Apple China Newsroom.',
+        },
+      },
       visual:  photos.phoneDisplay,
     },
     {
@@ -604,10 +640,22 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Example',
-      country: 'Air pollution',
-      fact:    'Air pollution shows how private decisions can create wider costs: ambient and household air pollution are associated with 6.7 million premature deaths annually.',
-      zh:      '空气污染说明私人决策可能造成更广泛的成本：室外和家庭空气污染每年与670万例过早死亡有关。',
-      source:  'Source: World Health Organization, ambient air pollution fact sheet.',
+      facts: {
+        left: {
+          flag: '🌍',
+          country: 'World',
+          fact: 'Air pollution creates external costs: WHO links it to 6.7 million early deaths each year.',
+          zh: '空气污染会带来外部成本：世卫组织认为每年与670万例过早死亡有关。',
+          source: 'Source: World Health Organization.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: 'China’s city PM2.5 average was 29.3 micrograms per m³ in 2024.',
+          zh: '2024年，中国城市PM2.5平均浓度为29.3微克/立方米。',
+          source: 'Source: China Ministry of Ecology and Environment.',
+        },
+      },
       visual:  photos.factorySmoke,
     },
     {
@@ -742,4 +790,3 @@ IGCSE.lesson = {
     },
   ],
 };
-

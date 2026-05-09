@@ -206,11 +206,22 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Example',
-      flag:    '🇩🇰',
-      country: 'Denmark',
-      fact:    'In 2024, Denmark had a tax-to-GDP ratio of 45.2%, compared with an OECD average of 34.1%.',
-      zh:      '2024年，丹麦税收占GDP的比例为45.2%，而OECD平均水平为34.1%。',
-      source: 'Source: OECD Revenue Statistics 2025, Denmark country note.',
+      facts: {
+        left: {
+          flag: '🇩🇰',
+          country: 'Denmark',
+          fact: 'Denmark’s tax revenue was 45.2% of GDP in 2024.',
+          zh: '2024年，丹麦税收收入占GDP的45.2%。',
+          source: 'Source: OECD Revenue Statistics 2025.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: 'China’s tax revenue was 20.4% of GDP in 2023.',
+          zh: '2023年，中国税收收入占GDP的20.4%。',
+          source: 'Source: OECD Revenue Statistics in Asia and the Pacific 2025.',
+        },
+      },
       visual: factPhotos.denmarkTax,
     },
     {
@@ -236,11 +247,22 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Example',
-      flag:    '🇵🇭',
-      country: 'Philippines',
-      fact:    'The Philippines passed a Sin Tax Reform Law in 2012 that raised indirect taxes on tobacco and alcohol.',
-      zh:      '菲律宾在2012年通过“罪恶税”改革法，提高了烟草和酒精消费税。',
-      source: 'Source: World Health Organization and Philippines Department of Finance material on sin tax reform.',
+      facts: {
+        left: {
+          flag: '🇦🇺',
+          country: 'Australia',
+          fact: 'Australia’s cigarette excise tax was AUD 1.40312 per stick (about RMB 6.7) in March 2025.',
+          zh: '2025年3月，澳大利亚香烟消费税为每支1.40312澳元（约6.7元人民币）。',
+          source: 'Source: Australian Taxation Office; RMB conversion approximate.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: 'China’s Class A cigarettes face a 56% production excise tax plus 11% wholesale excise tax.',
+          zh: '中国甲类卷烟征收56%生产环节消费税，另加11%批发环节消费税。',
+          source: 'Source: China consumption tax rate table.',
+        },
+      },
       visual: factPhotos.philippinesTobacco,
     },
     {
@@ -390,11 +412,22 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Example',
-      flag:    '🇬🇧',
-      country: 'United Kingdom',
-      fact:    'Sugar in soft drinks covered by the UK Soft Drinks Industry Levy fell by 46% between 2015 and 2020.',
-      zh:      '英国软饮料产业税覆盖的软饮料含糖量在2015年至2020年下降了46%。',
-      source: 'Source: HM Treasury and HMRC, Soft Drinks Industry Levy Review, October 2024.',
+      facts: {
+        left: {
+          flag: '🇬🇧',
+          country: 'United Kingdom',
+          fact: 'After the UK sugar levy, sugar in taxed soft drinks fell 46% from 2015 to 2020.',
+          zh: '英国含糖饮料税后，被征税软饮料含糖量在2015至2020年下降46%。',
+          source: 'Source: HM Treasury and HMRC.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: 'China has no national sugar-sweetened beverage excise tax in the World Bank database.',
+          zh: '世界银行数据库显示，中国全国层面的含糖饮料消费税为0。',
+          source: 'Source: World Bank Global SSB Tax Database.',
+        },
+      },
       visual: factPhotos.ukSugar,
     },
     {
@@ -486,11 +519,22 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Example',
-      flag:    '🇸🇪',
-      country: 'Sweden',
-      fact:    'Sweden introduced a carbon tax in 1991 at SEK 250 per tonne of fossil CO2.',
-      zh:      '瑞典在1991年推出碳税，税率为每吨化石二氧化碳250瑞典克朗。',
-      source: 'Source: Government Offices of Sweden, Sweden\'s carbon tax.',
+      facts: {
+        left: {
+          flag: '🇸🇪',
+          country: 'Sweden',
+          fact: 'Sweden’s carbon tax started at SEK 250 per tonne of fossil CO2 (about RMB 180) in 1991.',
+          zh: '1991年，瑞典碳税为每吨化石二氧化碳250瑞典克朗（约180元人民币）。',
+          source: 'Source: Government Offices of Sweden; RMB conversion approximate.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: 'China’s national carbon market started in 2021, covering over 4.5 billion tonnes of CO2.',
+          zh: '中国全国碳市场2021年启动，覆盖超过45亿吨二氧化碳排放。',
+          source: 'Source: Gov.cn and MEE reporting.',
+        },
+      },
       visual: factPhotos.swedenCarbon,
     },
     {

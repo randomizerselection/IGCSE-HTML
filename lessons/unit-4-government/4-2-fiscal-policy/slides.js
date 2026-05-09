@@ -251,11 +251,22 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Example',
-      flag:    '🇬🇧',
-      country: 'United Kingdom',
-      fact:    'In the financial year ending March 2024, UK public sector net borrowing was estimated at GBP 131.1 billion.',
-      zh:      '截至2024年3月的财政年度，英国公共部门净借款估计为1311亿英镑。',
-      source: 'Source: Office for National Statistics, Public sector finances, December 2024.',
+      facts: {
+        left: {
+          flag: '🇬🇧',
+          country: 'United Kingdom',
+          fact: 'UK public borrowing was GBP 131.1 billion (about RMB 1.2 trillion) in 2023/24.',
+          zh: '2023/24财年，英国公共借款为1311亿英镑（约1.2万亿元人民币）。',
+          source: 'Source: UK ONS; RMB conversion approximate.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: 'China planned a RMB 4.06 trillion budget deficit in 2024, equal to 3% of GDP.',
+          zh: '中国2024年安排预算赤字4.06万亿元人民币，相当于GDP的3%。',
+          source: 'Source: 2024 Government Work Report.',
+        },
+      },
       visual: factPhotos.ukBudget,
     },
     {
@@ -321,11 +332,22 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Example',
-      flag:    '🇫🇮',
-      country: 'Finland',
-      fact:    'World Bank data report Finland government expenditure on education at about 6.38% of GDP in 2022.',
-      zh:      '世界银行数据显示，2022年芬兰政府教育支出约占GDP的6.38%。',
-      source: 'Source: World Bank indicator SE.XPD.TOTL.GD.ZS, based on UNESCO UIS data.',
+      facts: {
+        left: {
+          flag: '🇫🇮',
+          country: 'Finland',
+          fact: 'Finland’s government education spending was 6.38% of GDP in 2022.',
+          zh: '2022年，芬兰政府教育支出占GDP的6.38%。',
+          source: 'Source: World Bank, based on UNESCO UIS data.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: 'China spent RMB 6.4595 trillion on education in 2023.',
+          zh: '2023年，中国教育经费总投入达到6.4595万亿元人民币。',
+          source: 'Source: China Ministry of Education.',
+        },
+      },
       visual: factPhotos.finlandEducation,
     },
     {
@@ -427,11 +449,22 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Example',
-      flag:    '🇺🇸',
-      country: 'United States',
-      fact:    'The CHIPS Act provided $52.7 billion to revive the US semiconductor industry.',
-      zh:      '《芯片法案》提供527亿美元，用于振兴美国半导体产业。',
-      source: 'Source: NIST, CHIPS Incentives Funding Opportunities.',
+      facts: {
+        left: {
+          flag: '🇺🇸',
+          country: 'United States',
+          fact: 'The U.S. CHIPS Act offered $52.7 billion (about RMB 380 billion) for semiconductors.',
+          zh: '《芯片法案》为美国半导体产业提供527亿美元（约3800亿元人民币）。',
+          source: 'Source: NIST; RMB conversion approximate.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: 'China’s Big Fund III had RMB 344 billion registered capital.',
+          zh: '中国大基金三期注册资本为3440亿元人民币。',
+          source: 'Source: Gov.cn.',
+        },
+      },
       visual: factPhotos.usSemiconductors,
     },
     {
@@ -546,11 +579,22 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Example',
-      flag:    '🇩🇰',
-      country: 'Denmark',
-      fact:    'In 2024, Denmark had a tax-to-GDP ratio of 45.2%, compared with an OECD average of 34.1%.',
-      zh:      '2024年，丹麦税收占GDP的比例为45.2%，而OECD平均水平为34.1%。',
-      source: 'Source: OECD Revenue Statistics 2025, Denmark country note.',
+      facts: {
+        left: {
+          flag: '🇩🇰',
+          country: 'Denmark',
+          fact: 'Denmark’s tax revenue was 45.2% of GDP in 2024.',
+          zh: '2024年，丹麦税收收入占GDP的45.2%。',
+          source: 'Source: OECD Revenue Statistics 2025.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: 'China’s tax revenue was 20.4% of GDP in 2023.',
+          zh: '2023年，中国税收收入占GDP的20.4%。',
+          source: 'Source: OECD Revenue Statistics in Asia and the Pacific 2025.',
+        },
+      },
       visual: factPhotos.denmarkTax,
     },
     {
@@ -574,11 +618,22 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Example',
-      flag:    '🇵🇭',
-      country: 'Philippines',
-      fact:    'The Philippines passed a Sin Tax Reform Law in 2012 that raised indirect taxes on tobacco and alcohol.',
-      zh:      '菲律宾在2012年通过“罪恶税”改革法，提高了烟草和酒精消费税。',
-      source: 'Source: World Health Organization and Philippines Department of Finance material on sin tax reform.',
+      facts: {
+        left: {
+          flag: '🇦🇺',
+          country: 'Australia',
+          fact: 'Australia’s cigarette excise tax was AUD 1.40312 per stick (about RMB 6.7) in March 2025.',
+          zh: '2025年3月，澳大利亚香烟消费税为每支1.40312澳元（约6.7元人民币）。',
+          source: 'Source: Australian Taxation Office; RMB conversion approximate.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: 'China’s Class A cigarettes face a 56% production excise tax plus 11% wholesale excise tax.',
+          zh: '中国甲类卷烟征收56%生产环节消费税，另加11%批发环节消费税。',
+          source: 'Source: China consumption tax rate table.',
+        },
+      },
       visual: factPhotos.philippinesTobacco,
     },
     {
@@ -694,11 +749,22 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Example',
-      flag:    '🇬🇧',
-      country: 'United Kingdom',
-      fact:    'The UK government says sugar in soft drinks within the Soft Drinks Industry Levy fell by 46% between 2015 and 2020.',
-      zh:      '英国政府称，软饮料产业税范围内的软饮料含糖量在2015年至2020年下降了46%。',
-      source: 'Source: HM Treasury and HMRC, Soft Drinks Industry Levy Review, October 2024.',
+      facts: {
+        left: {
+          flag: '🇬🇧',
+          country: 'United Kingdom',
+          fact: 'After the UK sugar levy, sugar in taxed soft drinks fell 46% from 2015 to 2020.',
+          zh: '英国含糖饮料税后，被征税软饮料含糖量在2015至2020年下降46%。',
+          source: 'Source: HM Treasury and HMRC.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: 'China has no national sugar-sweetened beverage excise tax in the World Bank database.',
+          zh: '世界银行数据库显示，中国全国层面的含糖饮料消费税为0。',
+          source: 'Source: World Bank Global SSB Tax Database.',
+        },
+      },
       visual: factPhotos.ukSugar,
     },
     {
@@ -784,11 +850,22 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Example',
-      flag:    '🇸🇪',
-      country: 'Sweden',
-      fact:    'Sweden introduced a carbon tax in 1991 at SEK 250 per tonne of fossil CO2.',
-      zh:      '瑞典在1991年推出碳税，税率为每吨化石二氧化碳250瑞典克朗。',
-      source: 'Source: Government Offices of Sweden, Sweden\'s carbon tax.',
+      facts: {
+        left: {
+          flag: '🇸🇪',
+          country: 'Sweden',
+          fact: 'Sweden’s carbon tax started at SEK 250 per tonne of fossil CO2 (about RMB 180) in 1991.',
+          zh: '1991年，瑞典碳税为每吨化石二氧化碳250瑞典克朗（约180元人民币）。',
+          source: 'Source: Government Offices of Sweden; RMB conversion approximate.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: 'China’s national carbon market started in 2021, covering over 4.5 billion tonnes of CO2.',
+          zh: '中国全国碳市场2021年启动，覆盖超过45亿吨二氧化碳排放。',
+          source: 'Source: Gov.cn and MEE reporting.',
+        },
+      },
       visual: factPhotos.swedenCarbon,
     },
     {
@@ -996,11 +1073,22 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Example',
-      flag:    '🇸🇬',
-      country: 'Singapore',
-      fact:    'Singapore Budget 2024 focused on cost-of-living relief, a stronger social compact and future resilience.',
-      zh:      '新加坡2024年预算重点关注生活成本援助、更强的社会契约和未来韧性。',
-      source: 'Source: Singapore Ministry of Finance, Budget 2024.',
+      facts: {
+        left: {
+          flag: '🇸🇬',
+          country: 'Singapore',
+          fact: 'Singapore added S$1.9 billion (about RMB 10 billion) for cost-of-living relief in Budget 2024.',
+          zh: '新加坡2024年预算案增加19亿新元（约100亿元人民币）缓解生活成本压力。',
+          source: 'Source: Singapore Ministry of Finance; RMB conversion approximate.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: 'China planned RMB 28.5 trillion in general public budget spending for 2024.',
+          zh: '中国2024年一般公共预算支出安排28.5万亿元人民币。',
+          source: 'Source: 2024 Government Work Report.',
+        },
+      },
       visual: factPhotos.singaporeBudget,
     },
     {
