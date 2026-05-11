@@ -1082,15 +1082,18 @@ function mountLessonModeSwitch(mode) {
   }).join('');
 
   nav.innerHTML = `
-    <div class="lessonModeUtilities" aria-label="Lesson actions">
-      <a class="lessonModeButton" href="${esc(courseIndexUrl())}">Library index</a>
-      <a class="lessonModeButton" href="${esc(lessonStartUrl())}">Lesson start</a>
-      ${currentMode === 'handout' ? '<button type="button" class="lessonModeButton" data-print-lesson>Print</button>' : ''}
-      <button type="button" class="lessonModeButton lessonModeButton--selector" data-student-selector>Student selector</button>
-    </div>
     <div class="lessonModeTabs" aria-label="Lesson modes">
       ${modeTabs}
     </div>
+    <details class="lessonModeMenu">
+      <summary class="lessonModeMenuButton">More</summary>
+      <div class="lessonModeUtilities" aria-label="Lesson actions">
+        <a class="lessonModeButton" href="${esc(courseIndexUrl())}">Library index</a>
+        <a class="lessonModeButton" href="${esc(lessonStartUrl())}">Lesson start</a>
+        ${currentMode === 'handout' ? '<button type="button" class="lessonModeButton" data-print-lesson>Print</button>' : ''}
+        <button type="button" class="lessonModeButton lessonModeButton--selector" data-student-selector>Student selector</button>
+      </div>
+    </details>
   `;
   nav.querySelector('[data-print-lesson]')?.addEventListener('click', () => window.print());
   nav.querySelector('[data-student-selector]')?.addEventListener('click', (event) => {

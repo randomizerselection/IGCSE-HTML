@@ -57,6 +57,19 @@ async function expectNoHorizontalOverflow(page) {
   expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.clientWidth + 1);
 }
 
+async function expectLessonModeTabs(page, activeMode) {
+  const tabs = page.locator('.lessonModeTabs');
+  await expect(tabs.getByRole('link', { name: /^Slides$/i })).toBeVisible();
+  await expect(tabs.getByRole('link', { name: /^Handout$/i })).toBeVisible();
+  await expect(tabs.getByRole('link', { name: /^Quiz$/i })).toBeVisible();
+  await expect(tabs.getByRole('link', { name: /^Flashcards$/i })).toBeVisible();
+  await expect(tabs.getByRole('link', { name: new RegExp(`^${activeMode}$`, 'i') })).toHaveAttribute('aria-current', 'page');
+}
+
+async function openLessonModeMenu(page) {
+  await page.locator('.lessonModeMenuButton').click();
+}
+
 async function expectNoRemoteImageAssets(page) {
   const remoteAssets = await page.evaluate(() => {
     const isRemote = (value) => /(^|,\s*)https?:\/\//i.test(String(value || ''));
@@ -174,11 +187,11 @@ test.describe('site smoke', () => {
     await expect(page.locator('.slide.is-active')).toBeVisible();
     await expect(page.locator('.slide.is-active h1')).toHaveText(/Macroeconomic aims/i);
     await expect(page.locator('#progress')).toBeVisible();
+    await expectLessonModeTabs(page, 'Slides');
+    await expect(page.getByRole('link', { name: /Library index/i })).toBeHidden();
+    await openLessonModeMenu(page);
     await expect(page.getByRole('link', { name: /Library index/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Lesson start/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /Student print view/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /^Quiz$/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /^Flashcards$/i })).toBeVisible();
 
     await expectNoHorizontalOverflow(page);
 
@@ -214,6 +227,7 @@ test.describe('site smoke', () => {
     await page.goto(pageUrl('lessons/unit-4-government/4-1-macroeconomic-aims/index.html') + '#4');
 
     await expect(page.locator('.slide.is-active h2')).toHaveText(/What governments try to achieve/i);
+    await openLessonModeMenu(page);
     await page.getByRole('link', { name: /Lesson start/i }).click();
     await expect(page.locator('.slide.is-active h1')).toHaveText(/Macroeconomic aims/i);
     await expect(page).toHaveURL(/#1$/);
@@ -302,6 +316,7 @@ test.describe('site smoke', () => {
     await expect(activeHeading).toHaveText(/Market economic system/i);
     await expect(activeHeading).toHaveCSS('color', 'rgb(245, 248, 255)');
 
+    await openLessonModeMenu(page);
     await page.getByRole('button', { name: /Student selector/i }).click();
     await expect(page.locator('.studentSelectorSidePanel')).toBeVisible();
     await expect(page.locator('.studentSelectorSidePanel').getByRole('heading', { name: /Random Student Selector/i })).toBeVisible();
@@ -399,11 +414,11 @@ test.describe('site smoke', () => {
     await page.goto(pageUrl('lessons/unit-4-government/4-1-macroeconomic-aims/index.html') + '?view=print');
 
     await expect(page.getByRole('heading', { name: /Macroeconomic aims/i }).first()).toBeVisible();
+    await expectLessonModeTabs(page, 'Handout');
+    await openLessonModeMenu(page);
     await expect(page.getByRole('button', { name: /^Print$/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Library index/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Lesson start/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /Slide mode/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /^Flashcards$/i })).toBeVisible();
     await expect(page.locator('.slide')).toHaveCount(0);
     await expect(page.locator('.handoutBlock')).toHaveCount(4);
     await expect(page.locator('.handoutBlock').filter({ hasText: /What governments try to achieve/i })).toBeVisible();
@@ -439,48 +454,76 @@ test.describe('site smoke', () => {
     for (const flashcardPath of flashcardPaths) {
       await page.goto(pageUrl(flashcardPath) + '?view=flashcards');
       await expect(page.locator('.flashcardDeck')).toBeVisible();
-      await expect(page.locator('.flashcardPosition')).toHaveText('1 of 8');
+      await expect(page.locator('.flashcardPosition')).toHaveText('8 left');
       await expect(page.locator('.flashcardProgressTrack')).toHaveAttribute('aria-valuemax', '8');
+      await expect(page.locator('.flashcardProgressTrack')).toHaveAttribute('aria-valuenow', '0');
       await expect(page.locator('.flashcardTags span').first()).toHaveText(/Definition|Fill in the blank/);
-      await expect(page.getByRole('button', { name: /^Again$/i })).toBeDisabled();
-      await expect(page.getByRole('button', { name: /^Know$/i })).toBeDisabled();
-      await expect(page.getByRole('link', { name: /Slide mode/i })).toBeVisible();
-      await expect(page.getByRole('link', { name: /^Quiz$/i })).toBeVisible();
-      await expect(page.getByRole('link', { name: /Student print view/i })).toBeVisible();
+      await expect(page.locator('[data-flashcard-mark="again"]')).toBeHidden();
+      await expect(page.locator('[data-flashcard-mark="know"]')).toBeHidden();
+      await expect(page.getByRole('button', { name: /^Show Answer$/i })).toBeVisible();
+      await expectLessonModeTabs(page, 'Flashcards');
       const cardTypes = await page.evaluate(() => window.IGCSE.flashcards.cards.map((card) => card.type));
       expect(cardTypes.every((type) => ['definition', 'fillBlank'].includes(type))).toBe(true);
       await expectNoHorizontalOverflow(page);
     }
   });
 
-  test('student flashcards flip, mark, shuffle and reset', async ({ page }) => {
+  test('student flashcards reveal, requeue, complete, shuffle and reset', async ({ page }) => {
     await page.goto(pageUrl('lessons/unit-4-government/4-1-macroeconomic-aims/index.html') + '?view=flashcards');
 
-    await expect(page.locator('.flashcardPosition')).toHaveText('1 of 8');
+    await expect(page.locator('.flashcardPosition')).toHaveText('8 left');
     await expect(page.locator('.flashcardFaceLabel')).toHaveText('Fill in the blank');
     await expect(page.locator('.flashcardPrompt')).toHaveText(/Macroeconomic aims include/i);
     await expect(page.locator('.flashcardKnownCount')).toHaveText('0');
     await expect(page.locator('.flashcardAgainCount')).toHaveText('0');
+    const firstPrompt = await page.locator('.flashcardPrompt').textContent();
 
-    await page.getByRole('button', { name: /^Flip$/i }).click();
+    await page.getByRole('button', { name: /^Show Answer$/i }).click();
     await expect(page.locator('.flashcardFaceLabel')).toHaveText('Answer');
     await expect(page.locator('.flashcardPrompt')).toHaveText('sustainability');
     await expect(page.getByRole('button', { name: /^Again$/i })).toBeEnabled();
     await expect(page.getByRole('button', { name: /^Know$/i })).toBeEnabled();
+    await expect(page.getByRole('button', { name: /^Show Answer$/i })).toBeHidden();
 
     await page.getByRole('button', { name: /^Again$/i }).click();
-    await expect(page.locator('.flashcardPosition')).toHaveText('2 of 8');
+    await expect(page.locator('.flashcardPosition')).toHaveText('8 left');
+    await expect(page.locator('.flashcardAgainCount')).toHaveText('1');
+    await expect(page.locator('.flashcardPrompt')).not.toHaveText(firstPrompt);
+
+    for (let i = 0; i < 7; i += 1) {
+      await page.getByRole('button', { name: /^Show Answer$/i }).click();
+      await page.getByRole('button', { name: /^Know$/i }).click();
+    }
+
+    await expect(page.locator('.flashcardPosition')).toHaveText('1 left');
+    await expect(page.locator('.flashcardPrompt')).toHaveText(firstPrompt);
+    await expect(page.locator('.flashcardKnownCount')).toHaveText('7');
     await expect(page.locator('.flashcardAgainCount')).toHaveText('1');
 
     await page.locator('.flashcardCard').click();
     await page.getByRole('button', { name: /^Know$/i }).click();
-    await expect(page.locator('.flashcardPosition')).toHaveText('3 of 8');
+    await expect(page.locator('.flashcardPosition')).toHaveText('Complete');
+    await expect(page.locator('.flashcardComplete')).toBeVisible();
+    await expect(page.locator('.flashcardKnownCount')).toHaveText('8');
+    await expect(page.locator('.flashcardAgainCount')).toHaveText('0');
+    await expect(page.getByRole('button', { name: /^Study again$/i })).toBeVisible();
+
+    await page.getByRole('button', { name: /^Study again$/i }).click();
+    await expect(page.locator('.flashcardPosition')).toHaveText('8 left');
+    await page.evaluate(() => document.activeElement.blur());
+    await page.keyboard.press('Space');
+    await expect(page.locator('.flashcardFaceLabel')).toHaveText('Answer');
+    await page.keyboard.press('1');
+    await expect(page.locator('.flashcardAgainCount')).toHaveText('1');
+    await page.evaluate(() => document.activeElement.blur());
+    await page.keyboard.press('Space');
+    await page.keyboard.press('2');
     await expect(page.locator('.flashcardKnownCount')).toHaveText('1');
 
     await page.getByRole('button', { name: /^Shuffle$/i }).click();
-    await expect(page.locator('.flashcardPosition')).toHaveText('1 of 8');
+    await expect(page.locator('.flashcardPosition')).toHaveText('7 left');
     await page.getByRole('button', { name: /^Reset$/i }).click();
-    await expect(page.locator('.flashcardPosition')).toHaveText('1 of 8');
+    await expect(page.locator('.flashcardPosition')).toHaveText('8 left');
     await expect(page.locator('.flashcardPrompt')).toHaveText(/Macroeconomic aims include/i);
     await expect(page.locator('.flashcardKnownCount')).toHaveText('0');
     await expect(page.locator('.flashcardAgainCount')).toHaveText('0');
@@ -544,9 +587,7 @@ test.describe('site smoke', () => {
         'IC 3.1',
         'IC 3.2',
       ]);
-      await expect(page.getByRole('link', { name: /Slide mode/i })).toBeVisible();
-      await expect(page.getByRole('link', { name: /Student print view/i })).toBeVisible();
-      await expect(page.getByRole('link', { name: /^Flashcards$/i })).toBeVisible();
+      await expectLessonModeTabs(page, 'Quiz');
       await expectNoHorizontalOverflow(page);
     }
   });
