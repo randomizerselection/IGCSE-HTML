@@ -188,10 +188,21 @@ test.describe('site smoke', () => {
     await expect(page.locator('.slide.is-active h1')).toHaveText(/Macroeconomic aims/i);
     await expect(page.locator('#progress')).toBeVisible();
     await expectLessonModeTabs(page, 'Slides');
-    await expect(page.getByRole('link', { name: /Library index/i })).toBeHidden();
-    await openLessonModeMenu(page);
-    await expect(page.getByRole('link', { name: /Library index/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /Lesson start/i })).toBeVisible();
+    if (testInfo.project.name.includes('phone')) {
+      await expect(page.getByRole('button', { name: /^Student selector$/i })).toBeHidden();
+      await expect(page.locator('.lessonModeMenu')).toBeHidden();
+      const navBox = await page.locator('.lessonModeSwitch').boundingBox();
+      expect(navBox.height).toBeLessThanOrEqual(60);
+    } else {
+      await expect(page.getByRole('button', { name: /^Student selector$/i })).toBeVisible();
+      await expect(page.locator('.lessonModeSelectorToggle')).toHaveText('Selector');
+      await expect(page.getByRole('button', { name: /^Student selector$/i })).toHaveAttribute('aria-pressed', 'false');
+      await expect(page.locator('.lessonModeMenuButton')).toBeVisible();
+      await expect(page.getByRole('link', { name: /Library index/i })).toBeHidden();
+      await openLessonModeMenu(page);
+      await expect(page.getByRole('link', { name: /Library index/i })).toBeVisible();
+      await expect(page.getByRole('link', { name: /Lesson start/i })).toBeVisible();
+    }
 
     await expectNoHorizontalOverflow(page);
 
@@ -223,17 +234,30 @@ test.describe('site smoke', () => {
     }
   });
 
-  test('lesson start link returns slide view to the first slide', async ({ page }) => {
+  test('lesson start link returns slide view to the first slide', async ({ page }, testInfo) => {
     await page.goto(pageUrl('lessons/unit-4-government/4-1-macroeconomic-aims/index.html') + '#4');
 
     await expect(page.locator('.slide.is-active h2')).toHaveText(/What governments try to achieve/i);
+    if (testInfo.project.name.includes('phone')) {
+      await expectLessonModeTabs(page, 'Slides');
+      await expect(page.locator('.lessonModeMenu')).toBeHidden();
+      return;
+    }
+
     await openLessonModeMenu(page);
     await page.getByRole('link', { name: /Lesson start/i }).click();
     await expect(page.locator('.slide.is-active h1')).toHaveText(/Macroeconomic aims/i);
     await expect(page).toHaveURL(/#1$/);
   });
 
-  test('student selector opens on demand from lesson slides', async ({ page }) => {
+  test('student selector opens on demand from lesson slides', async ({ page }, testInfo) => {
+    if (testInfo.project.name.includes('phone')) {
+      await page.goto(pageUrl('lessons/unit-2-allocation/2-8-market-economic-system/index.html'));
+      await expectLessonModeTabs(page, 'Slides');
+      await expect(page.getByRole('button', { name: /^Student selector$/i })).toBeHidden();
+      return;
+    }
+
     await page.route('https://randomizerselection.github.io/studentselector/selector.css', async (route) => {
       await route.fulfill({ status: 200, contentType: 'text/css', body: '.selector-overlay-host{position:fixed;inset:0;z-index:9999;background:#fff}' });
     });
@@ -316,9 +340,24 @@ test.describe('site smoke', () => {
     await expect(activeHeading).toHaveText(/Market economic system/i);
     await expect(activeHeading).toHaveCSS('color', 'rgb(245, 248, 255)');
 
-    await openLessonModeMenu(page);
-    await page.getByRole('button', { name: /Student selector/i }).click();
+    await page.getByRole('button', { name: /^Student selector$/i }).click();
     await expect(page.locator('.studentSelectorSidePanel')).toBeVisible();
+    await expect(page.getByRole('button', { name: /^Student selector$/i })).toHaveAttribute('aria-pressed', 'true');
+    const openNavFit = await page.evaluate(() => {
+      const toggle = document.querySelector('.lessonModeSelectorToggle').getBoundingClientRect();
+      const panel = document.querySelector('.studentSelectorSidePanel').getBoundingClientRect();
+      const deck = document.querySelector('#deck').getBoundingClientRect();
+      const activeSlide = document.querySelector('.slide.is-active').getBoundingClientRect();
+      return {
+        toggleRight: toggle.right,
+        panelLeft: panel.left,
+        deckRight: deck.right,
+        slideRight: activeSlide.right,
+      };
+    });
+    expect(openNavFit.toggleRight).toBeLessThanOrEqual(openNavFit.panelLeft - 6);
+    expect(openNavFit.deckRight).toBeLessThanOrEqual(openNavFit.panelLeft + 1);
+    expect(openNavFit.slideRight).toBeLessThanOrEqual(openNavFit.panelLeft + 1);
     await expect(page.locator('.studentSelectorSidePanel').getByRole('heading', { name: /Random Student Selector/i })).toBeVisible();
     await expect(page.locator('.studentSelectorSidePanel .selector-titlebar .selector-close')).toBeHidden();
     await expect(page.getByLabel('Close student selector')).toBeVisible();
@@ -367,6 +406,13 @@ test.describe('site smoke', () => {
 
     await page.getByLabel('Close student selector').click();
     await expect(page.locator('.studentSelectorSidePanel')).toHaveCount(0);
+    await expect(page.getByRole('button', { name: /^Student selector$/i })).toHaveAttribute('aria-pressed', 'false');
+
+    await page.getByRole('button', { name: /^Student selector$/i }).click();
+    await expect(page.locator('.studentSelectorSidePanel')).toBeVisible();
+    await page.getByRole('button', { name: /^Student selector$/i }).click();
+    await expect(page.locator('.studentSelectorSidePanel')).toHaveCount(0);
+    await expect(page.getByRole('button', { name: /^Student selector$/i })).toHaveAttribute('aria-pressed', 'false');
   });
 
   test('rapid keyboard navigation advances after the final partial reveal', async ({ page }) => {
@@ -410,15 +456,19 @@ test.describe('site smoke', () => {
     await expect(page).toHaveURL(/#7$/);
   });
 
-  test('student print view renders a full lesson handout', async ({ page }) => {
+  test('student print view renders a full lesson handout', async ({ page }, testInfo) => {
     await page.goto(pageUrl('lessons/unit-4-government/4-1-macroeconomic-aims/index.html') + '?view=print');
 
     await expect(page.getByRole('heading', { name: /Macroeconomic aims/i }).first()).toBeVisible();
     await expectLessonModeTabs(page, 'Handout');
-    await openLessonModeMenu(page);
-    await expect(page.getByRole('button', { name: /^Print$/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /Library index/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /Lesson start/i })).toBeVisible();
+    if (testInfo.project.name.includes('phone')) {
+      await expect(page.locator('.lessonModeMenu')).toBeHidden();
+    } else {
+      await openLessonModeMenu(page);
+      await expect(page.getByRole('button', { name: /^Print$/i })).toBeVisible();
+      await expect(page.getByRole('link', { name: /Library index/i })).toBeVisible();
+      await expect(page.getByRole('link', { name: /Lesson start/i })).toBeVisible();
+    }
     await expect(page.locator('.slide')).toHaveCount(0);
     await expect(page.locator('.handoutBlock')).toHaveCount(4);
     await expect(page.locator('.handoutBlock').filter({ hasText: /What governments try to achieve/i })).toBeVisible();

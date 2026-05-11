@@ -4,6 +4,7 @@
    ============================================================ */
 
 html, body { height: 100%; }
+body { --student-selector-panel-width: min(640px, 44vw); }
 body { overflow: hidden; }
 
 #deck {
@@ -1689,12 +1690,13 @@ h2 .inlineZh {
 /* ---------- Lesson view switcher ---------- */
 .lessonModeSwitch {
   position: fixed;
-  top: 16px;
-  right: 16px;
+  top: 14px;
+  right: 14px;
   z-index: 90;
-  display: grid;
-  grid-template-columns: minmax(0, auto) max-content;
-  gap: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
   align-items: start;
   max-width: min(900px, calc(100vw - 32px));
 }
@@ -1703,17 +1705,14 @@ h2 .inlineZh {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
-  gap: 6px;
+  gap: 3px;
   min-width: 0;
-}
-
-.lessonModeTabs {
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(7, 17, 31, .82);
-  box-shadow: var(--shadow-sm);
+  background: rgba(7, 17, 31, .72);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .16);
   backdrop-filter: blur(14px);
-  padding: 4px;
+  padding: 3px;
 }
 
 .lessonModeButton,
@@ -1722,10 +1721,10 @@ h2 .inlineZh {
   appearance: none;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(7, 17, 31, .82);
+  background: rgba(7, 17, 31, .72);
   color: var(--ink);
-  padding: 10px 14px;
-  font: 800 13px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  padding: 8px 12px;
+  font: 800 12.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   letter-spacing: 0;
   text-decoration: none;
   cursor: pointer;
@@ -1734,7 +1733,7 @@ h2 .inlineZh {
 
 .lessonModeButton,
 .lessonModeMenuButton {
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .16);
   backdrop-filter: blur(14px);
 }
 
@@ -1743,12 +1742,12 @@ h2 .inlineZh {
   background: transparent;
   box-shadow: none;
   color: var(--ink-dim);
-  padding: 9px 12px;
+  padding: 8px 11px;
 }
 
 .lessonModeTab.is-active {
-  border-color: rgba(86, 216, 255, .48);
-  background: rgba(86, 216, 255, .18);
+  border-color: rgba(86, 216, 255, .34);
+  background: rgba(86, 216, 255, .13);
   color: #fff;
 }
 
@@ -1770,7 +1769,7 @@ h2 .inlineZh {
 
 .lessonModeMenuButton {
   display: grid;
-  min-height: 42px;
+  min-height: 36px;
   place-items: center;
   list-style: none;
 }
@@ -1789,7 +1788,7 @@ h2 .inlineZh {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(7, 17, 31, .94);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, .22);
   backdrop-filter: blur(14px);
   padding: 8px;
 }
@@ -1807,8 +1806,14 @@ h2 .inlineZh {
 
 .lessonModeButton--selector {
   border-color: rgba(255, 209, 102, .56);
-  background: linear-gradient(135deg, rgba(255, 209, 102, .24), rgba(42, 197, 216, .18)), rgba(7, 17, 31, .88);
+  background: linear-gradient(135deg, rgba(255, 209, 102, .20), rgba(42, 197, 216, .14)), rgba(7, 17, 31, .78);
   color: #fff;
+}
+
+.lessonModeButton--selector[aria-pressed="true"] {
+  border-color: rgba(255, 209, 102, .86);
+  background: linear-gradient(135deg, rgba(255, 209, 102, .92), rgba(255, 159, 67, .88));
+  color: #07111f;
 }
 
 /* ---------- On-demand student selector panel ---------- */
@@ -1834,7 +1839,7 @@ h2 .inlineZh {
   right: 0;
   bottom: 0;
   z-index: 120;
-  width: min(640px, 44vw);
+  width: var(--student-selector-panel-width);
   overflow: hidden;
   color: var(--ink);
   background:
@@ -2428,7 +2433,29 @@ h2 .inlineZh {
 }
 
 body.is-student-selector-open .lessonModeSwitch {
-  right: calc(min(640px, 44vw) + 16px);
+  right: calc(var(--student-selector-panel-width) + 14px);
+  z-index: 130;
+}
+
+body.is-student-selector-open .lessonModeTabs,
+body.is-student-selector-open .lessonModeMenu {
+  display: none;
+}
+
+body.is-student-selector-open:not(.is-handout-mode):not(.is-quiz-mode):not(.is-flashcard-mode) #deck {
+  width: calc(100vw - var(--student-selector-panel-width));
+}
+
+body.is-student-selector-open:not(.is-handout-mode):not(.is-quiz-mode):not(.is-flashcard-mode) #progress {
+  right: var(--student-selector-panel-width);
+}
+
+body.is-student-selector-open:not(.is-handout-mode):not(.is-quiz-mode):not(.is-flashcard-mode) .help {
+  right: calc(var(--student-selector-panel-width) + 16px);
+}
+
+body.is-student-selector-open:not(.is-handout-mode):not(.is-quiz-mode):not(.is-flashcard-mode) #notes {
+  right: calc(var(--student-selector-panel-width) + 4vw);
 }
 
 /* ---------- Student print / reading view ---------- */
@@ -3646,15 +3673,18 @@ body.is-flashcard-mode #deck {
 }
 
 @media (max-width: 760px) {
+  body {
+    --student-selector-panel-width: 100vw;
+  }
+
   .lessonModeSwitch {
     top: 10px;
     right: 10px;
     left: 10px;
-    grid-template-columns: 1fr;
+    display: block;
     max-width: none;
   }
 
-  .lessonModeUtilities,
   .lessonModeTabs {
     justify-content: stretch;
   }
@@ -3663,6 +3693,11 @@ body.is-flashcard-mode #deck {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     border-radius: 8px;
+  }
+
+  .lessonModeSelectorToggle,
+  .lessonModeMenu {
+    display: none !important;
   }
 
   .lessonModeButton {
@@ -3687,21 +3722,17 @@ body.is-flashcard-mode #deck {
 
   .lessonModeTab {
     display: grid;
-    min-height: 38px;
+    min-height: 36px;
     place-items: center;
     border-radius: 6px;
-    padding: 8px 7px;
-    font-size: .78rem;
+    padding: 7px 6px;
+    font-size: .76rem;
     text-align: center;
   }
 
   .studentSelectorSidePanel {
     width: 100vw;
     left: 0;
-  }
-
-  body.is-student-selector-open .lessonModeSwitch {
-    right: 10px;
   }
 
   .studentSelectorSidePanel.is-stage-overlay .selector-outcomes {

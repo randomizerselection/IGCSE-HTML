@@ -950,6 +950,13 @@ function loadStudentSelectorAsset(tagName, attrs) {
 
 let mountedStudentSelector = null;
 
+function syncStudentSelectorButtons() {
+  const isOpen = Boolean(mountedStudentSelector?.panel?.isConnected);
+  document.querySelectorAll('[data-student-selector]').forEach((button) => {
+    button.setAttribute('aria-pressed', isOpen ? 'true' : 'false');
+  });
+}
+
 function closeStudentSelectorPanel() {
   try {
     mountedStudentSelector?.app?.destroy?.();
@@ -960,6 +967,7 @@ function closeStudentSelectorPanel() {
   mountedStudentSelector?.panel?.remove();
   mountedStudentSelector = null;
   document.body.classList.remove('is-student-selector-open');
+  syncStudentSelectorButtons();
 }
 
 function selectorModalIsOpen(panel) {
@@ -1048,6 +1056,7 @@ async function openStudentSelector() {
       const observer = attachStudentSelectorStageObserver(panel);
       mountedStudentSelector = { panel, app, observer };
       document.body.classList.add('is-student-selector-open');
+      syncStudentSelectorButtons();
       panel.focus({ preventScroll: true });
       return;
     }
@@ -1057,6 +1066,14 @@ async function openStudentSelector() {
     closeStudentSelectorPanel();
     window.open(baseUrl, '_blank', 'noopener');
   }
+}
+
+function toggleStudentSelector() {
+  if (mountedStudentSelector?.panel?.isConnected) {
+    closeStudentSelectorPanel();
+    return;
+  }
+  openStudentSelector();
 }
 
 function mountLessonModeSwitch(mode) {
@@ -1085,22 +1102,24 @@ function mountLessonModeSwitch(mode) {
     <div class="lessonModeTabs" aria-label="Lesson modes">
       ${modeTabs}
     </div>
+    ${currentMode === 'slides' ? '<button type="button" class="lessonModeButton lessonModeButton--selector lessonModeSelectorToggle" data-student-selector aria-label="Student selector" aria-pressed="false">Selector</button>' : ''}
     <details class="lessonModeMenu">
       <summary class="lessonModeMenuButton">More</summary>
       <div class="lessonModeUtilities" aria-label="Lesson actions">
         <a class="lessonModeButton" href="${esc(courseIndexUrl())}">Library index</a>
         <a class="lessonModeButton" href="${esc(lessonStartUrl())}">Lesson start</a>
         ${currentMode === 'handout' ? '<button type="button" class="lessonModeButton" data-print-lesson>Print</button>' : ''}
-        <button type="button" class="lessonModeButton lessonModeButton--selector" data-student-selector>Student selector</button>
+        ${currentMode !== 'slides' ? '<button type="button" class="lessonModeButton lessonModeButton--selector" data-student-selector aria-pressed="false">Student selector</button>' : ''}
       </div>
     </details>
   `;
   nav.querySelector('[data-print-lesson]')?.addEventListener('click', () => window.print());
   nav.querySelector('[data-student-selector]')?.addEventListener('click', (event) => {
     event.currentTarget.blur();
-    openStudentSelector();
+    toggleStudentSelector();
   });
   document.body.appendChild(nav);
+  syncStudentSelectorButtons();
 }
 
 function handoutTitle(slide) {
