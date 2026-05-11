@@ -25,6 +25,11 @@ body { overflow: hidden; }
   display: grid;
   animation: slideIn .28s var(--ease) both;
 }
+.slide h1,
+.slide h2,
+.slide h3 {
+  color: var(--ink);
+}
 @keyframes slideIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: none; }
@@ -1716,6 +1721,605 @@ h2 .inlineZh {
   outline: none;
 }
 
+.lessonModeButton--selector {
+  border-color: rgba(255, 209, 102, .56);
+  background: linear-gradient(135deg, rgba(255, 209, 102, .24), rgba(42, 197, 216, .18)), rgba(7, 17, 31, .88);
+  color: #fff;
+}
+
+/* ---------- On-demand student selector panel ---------- */
+.studentSelectorSidePanel {
+  --bg: var(--bg-0);
+  --bg-alt: var(--bg-2);
+  --panel: rgba(7, 17, 31, .96);
+  --panel-alt: rgba(16, 35, 58, .92);
+  --field: rgba(255, 255, 255, .08);
+  --text: var(--ink);
+  --muted: var(--muted);
+  --line: var(--line);
+  --line-strong: var(--line-strong);
+  --accent: var(--gold);
+  --accent-dark: var(--gold-warm);
+  --teal: var(--cyan);
+  --success: var(--green);
+  --warning: var(--gold);
+  --danger: var(--rose);
+  --radius: var(--r-sm);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 120;
+  width: min(640px, 44vw);
+  overflow: hidden;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 18% 10%, rgba(86, 216, 255, .16), transparent 35%),
+    radial-gradient(circle at 88% 86%, rgba(255, 209, 102, .13), transparent 36%),
+    linear-gradient(180deg, rgba(7, 17, 31, .98), rgba(12, 27, 45, .98));
+  border-left: 1px solid var(--line-strong);
+  box-shadow: -26px 0 70px rgba(0, 0, 0, .35);
+  font-family: "SF Pro Display", ui-sans-serif, system-ui, -apple-system,
+               BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+.studentSelectorSidePanel *,
+.studentSelectorSidePanel *::before,
+.studentSelectorSidePanel *::after {
+  box-sizing: border-box;
+}
+
+.studentSelectorSidePanel button,
+.studentSelectorSidePanel select,
+.studentSelectorSidePanel textarea {
+  font: inherit;
+}
+
+.studentSelectorSidePanel button {
+  cursor: pointer;
+}
+
+.studentSelectorPanelClose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 5;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, .28);
+  border-radius: 999px;
+  background: rgba(7, 17, 31, .78);
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+  font: 900 22px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  cursor: pointer;
+}
+
+.studentSelectorPanelClose:hover,
+.studentSelectorPanelClose:focus-visible {
+  background: rgba(16, 35, 58, .94);
+  outline: 2px solid rgba(255, 209, 102, .62);
+  outline-offset: 2px;
+}
+
+.studentSelectorSidePanel .selector-root {
+  min-height: 0;
+  height: 100vh;
+  padding: 14px;
+  overflow: hidden;
+  color: var(--ink);
+  background: transparent;
+}
+
+.studentSelectorSidePanel .selector-shell {
+  display: block;
+  min-height: 0;
+  height: calc(100vh - 28px);
+}
+
+.studentSelectorSidePanel .selector-dock,
+.studentSelectorSidePanel .selector-stage {
+  min-height: auto;
+  max-height: none;
+  box-shadow: none;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  background: linear-gradient(145deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .035));
+  backdrop-filter: blur(16px);
+}
+
+.studentSelectorSidePanel .selector-dock {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: 100%;
+  padding: 18px;
+  overflow: visible;
+}
+
+.studentSelectorSidePanel .selector-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.studentSelectorSidePanel .selector-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.studentSelectorSidePanel .selector-brand img {
+  width: 42px;
+  height: 42px;
+}
+
+.studentSelectorSidePanel .selector-brand h1 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.2rem, 1.7vw, 1.65rem);
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.studentSelectorSidePanel .selector-brand p,
+.studentSelectorSidePanel .selector-meta,
+.studentSelectorSidePanel .selector-help {
+  margin: .25rem 0 0;
+  color: var(--muted);
+  font-size: clamp(.82rem, .95vw, 1rem);
+  line-height: 1.25;
+}
+
+.studentSelectorSidePanel .selector-about,
+.studentSelectorSidePanel .selector-section-label {
+  color: var(--cyan);
+  font-size: .82rem;
+  font-weight: 850;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.studentSelectorSidePanel .selector-section {
+  display: grid;
+  gap: 8px;
+}
+
+.studentSelectorSidePanel .selector-class-select {
+  width: 100%;
+  min-height: 54px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+  padding: 0 14px;
+  font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+  font-weight: 850;
+}
+
+.studentSelectorSidePanel .selector-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.studentSelectorSidePanel .selector-metric {
+  min-height: 78px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, .055);
+  padding: 12px;
+}
+
+.studentSelectorSidePanel .selector-metric strong {
+  display: block;
+  color: #fff;
+  font-size: clamp(1.55rem, 2.1vw, 2.05rem);
+  line-height: 1;
+}
+
+.studentSelectorSidePanel .selector-metric span {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: .86rem;
+  font-weight: 750;
+}
+
+.studentSelectorSidePanel .selector-segmented,
+.studentSelectorSidePanel .selector-actions,
+.studentSelectorSidePanel .selector-toggle-row {
+  display: grid;
+  gap: 9px;
+}
+
+.studentSelectorSidePanel .selector-segmented {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.studentSelectorSidePanel .selector-actions,
+.studentSelectorSidePanel .selector-toggle-row {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.studentSelectorSidePanel .selector-button,
+.studentSelectorSidePanel .selector-toggle,
+.studentSelectorSidePanel .selector-time-button {
+  min-height: 48px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, .07);
+  color: var(--ink);
+  padding: 0 11px;
+  font-size: clamp(.9rem, 1vw, 1.02rem);
+  font-weight: 850;
+}
+
+.studentSelectorSidePanel .selector-button:hover,
+.studentSelectorSidePanel .selector-toggle:hover,
+.studentSelectorSidePanel .selector-time-button:hover,
+.studentSelectorSidePanel .selector-button:focus-visible,
+.studentSelectorSidePanel .selector-toggle:focus-visible,
+.studentSelectorSidePanel .selector-time-button:focus-visible,
+.studentSelectorSidePanel .selector-class-select:focus-visible {
+  border-color: var(--line-strong);
+  background: rgba(255, 255, 255, .11);
+  outline: 2px solid rgba(86, 216, 255, .34);
+  outline-offset: 2px;
+}
+
+.studentSelectorSidePanel .selector-time-button.is-active,
+.studentSelectorSidePanel .selector-toggle.is-active {
+  border-color: rgba(86, 216, 255, .55);
+  background: rgba(86, 216, 255, .16);
+  color: #fff;
+}
+
+.studentSelectorSidePanel .selector-primary {
+  min-height: 62px;
+  border-color: rgba(255, 209, 102, .66);
+  background: linear-gradient(135deg, rgba(255, 209, 102, .92), rgba(255, 159, 67, .9));
+  color: #07111f;
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  font-weight: 950;
+}
+
+.studentSelectorSidePanel:not(.is-stage-overlay) .selector-stage {
+  display: none;
+}
+
+.studentSelectorSidePanel .selector-stage {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  min-height: 0;
+  padding: 9px;
+  overflow: hidden;
+}
+
+.studentSelectorSidePanel .selector-stage-header,
+.studentSelectorSidePanel .selector-stage-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.studentSelectorSidePanel .selector-stage-header h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.1;
+}
+
+.studentSelectorSidePanel .selector-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.studentSelectorSidePanel .selector-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(86, 216, 255, .10);
+  color: var(--ink-dim);
+  padding: 0 8px;
+  font-size: .68rem;
+  font-weight: 850;
+}
+
+.studentSelectorSidePanel .selector-reel {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  align-self: stretch;
+  gap: 8px;
+  min-height: 0;
+}
+
+.studentSelectorSidePanel .selector-reel-window {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  height: 100%;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  background:
+    radial-gradient(circle at 50% 48%, rgba(86, 216, 255, .18), transparent 38%),
+    rgba(255, 255, 255, .055);
+  overflow: hidden;
+}
+
+.studentSelectorSidePanel .selector-reel-window::before {
+  content: "";
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  top: calc(50% - 30px);
+  height: 60px;
+  border: 1px solid rgba(255, 209, 102, .34);
+  border-radius: var(--r-sm);
+  background: linear-gradient(90deg, rgba(255, 209, 102, .17), rgba(86, 216, 255, .12));
+}
+
+.studentSelectorSidePanel .selector-name-stack {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+}
+
+.studentSelectorSidePanel .selector-name {
+  display: grid;
+  place-items: center;
+  min-height: 34px;
+  color: var(--muted);
+  text-align: center;
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  font-weight: 850;
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+}
+
+.studentSelectorSidePanel .selector-name.is-current {
+  color: #fff;
+  font-size: clamp(1.55rem, 4vw, 3.2rem);
+  font-weight: 950;
+}
+
+.studentSelectorSidePanel .selector-name.is-selected {
+  color: var(--green);
+}
+
+.studentSelectorSidePanel .selector-progress {
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .12);
+  overflow: hidden;
+}
+
+.studentSelectorSidePanel .selector-progress span {
+  display: block;
+  width: 0%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--cyan), var(--gold));
+}
+
+.studentSelectorSidePanel .selector-outcomes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.studentSelectorSidePanel .selector-outcome {
+  min-height: 46px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+  font-size: .82rem;
+  font-weight: 950;
+}
+
+.studentSelectorSidePanel .selector-outcome[data-rating="A*"] { background: rgba(126, 240, 181, .84); color: #06130d; }
+.studentSelectorSidePanel .selector-outcome[data-rating="A"] { background: rgba(255, 209, 102, .9); color: #171003; }
+.studentSelectorSidePanel .selector-outcome[data-rating="B"] { background: rgba(255, 159, 67, .9); color: #160c03; }
+.studentSelectorSidePanel .selector-outcome[data-rating="C"] { background: rgba(255, 107, 138, .86); color: #19040a; }
+
+.studentSelectorSidePanel .selector-outcome span {
+  display: block;
+  margin-top: 2px;
+  font-size: .64rem;
+  font-weight: 750;
+}
+
+.studentSelectorSidePanel.is-stage-overlay .selector-shell {
+  position: relative;
+  display: block;
+  height: calc(100vh - 16px);
+}
+
+.studentSelectorSidePanel.is-stage-overlay .selector-dock {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.studentSelectorSidePanel.is-stage-overlay .selector-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  min-height: 0;
+  height: 100%;
+  padding: 14px;
+  box-shadow: none;
+}
+
+.studentSelectorSidePanel.is-stage-overlay .selector-stage-header h2 {
+  font-size: 1.25rem;
+}
+
+.studentSelectorSidePanel.is-stage-overlay .selector-pill {
+  min-height: 30px;
+  font-size: .78rem;
+}
+
+.studentSelectorSidePanel.is-stage-overlay .selector-reel {
+  gap: 10px;
+}
+
+.studentSelectorSidePanel.is-stage-overlay .selector-reel-window::before {
+  top: calc(50% - 42px);
+  height: 84px;
+}
+
+.studentSelectorSidePanel.is-stage-overlay .selector-name-stack {
+  gap: 16px;
+  padding: 18px;
+}
+
+.studentSelectorSidePanel.is-stage-overlay .selector-name {
+  min-height: 58px;
+  font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+}
+
+.studentSelectorSidePanel.is-stage-overlay .selector-name.is-current {
+  font-size: clamp(2rem, 5vw, 4.2rem);
+}
+
+.studentSelectorSidePanel.is-stage-overlay .selector-progress {
+  height: 14px;
+}
+
+.studentSelectorSidePanel.is-stage-overlay .selector-outcomes {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.studentSelectorSidePanel.is-stage-overlay .selector-outcome {
+  min-height: 58px;
+  font-size: .96rem;
+}
+
+.studentSelectorSidePanel.is-stage-overlay .selector-outcome span {
+  font-size: .72rem;
+}
+
+.studentSelectorSidePanel .selector-modal {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  background: rgba(5, 12, 22, .78);
+  backdrop-filter: blur(12px);
+}
+
+.studentSelectorSidePanel .selector-modal[hidden] {
+  display: none;
+}
+
+.studentSelectorSidePanel .selector-modal__panel {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+  max-height: calc(100vh - 36px);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-md);
+  background: rgba(7, 17, 31, .96);
+  box-shadow: var(--shadow-lg);
+  padding: 18px;
+  overflow: auto;
+}
+
+.studentSelectorSidePanel .selector-modal__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.studentSelectorSidePanel .selector-modal__header h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(1.35rem, 2vw, 1.9rem);
+  letter-spacing: 0;
+}
+
+.studentSelectorSidePanel .selector-close {
+  display: grid;
+  place-items: center;
+  min-width: 40px;
+  height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+  font-weight: 950;
+}
+
+.studentSelectorSidePanel .selector-rollcall-name {
+  display: grid;
+  place-items: center;
+  min-height: min(42vh, 320px);
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background:
+    radial-gradient(circle at 50% 44%, rgba(86, 216, 255, .18), transparent 42%),
+    rgba(255, 255, 255, .055);
+  color: #fff;
+  padding: 22px;
+  text-align: center;
+  font-size: clamp(2rem, 4.6vw, 4.8rem);
+  font-weight: 950;
+  line-height: 1.08;
+  overflow-wrap: anywhere;
+}
+
+.studentSelectorSidePanel .selector-summary-list {
+  display: grid;
+  gap: 8px;
+}
+
+.studentSelectorSidePanel .selector-summary-section {
+  color: var(--cyan);
+  font-weight: 900;
+}
+
+.studentSelectorSidePanel .selector-summary-row {
+  display: grid;
+  grid-template-columns: 46px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  min-height: 48px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, .055);
+  padding: 9px 11px;
+}
+
+.studentSelectorSidePanel .selector-tag {
+  border-radius: 999px;
+  background: rgba(86, 216, 255, .14);
+  color: #fff;
+  padding: 5px 9px;
+  font-size: .8rem;
+  font-weight: 900;
+}
+
+body.is-student-selector-open .lessonModeSwitch {
+  right: calc(min(640px, 44vw) + 16px);
+}
+
 /* ---------- Student print / reading view ---------- */
 body.is-handout-mode {
   min-height: 100%;
@@ -2573,6 +3177,15 @@ body.is-quiz-mode #deck {
     display: grid;
     place-items: center;
     padding: 9px 10px;
+  }
+
+  .studentSelectorSidePanel {
+    width: 100vw;
+    left: 0;
+  }
+
+  body.is-student-selector-open .lessonModeSwitch {
+    right: 10px;
   }
 
   .handoutDeck {

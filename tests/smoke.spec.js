@@ -186,6 +186,107 @@ test.describe('site smoke', () => {
     await expect(page).toHaveURL(/#1$/);
   });
 
+  test('student selector opens on demand from lesson slides', async ({ page }) => {
+    await page.route('https://randomizerselection.github.io/studentselector/selector.css', async (route) => {
+      await route.fulfill({ status: 200, contentType: 'text/css', body: '.selector-overlay-host{position:fixed;inset:0;z-index:9999;background:#fff}' });
+    });
+    await page.route('https://randomizerselection.github.io/studentselector/selector.js', async (route) => {
+      await route.fulfill({
+        status: 200,
+        contentType: 'application/javascript',
+        body: `
+          window.StudentSelector = {
+            mount(container, options = {}) {
+              window.__studentSelectorMountOptions = options;
+              container.innerHTML = \`
+                <main class="selector-root">
+                  <div class="selector-shell">
+                    <section class="selector-dock" aria-label="Selector controls">
+                      <div class="selector-titlebar">
+                        <div class="selector-brand">
+                          <img alt="" />
+                          <div><h1>Random Student Selector</h1><p>27 left | 0 graded</p></div>
+                        </div>
+                        <button type="button" class="selector-close" data-close-selector>Close</button>
+                      </div>
+                      <label class="selector-section"><span class="selector-section-label">Class</span><select class="selector-class-select"><option>IC 1.1</option></select></label>
+                      <div class="selector-metrics">
+                        <div class="selector-metric"><strong>27</strong><span>Remaining</span></div>
+                        <div class="selector-metric"><strong>0</strong><span>Graded</span></div>
+                        <div class="selector-metric"><strong>0</strong><span>No Grade</span></div>
+                        <div class="selector-metric"><strong>0</strong><span>Absent</span></div>
+                      </div>
+                      <div class="selector-segmented">
+                        <button class="selector-time-button">5 sec</button>
+                        <button class="selector-time-button">30 sec</button>
+                        <button class="selector-time-button">1 min</button>
+                        <button class="selector-time-button">2 min</button>
+                      </div>
+                      <div class="selector-toggle-row"><button class="selector-toggle">Sound</button><button class="selector-toggle">Slot Effect</button></div>
+                      <div class="selector-actions"><button class="selector-button">Attendance</button><button class="selector-button">View Summary</button><button class="selector-button">Play Intro</button><button class="selector-button">Play Closing</button></div>
+                      <button class="selector-button selector-primary" data-action="start">START SELECTION</button>
+                    </section>
+                    <section class="selector-stage" aria-label="Selection stage">
+                      <header class="selector-stage-header"><div><h2>IC 1.1</h2><p class="selector-meta">27 left | 0 graded</p></div><div class="selector-pill-row"><span class="selector-pill">5 sec</span><span class="selector-pill">Slot effect</span></div></header>
+                      <div class="selector-reel">
+                        <div class="selector-reel-window" data-test-reel>
+                          <div class="selector-name-stack">
+                            <div class="selector-name">Student A</div>
+                            <div class="selector-name is-current" data-current-name>Ready</div>
+                            <div class="selector-name">Student C</div>
+                          </div>
+                        </div>
+                        <div class="selector-progress"><span></span></div>
+                      </div>
+                      <footer class="selector-stage-footer"><p class="selector-help">Ask, think, select.</p></footer>
+                    </section>
+                  </div>
+                </main>\`;
+              container.querySelector('[data-close-selector]').addEventListener('click', () => options.onClose?.());
+              return { destroy() { container.innerHTML = ''; } };
+            }
+          };
+        `,
+      });
+    });
+
+    await page.goto(pageUrl('lessons/unit-2-allocation/2-8-market-economic-system/index.html'));
+    await page.addStyleTag({ content: 'body { color: rgb(17, 24, 39); }' });
+    const activeHeading = page.locator('.slide.is-active h1, .slide.is-active h2').first();
+    await expect(activeHeading).toHaveText(/Market economic system/i);
+    await expect(activeHeading).toHaveCSS('color', 'rgb(245, 248, 255)');
+
+    await page.getByRole('button', { name: /Student selector/i }).click();
+    await expect(page.locator('.studentSelectorSidePanel')).toBeVisible();
+    await expect(page.locator('.studentSelectorSidePanel').getByRole('heading', { name: /Random Student Selector/i })).toBeVisible();
+    await expect(activeHeading).toHaveCSS('color', 'rgb(245, 248, 255)');
+    await expect(page.locator('.studentSelectorSidePanel')).not.toHaveClass(/is-stage-overlay/);
+    await expect(page.locator('[data-test-reel]')).toBeHidden();
+    await expect(page.locator('link[href*="randomizerselection.github.io/studentselector/selector.css"]')).toHaveCount(0);
+    await expect.poll(() => page.evaluate(() => window.__studentSelectorMountOptions?.skipStyles)).toBe(true);
+
+    await page.locator('.studentSelectorSidePanel').getByRole('button', { name: /START SELECTION/i }).click();
+    await expect(page.locator('.studentSelectorSidePanel')).toHaveClass(/is-stage-overlay/);
+    await expect(page.locator('[data-test-reel]')).toBeVisible();
+
+    const panelFit = await page.locator('.studentSelectorSidePanel').evaluate((panel) => ({
+      clientHeight: panel.clientHeight,
+      scrollHeight: panel.scrollHeight,
+      reelBottom: panel.querySelector('[data-test-reel]').getBoundingClientRect().bottom,
+      panelBottom: panel.getBoundingClientRect().bottom,
+      dockOpacity: window.getComputedStyle(panel.querySelector('.selector-dock')).opacity,
+    }));
+    expect(panelFit.scrollHeight).toBeLessThanOrEqual(panelFit.clientHeight + 1);
+    expect(panelFit.reelBottom).toBeLessThanOrEqual(panelFit.panelBottom + 1);
+    expect(panelFit.dockOpacity).toBe('0');
+
+    await page.keyboard.press('Space');
+    await expect(activeHeading).toHaveText(/Market economic system/i);
+
+    await page.getByLabel('Close student selector').click();
+    await expect(page.locator('.studentSelectorSidePanel')).toHaveCount(0);
+  });
+
   test('rapid keyboard navigation advances after the final partial reveal', async ({ page }) => {
     await page.goto(pageUrl('lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html') + '#6');
     await expect(page.locator('.slide.is-active h2')).toHaveText(/Raise revenue/i);

@@ -912,6 +912,145 @@ function lessonStartUrl() {
   return url.href;
 }
 
+function studentSelectorBaseUrl() {
+  return String(
+    window.IGCSE?.studentSelectorBaseUrl ||
+    'https://randomizerselection.github.io/studentselector/'
+  ).replace(/\/?$/, '/');
+}
+
+function loadStudentSelectorAsset(tagName, attrs) {
+  return new Promise((resolve, reject) => {
+    const selector = attrs.href
+      ? `${tagName}[href="${attrs.href}"]`
+      : `${tagName}[src="${attrs.src}"]`;
+    const existing = document.querySelector(selector);
+    if (existing) {
+      resolve(existing);
+      return;
+    }
+
+    const element = document.createElement(tagName);
+    Object.entries(attrs).forEach(([key, value]) => {
+      element.setAttribute(key, value);
+    });
+    element.addEventListener('load', () => resolve(element), { once: true });
+    element.addEventListener('error', () => reject(new Error(`Could not load ${attrs.href || attrs.src}`)), { once: true });
+    document.head.appendChild(element);
+  });
+}
+
+let mountedStudentSelector = null;
+
+function closeStudentSelectorPanel() {
+  try {
+    mountedStudentSelector?.app?.destroy?.();
+  } catch (error) {
+    console.error(error);
+  }
+  mountedStudentSelector?.observer?.disconnect?.();
+  mountedStudentSelector?.panel?.remove();
+  mountedStudentSelector = null;
+  document.body.classList.remove('is-student-selector-open');
+}
+
+function selectorModalIsOpen(panel) {
+  const modal = panel.querySelector('.selector-modal');
+  return Boolean(modal && !modal.hidden && modal.getAttribute('hidden') === null);
+}
+
+function syncStudentSelectorStageMode(panel) {
+  const currentName = panel.querySelector('[data-current-name]')?.textContent?.trim() || '';
+  const hasOutcomes = Boolean(panel.querySelector('.selector-outcomes'));
+  const hasModal = selectorModalIsOpen(panel);
+  const looksIdle = !hasOutcomes && !hasModal && ['Ready', 'Select a class', ''].includes(currentName);
+
+  const shouldOverlay =
+    panel.dataset.selectorRunning === 'true' ||
+    hasOutcomes ||
+    (!looksIdle && Boolean(panel.querySelector('.selector-stage')));
+
+  panel.classList.toggle('is-stage-overlay', shouldOverlay);
+}
+
+function attachStudentSelectorStageObserver(panel) {
+  panel.addEventListener('click', (event) => {
+    const trigger = event.target?.closest?.('[data-action], button');
+    const action = trigger?.dataset?.action;
+    const label = trigger?.textContent?.trim() || '';
+    if (action === 'start' || /^start selection$/i.test(label)) {
+      panel.dataset.selectorRunning = 'true';
+      panel.classList.add('is-stage-overlay');
+    } else if (['return-dock', 'reset', 'class'].includes(action)) {
+      panel.dataset.selectorRunning = 'false';
+      panel.classList.remove('is-stage-overlay');
+    }
+  }, true);
+
+  panel.addEventListener('change', (event) => {
+    if (event.target?.closest?.('[data-action="class"]')) {
+      panel.dataset.selectorRunning = 'false';
+      panel.classList.remove('is-stage-overlay');
+    }
+  }, true);
+
+  const observer = new MutationObserver(() => syncStudentSelectorStageMode(panel));
+  observer.observe(panel, {
+    childList: true,
+    subtree: true,
+    attributes: true,
+    attributeFilter: ['hidden', 'class', 'style'],
+    characterData: true,
+  });
+  panel.dataset.selectorRunning = 'false';
+  syncStudentSelectorStageMode(panel);
+  return observer;
+}
+
+async function openStudentSelector() {
+  const baseUrl = studentSelectorBaseUrl();
+  if (mountedStudentSelector?.panel?.isConnected) {
+    mountedStudentSelector.panel.focus({ preventScroll: true });
+    return;
+  }
+
+  try {
+    if (!window.StudentSelector?.open) {
+      await loadStudentSelectorAsset('script', {
+        src: new URL('selector.js', baseUrl).href,
+      });
+    }
+    if (window.StudentSelector?.mount) {
+      const panel = document.createElement('aside');
+      panel.className = 'studentSelectorSidePanel';
+      panel.setAttribute('aria-label', 'Student selector');
+      panel.setAttribute('tabindex', '-1');
+      panel.innerHTML = `
+        <button type="button" class="studentSelectorPanelClose" data-student-selector-close aria-label="Close student selector">×</button>
+        <div class="studentSelectorMount"></div>
+      `;
+      document.body.appendChild(panel);
+
+      const app = window.StudentSelector.mount(panel.querySelector('.studentSelectorMount'), {
+        basePath: baseUrl,
+        skipStyles: true,
+        onClose: closeStudentSelectorPanel,
+      });
+      panel.querySelector('[data-student-selector-close]')?.addEventListener('click', closeStudentSelectorPanel);
+      const observer = attachStudentSelectorStageObserver(panel);
+      mountedStudentSelector = { panel, app, observer };
+      document.body.classList.add('is-student-selector-open');
+      panel.focus({ preventScroll: true });
+      return;
+    }
+    throw new Error('Student selector API was not available after loading.');
+  } catch (error) {
+    console.error(error);
+    closeStudentSelectorPanel();
+    window.open(baseUrl, '_blank', 'noopener');
+  }
+}
+
 function mountLessonModeSwitch(mode) {
   document.querySelector('.lessonModeSwitch')?.remove();
   const nav = document.createElement('nav');
@@ -924,6 +1063,7 @@ function mountLessonModeSwitch(mode) {
       <button type="button" class="lessonModeButton" data-print-lesson>Print</button>
       <a class="lessonModeButton" href="${esc(lessonViewUrl('slides'))}">Slide mode</a>
       <a class="lessonModeButton" href="${esc(lessonViewUrl('quiz'))}">Quiz</a>
+      <button type="button" class="lessonModeButton lessonModeButton--selector" data-student-selector>Student selector</button>
     `;
   } else if (mode === 'quiz') {
     nav.innerHTML = `
@@ -931,6 +1071,7 @@ function mountLessonModeSwitch(mode) {
       <a class="lessonModeButton" href="${esc(lessonStartUrl())}">Lesson start</a>
       <a class="lessonModeButton" href="${esc(lessonViewUrl('handout'))}">Student print view</a>
       <a class="lessonModeButton" href="${esc(lessonViewUrl('slides'))}">Slide mode</a>
+      <button type="button" class="lessonModeButton lessonModeButton--selector" data-student-selector>Student selector</button>
     `;
   } else {
     nav.innerHTML = `
@@ -938,9 +1079,14 @@ function mountLessonModeSwitch(mode) {
       <a class="lessonModeButton" href="${esc(lessonStartUrl())}">Lesson start</a>
       <a class="lessonModeButton" href="${esc(lessonViewUrl('handout'))}">Student print view</a>
       <a class="lessonModeButton" href="${esc(lessonViewUrl('quiz'))}">Quiz</a>
+      <button type="button" class="lessonModeButton lessonModeButton--selector" data-student-selector>Student selector</button>
     `;
   }
   nav.querySelector('[data-print-lesson]')?.addEventListener('click', () => window.print());
+  nav.querySelector('[data-student-selector]')?.addEventListener('click', (event) => {
+    event.currentTarget.blur();
+    openStudentSelector();
+  });
   document.body.appendChild(nav);
 }
 
@@ -1431,6 +1577,7 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
 
   // Keyboard
   document.addEventListener('keydown', (e) => {
+    if (document.querySelector('.selector-overlay-host, .studentSelectorSidePanel')) return;
     // Don't hijack keys when typing somewhere
     const target = e.target?.closest ? e.target : null;
     if (target?.closest('input, textarea, [contenteditable]')) return;
