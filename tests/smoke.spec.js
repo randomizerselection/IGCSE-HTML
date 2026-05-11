@@ -2,6 +2,7 @@ const { test, expect } = require('@playwright/test');
 const fs = require('fs');
 const path = require('path');
 const { pathToFileURL } = require('url');
+const vm = require('vm');
 
 const root = path.resolve(__dirname, '..');
 const pageUrl = (relativePath) => pathToFileURL(path.join(root, relativePath)).toString();
@@ -17,6 +18,34 @@ function findHtmlFiles(dir, base = dir) {
 
     return [path.relative(base, absolutePath).replace(/\\/g, '/')];
   });
+}
+
+function findFlashcardFiles(dir, base = dir) {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+    if (entry.name === 'node_modules' || entry.name === '.git' || entry.name === '_template') return [];
+
+    const absolutePath = path.join(dir, entry.name);
+    if (entry.isDirectory()) return findFlashcardFiles(absolutePath, base);
+    if (!/^flashcards.*\.js$/.test(entry.name)) return [];
+
+    return [path.relative(base, absolutePath).replace(/\\/g, '/')];
+  });
+}
+
+function readFlashcards(relativePath) {
+  const source = fs.readFileSync(path.join(root, relativePath), 'utf8');
+  const context = { window: {} };
+  context.window.IGCSE = {};
+  context.IGCSE = context.window.IGCSE;
+  vm.runInNewContext(source, context, { filename: relativePath });
+  return context.window.IGCSE.flashcards;
+}
+
+function definitionTerms() {
+  const source = fs.readFileSync(path.join(root, 'references/igcse-economics-definitions-2026.md'), 'utf8');
+  return new Set([...source.matchAll(/^\|\s*[^|]+\|\s*([^|]+?)\s*\|/gm)]
+    .map((match) => match[1].trim())
+    .filter((term) => term && !['Term', 'Ref'].includes(term)));
 }
 
 async function expectNoHorizontalOverflow(page) {
@@ -80,7 +109,7 @@ test.describe('site smoke', () => {
 
     await expect(page.getByRole('heading', { name: /Oehler-Huang Library/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /^Review lessons$/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /Library philosophy \/ 教学理念/i }).first()).toBeVisible();
+    await expect(page.getByRole('link', { name: /Teaching philosophy \/ 教学理念/i }).first()).toBeVisible();
     await expect(page.getByRole('heading', { name: /^IGCSE Economics Lesson Library$/i })).toBeVisible();
     await expect(page.getByRole('img', { name: /Samuel Oehler-Huang/i })).toBeVisible();
     await expect(page.getByText(/Economics teacher, Suzhou Foreign Language School/i)).toBeVisible();
@@ -88,14 +117,17 @@ test.describe('site smoke', () => {
     await expect(page.getByRole('link', { name: /Slide view/i }).first()).toBeVisible();
     await expect(page.getByRole('link', { name: /Handout view/i }).first()).toBeVisible();
     await expect(page.getByRole('link', { name: /^Quiz$/i }).first()).toBeVisible();
+    await expect(page.getByRole('link', { name: /^Flashcards$/i }).first()).toBeVisible();
     const macroLessonCard = page.locator('.lesson-card').filter({ hasText: /4\.1\.1/i });
     await expect(macroLessonCard.getByRole('heading', { name: /Macroeconomic aims/i })).toBeVisible();
 
     await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(7);
     await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(7);
     await expect(page.getByRole('link', { name: /^Quiz$/i })).toHaveCount(7);
+    await expect(page.getByRole('link', { name: /^Flashcards$/i })).toHaveCount(7);
     await expect(page.getByRole('link', { name: /Handout view/i }).first()).toHaveAttribute('href', /view=print/);
     await expect(page.getByRole('link', { name: /^Quiz$/i }).first()).toHaveAttribute('href', /view=quiz/);
+    await expect(page.getByRole('link', { name: /^Flashcards$/i }).first()).toHaveAttribute('href', /view=flashcards/);
 
     await expectNoHorizontalOverflow(page);
 
@@ -115,7 +147,7 @@ test.describe('site smoke', () => {
     await page.goto(pageUrl('pedagogy.html'));
 
     await expect(page.getByRole('link', { name: /Library index/i })).toBeVisible();
-    await expect(page.getByRole('heading', { name: /Library Philosophy/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Teaching Philosophy/i })).toBeVisible();
     await expect(page.getByText('教学理念', { exact: true })).toBeVisible();
     await expect(page.getByRole('img', { name: /Samuel Oehler-Huang/i })).toBeVisible();
     await expect(page.getByText(/Economics teacher, Suzhou Foreign Language School/i)).toBeVisible();
@@ -146,6 +178,7 @@ test.describe('site smoke', () => {
     await expect(page.getByRole('link', { name: /Lesson start/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Student print view/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /^Quiz$/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /^Flashcards$/i })).toBeVisible();
 
     await expectNoHorizontalOverflow(page);
 
@@ -370,6 +403,7 @@ test.describe('site smoke', () => {
     await expect(page.getByRole('link', { name: /Library index/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Lesson start/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Slide mode/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /^Flashcards$/i })).toBeVisible();
     await expect(page.locator('.slide')).toHaveCount(0);
     await expect(page.locator('.handoutBlock')).toHaveCount(4);
     await expect(page.locator('.handoutBlock').filter({ hasText: /What governments try to achieve/i })).toBeVisible();
@@ -388,6 +422,97 @@ test.describe('site smoke', () => {
     await expect(page.getByRole('heading', { name: 'Direct tax', exact: true })).toBeVisible();
 
     await expectNoHorizontalOverflow(page);
+  });
+
+  test('lesson flashcard views render for every available deck', async ({ page }) => {
+    const flashcardPaths = [
+      'lessons/unit-2-allocation/2-8-market-economic-system/index.html',
+      'lessons/unit-2-allocation/2-8-market-failure/index.html',
+      'lessons/unit-4-government/4-1-macroeconomic-aims/index.html',
+      'lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html',
+      'lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html',
+      'lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html',
+      'lessons/unit-4-government/4-2-fiscal-policy/lesson-4.html',
+      'lessons/unit-4-government/4-3-fiscal-policy/index.html',
+    ];
+
+    for (const flashcardPath of flashcardPaths) {
+      await page.goto(pageUrl(flashcardPath) + '?view=flashcards');
+      await expect(page.locator('.flashcardDeck')).toBeVisible();
+      await expect(page.locator('.flashcardPosition')).toHaveText('1 of 8');
+      await expect(page.locator('.flashcardProgressTrack')).toHaveAttribute('aria-valuemax', '8');
+      await expect(page.locator('.flashcardTags span').first()).toHaveText(/Definition|Fill in the blank/);
+      await expect(page.getByRole('button', { name: /^Again$/i })).toBeDisabled();
+      await expect(page.getByRole('button', { name: /^Know$/i })).toBeDisabled();
+      await expect(page.getByRole('link', { name: /Slide mode/i })).toBeVisible();
+      await expect(page.getByRole('link', { name: /^Quiz$/i })).toBeVisible();
+      await expect(page.getByRole('link', { name: /Student print view/i })).toBeVisible();
+      const cardTypes = await page.evaluate(() => window.IGCSE.flashcards.cards.map((card) => card.type));
+      expect(cardTypes.every((type) => ['definition', 'fillBlank'].includes(type))).toBe(true);
+      await expectNoHorizontalOverflow(page);
+    }
+  });
+
+  test('student flashcards flip, mark, shuffle and reset', async ({ page }) => {
+    await page.goto(pageUrl('lessons/unit-4-government/4-1-macroeconomic-aims/index.html') + '?view=flashcards');
+
+    await expect(page.locator('.flashcardPosition')).toHaveText('1 of 8');
+    await expect(page.locator('.flashcardFaceLabel')).toHaveText('Fill in the blank');
+    await expect(page.locator('.flashcardPrompt')).toHaveText(/Macroeconomic aims include/i);
+    await expect(page.locator('.flashcardKnownCount')).toHaveText('0');
+    await expect(page.locator('.flashcardAgainCount')).toHaveText('0');
+
+    await page.getByRole('button', { name: /^Flip$/i }).click();
+    await expect(page.locator('.flashcardFaceLabel')).toHaveText('Answer');
+    await expect(page.locator('.flashcardPrompt')).toHaveText('sustainability');
+    await expect(page.getByRole('button', { name: /^Again$/i })).toBeEnabled();
+    await expect(page.getByRole('button', { name: /^Know$/i })).toBeEnabled();
+
+    await page.getByRole('button', { name: /^Again$/i }).click();
+    await expect(page.locator('.flashcardPosition')).toHaveText('2 of 8');
+    await expect(page.locator('.flashcardAgainCount')).toHaveText('1');
+
+    await page.locator('.flashcardCard').click();
+    await page.getByRole('button', { name: /^Know$/i }).click();
+    await expect(page.locator('.flashcardPosition')).toHaveText('3 of 8');
+    await expect(page.locator('.flashcardKnownCount')).toHaveText('1');
+
+    await page.getByRole('button', { name: /^Shuffle$/i }).click();
+    await expect(page.locator('.flashcardPosition')).toHaveText('1 of 8');
+    await page.getByRole('button', { name: /^Reset$/i }).click();
+    await expect(page.locator('.flashcardPosition')).toHaveText('1 of 8');
+    await expect(page.locator('.flashcardPrompt')).toHaveText(/Macroeconomic aims include/i);
+    await expect(page.locator('.flashcardKnownCount')).toHaveText('0');
+    await expect(page.locator('.flashcardAgainCount')).toHaveText('0');
+    await expectNoHorizontalOverflow(page);
+  });
+
+  test('flashcard definitions use terms from the definitions reference', async () => {
+    const terms = definitionTerms();
+    const missingTerms = [];
+
+    for (const flashcardPath of findFlashcardFiles(path.join(root, 'lessons'), root)) {
+      const cards = readFlashcards(flashcardPath).cards || [];
+      cards
+        .filter((card) => card.type === 'definition')
+        .forEach((card) => {
+          if (!terms.has(card.term)) missingTerms.push(`${flashcardPath}: ${card.term}`);
+          expect(card.definition).toBeTruthy();
+          expect(card.prompt).toBeUndefined();
+          expect(card.answer).toBeUndefined();
+        });
+
+      cards
+        .filter((card) => card.type === 'fillBlank')
+        .forEach((card) => {
+          expect(card.prompt).toContain('__________');
+          expect(card.answer).toBeTruthy();
+          expect(card.term).toBeUndefined();
+          expect(card.definition).toBeUndefined();
+        });
+    }
+
+    expect(missingTerms).toEqual([]);
   });
 
   test('lesson quiz views render for every available deck', async ({ page }) => {
@@ -421,6 +546,7 @@ test.describe('site smoke', () => {
       ]);
       await expect(page.getByRole('link', { name: /Slide mode/i })).toBeVisible();
       await expect(page.getByRole('link', { name: /Student print view/i })).toBeVisible();
+      await expect(page.getByRole('link', { name: /^Flashcards$/i })).toBeVisible();
       await expectNoHorizontalOverflow(page);
     }
   });
@@ -540,15 +666,17 @@ test.describe('site smoke', () => {
     expect(submitted.get('responsesJson')).toContain('growth-measure');
   });
 
-  test('fiscal policy menu links back and offers both views', async ({ page }) => {
+  test('fiscal policy menu links back and offers lesson views', async ({ page }) => {
     await page.goto(pageUrl('lessons/unit-4-government/4-2-fiscal-policy/index.html'));
 
     await expect(page.getByRole('link', { name: /Library index/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(4);
     await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(4);
     await expect(page.getByRole('link', { name: /^Quiz$/i })).toHaveCount(4);
+    await expect(page.getByRole('link', { name: /^Flashcards$/i })).toHaveCount(4);
     await expect(page.getByRole('link', { name: /Handout view/i }).first()).toHaveAttribute('href', /view=print/);
     await expect(page.getByRole('link', { name: /^Quiz$/i }).first()).toHaveAttribute('href', /view=quiz/);
+    await expect(page.getByRole('link', { name: /^Flashcards$/i }).first()).toHaveAttribute('href', /view=flashcards/);
 
     await expectNoHorizontalOverflow(page);
   });

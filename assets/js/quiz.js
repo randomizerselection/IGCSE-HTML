@@ -242,6 +242,7 @@ window.IGCSE = window.IGCSE || {};
     const questions = Array.isArray(quiz?.questions) ? quiz.questions : [];
     document.body.classList.add('is-quiz-mode');
     document.body.classList.remove('is-handout-mode');
+    document.body.classList.remove('is-flashcard-mode');
     if (meta.title) document.title = `${meta.lessonLabel || meta.title} - Quiz`;
 
     if (!questions.length) {

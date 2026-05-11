@@ -532,8 +532,9 @@ button.choice:focus-visible {
 .sectionTitle {
   white-space: pre-line;
   font-size: clamp(44px, 6.4vw, 112px);
-  line-height: 1.02;
+  line-height: 1.16;
   letter-spacing: -0.025em;
+  padding-block: .04em .1em;
   background: linear-gradient(135deg, #ffffff 0%, var(--cyan) 45%, var(--gold) 100%);
   -webkit-background-clip: text;
   background-clip: text;

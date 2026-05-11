@@ -108,9 +108,28 @@ Use the 4.2 rows for fiscal-policy wording when creating slides.
 3. Edit **`quiz.js`** for the separate after-class quiz shown at `?view=quiz`.
    Keep it to short retrieval questions by default, using `multipleChoice` and
    `fillBlank` question objects.
-4. Leave **`index.html`** alone unless you're customising the page itself.
+4. Edit **`flashcards.js`** for the self-check revision deck shown at
+   `?view=flashcards`. Flashcards must be one of two types only:
+   ```js
+   {
+     type: 'definition',
+     id: 'stable-id',
+     term: 'Key term',
+     definition: 'Short definition'
+   }
+
+   {
+     type: 'fillBlank',
+     id: 'stable-id',
+     prompt: 'Sentence with __________ for a missing key word',
+     answer: 'missing key word'
+   }
+   ```
+   Flashcards are separately authored. Keep them limited to short definitions
+   of key terms or fill-in-the-blank retrieval.
+5. Leave **`index.html`** alone unless you're customising the page itself.
    It simply imports the engine and your slide data.
-5. Add a card to `index.html` (the landing page) under the matching unit.
+6. Add a card to `index.html` (the landing page) under the matching unit.
 
 That's it. No CSS or JavaScript changes are needed for a new lesson.
 

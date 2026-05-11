@@ -887,6 +887,11 @@ function isQuizView() {
   return String(view || '').toLowerCase() === 'quiz';
 }
 
+function isFlashcardView() {
+  const view = new URLSearchParams(location.search).get('view');
+  return ['flashcards', 'cards', 'revision'].includes(String(view || '').toLowerCase());
+}
+
 function lessonViewUrl(view) {
   const url = new URL(location.href);
   if (view === 'handout') {
@@ -894,6 +899,9 @@ function lessonViewUrl(view) {
     url.hash = '';
   } else if (view === 'quiz') {
     url.searchParams.set('view', 'quiz');
+    url.hash = '';
+  } else if (view === 'flashcards') {
+    url.searchParams.set('view', 'flashcards');
     url.hash = '';
   } else {
     url.searchParams.delete('view');
@@ -1056,32 +1064,34 @@ function mountLessonModeSwitch(mode) {
   const nav = document.createElement('nav');
   nav.className = 'lessonModeSwitch';
   nav.setAttribute('aria-label', 'Lesson navigation');
-  if (mode === 'handout') {
-    nav.innerHTML = `
+  const currentMode = ['handout', 'quiz', 'flashcards'].includes(mode) ? mode : 'slides';
+  const modeTabs = [
+    ['slides', 'Slides'],
+    ['handout', 'Handout'],
+    ['quiz', 'Quiz'],
+    ['flashcards', 'Flashcards'],
+  ].map(([view, label]) => {
+    const active = currentMode === view;
+    return `
+      <a
+        class="lessonModeTab${active ? ' is-active' : ''}"
+        href="${esc(lessonViewUrl(view))}"
+        ${active ? 'aria-current="page"' : ''}
+      >${label}</a>
+    `;
+  }).join('');
+
+  nav.innerHTML = `
+    <div class="lessonModeUtilities" aria-label="Lesson actions">
       <a class="lessonModeButton" href="${esc(courseIndexUrl())}">Library index</a>
       <a class="lessonModeButton" href="${esc(lessonStartUrl())}">Lesson start</a>
-      <button type="button" class="lessonModeButton" data-print-lesson>Print</button>
-      <a class="lessonModeButton" href="${esc(lessonViewUrl('slides'))}">Slide mode</a>
-      <a class="lessonModeButton" href="${esc(lessonViewUrl('quiz'))}">Quiz</a>
+      ${currentMode === 'handout' ? '<button type="button" class="lessonModeButton" data-print-lesson>Print</button>' : ''}
       <button type="button" class="lessonModeButton lessonModeButton--selector" data-student-selector>Student selector</button>
-    `;
-  } else if (mode === 'quiz') {
-    nav.innerHTML = `
-      <a class="lessonModeButton" href="${esc(courseIndexUrl())}">Library index</a>
-      <a class="lessonModeButton" href="${esc(lessonStartUrl())}">Lesson start</a>
-      <a class="lessonModeButton" href="${esc(lessonViewUrl('handout'))}">Student print view</a>
-      <a class="lessonModeButton" href="${esc(lessonViewUrl('slides'))}">Slide mode</a>
-      <button type="button" class="lessonModeButton lessonModeButton--selector" data-student-selector>Student selector</button>
-    `;
-  } else {
-    nav.innerHTML = `
-      <a class="lessonModeButton" href="${esc(courseIndexUrl())}">Library index</a>
-      <a class="lessonModeButton" href="${esc(lessonStartUrl())}">Lesson start</a>
-      <a class="lessonModeButton" href="${esc(lessonViewUrl('handout'))}">Student print view</a>
-      <a class="lessonModeButton" href="${esc(lessonViewUrl('quiz'))}">Quiz</a>
-      <button type="button" class="lessonModeButton lessonModeButton--selector" data-student-selector>Student selector</button>
-    `;
-  }
+    </div>
+    <div class="lessonModeTabs" aria-label="Lesson modes">
+      ${modeTabs}
+    </div>
+  `;
   nav.querySelector('[data-print-lesson]')?.addEventListener('click', () => window.print());
   nav.querySelector('[data-student-selector]')?.addEventListener('click', (event) => {
     event.currentTarget.blur();
@@ -1317,6 +1327,7 @@ function renderHandoutSections(slides) {
 function mountHandoutLesson(meta, slides, mountEl) {
   document.body.classList.add('is-handout-mode');
   document.body.classList.remove('is-quiz-mode');
+  document.body.classList.remove('is-flashcard-mode');
   if (meta.title) document.title = `${meta.lessonLabel || meta.title} - Student print view`;
   mountLessonModeSwitch('handout');
 
@@ -1411,8 +1422,18 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
     return { mode: 'quiz' };
   }
 
+  if (isFlashcardView()) {
+    mountLessonModeSwitch('flashcards');
+    if (typeof IGCSE.mountFlashcardLesson === 'function') {
+      return IGCSE.mountFlashcardLesson(lesson, IGCSE.flashcards, mountEl);
+    }
+    console.error('mountLesson: flashcard runtime is required for flashcard view');
+    return { mode: 'flashcards' };
+  }
+
   document.body.classList.remove('is-quiz-mode');
   document.body.classList.remove('is-handout-mode');
+  document.body.classList.remove('is-flashcard-mode');
   mountLessonModeSwitch('slides');
 
   // Render

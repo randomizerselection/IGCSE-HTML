@@ -78,15 +78,17 @@
     .hero h1 {
       max-width: 18ch;
       font-size: clamp(50px, 7.8vw, 112px);
-      line-height: .99;
+      line-height: 1.16;
       letter-spacing: 0;
       font-weight: 900;
       margin: 0;
+      padding-block: .04em .1em;
       text-wrap: balance;
     }
 
     .hero h1 span {
       display: block;
+      padding-bottom: .08em;
       background: linear-gradient(135deg, #ffffff 0%, var(--cyan) 48%, var(--gold) 100%);
       -webkit-background-clip: text;
       background-clip: text;
@@ -250,7 +252,7 @@
       margin-top: auto;
       padding-top: .75rem;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: .5rem;
     }
 
@@ -290,6 +292,11 @@
     .lesson-action.quiz {
       color: var(--gold);
       border-color: rgba(255,209,102,.34);
+    }
+
+    .lesson-action.flashcards {
+      color: var(--violet);
+      border-color: rgba(167,139,250,.36);
     }
 
     .lesson-card.featured {
@@ -571,7 +578,7 @@
 
       .hero h1 {
         font-size: clamp(38px, 10.8vw, 50px);
-        line-height: 1.03;
+        line-height: 1.16;
       }
 
       .hero .lead {
@@ -681,7 +688,7 @@
         </div>
         <div class="hero-actions" aria-label="Featured links">
           <a class="button primary" href="#course-map">Review lessons</a>
-          <a class="button" href="pedagogy.html">Library philosophy / 教学理念</a>
+          <a class="button" href="pedagogy.html">Teaching philosophy / 教学理念</a>
         </div>
         <div class="author-line" aria-label="Teacher and school">
           <img class="author-avatar" src="assets/images/profile/samuel-oehler-huang.jpg" alt="Samuel Oehler-Huang" loading="lazy" />
@@ -744,6 +751,7 @@
                         <a class="lesson-action primary" href="lessons/unit-2-allocation/2-8-market-economic-system/index.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-2-allocation/2-8-market-economic-system/index.html?view=print">Handout view</a>
                         <a class="lesson-action quiz" href="lessons/unit-2-allocation/2-8-market-economic-system/index.html?view=quiz">Quiz</a>
+                        <a class="lesson-action flashcards" href="lessons/unit-2-allocation/2-8-market-economic-system/index.html?view=flashcards">Flashcards</a>
                       </div>
                     </article>
                     <article class="lesson-card featured">
@@ -753,6 +761,7 @@
                         <a class="lesson-action primary" href="lessons/unit-2-allocation/2-8-market-failure/index.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-2-allocation/2-8-market-failure/index.html?view=print">Handout view</a>
                         <a class="lesson-action quiz" href="lessons/unit-2-allocation/2-8-market-failure/index.html?view=quiz">Quiz</a>
+                        <a class="lesson-action flashcards" href="lessons/unit-2-allocation/2-8-market-failure/index.html?view=flashcards">Flashcards</a>
                       </div>
                     </article>
                   </div>
@@ -806,6 +815,7 @@
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-1-macroeconomic-aims/index.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-4-government/4-1-macroeconomic-aims/index.html?view=print">Handout view</a>
                         <a class="lesson-action quiz" href="lessons/unit-4-government/4-1-macroeconomic-aims/index.html?view=quiz">Quiz</a>
+                        <a class="lesson-action flashcards" href="lessons/unit-4-government/4-1-macroeconomic-aims/index.html?view=flashcards">Flashcards</a>
                       </div>
                     </article>
                   </div>
@@ -823,6 +833,7 @@
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html?view=print">Handout view</a>
                         <a class="lesson-action quiz" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html?view=quiz">Quiz</a>
+                        <a class="lesson-action flashcards" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html?view=flashcards">Flashcards</a>
                       </div>
                     </article>
                     <article class="lesson-card featured">
@@ -832,6 +843,7 @@
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html?view=print">Handout view</a>
                         <a class="lesson-action quiz" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html?view=quiz">Quiz</a>
+                        <a class="lesson-action flashcards" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html?view=flashcards">Flashcards</a>
                       </div>
                     </article>
                     <article class="lesson-card featured">
@@ -841,6 +853,7 @@
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html?view=print">Handout view</a>
                         <a class="lesson-action quiz" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html?view=quiz">Quiz</a>
+                        <a class="lesson-action flashcards" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html?view=flashcards">Flashcards</a>
                       </div>
                     </article>
                     <article class="lesson-card featured">
@@ -850,6 +863,7 @@
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-4.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-4.html?view=print">Handout view</a>
                         <a class="lesson-action quiz" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-4.html?view=quiz">Quiz</a>
+                        <a class="lesson-action flashcards" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-4.html?view=flashcards">Flashcards</a>
                       </div>
                     </article>
                   </div>
@@ -897,7 +911,7 @@
 
     <footer class="site-foot">
       <span>Oehler-Huang Library - independent classroom resources.</span>
-      <span><a href="pedagogy.html">Library philosophy / 教学理念</a> - Not endorsed by Cambridge International Education.</span>
+      <span><a href="pedagogy.html">Teaching philosophy / 教学理念</a> - Not endorsed by Cambridge International Education.</span>
     </footer>
   </main>
 </body>
