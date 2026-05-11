@@ -78,13 +78,13 @@ test.describe('site smoke', () => {
   test('landing page renders at desktop and phone widths', async ({ page }) => {
     await page.goto(pageUrl('index.html'));
 
-    await expect(page.getByRole('heading', { name: /IGCSE Economics lesson review/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Oehler-Huang Library/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /^Review lessons$/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /Teaching philosophy \/ 教学理念/i }).first()).toBeVisible();
-    await expect(page.getByRole('heading', { name: /^Class materials$/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Library philosophy \/ 教学理念/i }).first()).toBeVisible();
+    await expect(page.getByRole('heading', { name: /^IGCSE Economics Lesson Library$/i })).toBeVisible();
     await expect(page.getByRole('img', { name: /Samuel Oehler-Huang/i })).toBeVisible();
     await expect(page.getByText(/Economics teacher, Suzhou Foreign Language School/i)).toBeVisible();
-    await expect(page.getByText(/Cambridge IGCSE Economics 0455 - Suzhou Foreign Language School/i)).toBeVisible();
+    await expect(page.getByText(/Not endorsed by Cambridge International Education/i)).toBeVisible();
     await expect(page.getByRole('link', { name: /Slide view/i }).first()).toBeVisible();
     await expect(page.getByRole('link', { name: /Handout view/i }).first()).toBeVisible();
     await expect(page.getByRole('link', { name: /^Quiz$/i }).first()).toBeVisible();
@@ -114,8 +114,8 @@ test.describe('site smoke', () => {
   test('teaching philosophy page renders bilingual pedagogy at desktop and phone widths', async ({ page }) => {
     await page.goto(pageUrl('pedagogy.html'));
 
-    await expect(page.getByRole('link', { name: /Course index/i })).toBeVisible();
-    await expect(page.getByRole('heading', { name: /Teaching Philosophy/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Library index/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Library Philosophy/i })).toBeVisible();
     await expect(page.getByText('教学理念', { exact: true })).toBeVisible();
     await expect(page.getByRole('img', { name: /Samuel Oehler-Huang/i })).toBeVisible();
     await expect(page.getByText(/Economics teacher, Suzhou Foreign Language School/i)).toBeVisible();
@@ -142,7 +142,7 @@ test.describe('site smoke', () => {
     await expect(page.locator('.slide.is-active')).toBeVisible();
     await expect(page.locator('.slide.is-active h1')).toHaveText(/Macroeconomic aims/i);
     await expect(page.locator('#progress')).toBeVisible();
-    await expect(page.getByRole('link', { name: /Course index/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Library index/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Lesson start/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Student print view/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /^Quiz$/i })).toBeVisible();
@@ -243,6 +243,19 @@ test.describe('site smoke', () => {
                   </div>
                 </main>\`;
               container.querySelector('[data-close-selector]').addEventListener('click', () => options.onClose?.());
+              container.querySelector('[data-action="start"]').addEventListener('click', () => {
+                container.querySelector('[data-current-name]').textContent = 'Selected Student';
+                container.querySelector('.selector-stage-footer').innerHTML = \`
+                  <div class="selector-outcomes" aria-label="Outcome controls">
+                    <button class="selector-outcome" type="button" data-action="rate" data-rating="A*">A*<span>Excellent</span></button>
+                    <button class="selector-outcome" type="button" data-action="rate" data-rating="A">A<span>Strong</span></button>
+                    <button class="selector-outcome" type="button" data-action="rate" data-rating="B">B<span>Secure</span></button>
+                    <button class="selector-outcome" type="button" data-action="rate" data-rating="C">C<span>Needs support</span></button>
+                    <button class="selector-outcome" type="button" data-action="no-grade">No Grade<span>Skip grading</span></button>
+                    <button class="selector-outcome" type="button" data-action="absent">Absent<span>Remove for today</span></button>
+                  </div>
+                \`;
+              });
               return { destroy() { container.innerHTML = ''; } };
             }
           };
@@ -259,13 +272,26 @@ test.describe('site smoke', () => {
     await page.getByRole('button', { name: /Student selector/i }).click();
     await expect(page.locator('.studentSelectorSidePanel')).toBeVisible();
     await expect(page.locator('.studentSelectorSidePanel').getByRole('heading', { name: /Random Student Selector/i })).toBeVisible();
+    await expect(page.locator('.studentSelectorSidePanel .selector-titlebar .selector-close')).toBeHidden();
+    await expect(page.getByLabel('Close student selector')).toBeVisible();
     await expect(activeHeading).toHaveCSS('color', 'rgb(245, 248, 255)');
+    await expect(page.locator('.studentSelectorSidePanel .selector-class-select option').first()).toHaveCSS('color', 'rgb(7, 17, 31)');
+    await expect(page.locator('.studentSelectorSidePanel .selector-class-select option').first()).toHaveCSS('background-color', 'rgb(255, 255, 255)');
     await expect(page.locator('.studentSelectorSidePanel')).not.toHaveClass(/is-stage-overlay/);
     await expect(page.locator('[data-test-reel]')).toBeHidden();
     await expect(page.locator('link[href*="randomizerselection.github.io/studentselector/selector.css"]')).toHaveCount(0);
     await expect.poll(() => page.evaluate(() => window.__studentSelectorMountOptions?.skipStyles)).toBe(true);
 
-    await page.locator('.studentSelectorSidePanel').getByRole('button', { name: /START SELECTION/i }).click();
+    const startButton = page.locator('.studentSelectorSidePanel').getByRole('button', { name: /START SELECTION/i });
+    await startButton.hover();
+    const startHoverStyle = await startButton.evaluate((button) => {
+      const style = window.getComputedStyle(button);
+      return { color: style.color, backgroundImage: style.backgroundImage };
+    });
+    expect(startHoverStyle.color).toBe('rgb(7, 17, 31)');
+    expect(startHoverStyle.backgroundImage).toContain('linear-gradient');
+
+    await startButton.click();
     await expect(page.locator('.studentSelectorSidePanel')).toHaveClass(/is-stage-overlay/);
     await expect(page.locator('[data-test-reel]')).toBeVisible();
 
@@ -275,10 +301,18 @@ test.describe('site smoke', () => {
       reelBottom: panel.querySelector('[data-test-reel]').getBoundingClientRect().bottom,
       panelBottom: panel.getBoundingClientRect().bottom,
       dockOpacity: window.getComputedStyle(panel.querySelector('.selector-dock')).opacity,
+      outcomeWidth: panel.querySelector('.selector-outcomes').getBoundingClientRect().width,
+      stageWidth: panel.querySelector('.selector-stage').getBoundingClientRect().width,
+      stagePaddingLeft: parseFloat(window.getComputedStyle(panel.querySelector('.selector-stage')).paddingLeft),
+      stagePaddingRight: parseFloat(window.getComputedStyle(panel.querySelector('.selector-stage')).paddingRight),
+      closeLeft: panel.querySelector('.studentSelectorPanelClose').getBoundingClientRect().left,
+      pillRight: panel.querySelector('.selector-pill-row').getBoundingClientRect().right,
     }));
     expect(panelFit.scrollHeight).toBeLessThanOrEqual(panelFit.clientHeight + 1);
     expect(panelFit.reelBottom).toBeLessThanOrEqual(panelFit.panelBottom + 1);
     expect(panelFit.dockOpacity).toBe('0');
+    expect(panelFit.outcomeWidth).toBeGreaterThanOrEqual(panelFit.stageWidth - panelFit.stagePaddingLeft - panelFit.stagePaddingRight - 1);
+    expect(panelFit.pillRight).toBeLessThanOrEqual(panelFit.closeLeft - 6);
 
     await page.keyboard.press('Space');
     await expect(activeHeading).toHaveText(/Market economic system/i);
@@ -333,7 +367,7 @@ test.describe('site smoke', () => {
 
     await expect(page.getByRole('heading', { name: /Macroeconomic aims/i }).first()).toBeVisible();
     await expect(page.getByRole('button', { name: /^Print$/i })).toBeVisible();
-    await expect(page.getByRole('link', { name: /Course index/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Library index/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Lesson start/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Slide mode/i })).toBeVisible();
     await expect(page.locator('.slide')).toHaveCount(0);
@@ -509,7 +543,7 @@ test.describe('site smoke', () => {
   test('fiscal policy menu links back and offers both views', async ({ page }) => {
     await page.goto(pageUrl('lessons/unit-4-government/4-2-fiscal-policy/index.html'));
 
-    await expect(page.getByRole('link', { name: /Course index/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Library index/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(4);
     await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(4);
     await expect(page.getByRole('link', { name: /^Quiz$/i })).toHaveCount(4);

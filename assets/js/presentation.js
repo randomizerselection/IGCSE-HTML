@@ -32,8 +32,8 @@ const topline = (slide, idx, total) => `
 
 const footer = (meta, slide) => `
   <div class="slide-footer">
-    <span>${esc(meta.courseLabel || 'Cambridge IGCSE Economics 0455')}</span>
-    <span class="creator">${esc(meta.creatorLabel || 'Created by Samuel Oehler-Huang, Suzhou Foreign Language School')}</span>
+    <span>${esc(meta.courseLabel || 'IGCSE Economics Lesson Library')}</span>
+    <span class="creator">${esc(meta.creatorLabel || 'Oehler-Huang Library')}</span>
     <span>${esc(slide.eyebrow || meta.lessonLabel || '')}</span>
   </div>
 `;
@@ -1058,7 +1058,7 @@ function mountLessonModeSwitch(mode) {
   nav.setAttribute('aria-label', 'Lesson navigation');
   if (mode === 'handout') {
     nav.innerHTML = `
-      <a class="lessonModeButton" href="${esc(courseIndexUrl())}">Course index</a>
+      <a class="lessonModeButton" href="${esc(courseIndexUrl())}">Library index</a>
       <a class="lessonModeButton" href="${esc(lessonStartUrl())}">Lesson start</a>
       <button type="button" class="lessonModeButton" data-print-lesson>Print</button>
       <a class="lessonModeButton" href="${esc(lessonViewUrl('slides'))}">Slide mode</a>
@@ -1067,7 +1067,7 @@ function mountLessonModeSwitch(mode) {
     `;
   } else if (mode === 'quiz') {
     nav.innerHTML = `
-      <a class="lessonModeButton" href="${esc(courseIndexUrl())}">Course index</a>
+      <a class="lessonModeButton" href="${esc(courseIndexUrl())}">Library index</a>
       <a class="lessonModeButton" href="${esc(lessonStartUrl())}">Lesson start</a>
       <a class="lessonModeButton" href="${esc(lessonViewUrl('handout'))}">Student print view</a>
       <a class="lessonModeButton" href="${esc(lessonViewUrl('slides'))}">Slide mode</a>
@@ -1075,7 +1075,7 @@ function mountLessonModeSwitch(mode) {
     `;
   } else {
     nav.innerHTML = `
-      <a class="lessonModeButton" href="${esc(courseIndexUrl())}">Course index</a>
+      <a class="lessonModeButton" href="${esc(courseIndexUrl())}">Library index</a>
       <a class="lessonModeButton" href="${esc(lessonStartUrl())}">Lesson start</a>
       <a class="lessonModeButton" href="${esc(lessonViewUrl('handout'))}">Student print view</a>
       <a class="lessonModeButton" href="${esc(lessonViewUrl('quiz'))}">Quiz</a>
@@ -1324,7 +1324,7 @@ function mountHandoutLesson(meta, slides, mountEl) {
   mountEl.removeAttribute('aria-live');
   mountEl.innerHTML = `
     <header class="handoutHero">
-      <div class="handoutKicker">${esc(meta.unit || meta.courseLabel || 'Cambridge IGCSE Economics 0455')}</div>
+      <div class="handoutKicker">${esc(meta.unit || meta.courseLabel || 'IGCSE Economics Lesson Library')}</div>
       <h1>${esc(meta.lessonLabel || meta.title || 'Lesson handout')}</h1>
       <p>${esc(meta.code ? `${meta.code} - key content handout` : 'Key content handout')}</p>
     </header>

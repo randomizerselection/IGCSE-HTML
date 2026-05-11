@@ -1,4 +1,5 @@
 {
+  "name": "oehler-huang-library",
   "scripts": {
     "test": "playwright test",
     "test:smoke": "playwright test tests/smoke.spec.js"

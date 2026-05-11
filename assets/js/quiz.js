@@ -250,7 +250,7 @@ window.IGCSE = window.IGCSE || {};
       mountEl.innerHTML = `
         <section class="quizShell">
           <header class="quizHero">
-            <div class="quizKicker">${esc(meta.unit || meta.courseLabel || 'Cambridge IGCSE Economics 0455')}</div>
+            <div class="quizKicker">${esc(meta.unit || meta.courseLabel || 'IGCSE Economics Lesson Library')}</div>
             <h1>${esc(meta.lessonLabel || meta.title || 'Lesson quiz')}</h1>
             <p>This lesson does not yet have a quiz.</p>
           </header>
@@ -264,7 +264,7 @@ window.IGCSE = window.IGCSE || {};
     mountEl.innerHTML = `
       <section class="quizShell">
         <header class="quizHero">
-          <div class="quizKicker">${esc(meta.unit || meta.courseLabel || 'Cambridge IGCSE Economics 0455')}</div>
+          <div class="quizKicker">${esc(meta.unit || meta.courseLabel || 'IGCSE Economics Lesson Library')}</div>
           <h1>${esc(quiz.title || `${meta.lessonLabel || meta.title || 'Lesson'} quiz`)}</h1>
           <p>${esc(quiz.description || 'Complete the quiz after reviewing the lesson. Your answers are marked automatically.')}</p>
         </header>

@@ -1,7 +1,8 @@
-# IGCSE Economics 0455 — Lesson library
+# Oehler-Huang Library
 
-Interactive classroom presentations for Cambridge IGCSE Economics 0455,
-all built on one shared design system.
+Classroom-tested lessons, quizzes, handouts, and review materials. The current
+collection is the IGCSE Economics Lesson Library, built on one shared design
+system.
 
 ## Quick start
 
@@ -31,7 +32,7 @@ when students need to see the whole structure at once.
 ## Folder structure
 
 ```
-IGCSE HTML/
+oehler-huang-library/
 ├── index.html                         ← course landing page
 ├── README.md                          ← this file
 ├── references/

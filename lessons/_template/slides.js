@@ -1,6 +1,6 @@
 /* ============================================================
    Lesson X.Y — <Lesson title>
-   Cambridge IGCSE Economics 0455 · Unit N: <unit name>
+   IGCSE Economics Lesson Library - Unit N: <unit name>
 
    Copy this folder to lessons/unit-N-<slug>/X-Y-<lesson-slug>/
    then rewrite the meta and slides arrays below.
@@ -33,10 +33,10 @@ IGCSE.lesson = {
   meta: {
     code:         'X.Y',
     unit:         'Unit N — <unit name>',
-    title:        '<Lesson title> — Cambridge IGCSE Economics 0455',
+    title:        '<Lesson title> - Oehler-Huang Library',
     lessonLabel:  '<Lesson label shown in slide footer>',
-    courseLabel:  'Cambridge IGCSE Economics 0455',
-    creatorLabel: 'Created by Samuel Oehler-Huang, Suzhou Foreign Language School',
+    courseLabel:  'IGCSE Economics Lesson Library',
+    creatorLabel: 'Oehler-Huang Library',
   },
 
   slides: [
