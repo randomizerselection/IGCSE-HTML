@@ -1,0 +1,292 @@
+/* ============================================================
+   Lesson 4.3 - Monetary policy
+   Cambridge IGCSE Economics 0455 - Unit 4: Government and the macroeconomy
+
+   Syllabus source:
+   ../../../references/igcse-economics-syllabus-2027-2029.md
+   Definitions source:
+   ../../../references/igcse-economics-definitions-2026.md
+
+   Pacing note:
+   Lesson 4 focuses on 4.3.3. Teach each transmission chain separately:
+   spending, saving, borrowing, investment, output, employment,
+   inflation and the current account.
+   ============================================================ */
+
+window.IGCSE = window.IGCSE || {};
+
+const photos = IGCSE.photos.monetaryPolicy;
+IGCSE.lesson = {
+  meta: {
+    code:         '4.3.3',
+    unit:         'Unit 4 - Government and the macroeconomy',
+    title:        'Monetary policy lesson 4: effects of monetary policy - Cambridge IGCSE Economics 0455',
+    lessonLabel:  'Monetary policy lesson 4',
+    courseLabel:  'Cambridge IGCSE Economics 0455',
+    creatorLabel: 'Created by Samuel Oehler-Huang, Suzhou Foreign Language School',
+  },
+
+  slides: [
+    {
+      type: 'hero',
+      eyebrow:  'Lesson overview',
+      title:    'Effects of monetary policy',
+      subtitle: 'Monetary policy lesson 4 - 4.3.3',
+      kicker:   'How do policy measures move through the whole economy?',
+      visual:   photos.fed,
+    },
+    {
+      type: 'discussion',
+      eyebrow: 'Starter',
+      title:   'One policy, many effects',
+      question: 'Why can one interest-rate decision affect households, firms, prices and trade at the same time?',
+      visual: photos.bankEngland,
+    },
+    {
+      type: 'outcomes',
+      eyebrow: 'Objectives - 4.3.3',
+      title:   'By the end, you can',
+      bullets: [
+        'Explain how monetary policy affects spending, saving and borrowing.',
+        'Explain how monetary policy affects investment, output and employment.',
+        'Explain how monetary policy affects inflation and the current account.',
+        'Evaluate trade-offs between macroeconomic aims.',
+      ],
+    },
+    {
+      type: 'section',
+      eyebrow: 'New section',
+      title:   'Expansionary policy',
+      subtitle: '4.3.3 - effects when policy raises aggregate demand',
+    },
+    {
+      type: 'fact',
+      eyebrow: 'Example',
+      facts: {
+        left: {
+          country: 'United States',
+          fact: 'In September 2024, the Federal Reserve cut its target range by 50 basis points to support its policy stance.',
+          source: 'Source: Federal Reserve implementation note, September 2024.',
+        },
+        china: {
+          country: 'China',
+          fact: 'In February 2024, China cut the reserve requirement ratio by 0.5 percentage points to support liquidity.',
+          source: 'Source: People\'s Bank of China, January 2024 announcement.',
+        },
+      },
+      visual: photos.fed,
+    },
+    {
+      type: 'term',
+      eyebrow: 'Learn',
+      title:   'Expansionary monetary policy',
+      term:    'expansionary monetary policy',
+      definition: 'Lower interest rates or increased money supply to increase consumer spending, investment, aggregate demand, output and employment.',
+      examples: [
+        ['Interest rates', 'lower rates'],
+        ['Money supply', 'increase money supply'],
+        ['Likely aim', 'higher output and employment'],
+      ],
+      visual: photos.moneySupply,
+      partialReview: ['.termBox', '.termExamples > .termExample'],
+    },
+    {
+      type: 'flow',
+      eyebrow: 'Learn',
+      title:   'Spending and borrowing',
+      nodes: [['lower interest rates', 'borrowing becomes cheaper', 'consumer spending may rise', 'aggregate demand may rise']],
+      footer: 'Syllabus terms: spending and borrowing.',
+      visual: photos.bankEngland,
+      partialReview: ['.flowRow > .flowChip', '.prompt'],
+    },
+    {
+      type: 'flow',
+      eyebrow: 'Learn',
+      title:   'Investment and output',
+      nodes: [['lower borrowing costs', 'investment may rise', 'firms increase output', 'real GDP may rise']],
+      footer: 'Syllabus terms: investment and output.',
+      visual: photos.fed,
+      partialReview: ['.flowRow > .flowChip', '.prompt'],
+    },
+    {
+      type: 'flow',
+      eyebrow: 'Learn',
+      title:   'Employment',
+      nodes: [['higher output', 'firms need more labour', 'employment may rise', 'unemployment may fall']],
+      footer: 'Evaluation: only if firms have spare capacity and suitable workers.',
+      visual: photos.pboc,
+      partialReview: ['.flowRow > .flowChip', '.prompt'],
+    },
+    {
+      type: 'quiz',
+      eyebrow: 'Check',
+      question: 'Which effect is most likely after expansionary monetary policy?',
+      choices: [
+        'Borrowing falls because loans become more expensive.',
+        'Saving always rises because rates are higher.',
+        'Spending and investment may rise.',
+        'Tax revenue must become zero.',
+      ],
+      answer: 2,
+      prompt: 'Expansionary monetary policy raises aggregate demand.',
+      visual: photos.moneySupply,
+    },
+    {
+      type: 'section',
+      eyebrow: 'New section',
+      title:   'Contractionary policy',
+      subtitle: '4.3.3 - effects when policy reduces inflationary pressure',
+    },
+    {
+      type: 'term',
+      eyebrow: 'Learn',
+      title:   'Contractionary monetary policy',
+      term:    'contractionary monetary policy',
+      definition: 'Higher interest rates or reduced money supply to reduce consumer expenditure, investment, aggregate demand and inflationary pressure.',
+      examples: [
+        ['Interest rates', 'higher rates'],
+        ['Money supply', 'reduce money supply'],
+        ['Likely aim', 'lower inflationary pressure'],
+      ],
+      visual: photos.fed,
+      partialReview: ['.termBox', '.termExamples > .termExample'],
+    },
+    {
+      type: 'flow',
+      eyebrow: 'Learn',
+      title:   'Saving and spending',
+      nodes: [['higher interest rates', 'saving becomes more rewarding', 'consumer spending may fall', 'aggregate demand may fall']],
+      footer: 'Syllabus terms: saving and spending.',
+      visual: photos.bankEngland,
+      partialReview: ['.flowRow > .flowChip', '.prompt'],
+    },
+    {
+      type: 'flow',
+      eyebrow: 'Learn',
+      title:   'Borrowing and investment',
+      nodes: [['higher interest rates', 'borrowing becomes more expensive', 'investment may fall', 'output may fall']],
+      footer: 'Syllabus terms: borrowing, investment and output.',
+      visual: photos.fed,
+      partialReview: ['.flowRow > .flowChip', '.prompt'],
+    },
+    {
+      type: 'flow',
+      eyebrow: 'Learn',
+      title:   'Inflation',
+      nodes: [['aggregate demand falls', 'pressure on scarce resources falls', 'prices rise more slowly', 'inflationary pressure may fall']],
+      footer: 'Evaluation: this may also reduce growth and employment.',
+      visual: photos.pboc,
+      partialReview: ['.flowRow > .flowChip', '.prompt'],
+    },
+    {
+      type: 'answer',
+      eyebrow: 'Check',
+      title:   'Fill in the blanks',
+      mode:    'fillBlanks',
+      steps: [
+        ['1', 'Higher interest rates increase the reward for __________.', 'saving'],
+        ['2', 'Higher interest rates make borrowing more __________.', 'expensive'],
+        ['3', 'Lower spending can reduce total __________.', 'demand'],
+        ['4', 'Lower aggregate demand may reduce inflationary __________.', 'pressure'],
+      ],
+    },
+    {
+      type: 'section',
+      eyebrow: 'New section',
+      title:   'Current account',
+      subtitle: '4.3.3 - monetary policy effects on imports, exports and currency value',
+    },
+    {
+      type: 'discussion',
+      eyebrow: 'Explore',
+      title:   'Imports and exports',
+      question: 'Would higher interest rates always improve the current account?',
+      visual: photos.exchangeRate,
+    },
+    {
+      type: 'cards',
+      eyebrow: 'Learn',
+      title:   'Current account routes',
+      cards: [
+        ['Spending route', 'lower spending may reduce imports'],
+        ['Exchange-rate route', 'higher rates may attract money into the currency'],
+        ['Export risk', 'a stronger currency can make exports more expensive'],
+        ['Import price effect', 'a stronger currency can make imports cheaper'],
+      ],
+      footer: 'Evaluation: the current account effect is mixed, so explain the route you use.',
+      visual: photos.exchangeRate,
+      partialReview: ['.cardgrid > .card', '.prompt'],
+    },
+    {
+      type: 'flow',
+      eyebrow: 'Learn',
+      title:   'Imports route',
+      nodes: [['higher interest rates', 'spending falls', 'imports may fall', 'current account may improve']],
+      footer: 'This is an expenditure-reducing route.',
+      visual: photos.exchangeRate,
+      partialReview: ['.flowRow > .flowChip', '.prompt'],
+    },
+    {
+      type: 'flow',
+      eyebrow: 'Learn',
+      title:   'Exchange-rate route',
+      nodes: [['higher interest rates', 'currency may appreciate', 'exports become more expensive', 'current account may worsen']],
+      footer: 'This route can conflict with the imports route.',
+      visual: photos.exchangeRate,
+      partialReview: ['.flowRow > .flowChip', '.prompt'],
+    },
+    {
+      type: 'section',
+      eyebrow: 'New section',
+      title:   'Evaluation',
+      subtitle: '4.3.3 - trade-offs between macroeconomic aims',
+    },
+    {
+      type: 'cards',
+      eyebrow: 'Learn',
+      title:   'Policy trade-offs',
+      cards: [
+        ['Growth vs inflation', 'lower rates may raise output but increase inflationary pressure'],
+        ['Employment vs prices', 'higher rates may lower inflation but reduce employment'],
+        ['Current account', 'effects depend on imports, exports and the exchange rate'],
+        ['Time lag', 'households and firms do not respond instantly'],
+      ],
+      footer: 'A strong answer explains one benefit, one risk and a judgement.',
+      visual: photos.fed,
+      partialReview: ['.cardgrid > .card', '.prompt'],
+    },
+    {
+      type: 'exam',
+      eyebrow: 'Exam practice',
+      title:   'Explain chain',
+      question: 'Explain how lower interest rates may increase employment.',
+      keywords: ['borrowing', 'spending', 'output', 'employment'],
+      prompt:   'Use at least three connected steps.',
+      visual:   photos.bankEngland,
+      partialReview: ['.cardgrid > .card', '.prompt'],
+    },
+    {
+      type: 'exam',
+      eyebrow: 'Exam practice',
+      title:   'Discuss two sides',
+      question: 'Discuss whether higher interest rates are the best way to reduce inflation.',
+      keywords: ['saving', 'borrowing', 'spending', 'inflation', 'employment'],
+      prompt:   'Build one argument for, one argument against and a judgement.',
+      visual:   photos.fed,
+      partialReview: ['.cardgrid > .card', '.prompt'],
+    },
+    {
+      type: 'answer',
+      eyebrow: 'Exit ticket',
+      title:   'Fill in the blanks',
+      mode:    'fillBlanks',
+      steps: [
+        ['1', 'Expansionary monetary policy may increase spending and __________.', 'investment'],
+        ['2', 'Contractionary monetary policy may reduce inflationary __________.', 'pressure'],
+        ['3', 'Higher interest rates may increase saving and reduce __________.', 'borrowing'],
+        ['4', 'Monetary policy can affect imports, exports and the current __________.', 'account'],
+      ],
+      cue: 'Answer before leaving.',
+    },
+  ],
+};

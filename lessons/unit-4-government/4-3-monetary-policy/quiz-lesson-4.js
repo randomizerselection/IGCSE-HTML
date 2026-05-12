@@ -1,0 +1,96 @@
+window.IGCSE = window.IGCSE || {};
+
+IGCSE.quiz = {
+  id: '4-3-monetary-policy-lesson-4',
+  version: '1.0.0',
+  title: 'Effects of monetary policy quiz',
+  description: 'Check syllabus 4.3.3: effects on spending, saving, borrowing, investment, output, employment, inflation and the current account.',
+  questions: [
+    {
+      id: 'expansionary-definition',
+      type: 'multipleChoice',
+      prompt: 'Which best describes expansionary monetary policy?',
+      choices: [
+        'Higher interest rates or reduced money supply.',
+        'Lower interest rates or increased money supply.',
+        'Higher taxation and lower government spending.',
+        'A ban on all imports.',
+      ],
+      answer: 1,
+      explanation: 'Expansionary monetary policy uses lower interest rates or increased money supply to raise demand.',
+    },
+    {
+      id: 'contractionary-definition',
+      type: 'multipleChoice',
+      prompt: 'Which best describes contractionary monetary policy?',
+      choices: [
+        'Higher interest rates or reduced money supply.',
+        'Lower interest rates or increased money supply.',
+        'Lower interest rates and lower taxes.',
+        'Higher government spending.',
+      ],
+      answer: 0,
+      explanation: 'Contractionary monetary policy can reduce spending, investment, aggregate demand and inflationary pressure.',
+    },
+    {
+      id: 'spending',
+      type: 'fillBlank',
+      prompt: 'Lower interest rates may increase consumer __________.',
+      acceptedAnswers: ['spending', 'expenditure'],
+      explanation: 'Lower borrowing costs and lower saving rewards can increase spending.',
+    },
+    {
+      id: 'saving',
+      type: 'fillBlank',
+      prompt: 'Higher interest rates may increase __________ because the reward is higher.',
+      acceptedAnswers: ['saving', 'savings'],
+      explanation: 'Higher rates increase the reward for saving.',
+    },
+    {
+      id: 'borrowing-investment',
+      type: 'multipleChoice',
+      prompt: 'How can higher interest rates affect investment?',
+      choices: [
+        'They make borrowing more expensive, so investment may fall.',
+        'They make every investment project profitable.',
+        'They directly increase government expenditure.',
+        'They remove all business costs.',
+      ],
+      answer: 0,
+      explanation: 'Higher borrowing costs can reduce business investment.',
+    },
+    {
+      id: 'output-employment',
+      type: 'multipleChoice',
+      prompt: 'Which chain links expansionary monetary policy to employment?',
+      choices: [
+        'Lower rates -> spending rises -> output rises -> employment may rise.',
+        'Higher rates -> spending falls -> output falls -> employment must rise.',
+        'Lower rates -> imports stop -> employment must fall.',
+        'Higher taxes -> output rises -> employment rises.',
+      ],
+      answer: 0,
+      explanation: 'Higher aggregate demand can raise output and demand for labour.',
+    },
+    {
+      id: 'inflation',
+      type: 'fillBlank',
+      prompt: 'Contractionary monetary policy may reduce inflationary __________.',
+      acceptedAnswers: ['pressure'],
+      explanation: 'Lower aggregate demand can reduce pressure on prices.',
+    },
+    {
+      id: 'current-account',
+      type: 'multipleChoice',
+      prompt: 'Why can higher interest rates have mixed effects on the current account?',
+      choices: [
+        'Lower spending may reduce imports, but a stronger currency may make exports more expensive.',
+        'They make all exports and imports disappear.',
+        'They only affect income tax.',
+        'They always make the current account a surplus.',
+      ],
+      answer: 0,
+      explanation: 'Monetary policy can affect both spending and the exchange rate, creating mixed current account effects.',
+    },
+  ],
+};

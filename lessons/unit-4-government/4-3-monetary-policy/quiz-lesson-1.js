@@ -1,0 +1,86 @@
+window.IGCSE = window.IGCSE || {};
+
+IGCSE.quiz = {
+  id: '4-3-monetary-policy-lesson-1',
+  version: '1.0.0',
+  title: 'Money supply and monetary policy quiz',
+  description: 'Check syllabus 4.3.1: money supply, monetary policy measures and macroeconomic aims.',
+  questions: [
+    {
+      id: 'money-supply-definition',
+      type: 'multipleChoice',
+      prompt: 'What is money supply?',
+      choices: [
+        'Only the coins held by the government.',
+        'The amount of money in the economy.',
+        'The amount of taxation collected in a year.',
+        'The value of exports minus imports.',
+      ],
+      answer: 1,
+      explanation: 'The syllabus states that money supply is the amount of money in the economy.',
+    },
+    {
+      id: 'money-supply-economy',
+      type: 'fillBlank',
+      prompt: 'Money supply is the amount of money in the __________.',
+      acceptedAnswers: ['economy'],
+      explanation: 'This is the direct 4.3.1 wording.',
+    },
+    {
+      id: 'central-bank',
+      type: 'multipleChoice',
+      prompt: 'Which institution usually implements monetary policy?',
+      choices: ['A central bank', 'A supermarket', 'A household', 'A trade union'],
+      answer: 0,
+      explanation: 'Monetary policy is usually implemented by the central bank.',
+    },
+    {
+      id: 'monetary-policy-tools',
+      type: 'multipleChoice',
+      prompt: 'Which list contains only monetary policy measures from 4.3.1?',
+      choices: [
+        'Interest rates, money supply and foreign exchange-rate measures.',
+        'Government spending, taxation and subsidies.',
+        'Minimum wages, training and privatisation.',
+        'Exports, imports and visible trade.',
+      ],
+      answer: 0,
+      explanation: 'The syllabus list is interest rates, money supply and exchange-rate measures.',
+    },
+    {
+      id: 'exchange-rate-tool',
+      type: 'fillBlank',
+      prompt: 'Monetary policy can use interest rates, money supply and foreign __________ rate measures.',
+      acceptedAnswers: ['exchange', 'exchange-rate', 'exchange rate'],
+      explanation: 'Foreign exchange-rate measures are part of monetary policy in 4.3.1 and 4.3.2.',
+    },
+    {
+      id: 'fiscal-not-monetary',
+      type: 'multipleChoice',
+      prompt: 'Which is fiscal policy rather than monetary policy?',
+      choices: ['Changing interest rates', 'Changing taxation', 'Changing money supply', 'Influencing the exchange rate'],
+      answer: 1,
+      explanation: 'Fiscal policy uses government spending and taxation, while monetary policy uses interest rates, money supply and exchange-rate measures.',
+    },
+    {
+      id: 'macro-aims',
+      type: 'fillBlank',
+      prompt: 'Monetary policy is used to influence macroeconomic __________.',
+      acceptedAnswers: ['aims', 'objectives', 'goals'],
+      explanation: 'The syllabus says monetary policy influences macroeconomic aims.',
+    },
+    {
+      id: 'total-demand',
+      type: 'multipleChoice',
+      prompt: 'Why can monetary policy affect economic growth and employment?',
+      choices: [
+        'It can influence spending, borrowing, investment and aggregate demand.',
+        'It directly chooses the output of every firm.',
+        'It replaces all commercial banks.',
+        'It means exports must equal imports.',
+      ],
+      answer: 0,
+      explanation: 'Changes in policy can influence aggregate demand and therefore output and employment.',
+    },
+  ],
+};

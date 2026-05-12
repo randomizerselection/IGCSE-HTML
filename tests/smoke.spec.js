@@ -93,6 +93,21 @@ async function expectNoRemoteImageAssets(page) {
   expect(remoteAssets).toEqual([]);
 }
 
+function loadPhotoCatalogue() {
+  const source = fs.readFileSync(path.join(root, 'assets/js/photos.js'), 'utf8');
+  const context = { window: {} };
+  context.window.IGCSE = {};
+  context.IGCSE = context.window.IGCSE;
+  vm.runInNewContext(source, context, { filename: 'assets/js/photos.js' });
+  return context.window.IGCSE.photos;
+}
+
+function flattenPhotoCatalogue(catalogue) {
+  return Object.entries(catalogue).flatMap(([namespace, photos]) =>
+    Object.entries(photos).map(([key, photo]) => ({ namespace, key, photo }))
+  );
+}
+
 async function fillPerfectMacroeconomicAimsQuiz(page) {
   await page.locator('.quizQuestion').nth(0).getByLabel('The whole economy').check();
   await page.locator('.quizQuestion').nth(1).getByLabel('Answer').fill('real GDP');
@@ -134,10 +149,10 @@ test.describe('site smoke', () => {
     const macroLessonCard = page.locator('.lesson-card').filter({ hasText: /4\.1\.1/i });
     await expect(macroLessonCard.getByRole('heading', { name: /Macroeconomic aims/i })).toBeVisible();
 
-    await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(7);
-    await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(7);
-    await expect(page.getByRole('link', { name: /^Quiz$/i })).toHaveCount(7);
-    await expect(page.getByRole('link', { name: /^Flashcards$/i })).toHaveCount(7);
+    await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(15);
+    await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(15);
+    await expect(page.getByRole('link', { name: /^Quiz$/i })).toHaveCount(15);
+    await expect(page.getByRole('link', { name: /^Flashcards$/i })).toHaveCount(15);
     await expect(page.getByRole('link', { name: /Handout view/i }).first()).toHaveAttribute('href', /view=print/);
     await expect(page.getByRole('link', { name: /^Quiz$/i }).first()).toHaveAttribute('href', /view=quiz/);
     await expect(page.getByRole('link', { name: /^Flashcards$/i }).first()).toHaveAttribute('href', /view=flashcards/);
@@ -154,6 +169,23 @@ test.describe('site smoke', () => {
     expect(macroHeadingBox).not.toBeNull();
     expect(macroHeadingBox.x).toBeGreaterThanOrEqual(0);
     expect(macroHeadingBox.x + macroHeadingBox.width).toBeLessThanOrEqual(viewport.width + 1);
+  });
+
+  test('shared photo catalogue uses complete local image metadata', () => {
+    const entries = flattenPhotoCatalogue(loadPhotoCatalogue());
+
+    expect(entries.length).toBeGreaterThan(0);
+    for (const { namespace, key, photo } of entries) {
+      expect(photo.type, `${namespace}.${key} type`).toBe('photo');
+      expect(photo.src, `${namespace}.${key} src`).not.toMatch(remoteUrlPattern);
+      expect(photo.alt, `${namespace}.${key} alt`).toBeTruthy();
+      expect(photo.caption, `${namespace}.${key} caption`).toBeTruthy();
+      expect(photo.credit, `${namespace}.${key} credit`).toBeTruthy();
+      expect(photo.source, `${namespace}.${key} source`).toBeTruthy();
+
+      const localPath = photo.src.replace(/^(\.\.\/){3}/, '');
+      expect(fs.existsSync(path.join(root, localPath)), `${namespace}.${key} file`).toBe(true);
+    }
   });
 
   test('teaching philosophy page renders bilingual pedagogy at desktop and phone widths', async ({ page }) => {
@@ -252,7 +284,7 @@ test.describe('site smoke', () => {
 
   test('student selector opens on demand from lesson slides', async ({ page }, testInfo) => {
     if (testInfo.project.name.includes('phone')) {
-      await page.goto(pageUrl('lessons/unit-2-allocation/2-8-market-economic-system/index.html'));
+      await page.goto(pageUrl('lessons/unit-2-allocation/2-8-market-economic-system/lesson-1.html'));
       await expectLessonModeTabs(page, 'Slides');
       await expect(page.getByRole('button', { name: /^Student selector$/i })).toBeHidden();
       return;
@@ -334,7 +366,7 @@ test.describe('site smoke', () => {
       });
     });
 
-    await page.goto(pageUrl('lessons/unit-2-allocation/2-8-market-economic-system/index.html'));
+    await page.goto(pageUrl('lessons/unit-2-allocation/2-8-market-economic-system/lesson-1.html'));
     await page.addStyleTag({ content: 'body { color: rgb(17, 24, 39); }' });
     const activeHeading = page.locator('.slide.is-active h1, .slide.is-active h2').first();
     await expect(activeHeading).toHaveText(/Market economic system/i);
@@ -491,14 +523,21 @@ test.describe('site smoke', () => {
 
   test('lesson flashcard views render for every available deck', async ({ page }) => {
     const flashcardPaths = [
-      'lessons/unit-2-allocation/2-8-market-economic-system/index.html',
-      'lessons/unit-2-allocation/2-8-market-failure/index.html',
+      'lessons/unit-2-allocation/2-8-market-economic-system/lesson-1.html',
+      'lessons/unit-2-allocation/2-8-market-economic-system/lesson-2.html',
+      'lessons/unit-2-allocation/2-8-market-economic-system/lesson-3.html',
+      'lessons/unit-2-allocation/2-8-market-economic-system/lesson-4.html',
+      'lessons/unit-2-allocation/2-9-market-failure/lesson-1.html',
+      'lessons/unit-2-allocation/2-9-market-failure/lesson-2.html',
       'lessons/unit-4-government/4-1-macroeconomic-aims/index.html',
       'lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html',
       'lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html',
       'lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html',
       'lessons/unit-4-government/4-2-fiscal-policy/lesson-4.html',
-      'lessons/unit-4-government/4-3-fiscal-policy/index.html',
+      'lessons/unit-4-government/4-3-monetary-policy/lesson-1.html',
+      'lessons/unit-4-government/4-3-monetary-policy/lesson-2.html',
+      'lessons/unit-4-government/4-3-monetary-policy/lesson-3.html',
+      'lessons/unit-4-government/4-3-monetary-policy/lesson-4.html',
     ];
 
     for (const flashcardPath of flashcardPaths) {
@@ -610,13 +649,21 @@ test.describe('site smoke', () => {
 
   test('lesson quiz views render for every available deck', async ({ page }) => {
     const quizPaths = [
-      'lessons/unit-2-allocation/2-8-market-economic-system/index.html',
-      'lessons/unit-2-allocation/2-8-market-failure/index.html',
+      'lessons/unit-2-allocation/2-8-market-economic-system/lesson-1.html',
+      'lessons/unit-2-allocation/2-8-market-economic-system/lesson-2.html',
+      'lessons/unit-2-allocation/2-8-market-economic-system/lesson-3.html',
+      'lessons/unit-2-allocation/2-8-market-economic-system/lesson-4.html',
+      'lessons/unit-2-allocation/2-9-market-failure/lesson-1.html',
+      'lessons/unit-2-allocation/2-9-market-failure/lesson-2.html',
       'lessons/unit-4-government/4-1-macroeconomic-aims/index.html',
       'lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html',
       'lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html',
       'lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html',
       'lessons/unit-4-government/4-2-fiscal-policy/lesson-4.html',
+      'lessons/unit-4-government/4-3-monetary-policy/lesson-1.html',
+      'lessons/unit-4-government/4-3-monetary-policy/lesson-2.html',
+      'lessons/unit-4-government/4-3-monetary-policy/lesson-3.html',
+      'lessons/unit-4-government/4-3-monetary-policy/lesson-4.html',
     ];
 
     for (const quizPath of quizPaths) {
@@ -759,6 +806,51 @@ test.describe('site smoke', () => {
 
   test('fiscal policy menu links back and offers lesson views', async ({ page }) => {
     await page.goto(pageUrl('lessons/unit-4-government/4-2-fiscal-policy/index.html'));
+
+    await expect(page.getByRole('link', { name: /Library index/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(4);
+    await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(4);
+    await expect(page.getByRole('link', { name: /^Quiz$/i })).toHaveCount(4);
+    await expect(page.getByRole('link', { name: /^Flashcards$/i })).toHaveCount(4);
+    await expect(page.getByRole('link', { name: /Handout view/i }).first()).toHaveAttribute('href', /view=print/);
+    await expect(page.getByRole('link', { name: /^Quiz$/i }).first()).toHaveAttribute('href', /view=quiz/);
+    await expect(page.getByRole('link', { name: /^Flashcards$/i }).first()).toHaveAttribute('href', /view=flashcards/);
+
+    await expectNoHorizontalOverflow(page);
+  });
+
+  test('market economic system menu links back and offers lesson views', async ({ page }) => {
+    await page.goto(pageUrl('lessons/unit-2-allocation/2-8-market-economic-system/index.html'));
+
+    await expect(page.getByRole('link', { name: /Library index/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(4);
+    await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(4);
+    await expect(page.getByRole('link', { name: /^Quiz$/i })).toHaveCount(4);
+    await expect(page.getByRole('link', { name: /^Flashcards$/i })).toHaveCount(4);
+    await expect(page.getByRole('link', { name: /Handout view/i }).first()).toHaveAttribute('href', /view=print/);
+    await expect(page.getByRole('link', { name: /^Quiz$/i }).first()).toHaveAttribute('href', /view=quiz/);
+    await expect(page.getByRole('link', { name: /^Flashcards$/i }).first()).toHaveAttribute('href', /view=flashcards/);
+
+    await expectNoHorizontalOverflow(page);
+  });
+
+  test('market failure menu links back and offers lesson views', async ({ page }) => {
+    await page.goto(pageUrl('lessons/unit-2-allocation/2-9-market-failure/index.html'));
+
+    await expect(page.getByRole('link', { name: /Library index/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(2);
+    await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(2);
+    await expect(page.getByRole('link', { name: /^Quiz$/i })).toHaveCount(2);
+    await expect(page.getByRole('link', { name: /^Flashcards$/i })).toHaveCount(2);
+    await expect(page.getByRole('link', { name: /Handout view/i }).first()).toHaveAttribute('href', /view=print/);
+    await expect(page.getByRole('link', { name: /^Quiz$/i }).first()).toHaveAttribute('href', /view=quiz/);
+    await expect(page.getByRole('link', { name: /^Flashcards$/i }).first()).toHaveAttribute('href', /view=flashcards/);
+
+    await expectNoHorizontalOverflow(page);
+  });
+
+  test('monetary policy menu links back and offers lesson views', async ({ page }) => {
+    await page.goto(pageUrl('lessons/unit-4-government/4-3-monetary-policy/index.html'));
 
     await expect(page.getByRole('link', { name: /Library index/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(4);

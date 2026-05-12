@@ -50,16 +50,16 @@ oehler-huang-library/
 │   │   ├── index.html
 │   │   └── slides.js
 │   └── unit-4-government/
-│       └── 4-3-fiscal-policy/
-│           ├── index.html             ← thin page; just loads engine + slides
-│           └── slides.js              ← lesson content (data only)
+│       └── 4-3-monetary-policy/
+│           ├── index.html             ← lesson menu for split decks
+│           └── slides-lesson-1.js     ← lesson content (data only)
 └── archive/                           ← superseded originals
 ```
 
 Naming rules:
 
 - Unit folders: `unit-<number>-<slug>` (e.g. `unit-4-government`).
-- Lesson folders: `<syllabus-code>-<slug>` (e.g. `4-3-fiscal-policy`).
+- Lesson folders: `<syllabus-code>-<slug>` (e.g. `4-3-monetary-policy`).
 - Lesson slugs use kebab-case; no spaces, no capital letters.
 
 ---
@@ -155,7 +155,11 @@ shows course information.
 Photo choices should be specific to the teaching point. Do not repeatedly reuse
 generic classroom, shopping, factory, or port images when a more precise image
 would make the concept clearer. New images must be saved locally in
-`assets/images/...` and referenced from the deck data.
+`assets/images/...` and referenced from the deck data. Put reusable photo
+metadata in `assets/js/photos.js` and reference those catalog entries from
+slides, for example `IGCSE.photos.fiscalPolicy.budgetMeeting` or
+`IGCSE.photos.marketTeaching.starbucks`. Keep one-off photo objects in a lesson
+file only when the image is unlikely to be reused.
 
 Learning-objective slides should use a simple graphic or no visual. Avoid
 photos on objective slides because they compete with the checklist.
@@ -229,14 +233,15 @@ Every slide accepts:
 - `eyebrow` — small badge text (top-left)
 - `title`   — main heading
 - `visual`  — a key from `assets/js/visuals.js`, or a photo object with
-  `src`, `alt`, `credit`, and `source`, for the right-hand visual
+  `src`, `alt`, `credit`, and `source`, for the right-hand visual. Prefer
+  reusable entries from `assets/js/photos.js` for lesson photos.
 - `notes`   — private teacher note revealed with `N`
 
 Also accepts:
 
 - `partialReview` - optional reveal pacing for selected slides
 
-See `lessons/unit-4-government/4-3-fiscal-policy/slides.js` for a full example.
+See `lessons/unit-4-government/4-2-fiscal-policy/slides-lesson-4.js` for a full example.
 
 ### Partial review
 
@@ -268,6 +273,20 @@ Declared in `assets/js/visuals.js`. Core graphics:
 - `flowArrows`    — four-node horizontal flow
 
 Legacy keys from older lessons are mapped onto these automatically.
+
+### Photo catalogue
+
+Declared in `assets/js/photos.js`. Lesson pages should load it after
+`assets/js/visuals.js` and before lesson slide files. Current namespaces:
+
+- `IGCSE.photos.fiscalPolicy` - general fiscal-policy teaching photos
+- `IGCSE.photos.fiscalPolicyFacts` - fact-slide photos for fiscal-policy cases
+- `IGCSE.photos.marketTeaching` - market-system and market-failure teaching photos
+- `IGCSE.photos.monetaryPolicy` - monetary-policy teaching photos and charts
+
+Each entry is a normal `visual` photo object with local `src`, `alt`, `caption`,
+`credit`, and `source`. Do not use remote URLs for `src`; source links belong in
+`source` only.
 
 ---
 

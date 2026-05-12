@@ -1,0 +1,90 @@
+window.IGCSE = window.IGCSE || {};
+
+IGCSE.quiz = {
+  id: '4-3-monetary-policy-lesson-2',
+  version: '1.0.0',
+  title: 'Interest rates quiz',
+  description: 'Check syllabus 4.3.2: interest rates and their effects on spending, saving, borrowing, investment, output, employment and inflation.',
+  questions: [
+    {
+      id: 'interest-rate-definition',
+      type: 'multipleChoice',
+      prompt: 'What is an interest rate?',
+      choices: [
+        'The cost of borrowing and reward for saving.',
+        'A tax on imports.',
+        'A government budget balance.',
+        'The amount of unemployment in an economy.',
+      ],
+      answer: 0,
+      explanation: 'Interest rate is the cost of borrowing and reward for saving.',
+    },
+    {
+      id: 'saving-reward',
+      type: 'fillBlank',
+      prompt: 'Interest rate is the cost of borrowing and reward for __________.',
+      acceptedAnswers: ['saving', 'savings'],
+      explanation: 'A higher interest rate increases the reward for saving.',
+    },
+    {
+      id: 'lower-rates',
+      type: 'multipleChoice',
+      prompt: 'Which effect is most likely when interest rates fall?',
+      choices: [
+        'Borrowing becomes cheaper and spending may rise.',
+        'Borrowing becomes more expensive and spending must fall.',
+        'Taxation automatically rises.',
+        'Exports become illegal.',
+      ],
+      answer: 0,
+      explanation: 'Lower rates reduce the cost of borrowing and may increase spending.',
+    },
+    {
+      id: 'expansionary',
+      type: 'fillBlank',
+      prompt: 'Lower interest rates are usually expansionary __________ policy.',
+      acceptedAnswers: ['monetary', 'monetary policy'],
+      explanation: 'Lower rates can increase spending, investment, output and employment.',
+    },
+    {
+      id: 'higher-rates',
+      type: 'multipleChoice',
+      prompt: 'How can higher interest rates reduce inflationary pressure?',
+      choices: [
+        'They make borrowing cheaper, increasing aggregate demand.',
+        'They raise the reward for saving and may reduce spending.',
+        'They cut all indirect taxes.',
+        'They increase government spending.',
+      ],
+      answer: 1,
+      explanation: 'Higher rates can increase saving, reduce borrowing and reduce spending pressure.',
+    },
+    {
+      id: 'investment',
+      type: 'fillBlank',
+      prompt: 'Higher interest rates may reduce business __________ because loans become more expensive.',
+      acceptedAnswers: ['investment'],
+      explanation: 'When borrowing costs rise, fewer investment projects may be profitable.',
+    },
+    {
+      id: 'employment-chain',
+      type: 'multipleChoice',
+      prompt: 'Which chain best links lower interest rates to employment?',
+      choices: [
+        'Lower rates -> less borrowing -> less output -> more unemployment.',
+        'Lower rates -> more spending and investment -> higher output -> higher employment.',
+        'Lower rates -> higher taxes -> lower employment.',
+        'Lower rates -> no effect on any firm.',
+      ],
+      answer: 1,
+      explanation: 'Lower rates can raise aggregate demand, output and demand for labour.',
+    },
+    {
+      id: 'inflation-pressure',
+      type: 'fillBlank',
+      prompt: 'Higher interest rates may reduce inflationary __________.',
+      acceptedAnswers: ['pressure'],
+      explanation: 'Reduced spending can reduce pressure on prices.',
+    },
+  ],
+};

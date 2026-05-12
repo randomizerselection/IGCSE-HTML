@@ -12,153 +12,8 @@
 
 window.IGCSE = window.IGCSE || {};
 
-const localPhoto = (file, alt, credit) => ({
-  type: 'photo',
-  src: `../../../assets/images/fiscal-policy/${file}`,
-  alt,
-  caption: alt.replace(/\.$/, ''),
-  credit,
-});
-
-const factPhoto = (file, caption, credit, source) => ({
-  type: 'photo',
-  src: `../../../assets/images/fiscal-policy/facts/${file}`,
-  alt: caption,
-  caption,
-  credit,
-  source,
-});
-
-const photos = {
-  budgetMeeting: localPhoto(
-    'budget-meeting-with-congress.jpg',
-    'Government officials seated around a table during budget negotiations.',
-    'Wikimedia Commons / Robert McNeely'
-  ),
-  budgetHearing: localPhoto(
-    'house-budget-committee-meeting-2020-01-15.jpg',
-    'A legislative budget committee meeting in progress.',
-    'Wikimedia Commons / House Budget Committee Democrats'
-  ),
-  classroom: localPhoto(
-    'students-in-a-classroom.jpg',
-    'Students working at desks in a classroom.',
-    'Wikimedia Commons / Ente75'
-  ),
-  healthcare: localPhoto(
-    'doctors-and-nurses-at-the-3rd-field-hospital.jpg',
-    'Doctors and nurses standing together in a hospital.',
-    'Wikimedia Commons / Defense VI Records Center'
-  ),
-  defence: localPhoto(
-    'defence-officials-meeting.jpg',
-    'Defence officials seated for a formal bilateral meeting.',
-    'Wikimedia Commons / U.S. Secretary of Defense'
-  ),
-  roadwork: localPhoto(
-    'going-to-the-sun-road-paving.jpg',
-    'A road construction crew paving a mountain road.',
-    'Wikimedia Commons / U.S. Dept. of Transportation'
-  ),
-  industry: localPhoto(
-    'national-semiconductor-factory.jpg',
-    'The exterior of a semiconductor factory.',
-    'Wikimedia Commons / william craig'
-  ),
-  socialSecurity: localPhoto(
-    'signing-of-the-social-security-act.jpg',
-    'President Roosevelt signing the Social Security Act.',
-    'Wikimedia Commons / National Archives'
-  ),
-  shopping: localPhoto(
-    'shopping-carts-in-a-grocery-store.jpg',
-    'Rows of shopping carts inside a grocery store.',
-    'Wikimedia Commons / Visitor7'
-  ),
-  taxForms: localPhoto(
-    'tax-forms.jpg',
-    'Printed tax forms laid out on a table.',
-    'Wikimedia Commons / Kalamazoo Public Library'
-  ),
-  tobacco: localPhoto(
-    'tobacco-cigarette-pack.jpg',
-    'A cigarette pack photographed on a table.',
-    'Wikimedia Commons / Lindsay Fox'
-  ),
-  pollution: localPhoto(
-    'smokestack-in-detroit.jpg',
-    'A smokestack rising from an industrial plant.',
-    'Wikimedia Commons / Gyre'
-  ),
-  port: localPhoto(
-    'cargo-containers.jpg',
-    'Stacks of cargo containers at a waterfront port.',
-    'Wikimedia Commons / Roy Luck'
-  ),
-  inflation: localPhoto(
-    'meat-inflation-in-the-united-states.jpg',
-    'A grocery shelf with posted meat prices.',
-    'Wikimedia Commons / Wikideas1'
-  ),
-};
-
-const factPhotos = {
-  ukBudget: factPhoto(
-    'uk-budget-rachel-reeves.jpg',
-    'Rachel Reeves official portrait',
-    'Wikimedia Commons / Chris McAndrew',
-    'https://commons.wikimedia.org/wiki/File:Official_portrait_of_Rachel_Reeves_crop_2.jpg'
-  ),
-  finlandEducation: factPhoto(
-    'finland-vantaankoski-classroom.jpg',
-    'Vantaankoski school classroom',
-    'Wikimedia Commons / Leo-setä',
-    'https://commons.wikimedia.org/wiki/File:Elementary_school_classroom_in_Vantaankoski_school_in_Vantaa,_Finland,_2010.jpg'
-  ),
-  usSemiconductors: factPhoto(
-    'us-intel-d1x-fab.png',
-    'Intel D1X semiconductor fab',
-    'Wikimedia Commons / Intel Free Press',
-    'https://commons.wikimedia.org/wiki/File:Intel_D1X_Development_Fab_Hillsboro_Oregon.png'
-  ),
-  denmarkTax: factPhoto(
-    'denmark-ministry-taxation.jpg',
-    'Danish Ministry of Taxation',
-    'Wikimedia Commons / Bjoertvedt',
-    'https://commons.wikimedia.org/wiki/File:Copenhagen_Skatteministeriet_IMG_5647.jpg'
-  ),
-  philippinesTobacco: factPhoto(
-    'philippines-tobacco-warning-labels.jpg',
-    'Philippine tobacco warning labels',
-    'Wikimedia Commons / Government of the Philippines',
-    'https://commons.wikimedia.org/wiki/File:PH_tobacco_packaging_graphic_warning_labels.jpg'
-  ),
-  ukSugar: factPhoto(
-    'uk-soft-drink-shelf.jpg',
-    'Soft drinks on supermarket shelves',
-    'Wikimedia Commons',
-    'https://commons.wikimedia.org/wiki/File:Soft_drink_shelf.JPG'
-  ),
-  euCbam: factPhoto(
-    'netherlands-rotterdam-container-terminal.jpg',
-    'Port of Rotterdam container terminal',
-    'Wikimedia Commons / AgainErick',
-    'https://commons.wikimedia.org/wiki/File:Waalhaven_pier_6_-_Port_of_Rotterdam_-_container_terminal_and_cranes.jpg'
-  ),
-  swedenCarbon: factPhoto(
-    'sweden-hammarbyverket.jpg',
-    'Hammarbyverket energy plant',
-    'Wikimedia Commons / Holger.Ellgaard',
-    'https://commons.wikimedia.org/wiki/File:Hammarbyverket_2008.jpg'
-  ),
-  singaporeBudget: factPhoto(
-    'singapore-budget-2024-thumbnail.jpg',
-    'Singapore Budget 2024 video thumbnail',
-    'YouTube / Singapore MOF',
-    'https://www.mof.gov.sg/budget-archives/budget-2024/'
-  ),
-};
-
+const photos = IGCSE.photos.fiscalPolicy;
+const factPhotos = IGCSE.photos.fiscalPolicyFacts;
 IGCSE.lesson = {
   meta: {
     code:         '4.2.3',
@@ -250,15 +105,13 @@ IGCSE.lesson = {
             left: {
               flag: '🇦🇺',
               country: 'Australia',
-              fact: 'Australia’s cigarette excise tax was AUD 1.40312 per stick (about RMB 6.7) in March 2025.',
-              zh: '2025年3月，澳大利亚香烟消费税为每支1.40312澳元（约6.7元人民币）。',
-              source: 'Source: Australian Taxation Office; RMB conversion approximate.',
+              fact: 'Australia charged AUD 1.40312 excise tax per cigarette in March 2025. Taxation can reduce demerit goods.',
+              source: 'Source: Australian Taxation Office.',
             },
             china: {
               flag: '🇨🇳',
               country: 'China',
-              fact: 'China’s Class A cigarettes face a 56% production excise tax plus 11% wholesale excise tax.',
-              zh: '中国甲类卷烟征收56%生产环节消费税，另加11%批发环节消费税。',
+              fact: 'China uses excise taxes on cigarettes, including production and wholesale taxes.',
               source: 'Source: China consumption tax rate table.',
             },
           },
@@ -500,15 +353,13 @@ IGCSE.lesson = {
             left: {
               flag: '🇸🇪',
               country: 'Sweden',
-              fact: 'Sweden’s carbon tax started at SEK 250 per tonne of fossil CO2 (about RMB 180) in 1991.',
-              zh: '1991年，瑞典碳税为每吨化石二氧化碳250瑞典克朗（约180元人民币）。',
-              source: 'Source: Government Offices of Sweden; RMB conversion approximate.',
+              fact: 'Sweden introduced a carbon tax in 1991. Taxation can give firms an incentive to pollute less.',
+              source: 'Source: Government Offices of Sweden.',
             },
             china: {
               flag: '🇨🇳',
               country: 'China',
-              fact: 'China’s national carbon market started in 2021, covering over 4.5 billion tonnes of CO2.',
-              zh: '中国全国碳市场2021年启动，覆盖超过45亿吨二氧化碳排放。',
+              fact: 'China started a national carbon market in 2021, covering power-sector emissions.',
               source: 'Source: Gov.cn and MEE reporting.',
             },
           },

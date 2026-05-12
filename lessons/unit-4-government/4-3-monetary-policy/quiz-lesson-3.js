@@ -1,0 +1,85 @@
+window.IGCSE = window.IGCSE || {};
+
+IGCSE.quiz = {
+  id: '4-3-monetary-policy-lesson-3',
+  version: '1.0.0',
+  title: 'Money supply and exchange rates quiz',
+  description: 'Check syllabus 4.3.2: money supply measures and foreign exchange-rate measures.',
+  questions: [
+    {
+      id: 'increase-money-supply',
+      type: 'multipleChoice',
+      prompt: 'What is the likely aim of increasing money supply?',
+      choices: [
+        'To reduce bank lending and spending.',
+        'To increase liquidity, lending, spending and investment.',
+        'To collect more income tax.',
+        'To make fiscal policy unnecessary.',
+      ],
+      answer: 1,
+      explanation: 'Increasing money supply can support lending, spending and investment.',
+    },
+    {
+      id: 'money-supply-lending',
+      type: 'fillBlank',
+      prompt: 'Increasing money supply may help banks increase __________.',
+      acceptedAnswers: ['lending', 'loans', 'credit'],
+      explanation: 'More liquidity can support bank lending.',
+    },
+    {
+      id: 'reduce-money-supply',
+      type: 'multipleChoice',
+      prompt: 'Reducing money supply is most likely to...',
+      choices: [
+        'Increase inflationary pressure.',
+        'Reduce spending and inflationary pressure.',
+        'Increase government spending.',
+        'Remove the need for imports.',
+      ],
+      answer: 1,
+      explanation: 'Less money and lending can reduce spending pressure.',
+    },
+    {
+      id: 'foreign-exchange-rate',
+      type: 'fillBlank',
+      prompt: 'The foreign exchange rate is the price of one __________ in terms of another.',
+      acceptedAnswers: ['currency'],
+      explanation: 'This is the definition used in the definitions reference.',
+    },
+    {
+      id: 'lower-exchange-rate-exports',
+      type: 'multipleChoice',
+      prompt: 'A lower exchange rate is most likely to make exports...',
+      choices: ['more expensive for foreign buyers', 'cheaper for foreign buyers', 'unaffected by price', 'illegal'],
+      answer: 1,
+      explanation: 'A lower currency value can make exports cheaper for foreign buyers.',
+    },
+    {
+      id: 'lower-exchange-rate-imports',
+      type: 'fillBlank',
+      prompt: 'A lower exchange rate can make imports more __________.',
+      acceptedAnswers: ['expensive', 'costly'],
+      explanation: 'A weaker currency buys less foreign currency, so imports cost more.',
+    },
+    {
+      id: 'higher-exchange-rate',
+      type: 'multipleChoice',
+      prompt: 'Which effect may follow a higher exchange rate?',
+      choices: [
+        'Imports become cheaper, reducing some inflationary pressure.',
+        'Exports become cheaper for foreign buyers.',
+        'The current account must improve.',
+        'Money supply automatically becomes zero.',
+      ],
+      answer: 0,
+      explanation: 'A stronger currency can reduce import prices, though it may make exports less competitive.',
+    },
+    {
+      id: 'current-account',
+      type: 'fillBlank',
+      prompt: 'Exchange-rate measures can affect exports, imports and the current __________.',
+      acceptedAnswers: ['account'],
+      explanation: 'Exports and imports are part of the current account of the balance of payments.',
+    },
+  ],
+};

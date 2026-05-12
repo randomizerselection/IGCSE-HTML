@@ -15,6 +15,10 @@
      regressive · proportional · demandUp · demandDown · flowArrows
      (plus all legacy aliases)
 
+   Reusable local photos live in assets/js/photos.js:
+     IGCSE.photos.fiscalPolicy.* | IGCSE.photos.fiscalPolicyFacts.*
+     IGCSE.photos.marketTeaching.* | IGCSE.photos.monetaryPolicy.*
+
    Optional pacing:
      partialReview: true reveals supported content blocks one at a time.
      Prefer full slides by default; use partialReview only for dense
@@ -28,6 +32,8 @@
    ============================================================ */
 
 window.IGCSE = window.IGCSE || {};
+
+const photos = IGCSE.photos?.marketTeaching || {};
 
 IGCSE.lesson = {
   meta: {
@@ -46,7 +52,7 @@ IGCSE.lesson = {
       title:    '<Lesson title>',
       subtitle: '<Short subtitle>',
       kicker:   '<One-line hook>',
-      visual:   'hero',
+      visual:   photos.starbucks || 'hero',
     },
 
     {
