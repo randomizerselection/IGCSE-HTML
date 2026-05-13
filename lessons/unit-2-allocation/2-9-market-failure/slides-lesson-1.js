@@ -1,7 +1,8 @@
 /* Sources:
    Syllabus 2027-2029: ../../../references/igcse-economics-syllabus-2027-2029.md (2.9)
    Definitions 2026: ../../../references/igcse-economics-definitions-2026.md (Market failure and market-failure terms)
-   Paper 2 archive: ../../../references/paper-2-mark-schemes-2023-2025/2-allocation-of-resources.md (2.9)
+   Paper 2 archive: ../../../references/paper-2-mark-schemes-2023-2025/2-allocation-of-resources.md
+   Key Paper 2 entries: 2023MJ-21 Q4(b), 2025MJ-22 Q3(b), 2023ON-21 Q3(c)
 */
 window.IGCSE = window.IGCSE || {};
 
@@ -42,7 +43,8 @@ IGCSE.lesson = {
       bullets: [
         'Define market failure as inefficient allocation of resources by the market.',
         'Use private, external and social costs and benefits.',
-        'Explain public goods, merit goods and demerit goods.',
+        'Define public goods and explain the free-rider problem.',
+        'Explain merit goods and demerit goods.',
         'Explain externalities and abuse of monopoly power as causes of market failure.',
       ],
     },
@@ -166,6 +168,43 @@ IGCSE.lesson = {
         },
       },
       visual: photos.roadwork,
+    },
+    {
+      type: 'term',
+      eyebrow: 'Key term',
+      title: 'Public good',
+      zhTitle: '公共物品',
+      term: 'public good',
+      definition: 'A good that would not be produced by the private sector or needs to be financed by government; it is non-rival and non-excludable.',
+      examples: [
+        ['Non-rival', 'one person using it does not reduce use by others'],
+        ['Non-excludable', 'non-payers cannot easily be stopped from benefiting'],
+        ['Examples', 'defence, street lighting, police and flood defences'],
+      ],
+      visual: photos.streetLight,
+      partialReview: ['.termBox', '.termExamples > .termExample'],
+    },
+    {
+      type: 'compare',
+      eyebrow: 'Exam distinction',
+      title: 'Merit good or public good?',
+      leftTitle: 'Merit good',
+      left: ['beneficial good', 'can be supplied by private firms', 'under-consumed because benefits are not fully recognised', 'examples: education, healthcare, fruit'],
+      rightTitle: 'Public good',
+      right: ['non-rival and non-excludable', 'private firms may not be able to charge all users', 'may not be provided without government finance', 'examples: defence, street lighting, flood control'],
+      prompt: 'Paper 2 often rewards a clear difference plus an example of each.',
+      visual: photos.streetLight,
+      partialReview: ['.splitCols > .card', '.prompt'],
+    },
+    {
+      type: 'flow',
+      eyebrow: 'Learn',
+      title: 'Public goods as a cause',
+      zhTitle: '公共物品',
+      nodes: [['good is non-excludable', 'people can benefit without paying', 'private revenue is too low', 'private firms may not produce it', 'market failure occurs']],
+      footer: 'This is the free-rider problem: social benefit may exist, but profit may be too low.',
+      visual: photos.streetLight,
+      partialReview: ['.flowRow > .flowChip', '.prompt'],
     },
     {
       type: 'compare',

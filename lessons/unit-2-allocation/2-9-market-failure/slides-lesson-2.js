@@ -1,7 +1,8 @@
 /* Sources:
    Syllabus 2027-2029: ../../../references/igcse-economics-syllabus-2027-2029.md (2.9)
    Definitions 2026: ../../../references/igcse-economics-definitions-2026.md (Misallocation, overconsumption, underconsumption)
-   Paper 2 archive: ../../../references/paper-2-mark-schemes-2023-2025/2-allocation-of-resources.md (2.9)
+   Paper 2 archive: ../../../references/paper-2-mark-schemes-2023-2025/2-allocation-of-resources.md
+   Key Paper 2 entries: 2023ON-21 Q3(c), 2025MJ-22 Q3(b), 2023MJ-21 Q4(b)
 */
 window.IGCSE = window.IGCSE || {};
 
@@ -116,14 +117,24 @@ IGCSE.lesson = {
     {
       type: 'section',
       eyebrow: 'New section',
-      title: 'None',
+      title: 'Non-provision',
       zhTitle: '无人提供',
+    },
+    {
+      type: 'discussion',
+      eyebrow: 'Apply',
+      title: 'Who pays for the street light?',
+      question: 'If a street light benefits drivers, pedestrians and nearby homes, why might a private firm struggle to sell it only to paying users?',
+      zh: '如果路灯让司机、行人和附近住户受益，为什么私人企业很难只卖给付费用户？',
+      answer: 'It is difficult to exclude non-payers. Some people can benefit without paying, so private revenue may be too low even when the social benefit is high.',
+      answerZh: '因为很难排除未付费者。有些人可以不付费也受益，所以即使社会收益很高，私人收入也可能太低。',
+      visual: photos.streetLight,
     },
     {
       type: 'publicGoodFreeRiderSim',
       eyebrow: 'Explore',
-      title: 'Public goods: one simple idea',
-      lead: 'Move the slider: when fewer users pay, private revenue may not cover the cost.',
+      title: 'Public goods: free riders',
+      lead: 'Move the slider: when a non-excludable good has many free riders, private revenue may not cover the cost.',
       defaultPeople: 90,
       defaultBenefit: 12,
       defaultPaying: 25,
@@ -134,8 +145,8 @@ IGCSE.lesson = {
       eyebrow: 'Learn',
       title: 'Non-provision',
       zhTitle: '无人提供',
-      nodes: [['people can benefit without paying', 'free-rider problem appears', 'private revenue is too low', 'public good may not be provided']],
-      footer: 'Examples include street lighting, defence and flood defences.',
+      nodes: [['good is non-rival and non-excludable', 'people can benefit without paying', 'free-rider problem appears', 'private revenue is too low', 'public good may not be provided']],
+      footer: 'Examples include street lighting, defence, police and flood defences.',
       visual: photos.streetLight,
       partialReview: ['.flowRow > .flowChip', '.prompt'],
     },
@@ -175,7 +186,7 @@ IGCSE.lesson = {
       leftTitle: 'Weak',
       left: ['Markets fail because pollution is bad.', 'Public goods are not made.', 'Monopolies charge more.'],
       rightTitle: 'Strong',
-      right: ['Pollution is an external cost, so social cost exceeds private cost.', 'Free riders reduce private revenue, so public goods may not be provided.', 'A monopoly may restrict output, causing higher prices and less choice.'],
+      right: ['Pollution is an external cost, so social cost exceeds private cost.', 'Free riders reduce private revenue for non-excludable goods, so public goods may not be provided.', 'A monopoly may restrict output, causing higher prices and less choice.'],
       prompt: 'The strong answer identifies the cause, mechanism and consequence.',
       partialReview: ['.splitCols > .card', '.prompt'],
     },
@@ -184,7 +195,7 @@ IGCSE.lesson = {
       eyebrow: 'Exam practice',
       title: 'Discuss market failure',
       question: 'Discuss whether a market economic system is the best way to allocate resources. [8]',
-      keywords: ['price mechanism', 'choice', 'external costs', 'public goods', 'judgement'],
+      keywords: ['price mechanism', 'choice', 'external costs', 'public goods', 'free-rider problem', 'judgement'],
       prompt: 'Use one argument for markets, one market-failure argument and a judgement. Paper 2 source: 2023MJ-21 Q2(d).',
       partialReview: ['.cardgrid > .card', '.prompt'],
     },
@@ -197,7 +208,8 @@ IGCSE.lesson = {
         ['1', 'Demerit goods may be over-__________.', 'consumed'],
         ['2', 'Merit goods may be under-__________.', 'consumed'],
         ['3', 'Public goods may suffer from non-__________.', 'provision'],
-        ['4', 'A monopoly may restrict output and charge higher __________.', 'prices'],
+        ['4', 'A public good is non-rival and non-__________.', 'excludable'],
+        ['5', 'A monopoly may restrict output and charge higher __________.', 'prices'],
       ],
     },
   ],

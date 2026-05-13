@@ -11,7 +11,7 @@ IGCSE.flashcards = {
     { id: 'misallocation', type: 'definition', term: 'Misallocation of resources', definition: 'Too many resources devoted to demerit goods or goods with external costs; too few resources devoted to merit goods or goods with external benefits.' },
     { id: 'demerit', type: 'fillBlank', prompt: 'Demerit goods may be over-__________.', answer: 'consumed' },
     { id: 'merit', type: 'fillBlank', prompt: 'Merit goods may be under-__________.', answer: 'consumed' },
-    { id: 'public-good', type: 'fillBlank', prompt: 'Public goods may suffer from non-__________.', answer: 'provision' },
+    { id: 'public-good', type: 'fillBlank', prompt: 'Public goods may suffer from non-__________ when free riders benefit without paying.', answer: 'provision' },
     { id: 'monopoly', type: 'fillBlank', prompt: 'A monopoly may restrict output and charge higher __________.', answer: 'prices' },
     { id: 'judgement', type: 'fillBlank', prompt: 'A discuss answer should end with a reasoned __________.', answer: 'judgement' },
   ],
