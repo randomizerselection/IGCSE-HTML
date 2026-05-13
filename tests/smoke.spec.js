@@ -738,6 +738,11 @@ test.describe('site smoke', () => {
       await expectLessonModeTabs(page, 'Flashcards');
       const cardTypes = await page.evaluate(() => window.IGCSE.flashcards.cards.map((card) => card.type));
       expect(cardTypes.every((type) => ['definition', 'fillBlank'].includes(type))).toBe(true);
+      await page.getByRole('button', { name: /^Show Answer$/i }).click();
+      await expect(page.locator('.flashcardSources summary').first()).toHaveText('Sources');
+      await page.locator('.flashcardSources summary').first().click();
+      await expect(page.locator('.flashcardSources').first()).toContainText(/Syllabus source/i);
+      await expect(page.locator('.flashcardSources').first()).toContainText(/Definition source|Paper 2 source/i);
       await expectNoHorizontalOverflow(page);
     }
   });
@@ -869,7 +874,51 @@ test.describe('site smoke', () => {
         'IC 3.1',
         'IC 3.2',
       ]);
+      await expect(page.locator('.quizSources')).toHaveCount(8);
+      await expect(page.locator('.quizSources summary').first()).toHaveText('Sources');
+      await page.locator('.quizSources summary').first().click();
+      await expect(page.locator('.quizSources').first()).toContainText(/Syllabus source/i);
+      await expect(page.locator('.quizSources').first()).toContainText(/Definition source|Paper 2 source/i);
       await expectLessonModeTabs(page, 'Quiz');
+      await expectNoHorizontalOverflow(page);
+    }
+  });
+
+  test('active lesson slides expose compact source lines for definitions and exam content', async ({ page }) => {
+    const checks = [
+      {
+        url: 'lessons/unit-2-allocation/2-9-market-failure/lesson-1.html#5',
+        expected: /Definitions 2026: Market failure/i,
+      },
+      {
+        url: 'lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html#18',
+        expected: /2023ON-21 Q3\(a\)|Definitions 2026: Fiscal policy/i,
+        expectedQuestion: /Exam question: 2023ON-21 Q3\(a\): Identify two types of tax\./i,
+      },
+      {
+        url: 'lessons/unit-4-government/4-3-monetary-policy/lesson-1.html#14',
+        expected: /Definitions 2026: Monetary policy/i,
+      },
+      {
+        url: 'lessons/unit-4-government/4-2-fiscal-policy/lesson-4.html#21',
+        expected: /Paper 2 source/i,
+      },
+    ];
+
+    for (const check of checks) {
+      const [relativePath, hash] = check.url.split('#');
+      await page.goto(`${pageUrl(relativePath)}#${hash}`);
+      await expect(page.locator('.slide.is-active')).toHaveAttribute('data-idx', String(Number(hash) - 1));
+      await expect(page.locator('.slide.is-active .sourceList summary')).toHaveText('Sources');
+      await page.locator('.slide.is-active .sourceList summary').click();
+      await expect(page.locator('.slide.is-active')).toHaveAttribute('data-idx', String(Number(hash) - 1));
+      await expect(page.locator('.slide.is-active .sourceList')).toHaveAttribute('open', '');
+      await expect(page.locator('.slide.is-active .sourceList')).toContainText(/Syllabus source/i);
+      await expect(page.locator('.slide.is-active .sourceList')).toContainText(check.expected);
+      await expect(page.locator('.slide.is-active .sourceList')).toContainText(/MS basis|Definitions 2026|Paper 2 source/i);
+      if (check.expectedQuestion) {
+        await expect(page.locator('.slide.is-active .sourceList')).toContainText(check.expectedQuestion);
+      }
       await expectNoHorizontalOverflow(page);
     }
   });

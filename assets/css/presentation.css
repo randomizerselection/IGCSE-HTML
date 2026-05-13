@@ -696,6 +696,168 @@ h2 .inlineZh {
   line-height: 1.25;
   font-weight: 650;
 }
+.sourceList,
+.handoutSources,
+.quizSources,
+.flashcardSources {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.sourceList {
+  margin-top: .45rem;
+}
+
+.slideSourceControl {
+  position: absolute;
+  right: clamp(22px, 5.8vw, 80px);
+  top: calc(5vh + 54px);
+  z-index: 35;
+  margin: 0;
+}
+
+.sourceList summary,
+.handoutSources summary,
+.quizSources summary,
+.flashcardSources summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: .22rem .48rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255,255,255,.055);
+  color: var(--muted);
+  font-size: clamp(10px, .68vw, 12px);
+  line-height: 1;
+  font-weight: 850;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+}
+
+.slideSourceControl summary {
+  min-height: 28px;
+  padding: .3rem .62rem;
+  border-color: rgba(255,255,255,.18);
+  background: rgba(8, 15, 28, .68);
+  color: rgba(219,231,246,.84);
+  box-shadow: 0 10px 28px rgba(0,0,0,.20);
+  backdrop-filter: blur(8px);
+}
+
+.sourceList summary::-webkit-details-marker,
+.handoutSources summary::-webkit-details-marker,
+.quizSources summary::-webkit-details-marker,
+.flashcardSources summary::-webkit-details-marker {
+  display: none;
+}
+
+.sourceList summary::before,
+.handoutSources summary::before,
+.quizSources summary::before,
+.flashcardSources summary::before {
+  content: "i";
+  display: grid;
+  place-items: center;
+  width: 15px;
+  height: 15px;
+  margin-right: .32rem;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #111827;
+  font-size: 10px;
+  font-weight: 950;
+}
+
+.sourceList[open] summary,
+.handoutSources[open] summary,
+.quizSources[open] summary,
+.flashcardSources[open] summary {
+  border-color: rgba(255,209,102,.55);
+  color: var(--ink);
+}
+
+.sourcePanel {
+  position: absolute;
+  z-index: 80;
+  left: 0;
+  top: calc(100% + 6px);
+  display: grid;
+  gap: 6px;
+  width: min(76ch, calc(100vw - 32px));
+  max-width: calc(100vw - 32px);
+  padding: .55rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  background: rgba(12, 20, 36, .97);
+  box-shadow: 0 18px 50px rgba(0,0,0,.28);
+  overflow-wrap: anywhere;
+}
+
+.slideSourceControl .sourcePanel {
+  left: auto;
+  right: 0;
+  width: min(64ch, calc(100vw - 36px));
+}
+
+.quizSources .sourcePanel,
+.flashcardSources .sourcePanel,
+.handoutSources .sourcePanel {
+  position: static;
+  width: 100%;
+  max-width: 100%;
+  margin-top: 6px;
+  box-shadow: none;
+}
+
+.sourceItem {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .35rem;
+  max-width: 100%;
+  padding: .34rem .48rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: rgba(255,255,255,.055);
+  color: var(--muted);
+  font-size: clamp(10px, .68vw, 12px);
+  line-height: 1.22;
+  font-weight: 700;
+}
+
+.sourceLabel {
+  color: var(--gold);
+}
+
+.sourceRef {
+  color: inherit;
+}
+
+.sourceNote {
+  color: var(--muted);
+  font-weight: 650;
+}
+
+.sourceNote::before {
+  content: "-";
+  margin-right: .35rem;
+  color: currentColor;
+}
+
+.sourceQuestion,
+.sourceExtract {
+  flex-basis: 100%;
+  color: #d9e2f1;
+  font-weight: 650;
+}
+
+.sourceQuestion b {
+  color: var(--gold);
+}
 .chinaCompareButton {
   width: fit-content;
   display: inline-flex;
@@ -2864,6 +3026,69 @@ body.is-flashcard-mode #deck {
   display: none;
 }
 
+.flashcardSourceMount[hidden] {
+  display: none;
+}
+
+.flashcardSourceMount {
+  display: flex;
+  justify-content: center;
+}
+
+.flashcardSources {
+  margin-top: -6px;
+  max-width: 70ch;
+}
+
+.flashcardSources[open],
+.quizSources[open],
+.handoutSources[open] {
+  width: 100%;
+}
+
+.flashcardSources summary,
+.quizSources summary,
+.handoutSources summary {
+  border-color: #d7dee9;
+  background: #fff;
+  color: #526176;
+}
+
+.flashcardSources[open] summary,
+.quizSources[open] summary,
+.handoutSources[open] summary {
+  border-color: #2563eb;
+  color: #111827;
+}
+
+.flashcardSources .sourcePanel,
+.quizSources .sourcePanel,
+.handoutSources .sourcePanel {
+  background: #fff;
+  border-color: #d7dee9;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, .18);
+}
+
+.flashcardSources .sourceItem {
+  border-color: #d7dee9;
+  background: #f8fafc;
+  color: #526176;
+  font-size: .72rem;
+}
+
+.flashcardSources .sourceLabel {
+  color: #0f766e;
+}
+
+.flashcardSources .sourceQuestion,
+.flashcardSources .sourceExtract,
+.quizSources .sourceQuestion,
+.quizSources .sourceExtract,
+.handoutSources .sourceQuestion,
+.handoutSources .sourceExtract {
+  color: #334155;
+}
+
 .flashcardTags {
   display: flex;
   flex-wrap: wrap;
@@ -3274,6 +3499,23 @@ body.is-flashcard-mode #deck {
 .quizQuestion.is-incorrect .quizQuestionState {
   background: #fee2e2;
   color: #991b1b;
+}
+
+.quizSources .sourceItem,
+.handoutSources .sourceItem {
+  border-color: #d7dee9;
+  background: #f8fafc;
+  color: #526176;
+  font-size: .72rem;
+}
+
+.quizSources .sourceLabel,
+.handoutSources .sourceLabel {
+  color: #2563eb;
+}
+
+.quizSources.is-correction {
+  margin-top: 8px;
 }
 
 .quizChoices {
@@ -3993,6 +4235,20 @@ body.is-flashcard-mode #deck {
     grid-template-rows: auto auto auto;
     gap: 18px;
     overflow: visible;
+  }
+
+  .slideSourceControl {
+    position: relative;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    justify-self: end;
+    margin-top: -6px;
+    z-index: 35;
+  }
+
+  .slideSourceControl .sourcePanel {
+    width: min(100%, calc(100vw - 36px));
   }
 
   .slide.is-active {
