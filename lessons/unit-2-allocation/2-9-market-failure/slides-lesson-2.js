@@ -60,7 +60,7 @@ IGCSE.lesson = {
       facts: {
         left: {
           country: 'World',
-          fact: 'WHO estimates tobacco kills more than 8 million people each year, including non-smokers exposed to second-hand smoke.',
+          fact: 'Tobacco kills more than 8 million people each year, including non-smokers exposed to second-hand smoke.',
           source: 'Source: World Health Organization tobacco fact sheet.',
         },
         china: {
@@ -93,7 +93,7 @@ IGCSE.lesson = {
       facts: {
         left: {
           country: 'World',
-          fact: 'UNESCO estimated 251 million children and youth were out of school in 2023.',
+          fact: '251 million children and youth were out of school in 2023.',
           source: 'Source: UNESCO, 2024.',
         },
         china: {

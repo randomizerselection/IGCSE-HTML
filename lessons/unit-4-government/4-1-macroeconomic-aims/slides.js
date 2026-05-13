@@ -5,7 +5,7 @@
 */
 window.IGCSE = window.IGCSE || {};
 
-const photos = IGCSE.photos.fiscalPolicy;
+const photos = IGCSE.photos.macroAims;
 
 IGCSE.lesson = {
   meta: {
@@ -24,7 +24,7 @@ IGCSE.lesson = {
       title: 'Macroeconomic aims',
       subtitle: '4.1.1',
       kicker: 'What is the government trying to achieve for the whole economy?',
-      visual: photos.port,
+      visual: photos.worldBankHeadquarters,
     },
     {
       type: 'discussion',
@@ -76,11 +76,23 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Specific example',
-      country: 'World economy',
-      fact: 'The World Bank projected global growth of 2.6% in 2024, below the 3.1% average in the decade before COVID-19.',
-      zh: '世界银行预计2024年全球经济增长率为2.6%，低于新冠疫情前十年3.1%的平均水平。',
-      source: 'Source: World Bank Global Economic Prospects, June 2024.',
-      visual: photos.port,
+      facts: {
+        left: {
+          flag: '🌐',
+          country: 'World economy',
+          fact: 'Global growth was projected at 2.6% in 2024, below the 3.1% average in the decade before COVID-19.',
+          zh: '2024年全球经济增长率预计为2.6%，低于新冠疫情前十年3.1%的平均水平。',
+          source: 'Source: World Bank Global Economic Prospects, June 2024.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: 'Real GDP grew 5.0% in 2024, showing faster growth than the global economy.',
+          zh: '2024年实际GDP增长5.0%，高于全球经济增长速度。',
+          source: 'Source: National Bureau of Statistics of China, 2025.',
+        },
+      },
+      visual: photos.worldBankHeadquarters,
     },
     {
       type: 'flow',
@@ -95,11 +107,23 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Specific example',
-      country: 'World economy',
-      fact: 'The World Bank expected global inflation to fall to 3.5% in 2024 and 2.9% in 2025, showing why stable prices remain a policy aim.',
-      zh: '世界银行预计全球通货膨胀率将从2024年的3.5%降至2025年的2.9%，说明价格稳定仍然是政策目标。',
-      source: 'Source: World Bank Global Economic Prospects, June 2024.',
-      visual: photos.inflation,
+      facts: {
+        left: {
+          flag: '🌐',
+          country: 'World economy',
+          fact: 'Global inflation was expected to fall to 3.5% in 2024 and 2.9% in 2025, so stable prices remained a policy aim.',
+          zh: '全球通货膨胀率预计从2024年的3.5%降至2025年的2.9%，因此价格稳定仍是政策目标。',
+          source: 'Source: World Bank Global Economic Prospects, June 2024.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: 'Consumer prices rose 0.2% in 2024, showing much lower inflationary pressure.',
+          zh: '2024年居民消费价格上涨0.2%，显示通胀压力低得多。',
+          source: 'Source: National Bureau of Statistics of China, 2025.',
+        },
+      },
+      visual: photos.inflationShelf,
     },
     {
       type: 'flow',
@@ -114,11 +138,23 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Specific example',
-      country: 'Global labour market',
-      fact: 'The ILO reported global unemployment was steady at 5% in 2024, while youth unemployment remained much higher at 12.6%.',
-      zh: '国际劳工组织报告称，2024年全球失业率稳定在5%，但青年失业率仍高得多，为12.6%。',
-      source: 'Source: ILO World Employment and Social Outlook: Trends 2025.',
-      visual: photos.socialSecurity,
+      facts: {
+        left: {
+          flag: '🌐',
+          country: 'Global labour market',
+          fact: 'Global unemployment was steady at 5% in 2024, while youth unemployment remained much higher at 12.6%.',
+          zh: '2024年全球失业率稳定在5%，但青年失业率仍高得多，为12.6%。',
+          source: 'Source: ILO World Employment and Social Outlook: Trends 2025.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: 'The surveyed urban unemployment rate averaged 5.1% in 2024.',
+          zh: '2024年城镇调查失业率平均为5.1%。',
+          source: 'Source: National Bureau of Statistics of China, 2025.',
+        },
+      },
+      visual: photos.youthCareerFair,
     },
     {
       type: 'cards',

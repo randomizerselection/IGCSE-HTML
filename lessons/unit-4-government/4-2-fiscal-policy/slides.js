@@ -661,7 +661,7 @@ IGCSE.lesson = {
         china: {
           flag: '🇨🇳',
           country: 'China',
-          fact: 'China has no national sugar-sweetened beverage excise tax in the World Bank database.',
+          fact: 'China has no national sugar-sweetened beverage excise tax in this international policy dataset.',
           zh: '世界银行数据库显示，中国全国层面的含糖饮料消费税为0。',
           source: 'Source: World Bank Global SSB Tax Database.',
         },

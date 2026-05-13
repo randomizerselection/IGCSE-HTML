@@ -191,6 +191,13 @@ policy, market failure, institution, or real-world mechanism, prefer a sourced
 fact slide with a local photo unless the section is deliberately driven by a
 student discussion scenario.
 
+On fact slides, keep source attribution out of the large fact text. Do not write
+phrases such as `The World Bank expected`, `WHO estimates`, or `According to...`
+inside the fact sentence; put the source in the small `source` line. Use flags
+on fact panels where relevant, include a China comparison whenever the pattern
+supports it, and choose the most specific available local photo. Download and
+catalogue a new image when the existing catalogue only offers a generic visual.
+
 Section dividers should name the content actually taught in that section. Use
 `zhTitle` for concise Chinese title translations on important `section`, `term`,
 and concept-bearing `flow` slides so students can recognise and memorise key

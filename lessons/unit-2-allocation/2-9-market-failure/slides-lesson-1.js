@@ -223,7 +223,7 @@ IGCSE.lesson = {
       facts: {
         left: {
           country: 'World',
-          fact: 'WHO estimates tobacco kills more than 8 million people each year.',
+          fact: 'Tobacco kills more than 8 million people each year.',
           source: 'Source: World Health Organization tobacco fact sheet.',
         },
         china: {

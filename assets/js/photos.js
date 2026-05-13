@@ -286,6 +286,32 @@ window.IGCSE = window.IGCSE || {};
     ),
   };
 
+  const macroAims = {
+    worldBankHeadquarters: photo(
+      'macro-aims',
+      'world-bank-headquarters.jpg',
+      'The World Bank Group headquarters in Washington, D.C.',
+      'Wikimedia Commons / Shiny Things',
+      'https://commons.wikimedia.org/wiki/File:World_Bank_building_at_Washington.jpg'
+    ),
+    nbsChina: photo(
+      'macro-aims',
+      'china-national-bureau-statistics.jpg',
+      'The National Bureau of Statistics of China building in Beijing.',
+      'Wikimedia Commons / N509FZ',
+      'https://commons.wikimedia.org/wiki/File:National_Bureau_of_Statistics_of_China_(20220812161639).jpg'
+    ),
+    youthCareerFair: photo(
+      'macro-aims',
+      'youth-career-fair-2024.jpg',
+      'A youth career fair at the 2024 National 4-H Conference in Washington, D.C.',
+      'Wikimedia Commons / USDA',
+      'https://commons.wikimedia.org/wiki/File:Youth_Career_Fair_at_2024_National_4-H_Conference_(20240423-USDA-OSEC-CDP-0292).jpg'
+    ),
+    inflationShelf: fiscalPolicy.inflation,
+    pollution: fiscalPolicy.pollution,
+  };
+
   const monetaryPolicy = {
     fed: photo(
       'monetary-policy',
@@ -328,6 +354,7 @@ window.IGCSE = window.IGCSE || {};
     ...(IGCSE.photos || {}),
     fiscalPolicy,
     fiscalPolicyFacts,
+    macroAims,
     marketTeaching: {
       ...marketEconomicSystem,
       classroom: fiscalPolicy.classroom,

@@ -45,6 +45,9 @@
      Each major section should normally start with a sourced fact slide or a
      discussion prompt before abstract explanation. Prefer local photos from
      assets/js/photos.js for fact slides.
+     Keep source names out of the large fact text; use the source line for
+     attribution. Use flags and a China comparison where relevant. Download a
+     new specific local photo when the catalogue only has a generic visual.
    ============================================================ */
 
 window.IGCSE = window.IGCSE || {};
@@ -115,10 +118,22 @@ IGCSE.lesson = {
     {
       type: 'fact',
       eyebrow: 'Specific example',
-      country: '<Country, region, firm or world economy>',
-      fact: '<One sourced real-world fact with one economic link.>',
-      zh: '<该事实的简短中文翻译>',
-      source: 'Source: <source name and year>.',
+      facts: {
+        left: {
+          flag: '🌐',
+          country: '<Country, region, firm or world economy>',
+          fact: '<One real-world fact with one economic link; no source name here.>',
+          zh: '<该事实的简短中文翻译>',
+          source: 'Source: <source name and year>.',
+        },
+        china: {
+          flag: '🇨🇳',
+          country: 'China',
+          fact: '<China comparison fact when relevant; no source name here.>',
+          zh: '<中国比较事实的简短中文翻译>',
+          source: 'Source: <China source name and year>.',
+        },
+      },
       visual: photos.starbucks || 'abstract',
     },
 

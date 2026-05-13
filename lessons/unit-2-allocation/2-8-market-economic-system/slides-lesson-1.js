@@ -63,7 +63,7 @@ IGCSE.lesson = {
         },
         china: {
           country: 'China',
-          fact: 'Starbucks reported more than 7,600 stores in China at the end of fiscal 2024.',
+          fact: 'Starbucks had more than 7,600 stores in China at the end of fiscal 2024.',
           source: 'Source: Starbucks FY2024 Form 10-K.',
         },
       },

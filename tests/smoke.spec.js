@@ -260,6 +260,34 @@ test.describe('site smoke', () => {
     expect(missingCoverage).toEqual([]);
   });
 
+  test('fact slide text keeps source attribution in source lines', () => {
+    const slideFiles = findSlideFiles(path.join(root, 'lessons'), root);
+    const badFacts = [];
+    const sourceAttributionPattern = /\b(?:according to|the world bank|world bank|who estimates|unesco estimated|ilo reported|starbucks reported)\b/i;
+
+    for (const slideFile of slideFiles) {
+      const lesson = readLesson(slideFile);
+      for (const [index, slide] of (lesson.slides || []).entries()) {
+        if (slide.type !== 'fact') continue;
+
+        const factPanels = [
+          slide,
+          slide.facts?.left,
+          slide.facts?.china,
+        ].filter(Boolean);
+
+        for (const panel of factPanels) {
+          const fact = String(panel.fact || '');
+          if (sourceAttributionPattern.test(fact)) {
+            badFacts.push(`${slideFile} slide ${index + 1}: ${fact}`);
+          }
+        }
+      }
+    }
+
+    expect(badFacts).toEqual([]);
+  });
+
   test('section divider subtitles stay student-facing when present', () => {
     const slideFiles = findSlideFiles(path.join(root, 'lessons'), root);
     const badSubtitles = [];
