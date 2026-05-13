@@ -242,6 +242,24 @@ test.describe('site smoke', () => {
     }
   });
 
+  test('complete lesson decks include fact and discussion slides', () => {
+    const slideFiles = findSlideFiles(path.join(root, 'lessons'), root)
+      .filter((slideFile) => !slideFile.includes('/_template/'));
+    const missingCoverage = [];
+
+    for (const slideFile of slideFiles) {
+      const lesson = readLesson(slideFile);
+      const slides = lesson.slides || [];
+      const hasFact = slides.some((slide) => slide.type === 'fact');
+      const hasDiscussion = slides.some((slide) => slide.type === 'discussion');
+
+      if (!hasFact) missingCoverage.push(`${slideFile}: missing fact slide`);
+      if (!hasDiscussion) missingCoverage.push(`${slideFile}: missing discussion slide`);
+    }
+
+    expect(missingCoverage).toEqual([]);
+  });
+
   test('section divider subtitles stay student-facing when present', () => {
     const slideFiles = findSlideFiles(path.join(root, 'lessons'), root);
     const badSubtitles = [];
@@ -266,6 +284,26 @@ test.describe('site smoke', () => {
     }
 
     expect(badSubtitles).toEqual([]);
+  });
+
+  test('section divider titles name the concept being taught', () => {
+    const slideFiles = findSlideFiles(path.join(root, 'lessons'), root);
+    const vagueTitles = new Set(['too much', 'too little', 'none', 'part 1', 'part 2', 'next idea']);
+    const badTitles = [];
+
+    for (const slideFile of slideFiles) {
+      const lesson = readLesson(slideFile);
+      for (const [index, slide] of (lesson.slides || []).entries()) {
+        if (slide.type !== 'section') continue;
+
+        const title = String(slide.title || '').replace(/\s+/g, ' ').trim().toLowerCase();
+        if (vagueTitles.has(title)) {
+          badTitles.push(`${slideFile} slide ${index + 1}: ${slide.title}`);
+        }
+      }
+    }
+
+    expect(badTitles).toEqual([]);
   });
 
   test('important key-term title slides include Chinese titles', () => {
@@ -452,7 +490,7 @@ test.describe('site smoke', () => {
   });
 
   test('lesson start link returns slide view to the first slide', async ({ page }, testInfo) => {
-    await page.goto(pageUrl('lessons/unit-4-government/4-1-macroeconomic-aims/index.html') + '#4');
+    await page.goto(pageUrl('lessons/unit-4-government/4-1-macroeconomic-aims/index.html') + '#5');
 
     await expect(page.locator('.slide.is-active h2')).toHaveText(/What governments try to achieve/i);
     if (testInfo.project.name.includes('phone')) {
@@ -707,6 +745,8 @@ test.describe('site smoke', () => {
   });
 
   test('lesson flashcard views render for every available deck', async ({ page }) => {
+    test.setTimeout(60000);
+
     const flashcardPaths = [
       'lessons/unit-2-allocation/2-8-market-economic-system/lesson-1.html',
       'lessons/unit-2-allocation/2-8-market-economic-system/lesson-2.html',

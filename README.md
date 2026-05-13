@@ -183,12 +183,25 @@ After that, teach each micro-sequence in this order:
 Repeat that divider -> fact/discussion -> content -> formative-assessment
 sequence for each major section in the deck.
 
+Fact and discussion slides should be used generously, not as occasional
+decoration. Every complete lesson deck should include both formats, and each
+major section should normally begin with a concrete fact slide or a discussion
+prompt before abstract explanation. If a section introduces an economic aim,
+policy, market failure, institution, or real-world mechanism, prefer a sourced
+fact slide with a local photo unless the section is deliberately driven by a
+student discussion scenario.
+
 Section dividers should name the content actually taught in that section. Use
 `zhTitle` for concise Chinese title translations on important `section`, `term`,
 and concept-bearing `flow` slides so students can recognise and memorise key
 IGCSE terms. Divider subtitles are optional and should be used only as a short
 student-facing bridge or contrast that adds meaning beyond the title, such as
 `How lower rates change spending and investment`.
+
+Avoid vague divider titles such as `Too much`, `Too little`, `None`, `Part 1`,
+or `Next idea`. Use the syllabus concept or mechanism instead, for example
+`Over-consumption`, `Under-consumption`, `Non-provision`, or `Restricted
+monopoly supply`.
 
 Do not use divider subtitles for syllabus codes, topic breadcrumbs, or formulaic
 phrases such as `2.8.2 - advantages include efficiency`. Keep syllabus

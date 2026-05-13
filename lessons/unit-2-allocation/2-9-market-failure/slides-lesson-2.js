@@ -51,7 +51,7 @@ IGCSE.lesson = {
     {
       type: 'section',
       eyebrow: 'New section',
-      title: 'Too much',
+      title: 'Over-consumption',
       zhTitle: '过多',
     },
     {
@@ -84,7 +84,7 @@ IGCSE.lesson = {
     {
       type: 'section',
       eyebrow: 'New section',
-      title: 'Too little',
+      title: 'Under-consumption',
       zhTitle: '过少',
     },
     {
@@ -153,7 +153,7 @@ IGCSE.lesson = {
     {
       type: 'section',
       eyebrow: 'New section',
-      title: 'Restricted supply',
+      title: 'Restricted monopoly supply',
       zhTitle: '限制供给',
     },
     {

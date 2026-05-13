@@ -5,6 +5,8 @@
 */
 window.IGCSE = window.IGCSE || {};
 
+const photos = IGCSE.photos.fiscalPolicy;
+
 IGCSE.lesson = {
   meta: {
     code: '4.1.1',
@@ -22,6 +24,17 @@ IGCSE.lesson = {
       title: 'Macroeconomic aims',
       subtitle: '4.1.1',
       kicker: 'What is the government trying to achieve for the whole economy?',
+      visual: photos.port,
+    },
+    {
+      type: 'discussion',
+      eyebrow: 'Starter',
+      title: 'Which aim is under pressure?',
+      question: 'If prices are rising quickly, young workers struggle to find jobs and factories create pollution, which macroeconomic aims are being missed?',
+      zh: '如果物价快速上涨，年轻劳动者难以找到工作，工厂还造成污染，哪些宏观经济目标没有实现？',
+      answer: 'Stable prices, full employment and environmental sustainability are under pressure. A stronger answer explains that governments often have to prioritise one aim when aims conflict.',
+      answerZh: '价格稳定、充分就业和环境可持续性都受到压力。更强的答案会说明，当目标冲突时，政府往往必须确定优先顺序。',
+      visual: photos.pollution,
     },
     {
       type: 'outcomes',
@@ -61,6 +74,15 @@ IGCSE.lesson = {
       partialReview: ['.cardgrid > .card'],
     },
     {
+      type: 'fact',
+      eyebrow: 'Specific example',
+      country: 'World economy',
+      fact: 'The World Bank projected global growth of 2.6% in 2024, below the 3.1% average in the decade before COVID-19.',
+      zh: '世界银行预计2024年全球经济增长率为2.6%，低于新冠疫情前十年3.1%的平均水平。',
+      source: 'Source: World Bank Global Economic Prospects, June 2024.',
+      visual: photos.port,
+    },
+    {
       type: 'flow',
       eyebrow: 'Learn',
       title: 'Growth can raise living standards',
@@ -71,6 +93,15 @@ IGCSE.lesson = {
       partialReview: ['.flowRow > .flowChip', '.prompt'],
     },
     {
+      type: 'fact',
+      eyebrow: 'Specific example',
+      country: 'World economy',
+      fact: 'The World Bank expected global inflation to fall to 3.5% in 2024 and 2.9% in 2025, showing why stable prices remain a policy aim.',
+      zh: '世界银行预计全球通货膨胀率将从2024年的3.5%降至2025年的2.9%，说明价格稳定仍然是政策目标。',
+      source: 'Source: World Bank Global Economic Prospects, June 2024.',
+      visual: photos.inflation,
+    },
+    {
       type: 'flow',
       eyebrow: 'Learn',
       title: 'Stable prices protect confidence',
@@ -79,6 +110,15 @@ IGCSE.lesson = {
       footer: 'High inflation creates uncertainty and can reduce real incomes.',
       visual: 'demandDown',
       partialReview: ['.flowRow > .flowChip', '.prompt'],
+    },
+    {
+      type: 'fact',
+      eyebrow: 'Specific example',
+      country: 'Global labour market',
+      fact: 'The ILO reported global unemployment was steady at 5% in 2024, while youth unemployment remained much higher at 12.6%.',
+      zh: '国际劳工组织报告称，2024年全球失业率稳定在5%，但青年失业率仍高得多，为12.6%。',
+      source: 'Source: ILO World Employment and Social Outlook: Trends 2025.',
+      visual: photos.socialSecurity,
     },
     {
       type: 'cards',

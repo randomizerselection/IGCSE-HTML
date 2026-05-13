@@ -39,6 +39,12 @@
      Add a subtitle only when it gives a student-facing bridge or contrast,
      e.g. subtitle: 'How lower rates change spending and investment'.
      Do not use section subtitles for syllabus refs or topic breadcrumbs.
+
+   Fact and discussion convention:
+     Every complete deck should include both fact and discussion slides.
+     Each major section should normally start with a sourced fact slide or a
+     discussion prompt before abstract explanation. Prefer local photos from
+     assets/js/photos.js for fact slides.
    ============================================================ */
 
 window.IGCSE = window.IGCSE || {};
@@ -104,6 +110,16 @@ IGCSE.lesson = {
       answer: '<A short possible answer that connects to this section.>',
       answerZh: '<与本部分内容相联系的简短中文参考答案。>',
       visual: 'abstract',
+    },
+
+    {
+      type: 'fact',
+      eyebrow: 'Specific example',
+      country: '<Country, region, firm or world economy>',
+      fact: '<One sourced real-world fact with one economic link.>',
+      zh: '<该事实的简短中文翻译>',
+      source: 'Source: <source name and year>.',
+      visual: photos.starbucks || 'abstract',
     },
 
     // Repeat for each section:
