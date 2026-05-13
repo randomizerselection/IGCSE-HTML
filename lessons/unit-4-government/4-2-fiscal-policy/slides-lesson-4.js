@@ -1,9 +1,13 @@
 /* ============================================================
-   Lesson 4.2 - Fiscal policy
+   Lesson 4.2 - Fiscal policy (4.2.4-4.2.6)
    Cambridge IGCSE Economics 0455 - Unit 4: Government and the macroeconomy
 
    Syllabus source:
    ../../../references/igcse-economics-syllabus-2027-2029.md
+   Definitions source:
+   ../../../references/igcse-economics-definitions-2026.md
+   Paper 2 mark-scheme archive:
+   ../../../references/paper-2-mark-schemes-2023-2025/4-government-and-macroeconomy.md
 
    Pacing note:
    Keep each slide to one teaching move and tie each policy effect back to
@@ -339,7 +343,7 @@ IGCSE.lesson = {
       eyebrow: 'Learn',
       title:   'Sustainability',
       zhTitle: '可持续发展',
-      nodes: [['green taxes or spending', 'incentives change', 'pollution may fall', 'sustainability may improve']],
+      nodes: [['green taxes or spending', 'incentives change', 'pollution may fall', 'environmental sustainability may improve']],
       footer: 'Risk: firms may pass higher costs to consumers.',
       visual: photos.pollution,
       partialReview: ['.flowRow > .flowChip', '.prompt'],
@@ -397,7 +401,7 @@ IGCSE.lesson = {
       title:   'Explain chain',
       question: 'Explain how an increase in government spending on infrastructure may help economic growth.',
       keywords: ['infrastructure', 'costs', 'investment', 'real GDP'],
-      prompt:   'Write one clear chain and use "may".',
+      prompt:   'Write one clear chain and use "may". Paper 2 source: 4.2 fiscal policy archive.',
       visual:   photos.roadwork,
       partialReview: ['.cardgrid > .card', '.prompt'],
     },
@@ -407,7 +411,7 @@ IGCSE.lesson = {
       title:   'Discuss two sides',
       question: 'Discuss whether cutting taxes is the best way for a government to reduce unemployment.',
       keywords: ['disposable income', 'aggregate demand', 'employment', 'inflation', 'budget deficit'],
-      prompt:   'Build one argument for, one against, then make a judgement.',
+      prompt:   'Build one argument for, one against, then make a judgement. Paper 2 source: 4.2 fiscal policy archive.',
       visual:   photos.shopping,
       partialReview: ['.cardgrid > .card', '.prompt'],
     },

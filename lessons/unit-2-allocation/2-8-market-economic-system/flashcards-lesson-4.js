@@ -7,8 +7,8 @@ IGCSE.flashcards = {
   description: 'Self-check revision for inequality, market failure and under-provision.',
   cards: [
     { id: 'inequality', type: 'fillBlank', prompt: 'Market demand reflects wants and ability to __________.', answer: 'pay' },
-    { id: 'market-failure', type: 'definition', term: 'Market failure', definition: 'An inefficient allocation or misallocation of resources in a free market.' },
-    { id: 'external-cost', type: 'definition', term: 'External cost', definition: 'A cost suffered by a third party who is not directly involved in consumption or production.' },
+    { id: 'market-failure', type: 'definition', term: 'Market failure', definition: 'An inefficient allocation or misallocation of resources in a free market; production or consumption is not efficient.' },
+    { id: 'external-cost', type: 'definition', term: 'External cost', definition: 'A cost suffered by a third party who is not directly involved in the consumption or production of the product.' },
     { id: 'pollution', type: 'fillBlank', prompt: 'Pollution is an example of an external __________.', answer: 'cost' },
     { id: 'under-provision', type: 'fillBlank', prompt: 'Public goods may suffer from under-provision or non-__________.', answer: 'provision' },
     { id: 'free-rider', type: 'fillBlank', prompt: 'A public good may not be provided because people can benefit without __________.', answer: 'paying' },

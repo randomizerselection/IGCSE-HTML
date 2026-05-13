@@ -16,19 +16,19 @@ IGCSE.flashcards = {
       id: 'central-bank',
       type: 'definition',
       term: 'Central bank',
-      definition: 'A bank to the government and commercial banks that helps implement monetary policy, manage the money supply and issue currency.',
+      definition: 'A bank to the government and commercial banks; it issues currency, helps implement monetary policy and manages the money supply / foreign exchange reserves.',
     },
     {
       id: 'monetary-policy',
       type: 'definition',
       term: 'Monetary policy',
-      definition: 'Policy, usually implemented by the central bank, using interest rates, money supply and foreign exchange rates to influence aggregate demand and macroeconomic aims.',
+      definition: 'Policy, usually implemented by the central bank, using interest rates, money supply and foreign exchange-rate measures to influence aggregate demand and macroeconomic aims.',
     },
     {
       id: 'tools-interest',
       type: 'fillBlank',
-      prompt: 'Monetary policy uses interest rates, money supply and foreign exchange __________.',
-      answer: 'rates',
+      prompt: 'Monetary policy uses interest rates, money supply and foreign exchange-rate __________.',
+      answer: 'measures',
     },
     {
       id: 'tools-money-supply',

@@ -27,7 +27,7 @@ IGCSE.quiz = {
       prompt: 'Which aim is most directly linked to keeping inflation low and predictable?',
       choices: ['Stable prices', 'Full employment', 'Redistribution of income', 'Environmental sustainability'],
       answer: 0,
-      explanation: 'Stable prices means avoiding rapid or unpredictable inflation.',
+      explanation: 'Stable prices / low inflation means keeping the general price level rising slowly and predictably.',
     },
     {
       id: 'employment',
@@ -42,7 +42,7 @@ IGCSE.quiz = {
       prompt: 'Which aim is most connected to avoiding persistent current account problems?',
       choices: ['Balance of payments stability', 'Stable prices', 'Redistribution of income', 'Economic growth'],
       answer: 0,
-      explanation: 'Balance of payments stability is about the economy relationship with the rest of the world.',
+      explanation: 'Balance of payments stability means avoiding persistent current account deficits or surpluses.',
     },
     {
       id: 'inequality',
@@ -69,7 +69,7 @@ IGCSE.quiz = {
       type: 'fillBlank',
       prompt: 'Higher employment may raise incomes, causing consumers to buy more imports and worsening the balance of __________.',
       acceptedAnswers: ['payments', 'balance of payments'],
-      explanation: 'A rise in imports can worsen the current account position.',
+      explanation: 'A rise in imports can worsen the current account position, affecting balance of payments stability.',
     },
   ],
 };

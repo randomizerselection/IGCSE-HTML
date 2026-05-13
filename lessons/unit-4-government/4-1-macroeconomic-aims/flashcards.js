@@ -16,7 +16,7 @@ IGCSE.flashcards = {
       id: 'growth',
       type: 'definition',
       term: 'Economic growth',
-      definition: 'An increase in output, GDP or real GDP.',
+      definition: 'An increase in real GDP.',
     },
     {
       id: 'full-employment',
@@ -28,13 +28,13 @@ IGCSE.flashcards = {
       id: 'stable-prices',
       type: 'definition',
       term: 'Stable prices / low inflation',
-      definition: 'A low and stable rise in the general price level or cost of living.',
+      definition: 'A low and stable rise in the general price level / cost of living.',
     },
     {
       id: 'bop',
       type: 'definition',
       term: 'Balance of payments stability',
-      definition: 'Avoiding persistent current account deficits or surpluses and instability in international payments.',
+      definition: 'Avoiding persistent current account deficits or surpluses and instability in international payments / the foreign exchange rate.',
     },
     {
       id: 'redistribution',
@@ -51,7 +51,7 @@ IGCSE.flashcards = {
     {
       id: 'growth-sustainability-conflict',
       type: 'fillBlank',
-      prompt: 'Economic growth may conflict with sustainability because more output may use more resources and create more __________.',
+      prompt: 'Economic growth may conflict with environmental sustainability because more output may use more resources and create more __________.',
       answer: 'pollution',
     },
   ],

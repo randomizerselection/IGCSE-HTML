@@ -1,9 +1,13 @@
 /* ============================================================
-   Lesson 4.2 - Fiscal policy
+   Lesson 4.2 - Fiscal policy (4.2.3)
    Cambridge IGCSE Economics 0455 - Unit 4: Government and the macroeconomy
 
    Syllabus source:
    ../../../references/igcse-economics-syllabus-2027-2029.md
+   Definitions source:
+   ../../../references/igcse-economics-definitions-2026.md
+   Paper 2 mark-scheme archive:
+   ../../../references/paper-2-mark-schemes-2023-2025/4-government-and-macroeconomy.md
 
    Pacing note:
    Keep each slide to one teaching move and tie each policy effect back to
@@ -156,7 +160,7 @@ IGCSE.lesson = {
           title:   'Proportional tax',
           zhTitle: '比例税',
           term:    'proportional tax',
-          definition: 'A proportional tax takes the same percentage of income from all taxpayers, even though higher earners pay more money in total.',
+          definition: 'A proportional tax takes the same proportion of income at all income levels, even though higher earners pay more money in total.',
           examples: [
             ['Low income', '10% of $20,000 = $2,000'],
             ['High income', '10% of $80,000 = $8,000'],

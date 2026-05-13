@@ -10,7 +10,7 @@ IGCSE.flashcards = {
       id: 'interest-rate',
       type: 'definition',
       term: 'Interest rate',
-      definition: 'The cost of borrowing and reward for saving.',
+      definition: 'The cost of borrowing and reward for saving; higher interest rates tend to reduce consumer expenditure, borrowing and investment and increase saving.',
     },
     {
       id: 'saving',

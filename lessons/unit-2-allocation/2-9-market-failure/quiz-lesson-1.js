@@ -6,7 +6,7 @@ IGCSE.quiz = {
   title: 'Market failure terms and causes quiz',
   description: 'Check syllabus 2.9.1 to 2.9.3.',
   questions: [
-    { id: 'market-failure', type: 'multipleChoice', prompt: 'What is market failure?', choices: ['An inefficient allocation of resources by the market.', 'Any fall in a firm’s profit.', 'A market where prices never change.', 'A situation where consumers have too much choice.'], answer: 0, explanation: 'Market failure is inefficient allocation by the market.' },
+    { id: 'market-failure', type: 'multipleChoice', prompt: 'What is market failure?', choices: ['An inefficient allocation of resources by the market.', 'Any fall in a firm’s profit.', 'A market where prices never change.', 'A situation where consumers have too much choice.'], answer: 0, explanation: 'Market failure is inefficient allocation or misallocation of resources by the market.' },
     { id: 'social-cost', type: 'fillBlank', prompt: 'Social cost equals private cost plus external __________.', acceptedAnswers: ['cost', 'costs'], explanation: 'External costs are added to private costs.' },
     { id: 'social-benefit', type: 'fillBlank', prompt: 'Social benefit equals private benefit plus external __________.', acceptedAnswers: ['benefit', 'benefits'], explanation: 'External benefits are added to private benefits.' },
     { id: 'external-cost', type: 'multipleChoice', prompt: 'Which is an external cost?', choices: ['Dirty air suffered by nearby residents from a factory.', 'The wage paid to a worker.', 'The rent paid by a shop.', 'The price paid by the buyer.'], answer: 0, explanation: 'An external cost is suffered by a third party.' },

@@ -17,7 +17,7 @@ IGCSE.quiz = {
         'The rules firms use to set wages.',
       ],
       answer: 0,
-      explanation: 'Fiscal policy uses government spending and taxation to influence aggregate demand and macroeconomic performance.',
+      explanation: 'Fiscal policy uses government spending and taxation to influence economic activity, aggregate demand and macroeconomic aims.',
     },
     {
       id: 'fiscal-tools',

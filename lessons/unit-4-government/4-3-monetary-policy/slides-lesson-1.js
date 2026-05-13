@@ -6,6 +6,8 @@
    ../../../references/igcse-economics-syllabus-2027-2029.md
    Definitions source:
    ../../../references/igcse-economics-definitions-2026.md
+   Paper 2 mark-scheme archive:
+   ../../../references/paper-2-mark-schemes-2023-2025/4-government-and-macroeconomy.md
 
    Pacing note:
    Lesson 1 focuses on 4.3.1. Keep the exam language close to:
@@ -85,7 +87,7 @@ IGCSE.lesson = {
       title:   'Money supply',
       zhTitle: '货币供应',
       term:    'money supply',
-      definition: 'The amount of money in the economy.',
+      definition: 'The amount of money in an economy / in circulation.',
       examples: [
         ['Cash', 'notes and coins used for spending'],
         ['Deposits', 'money held in bank accounts'],
@@ -173,7 +175,7 @@ IGCSE.lesson = {
       title:   'Monetary policy',
       zhTitle: '货币政策',
       term:    'monetary policy',
-      definition: 'Policy using changes in interest rates, money supply and foreign exchange rates; usually implemented by the central bank and used to influence aggregate demand and macroeconomic aims.',
+      definition: 'Policy using changes in interest rates, money supply and foreign exchange-rate measures; usually implemented by the central bank and used to influence aggregate demand and macroeconomic aims.',
       examples: [
         ['Interest rates', 'change the cost of borrowing and reward for saving'],
         ['Money supply', 'change the amount of money available in the economy'],
@@ -229,7 +231,7 @@ IGCSE.lesson = {
       mode:    'fillBlanks',
       steps: [
         ['1', 'Money supply is the amount of money in the __________.', 'economy'],
-        ['2', 'Monetary policy uses interest rates, money supply and foreign __________ rates.', 'exchange'],
+        ['2', 'Monetary policy uses interest rates, money supply and foreign exchange-rate __________.', 'measures'],
         ['3', 'Monetary policy is usually implemented by the central __________.', 'bank'],
         ['4', 'Monetary policy is used to influence macroeconomic __________.', 'aims'],
       ],

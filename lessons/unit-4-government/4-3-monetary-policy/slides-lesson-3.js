@@ -6,6 +6,8 @@
    ../../../references/igcse-economics-syllabus-2027-2029.md
    Definitions source:
    ../../../references/igcse-economics-definitions-2026.md
+   Paper 2 mark-scheme archive:
+   ../../../references/paper-2-mark-schemes-2023-2025/4-government-and-macroeconomy.md
 
    Pacing note:
    Lesson 3 completes the 4.3.2 measures list: changes in money
@@ -216,7 +218,7 @@ IGCSE.lesson = {
       title:   'Explain chain',
       question: 'Explain how a lower foreign exchange rate may improve the current account.',
       keywords: ['exports', 'imports', 'price competitiveness', 'current account'],
-      prompt:   'Include one export link and one import link.',
+      prompt:   'Include one export link and one import link. Paper 2 source: 4.3 monetary policy archive.',
       visual:   photos.exchangeRate,
       partialReview: ['.cardgrid > .card', '.prompt'],
     },

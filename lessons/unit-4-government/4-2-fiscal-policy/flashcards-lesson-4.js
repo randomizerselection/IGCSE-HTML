@@ -22,7 +22,7 @@ IGCSE.flashcards = {
       id: 'expansionary',
       type: 'definition',
       term: 'Expansionary fiscal policy',
-      definition: 'Increasing government spending and/or reducing taxation to increase aggregate demand, output and employment.',
+      definition: 'Increasing government spending and/or reducing taxation to increase aggregate demand, output and employment / economic growth.',
     },
     {
       id: 'contractionary',

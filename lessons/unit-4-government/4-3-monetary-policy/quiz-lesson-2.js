@@ -17,7 +17,7 @@ IGCSE.quiz = {
         'The amount of unemployment in an economy.',
       ],
       answer: 0,
-      explanation: 'Interest rate is the cost of borrowing and reward for saving.',
+      explanation: 'Interest rate is the cost of borrowing and reward for saving; higher rates tend to reduce spending, borrowing and investment.',
     },
     {
       id: 'saving-reward',

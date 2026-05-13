@@ -6,9 +6,9 @@ IGCSE.flashcards = {
   title: 'Market failure consequences flashcards',
   description: 'Self-check revision for 2.9.4.',
   cards: [
-    { id: 'overconsumption', type: 'definition', term: 'Overconsumption / overproduction', definition: 'Too much of a good is consumed or produced from society’s viewpoint.' },
-    { id: 'underconsumption', type: 'definition', term: 'Underconsumption / underproduction', definition: 'Too little of a good is consumed or produced from society’s viewpoint.' },
-    { id: 'misallocation', type: 'definition', term: 'Misallocation of resources', definition: 'Too many resources devoted to harmful goods or too few resources devoted to beneficial goods.' },
+    { id: 'overconsumption', type: 'definition', term: 'Overconsumption / overproduction', definition: 'Too much of a good is consumed or produced from society’s viewpoint, especially demerit goods or goods with external costs.' },
+    { id: 'underconsumption', type: 'definition', term: 'Underconsumption / underproduction', definition: 'Too little of a good is consumed or produced from society’s viewpoint, especially merit goods or goods with external benefits.' },
+    { id: 'misallocation', type: 'definition', term: 'Misallocation of resources', definition: 'Too many resources devoted to demerit goods or goods with external costs; too few resources devoted to merit goods or goods with external benefits.' },
     { id: 'demerit', type: 'fillBlank', prompt: 'Demerit goods may be over-__________.', answer: 'consumed' },
     { id: 'merit', type: 'fillBlank', prompt: 'Merit goods may be under-__________.', answer: 'consumed' },
     { id: 'public-good', type: 'fillBlank', prompt: 'Public goods may suffer from non-__________.', answer: 'provision' },

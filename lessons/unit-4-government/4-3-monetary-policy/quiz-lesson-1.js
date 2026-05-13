@@ -45,7 +45,7 @@ IGCSE.quiz = {
         'Exports, imports and visible trade.',
       ],
       answer: 0,
-      explanation: 'The syllabus list is interest rates, money supply and exchange-rate measures.',
+      explanation: 'The syllabus list is interest rates, money supply and foreign exchange-rate measures.',
     },
     {
       id: 'exchange-rate-tool',
@@ -60,7 +60,7 @@ IGCSE.quiz = {
       prompt: 'Which is fiscal policy rather than monetary policy?',
       choices: ['Changing interest rates', 'Changing taxation', 'Changing money supply', 'Influencing the exchange rate'],
       answer: 1,
-      explanation: 'Fiscal policy uses government spending and taxation, while monetary policy uses interest rates, money supply and exchange-rate measures.',
+      explanation: 'Fiscal policy uses government spending and taxation, while monetary policy uses interest rates, money supply and foreign exchange-rate measures.',
     },
     {
       id: 'macro-aims',

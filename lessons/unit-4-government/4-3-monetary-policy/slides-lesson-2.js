@@ -6,6 +6,8 @@
    ../../../references/igcse-economics-syllabus-2027-2029.md
    Definitions source:
    ../../../references/igcse-economics-definitions-2026.md
+   Paper 2 mark-scheme archive:
+   ../../../references/paper-2-mark-schemes-2023-2025/4-government-and-macroeconomy.md
 
    Pacing note:
    Lesson 2 focuses on the interest-rate measure in 4.3.2 and its
@@ -235,7 +237,7 @@ IGCSE.lesson = {
       title:   'Explain chain',
       question: 'Explain how a rise in interest rates may reduce inflation.',
       keywords: ['cost of borrowing', 'saving', 'spending', 'inflationary pressure'],
-      prompt:   'Write a chain with one clear "may".',
+      prompt:   'Write a chain with one clear "may". Paper 2 source: 4.3 monetary policy archive.',
       visual:   photos.bankEngland,
       partialReview: ['.cardgrid > .card', '.prompt'],
     },

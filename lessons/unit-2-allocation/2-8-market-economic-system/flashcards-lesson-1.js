@@ -8,7 +8,7 @@ IGCSE.flashcards = {
   cards: [
     { id: 'market-economic-system', type: 'definition', term: 'Market economic system', definition: 'An economy where resources are allocated mainly by market forces or the price mechanism, with private sector ownership and decisions influenced by the profit motive.' },
     { id: 'private-ownership', type: 'fillBlank', prompt: 'A market economic system includes private __________ of resources.', answer: 'ownership' },
-    { id: 'price-mechanism', type: 'definition', term: 'Price mechanism', definition: 'The use of price changes to allocate resources.' },
+    { id: 'price-mechanism', type: 'definition', term: 'Price mechanism', definition: 'The use of price changes to allocate resources: higher demand raises price and attracts more resources; lower demand reduces price and resources.' },
     { id: 'profit-motive', type: 'fillBlank', prompt: 'Private firms are influenced by the profit __________.', answer: 'motive' },
     { id: 'market-forces', type: 'fillBlank', prompt: 'Market forces means demand and __________.', answer: 'supply' },
     { id: 'mixed-economy', type: 'fillBlank', prompt: 'Most real economies combine markets and government intervention, so they are __________ economies.', answer: 'mixed' },

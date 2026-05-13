@@ -1,4 +1,8 @@
-/* Lesson 4.1.1 - Macroeconomic aims */
+/* Sources:
+   Syllabus 2027-2029: ../../../references/igcse-economics-syllabus-2027-2029.md (4.1.1)
+   Definitions 2026: ../../../references/igcse-economics-definitions-2026.md (macroeconomic aims)
+   Paper 2 archive: ../../../references/paper-2-mark-schemes-2023-2025/4-government-and-macroeconomy.md (4.1)
+*/
 window.IGCSE = window.IGCSE || {};
 
 IGCSE.lesson = {
@@ -47,10 +51,10 @@ IGCSE.lesson = {
       title: 'What governments try to achieve',
       lead: 'Macroeconomic aims focus on the performance of the whole economy.',
       cards: [
-        ['Economic growth', 'increase real GDP and output'],
+        ['Economic growth', 'increase real GDP'],
         ['Full employment', 'keep unemployment low'],
-        ['Stable prices', 'keep inflation low and predictable'],
-        ['Balance of payments stability', 'avoid persistent external imbalances'],
+        ['Stable prices / low inflation', 'keep the general price level rising slowly and predictably'],
+        ['Balance of payments stability', 'avoid persistent current account deficits or surpluses'],
         ['Redistribution of income', 'reduce excessive income inequality'],
         ['Environmental sustainability', 'protect resources and reduce damage'],
       ],
@@ -83,7 +87,7 @@ IGCSE.lesson = {
       lead: 'Good answers recognise trade-offs rather than assuming every aim improves together.',
       cards: [
         ['Employment vs inflation', 'more demand may create jobs but raise prices'],
-        ['Growth vs sustainability', 'more output may use more resources and create pollution'],
+        ['Growth vs environmental sustainability', 'more output may use more resources and create pollution'],
         ['Employment vs balance of payments', 'higher incomes may increase spending on imports'],
       ],
       footer: 'Use cautious language: may, could, depends on spare capacity.',
@@ -94,7 +98,7 @@ IGCSE.lesson = {
       eyebrow: 'Check',
       title: 'Which conflict is shown?',
       question: 'A government increases spending to create jobs. Consumers then buy more imported goods.',
-      choices: ['Employment vs balance of payments stability', 'Growth vs sustainability', 'Stable prices vs redistribution'],
+      choices: ['Employment vs balance of payments stability', 'Growth vs environmental sustainability', 'Stable prices vs redistribution'],
       prompt: 'Explain the chain in one sentence.',
       partialReview: ['.choices > .choice', '.prompt'],
     },
@@ -103,8 +107,8 @@ IGCSE.lesson = {
       eyebrow: 'Exam practice',
       title: 'Explain a conflict',
       question: 'Explain why economic growth may conflict with environmental sustainability.',
-      keywords: ['more output', 'resource use', 'pollution', 'sustainability'],
-      prompt: 'Write a linked chain and include one judgement word such as "may".',
+      keywords: ['more output', 'resource use', 'pollution', 'environmental sustainability'],
+      prompt: 'Write a linked chain and include one judgement word such as "may". Paper 2 source: 4.1 macroeconomic aims archive.',
       visual: 'flowArrows',
       partialReview: ['.cardgrid > .card', '.prompt'],
     },

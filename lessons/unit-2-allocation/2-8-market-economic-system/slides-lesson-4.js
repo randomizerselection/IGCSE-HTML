@@ -1,4 +1,8 @@
-/* Syllabus source: ../../../references/igcse-economics-syllabus-2027-2029.md */
+/* Sources:
+   Syllabus 2027-2029: ../../../references/igcse-economics-syllabus-2027-2029.md (2.8, 2.9)
+   Definitions 2026: ../../../references/igcse-economics-definitions-2026.md (Market failure, External cost, Public good)
+   Paper 2 archive: ../../../references/paper-2-mark-schemes-2023-2025/2-allocation-of-resources.md (2.8, 2.9)
+*/
 window.IGCSE = window.IGCSE || {};
 
 const photos = IGCSE.photos.marketTeaching;
@@ -180,7 +184,7 @@ IGCSE.lesson = {
       title: 'Discuss markets',
       question: 'Discuss whether a market economic system is the best way to allocate resources. [8]',
       keywords: ['choice', 'incentives', 'efficiency', 'inequality', 'market failure'],
-      prompt: 'One paragraph for, one against, then a judgement.',
+      prompt: 'One paragraph for, one against, then a judgement. Paper 2 source: 2023MJ-21 Q2(d).',
       partialReview: ['.cardgrid > .card', '.prompt'],
     },
     {

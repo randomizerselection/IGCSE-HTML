@@ -32,14 +32,14 @@ IGCSE.quiz = {
       prompt: 'Which is the best example of a direct tax?',
       choices: ['Income tax', 'Value added tax', 'Sales tax', 'Excise duty on cigarettes'],
       answer: 0,
-      explanation: 'A direct tax is paid straight from income, profit, or wealth to the government.',
+      explanation: 'A direct tax is paid on income or wealth directly to government.',
     },
     {
       id: 'indirect-tax',
       type: 'fillBlank',
       prompt: 'A tax placed on spending on goods and services is an __________ tax.',
       acceptedAnswers: ['indirect', 'indirect tax'],
-      explanation: 'Indirect taxes are added to the price of goods and services.',
+      explanation: 'Indirect taxes are taxes on spending / goods and services.',
     },
     {
       id: 'corporation-tax',
@@ -73,8 +73,8 @@ IGCSE.quiz = {
       id: 'environment-tax',
       type: 'fillBlank',
       prompt: 'A pollution tax can encourage environmental __________.',
-      acceptedAnswers: ['sustainability', 'protection', 'responsibility'],
-      explanation: 'Pollution taxes raise the cost of polluting and can encourage cleaner choices.',
+      acceptedAnswers: ['sustainability', 'environmental sustainability', 'protection', 'responsibility'],
+      explanation: 'Pollution taxes raise the cost of polluting and can encourage environmental sustainability.',
     },
   ],
 };

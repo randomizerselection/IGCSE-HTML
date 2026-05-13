@@ -1,9 +1,13 @@
 /* ============================================================
-   Lesson 4.2 - Fiscal policy
+   Lesson 4.2 - Fiscal policy (4.2.1-4.2.2)
    Cambridge IGCSE Economics 0455 - Unit 4: Government and the macroeconomy
 
    Syllabus source:
    ../../../references/igcse-economics-syllabus-2027-2029.md
+   Definitions source:
+   ../../../references/igcse-economics-definitions-2026.md
+   Paper 2 mark-scheme archive:
+   ../../../references/paper-2-mark-schemes-2023-2025/4-government-and-macroeconomy.md
 
    Pacing note:
    Keep each slide to one teaching move and tie each policy effect back to

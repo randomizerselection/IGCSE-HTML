@@ -1,9 +1,13 @@
 /* ============================================================
-   Lesson 4.2 - Fiscal policy
+   Lesson 4.2 - Fiscal policy (4.2.3)
    Cambridge IGCSE Economics 0455 - Unit 4: Government and the macroeconomy
 
    Syllabus source:
    ../../../references/igcse-economics-syllabus-2027-2029.md
+   Definitions source:
+   ../../../references/igcse-economics-definitions-2026.md
+   Paper 2 mark-scheme archive:
+   ../../../references/paper-2-mark-schemes-2023-2025/4-government-and-macroeconomy.md
 
    Pacing note:
    Keep each slide to one teaching move and tie each policy effect back to
@@ -165,7 +169,7 @@ IGCSE.lesson = {
     {
           type: 'flow',
           eyebrow: 'Learn',
-          title:   '6. Encourage sustainability',
+          title:   '6. Encourage environmental sustainability',
           zhTitle: '鼓励可持续发展',
           nodes: [['pollution tax', 'firms face higher costs for polluting', 'cleaner methods become more attractive']],
           footer: 'Evaluate: firms may pass higher costs to consumers.',
@@ -177,7 +181,7 @@ IGCSE.lesson = {
           eyebrow: 'Check',
           question: 'A pollution tax raises money and makes pollution more expensive. Which answer is strongest?',
           choices: [
-            'It can raise revenue and encourage sustainability',
+            'It can raise revenue and encourage environmental sustainability',
             'It can only raise revenue',
             'It can only reduce imports',
           ],
@@ -219,7 +223,7 @@ IGCSE.lesson = {
           title:   'Direct tax',
           zhTitle: '直接税',
           term:    'direct tax',
-          definition: 'A direct tax is a tax on income, profit or wealth, paid directly by the taxpayer to the government.',
+          definition: 'A direct tax is a tax on income or wealth paid directly to government, such as income tax, corporation tax or wealth tax.',
           examples: [
             ['Income tax', 'tax on wages'],
             ['Corporation tax', 'tax on company profits'],
@@ -234,7 +238,7 @@ IGCSE.lesson = {
           title:   'Indirect tax',
           zhTitle: '间接税',
           term:    'indirect tax',
-          definition: 'An indirect tax is a tax on spending. It is added to the price of goods or services and collected by the seller for the government.',
+          definition: 'An indirect tax is a tax on spending / goods and services, such as VAT, sales tax, excise duties or tariffs.',
           examples: [
             ['VAT', 'added to many prices'],
             ['Sales tax', 'paid at checkout'],

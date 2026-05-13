@@ -6,7 +6,7 @@ IGCSE.flashcards = {
   title: 'Price mechanism flashcards',
   description: 'Self-check revision for price signals and resource allocation.',
   cards: [
-    { id: 'price-mechanism', type: 'definition', term: 'Price mechanism', definition: 'The use of price changes to allocate resources.' },
+    { id: 'price-mechanism', type: 'definition', term: 'Price mechanism', definition: 'The use of price changes to allocate resources: higher demand raises price and attracts more resources; lower demand reduces price and resources.' },
     { id: 'signals', type: 'fillBlank', prompt: 'Prices act as signals and __________.', answer: 'incentives' },
     { id: 'demand-rises', type: 'fillBlank', prompt: 'When demand rises, price and profit may __________.', answer: 'rise' },
     { id: 'resources-in', type: 'fillBlank', prompt: 'Higher profit encourages firms to allocate more __________ to production.', answer: 'resources' },

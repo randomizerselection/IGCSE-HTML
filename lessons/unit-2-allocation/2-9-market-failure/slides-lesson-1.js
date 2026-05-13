@@ -1,4 +1,8 @@
-/* Syllabus source: ../../../references/igcse-economics-syllabus-2027-2029.md */
+/* Sources:
+   Syllabus 2027-2029: ../../../references/igcse-economics-syllabus-2027-2029.md (2.9)
+   Definitions 2026: ../../../references/igcse-economics-definitions-2026.md (Market failure and market-failure terms)
+   Paper 2 archive: ../../../references/paper-2-mark-schemes-2023-2025/2-allocation-of-resources.md (2.9)
+*/
 window.IGCSE = window.IGCSE || {};
 
 const photos = IGCSE.photos.marketTeaching;
@@ -54,7 +58,7 @@ IGCSE.lesson = {
       title: 'Market failure',
       zhTitle: '市场失灵',
       term: 'market failure',
-      definition: 'An inefficient allocation or misallocation of resources in a free market.',
+      definition: 'An inefficient allocation or misallocation of resources in a free market; production or consumption is not efficient.',
       examples: [
         ['Over-consumption', 'too much of a harmful good'],
         ['Under-consumption', 'too little of a beneficial good'],

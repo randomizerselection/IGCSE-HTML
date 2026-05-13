@@ -1,4 +1,8 @@
-/* Syllabus source: ../../../references/igcse-economics-syllabus-2027-2029.md */
+/* Sources:
+   Syllabus 2027-2029: ../../../references/igcse-economics-syllabus-2027-2029.md (2.8)
+   Definitions 2026: ../../../references/igcse-economics-definitions-2026.md (Market economic system, Consumer sovereignty)
+   Paper 2 archive: ../../../references/paper-2-mark-schemes-2023-2025/2-allocation-of-resources.md (2.8)
+*/
 window.IGCSE = window.IGCSE || {};
 
 const photos = IGCSE.photos.marketTeaching;
@@ -190,7 +194,7 @@ IGCSE.lesson = {
       title: 'Analyse advantages',
       question: 'Analyse two advantages of a market economic system. [6]',
       keywords: ['consumer sovereignty', 'choice', 'quality and innovation', 'efficiency'],
-      prompt: 'Build two chains. Each chain needs a cause, an effect and a benefit.',
+      prompt: 'Build two chains. Each chain needs a cause, an effect and a benefit. Paper 2 source: 2.8 market economic system archive.',
       partialReview: ['.cardgrid > .card', '.prompt'],
     },
     {

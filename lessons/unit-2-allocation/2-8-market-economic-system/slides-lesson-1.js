@@ -1,4 +1,8 @@
-/* Syllabus source: ../../../references/igcse-economics-syllabus-2027-2029.md */
+/* Sources:
+   Syllabus 2027-2029: ../../../references/igcse-economics-syllabus-2027-2029.md (2.8)
+   Definitions 2026: ../../../references/igcse-economics-definitions-2026.md (Market economic system, Price mechanism)
+   Paper 2 archive: ../../../references/paper-2-mark-schemes-2023-2025/2-allocation-of-resources.md (2.8)
+*/
 window.IGCSE = window.IGCSE || {};
 
 const photos = IGCSE.photos.marketTeaching;

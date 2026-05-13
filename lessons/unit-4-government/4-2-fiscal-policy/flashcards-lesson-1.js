@@ -10,7 +10,7 @@ IGCSE.flashcards = {
       id: 'budget-definition',
       type: 'definition',
       term: 'Government budget',
-      definition: 'A plan or forecast for government revenue and government expenditure.',
+      definition: 'A plan for government revenue and government expenditure.',
     },
     {
       id: 'balanced-budget',
@@ -40,7 +40,7 @@ IGCSE.flashcards = {
       id: 'merit-goods',
       type: 'definition',
       term: 'Merit good',
-      definition: 'A beneficial good, often with positive externalities, that is under-consumed because people may be unaware of its benefits.',
+      definition: 'A good that is beneficial / has positive externalities and is under-consumed because people may be unaware of its benefits.',
     },
     {
       id: 'infrastructure',

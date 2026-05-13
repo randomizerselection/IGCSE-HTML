@@ -6,6 +6,8 @@
    ../../../references/igcse-economics-syllabus-2027-2029.md
    Definitions source:
    ../../../references/igcse-economics-definitions-2026.md
+   Paper 2 mark-scheme archive:
+   ../../../references/paper-2-mark-schemes-2023-2025/4-government-and-macroeconomy.md
 
    Pacing note:
    Lesson 4 focuses on 4.3.3. Teach each transmission chain separately:
@@ -277,7 +279,7 @@ IGCSE.lesson = {
       title:   'Explain chain',
       question: 'Explain how lower interest rates may increase employment.',
       keywords: ['borrowing', 'spending', 'output', 'employment'],
-      prompt:   'Use at least three connected steps.',
+      prompt:   'Use at least three connected steps. Paper 2 source: 4.3 monetary policy archive.',
       visual:   photos.bankEngland,
       partialReview: ['.cardgrid > .card', '.prompt'],
     },
@@ -287,7 +289,7 @@ IGCSE.lesson = {
       title:   'Discuss two sides',
       question: 'Discuss whether higher interest rates are the best way to reduce inflation.',
       keywords: ['saving', 'borrowing', 'spending', 'inflation', 'employment'],
-      prompt:   'Build one argument for, one argument against and a judgement.',
+      prompt:   'Build one argument for, one argument against and a judgement. Paper 2 source: 4.3 monetary policy archive.',
       visual:   photos.fed,
       partialReview: ['.cardgrid > .card', '.prompt'],
     },
