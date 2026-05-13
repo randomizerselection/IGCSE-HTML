@@ -10,7 +10,7 @@ IGCSE.flashcards = {
       id: 'definition',
       type: 'definition',
       term: 'Fiscal policy',
-      definition: 'Use of government spending and taxation to influence economic activity and achieve macroeconomic aims.',
+      definition: 'Use of government spending and taxation to influence economic activity, aggregate demand and macroeconomic aims.',
     },
     {
       id: 'tools',
@@ -22,13 +22,13 @@ IGCSE.flashcards = {
       id: 'expansionary',
       type: 'definition',
       term: 'Expansionary fiscal policy',
-      definition: 'Increasing government spending and/or reducing taxation to increase total demand, output and employment.',
+      definition: 'Increasing government spending and/or reducing taxation to increase aggregate demand, output and employment.',
     },
     {
       id: 'contractionary',
       type: 'definition',
       term: 'Contractionary fiscal policy',
-      definition: 'Reducing government spending and/or increasing taxation to reduce total demand and inflationary pressure.',
+      definition: 'Reducing government spending and/or increasing taxation to reduce aggregate demand and inflationary pressure.',
     },
     {
       id: 'unemployment',
@@ -45,7 +45,7 @@ IGCSE.flashcards = {
     {
       id: 'tax-cut',
       type: 'fillBlank',
-      prompt: 'Cutting income tax can raise disposable income, consumption and total __________.',
+      prompt: 'Cutting income tax can raise disposable income, consumption and aggregate __________.',
       answer: 'demand',
     },
     {

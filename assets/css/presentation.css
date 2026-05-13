@@ -306,6 +306,15 @@ h2 .inlineZh {
   letter-spacing: 0;
   vertical-align: middle;
 }
+.sectionTitle .inlineZh {
+  display: block;
+  margin-top: .18em;
+  color: var(--ink-dim);
+  font-size: .34em;
+  line-height: 1.18;
+  font-weight: 760;
+  letter-spacing: 0;
+}
 .termBlock h2 .inlineZh {
   display: inline;
   margin: 0 0 0 .52em;
@@ -469,6 +478,11 @@ h2 .inlineZh {
   max-width: min(1160px, 82vw);
   padding-bottom: 8vh;
 }
+.discussionPrompt {
+  display: grid;
+  justify-items: start;
+  gap: 1.05rem;
+}
 .discussionPrompt p {
   margin: 0;
   max-width: 24ch;
@@ -480,12 +494,40 @@ h2 .inlineZh {
   text-shadow: 0 14px 44px rgba(0,0,0,.58);
 }
 .discussionPrompt .zh {
-  margin-top: 1.05rem;
+  margin-top: 0;
   max-width: 34ch;
   font-size: clamp(25px, 2.55vw, 39px);
   line-height: 1.48;
   font-weight: 760;
   color: rgba(255,255,255,.9);
+}
+.discussionAnswerButton {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  margin-top: .15rem;
+  padding: .62rem .85rem;
+  border: 1px solid rgba(255,209,102,.42);
+  border-radius: var(--r-sm);
+  background:
+    linear-gradient(145deg, rgba(255,209,102,.16), rgba(56,189,248,.07)),
+    rgba(255,255,255,.055);
+  color: var(--ink);
+  font: inherit;
+  font-size: clamp(15px, 1vw, 18px);
+  line-height: 1;
+  font-weight: 900;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+.discussionAnswerButton:hover,
+.discussionAnswerButton:focus-visible {
+  border-color: rgba(255,209,102,.75);
+  background:
+    linear-gradient(145deg, rgba(255,209,102,.24), rgba(56,189,248,.11)),
+    rgba(255,255,255,.075);
+  outline: none;
 }
 .slide.is-discussion.is-medium .discussionPrompt p {
   max-width: 28ch;
@@ -767,6 +809,76 @@ h2 .inlineZh {
   font-size: clamp(12px, .9vw, 15px);
   font-weight: 700;
 }
+.discussionAnswerDialog[hidden] {
+  display: none;
+}
+.discussionAnswerDialog {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background: rgba(2, 8, 18, .74);
+  backdrop-filter: blur(5px);
+}
+.discussionAnswerPanel {
+  position: relative;
+  width: min(920px, 100%);
+  display: grid;
+  gap: clamp(.8rem, 1.6vw, 1.2rem);
+  padding: clamp(1.2rem, 3vw, 2.2rem);
+  border: 1px solid rgba(255,209,102,.45);
+  border-radius: var(--r-md);
+  background:
+    linear-gradient(145deg, rgba(255,209,102,.13), rgba(56,189,248,.07)),
+    linear-gradient(180deg, rgba(13,30,48,.98), rgba(5,13,26,.98));
+  box-shadow: var(--shadow-md);
+}
+.discussionAnswerClose {
+  position: absolute;
+  top: .75rem;
+  right: .75rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  color: var(--ink);
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.discussionAnswerHeader {
+  width: fit-content;
+  padding: .55rem .75rem;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: var(--r-sm);
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  font-size: clamp(18px, 1.45vw, 25px);
+  line-height: 1;
+  font-weight: 900;
+}
+.discussionAnswerText {
+  max-width: 28ch;
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(32px, 3.35vw, 56px);
+  line-height: 1.1;
+  font-weight: 900;
+  text-wrap: balance;
+}
+.discussionAnswerZh {
+  max-width: 40ch;
+  margin: 0;
+  color: rgba(219,231,246,.9);
+  font-size: clamp(21px, 1.9vw, 32px);
+  line-height: 1.34;
+  font-weight: 760;
+}
 
 @media (max-width: 960px) {
   .slide.is-fact .content {
@@ -790,6 +902,13 @@ h2 .inlineZh {
   }
   .chinaDialogZh {
     font-size: clamp(18px, 5.1vw, 25px);
+  }
+  .discussionAnswerText {
+    max-width: 19ch;
+    font-size: clamp(28px, 7.4vw, 42px);
+  }
+  .discussionAnswerZh {
+    font-size: clamp(18px, 5vw, 25px);
   }
 }
 
@@ -3933,7 +4052,7 @@ body.is-flashcard-mode #deck {
   }
 
   .sectionTitle {
-    font-size: clamp(42px, 14vw, 68px);
+    font-size: clamp(38px, 12vw, 62px);
   }
 
   .topline,

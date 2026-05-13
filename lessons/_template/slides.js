@@ -28,7 +28,17 @@
      Use eyebrow only as a student learning-stage cue:
      Lesson overview | Starter | Objectives | New section | Learn | Explore
      Example | Apply | Check | Exam practice | Review | Exit ticket
-     Put syllabus refs and topic breadcrumbs in section subtitles.
+
+   Bilingual key-term convention:
+     Important section, term and concept-bearing flow slides should use zhTitle
+     for a concise Chinese translation. Keep the English syllabus term primary.
+
+   Section divider convention:
+     Section titles should name the concept being taught. Use zhTitle for a
+     concise Chinese translation. Omit subtitles by default.
+     Add a subtitle only when it gives a student-facing bridge or contrast,
+     e.g. subtitle: 'How lower rates change spending and investment'.
+     Do not use section subtitles for syllabus refs or topic breadcrumbs.
    ============================================================ */
 
 window.IGCSE = window.IGCSE || {};
@@ -60,6 +70,9 @@ IGCSE.lesson = {
       eyebrow: 'Starter',
       title:   '<Hook question>',
       question: '<Concrete scenario or puzzle that creates the need for the lesson>',
+      zh: '<该情境或问题的中文翻译>',
+      answer: '<A short possible answer students could use if they are stuck.>',
+      answerZh: '<学生没有思路时可以参考的简短中文答案。>',
       visual: 'abstract',
     },
 
@@ -78,7 +91,8 @@ IGCSE.lesson = {
       type: 'section',
       eyebrow: 'New section',
       title:   '<First section taught>',
-      subtitle: '<Syllabus ref> - <Topic breadcrumb>',
+      zhTitle: '<Concise Chinese title translation when useful>',
+      // subtitle: '<Optional student-facing bridge, not a syllabus ref>',
     },
 
     {
@@ -86,6 +100,9 @@ IGCSE.lesson = {
       eyebrow: 'Explore',
       title:   '<Starter question>',
       question: '<Fact or discussion prompt that introduces this section>',
+      zh: '<引入本部分的事实或讨论问题的中文翻译>',
+      answer: '<A short possible answer that connects to this section.>',
+      answerZh: '<与本部分内容相联系的简短中文参考答案。>',
       visual: 'abstract',
     },
 

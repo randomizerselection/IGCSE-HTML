@@ -394,6 +394,11 @@ const renderers = {
     <div class="discussionPrompt">
       <p>${esc(s.question)}</p>
       ${s.zh ? `<p class="zh">${esc(s.zh)}</p>` : ''}
+      ${s.answer ? `
+        <button type="button" class="discussionAnswerButton" data-discussion-answer="${s.discussionAnswerIndex ?? ''}" aria-haspopup="dialog">
+          <span>Show possible answer</span>
+        </button>
+      ` : ''}
     </div>
   `,
 
@@ -821,7 +826,7 @@ function renderSlide(meta, slide, idx, total) {
                decoding="async" />` : ''}
         ${topline(slide, idx, total)}
         <div class="discussionContent">
-          ${renderers.discussion(slide)}
+          ${renderers.discussion({ ...slide, discussionAnswerIndex: idx })}
         </div>
         ${caption || credit ? `
           <div class="discussionCredit">
@@ -842,7 +847,7 @@ function renderSlide(meta, slide, idx, total) {
         ${topline(slide, idx, total)}
         <div class="content is-section${sectionVisual ? '' : ' is-full'}">
           <div>
-            <div class="sectionTitle">${esc(slide.title)}</div>
+            <div class="sectionTitle">${esc(slide.title)}${slide.zhTitle ? `<span class="inlineZh">${esc(slide.zhTitle)}</span>` : ''}</div>
             ${slide.subtitle ? `<p class="lead">${esc(slide.subtitle)}</p>` : ''}
             ${sectionProgress(slide)}
           </div>
@@ -1471,6 +1476,7 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
   let idx = 0;
   const partialProgress = slides.map(() => 0);
   const chinaDialog = mountChinaComparisonDialog();
+  const discussionDialog = mountDiscussionAnswerDialog();
 
   setupPartialReview(slideEls, slides, meta);
   setupTaxSimulators(mountEl);
@@ -1591,6 +1597,27 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
     return true;
   }
 
+  function openDiscussionAnswer(slideIndex) {
+    const slide = slides[slideIndex];
+    if (!slide?.answer || !discussionDialog) return;
+    discussionDialog.querySelector('.discussionAnswerText').textContent = slide.answer || '';
+    const zhEl = discussionDialog.querySelector('.discussionAnswerZh');
+    zhEl.textContent = slide.answerZh || '';
+    zhEl.hidden = !slide.answerZh;
+    discussionDialog.hidden = false;
+    discussionDialog.classList.add('is-visible');
+    discussionDialog.setAttribute('aria-hidden', 'false');
+    discussionDialog.querySelector('.discussionAnswerClose')?.focus({ preventScroll: true });
+  }
+
+  function closeDiscussionAnswer() {
+    if (!discussionDialog || discussionDialog.hidden) return false;
+    discussionDialog.classList.remove('is-visible');
+    discussionDialog.setAttribute('aria-hidden', 'true');
+    discussionDialog.hidden = true;
+    return true;
+  }
+
   function mountChinaComparisonDialog() {
     document.querySelector('.chinaCompareDialog')?.remove();
     const dialog = document.createElement('aside');
@@ -1618,6 +1645,32 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
     return dialog;
   }
 
+  function mountDiscussionAnswerDialog() {
+    document.querySelector('.discussionAnswerDialog')?.remove();
+    const dialog = document.createElement('aside');
+    dialog.className = 'discussionAnswerDialog';
+    dialog.hidden = true;
+    dialog.setAttribute('aria-hidden', 'true');
+    dialog.setAttribute('role', 'dialog');
+    dialog.setAttribute('aria-modal', 'true');
+    dialog.setAttribute('aria-label', 'Possible answer');
+    dialog.innerHTML = `
+      <div class="discussionAnswerPanel">
+        <button type="button" class="discussionAnswerClose" aria-label="Close possible answer">×</button>
+        <div class="discussionAnswerHeader">Possible answer</div>
+        <p class="discussionAnswerText"></p>
+        <p class="discussionAnswerZh"></p>
+      </div>
+    `;
+    dialog.addEventListener('click', (event) => event.stopPropagation());
+    dialog.querySelector('.discussionAnswerClose')?.addEventListener('click', (event) => {
+      event.stopPropagation();
+      closeDiscussionAnswer();
+    });
+    document.body.appendChild(dialog);
+    return dialog;
+  }
+
   // Keyboard
   document.addEventListener('keydown', (e) => {
     if (document.querySelector('.selector-overlay-host, .studentSelectorSidePanel')) return;
@@ -1629,6 +1682,15 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
       if (['Escape', 'ArrowLeft', 'PageUp'].includes(k)) {
         e.preventDefault();
         closeChinaComparison();
+      } else if (['ArrowRight', 'PageDown', ' '].includes(k)) {
+        e.preventDefault();
+      }
+      return;
+    }
+    if (discussionDialog && !discussionDialog.hidden) {
+      if (['Escape', 'ArrowLeft', 'PageUp'].includes(k)) {
+        e.preventDefault();
+        closeDiscussionAnswer();
       } else if (['ArrowRight', 'PageDown', ' '].includes(k)) {
         e.preventDefault();
       }
@@ -1657,6 +1719,15 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
       event.stopPropagation();
       const slideIndex = Number.parseInt(button.dataset.chinaCompare || '', 10);
       if (Number.isFinite(slideIndex)) openChinaComparison(slideIndex);
+    });
+  });
+
+  mountEl.querySelectorAll('.discussionAnswerButton').forEach((button) => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const slideIndex = Number.parseInt(button.dataset.discussionAnswer || '', 10);
+      if (Number.isFinite(slideIndex)) openDiscussionAnswer(slideIndex);
     });
   });
 

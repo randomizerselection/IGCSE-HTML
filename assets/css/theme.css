@@ -531,9 +531,9 @@ button.choice:focus-visible {
 /* ---------- Section title (large display) ---------- */
 .sectionTitle {
   white-space: pre-line;
-  font-size: clamp(44px, 6.4vw, 112px);
-  line-height: 1.16;
-  letter-spacing: -0.025em;
+  font-size: clamp(42px, 5.4vw, 88px);
+  line-height: 1.08;
+  letter-spacing: 0;
   padding-block: .04em .1em;
   background: linear-gradient(135deg, #ffffff 0%, var(--cyan) 45%, var(--gold) 100%);
   -webkit-background-clip: text;
@@ -555,6 +555,7 @@ button.choice:focus-visible {
   gap: .5rem;
 }
 .sectionTrack span {
+  min-width: 0;
   min-height: 58px;
   display: grid;
   grid-template-columns: auto 1fr;
@@ -593,10 +594,12 @@ button.choice:focus-visible {
   color: #07111f;
 }
 .sectionTrack em {
+  min-width: 0;
   font-style: normal;
   font-size: clamp(12px, .78vw, 15px);
   line-height: 1.15;
   font-weight: 760;
+  overflow-wrap: anywhere;
 }
 
 /* ---------- Three-system comparison ---------- */

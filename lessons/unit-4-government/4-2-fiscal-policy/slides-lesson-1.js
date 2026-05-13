@@ -39,6 +39,8 @@ IGCSE.lesson = {
       title:   'Trade-offs',
       question: 'What should a government do first when it cannot achieve every aim at once?',
       zh: '当政府无法同时实现所有目标时，应该先做什么？',
+      answer: 'It should prioritise the most urgent aim and accept that there may be trade-offs with other aims.',
+      answerZh: '政府应优先处理最紧迫的目标，并承认这可能与其他目标存在取舍。',
       visual: photos.budgetMeeting,
     },
     {
@@ -56,7 +58,7 @@ IGCSE.lesson = {
       type: 'section',
       eyebrow: 'New section',
       title:   'Government budget',
-      subtitle: '4.2.1 - Government budget',
+      zhTitle: '政府预算',
     },
     {
       type: 'discussion',
@@ -64,6 +66,8 @@ IGCSE.lesson = {
       title:   'Public money',
       question: 'What should happen if a government spends more than it receives?',
       zh: '如果政府支出超过收入，应该怎么办？',
+      answer: 'It has a budget deficit, so it may need to borrow, raise revenue, or reduce some spending.',
+      answerZh: '这会形成预算赤字，因此政府可能需要借款、增加收入或削减部分支出。',
       visual: photos.budgetHearing,
     },
     {
@@ -72,7 +76,7 @@ IGCSE.lesson = {
       title:   'Budget balance',
       zhTitle: '预算差额',
       term:    'government budget',
-      definition: 'A government budget is a plan for government revenue and government expenditure.',
+      definition: 'A government budget is a plan or forecast for government revenue and government expenditure.',
       formula: 'Budget balance = government revenue - government expenditure',
       examples: [
         ['Deficit', 'negative balance'],
@@ -149,7 +153,7 @@ IGCSE.lesson = {
       type: 'section',
       eyebrow: 'New section',
       title:   'Government spending',
-      subtitle: '4.2.2 - Government spending',
+      zhTitle: '政府支出',
     },
     {
       type: 'discussion',
@@ -157,6 +161,8 @@ IGCSE.lesson = {
       title:   'Priorities',
       question: 'Which area of government spending should receive more money first?',
       zh: '政府支出的哪个领域应该最先获得更多资金？',
+      answer: 'A strong answer chooses one area, such as healthcare or education, and explains the likely benefit and opportunity cost.',
+      answerZh: '好的回答应选择一个领域，如医疗或教育，并解释可能的收益和机会成本。',
       visual: photos.budgetHearing,
     },
     {
@@ -201,6 +207,8 @@ IGCSE.lesson = {
       title:   'Why spend?',
       question: 'Why might markets fail to provide enough education, healthcare or infrastructure?',
       zh: '为什么市场可能无法提供足够的教育、医疗或基础设施？',
+      answer: 'Markets may under-provide them because benefits spill over to society or because some people cannot afford the full price.',
+      answerZh: '市场可能提供不足，因为这些服务的收益会扩散到社会，或有些人无法承担全部价格。',
       visual: photos.classroom,
     },
     {
@@ -224,6 +232,8 @@ IGCSE.lesson = {
       title:   'Education and healthcare',
       question: 'Why might a person consume too little education or healthcare if they must pay the full price?',
       zh: '如果必须支付全部价格，为什么人们可能消费太少的教育或医疗？',
+      answer: 'They may focus on the private cost and ignore wider long-term benefits, or simply be unable to afford it.',
+      answerZh: '他们可能只看到私人费用而忽视长期广泛收益，或者根本负担不起。',
       visual: photos.classroom,
     },
     {
@@ -243,6 +253,8 @@ IGCSE.lesson = {
       title:   'Free rider problem',
       question: 'Why is defence difficult to sell only to people who pay for it?',
       zh: '为什么国防很难只卖给付费的人？',
+      answer: 'Defence is non-excludable: once provided, people in the country are protected even if they did not pay directly.',
+      answerZh: '国防具有非排他性：一旦提供，国内居民即使没有直接付费也会受到保护。',
       visual: photos.defence,
     },
     {
@@ -262,6 +274,8 @@ IGCSE.lesson = {
       title:   'Roads, rail and ports',
       question: 'How can a better road or railway help firms produce more?',
       zh: '更好的公路或铁路如何帮助企业生产更多？',
+      answer: 'Better infrastructure can reduce transport time and costs, helping firms move inputs and goods more efficiently.',
+      answerZh: '更好的基础设施可以减少运输时间和成本，帮助企业更高效地运输投入品和商品。',
       visual: photos.roadwork,
     },
     {
@@ -293,6 +307,8 @@ IGCSE.lesson = {
       title:   'Picking winners',
       question: 'Should a government support an industry if it is important for future jobs?',
       zh: '如果某个产业对未来就业很重要，政府应该支持它吗？',
+      answer: 'It may support the industry if future benefits are large, but it should consider opportunity cost and possible inefficiency.',
+      answerZh: '如果未来收益很大，政府可以支持该产业，但应考虑机会成本和可能的低效率。',
       visual: photos.industry,
     },
     {
@@ -333,6 +349,8 @@ IGCSE.lesson = {
       title:   'Welfare support',
       question: 'How much responsibility should a government take for reducing poverty?',
       zh: '政府在减少贫困方面应该承担多大责任？',
+      answer: 'Governments often redistribute income through taxes and spending, but the extent depends on priorities and costs.',
+      answerZh: '政府通常通过税收和支出来再分配收入，但承担程度取决于优先目标和成本。',
       visual: photos.socialSecurity,
     },
     {
@@ -351,6 +369,8 @@ IGCSE.lesson = {
       title:   'Managing demand',
       question: 'Should a government spend more when unemployment is rising?',
       zh: '当失业率上升时，政府应该增加支出吗？',
+      answer: 'It may increase spending to raise aggregate demand and employment, but this could increase borrowing or inflationary pressure.',
+      answerZh: '政府可以增加支出来提高总需求和就业，但这可能增加借款或通胀压力。',
       visual: photos.budgetMeeting,
     },
     {
@@ -358,8 +378,8 @@ IGCSE.lesson = {
       eyebrow: 'Learn',
       title:   '6. Manage the macroeconomy',
       zhTitle: '管理宏观经济',
-      question: 'Government spending can be changed to influence total demand.',
-      nodes: [['higher government spending', 'total demand rises', 'firms may increase output', 'growth and employment may rise']],
+      question: 'Government spending can be changed to influence aggregate demand.',
+      nodes: [['higher government spending', 'aggregate demand rises', 'firms may increase output', 'growth and employment may rise']],
       footer: 'Evaluation: demand may rise too much and create inflationary pressure.',
       visual: photos.budgetMeeting,
       partialReview: ['.flowRow > .flowChip', '.prompt'],

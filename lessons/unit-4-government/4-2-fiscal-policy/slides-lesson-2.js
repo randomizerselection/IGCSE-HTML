@@ -39,6 +39,8 @@ IGCSE.lesson = {
           title:   'Every receipt is a policy choice',
           question: 'When you buy something in a shop, which taxes might be hidden in the final price?',
           zh: '当你在商店买东西时，最终价格里可能隐藏着哪些税？',
+          answer: 'Indirect taxes such as VAT, sales tax, excise duty or tariffs may be included in the final price.',
+          answerZh: '最终价格中可能包含增值税、销售税、消费税或关税等间接税。',
           visual: photos.shopping,
         },
     {
@@ -55,7 +57,7 @@ IGCSE.lesson = {
           type: 'section',
           eyebrow: 'New section',
           title:   'Why governments tax',
-          subtitle: '4.2.3 - Why governments tax',
+          zhTitle: '政府征税的原因',
         },
     {
           type: 'fact',
@@ -199,7 +201,7 @@ IGCSE.lesson = {
           type: 'section',
           eyebrow: 'New section',
           title:   'Direct and indirect\ntaxes',
-          subtitle: '4.2.3 - Direct and indirect taxes',
+          zhTitle: '直接税与间接税',
         },
     {
           type: 'discussion',
@@ -207,6 +209,8 @@ IGCSE.lesson = {
           title:   'Who should pay?',
           question: 'If the government needs more revenue for hospitals, should it raise income tax, VAT, corporation tax or a tax on unhealthy products?',
           zh: '如果政府需要更多收入来资助医院，应该提高所得税、增值税、公司税，还是对不健康产品征税？',
+          answer: 'A strong answer chooses one tax and explains revenue, fairness, incentives and possible side effects.',
+          answerZh: '好的回答应选择一种税，并解释收入、公平性、激励作用和可能的副作用。',
           visual: photos.healthcare,
         },
     {
@@ -283,6 +287,8 @@ IGCSE.lesson = {
           title:   'Taxing company profits',
           question: 'If corporation tax rises, what might a firm do with prices, wages, investment or dividends?',
           zh: '如果公司税上升，企业可能会如何调整价格、工资、投资或股息？',
+          answer: 'A firm may raise prices, limit wage growth, reduce investment, or pay lower dividends to shareholders.',
+          answerZh: '企业可能提高价格、限制工资增长、减少投资，或向股东支付更低股息。',
           visual: photos.industry,
         },
     {
@@ -310,6 +316,8 @@ IGCSE.lesson = {
           title:   'Taxing harmful goods',
           question: 'Why might governments tax cigarettes more heavily than bread?',
           zh: '为什么政府可能对香烟征收比面包更高的税？',
+          answer: 'Cigarettes create health costs and are demerit goods, while bread is a basic necessity.',
+          answerZh: '香烟会带来健康成本，属于有害品；面包则是基本必需品。',
           visual: photos.tobacco,
         },
     {
@@ -344,6 +352,8 @@ IGCSE.lesson = {
           title:   'At the port',
           question: 'If a tariff makes imported phones more expensive, who might gain and who might lose?',
           zh: '如果关税使进口手机更贵，谁可能受益，谁可能受损？',
+          answer: 'Domestic producers and the government may gain, while consumers and foreign producers may lose.',
+          answerZh: '国内生产者和政府可能受益，消费者和外国生产者可能受损。',
           visual: photos.port,
         },
     {
@@ -371,6 +381,8 @@ IGCSE.lesson = {
           title:   'The smoke stack',
           question: 'Should a factory pay tax for pollution if it provides jobs in the local area?',
           zh: '如果工厂为当地提供就业，它还应该为污染纳税吗？',
+          answer: 'It may still be taxed because pollution creates external costs, but the tax should consider jobs and competitiveness.',
+          answerZh: '它仍可能应纳税，因为污染产生外部成本，但税收也应考虑就业和竞争力。',
           visual: photos.pollution,
         },
     {

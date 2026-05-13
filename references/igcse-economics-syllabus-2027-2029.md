@@ -142,7 +142,7 @@ Calculators are allowed in both papers. Both papers can assess all subject conte
 | 4.1.1 | Macroeconomic aims | Aims include economic growth, full employment/low unemployment, stable prices/low inflation, balance of payments stability, redistribution of income and environmental sustainability. Conflicts include employment vs inflation, growth vs sustainability, and employment vs balance of payments stability. |
 | 4.2.1 | Government budget | A government budget is a plan for revenue and expenditure. A deficit occurs when spending exceeds revenue; a surplus occurs when revenue exceeds spending. Students calculate deficit/surplus size. |
 | 4.2.2 | Government spending | Main areas include education, healthcare, infrastructure, welfare, defence and debt interest. Explain reasons and effects. |
-| 4.2.3 | Taxation | Reasons include raising revenue, discouraging demerit goods, reducing imports, redistributing income, influencing total demand and encouraging environmental sustainability. Cover progressive, regressive, proportional, direct and indirect taxes. |
+| 4.2.3 | Taxation | Reasons include raising revenue, discouraging demerit goods, reducing imports, redistributing income, influencing aggregate demand and encouraging environmental sustainability. Cover progressive, regressive, proportional, direct and indirect taxes. |
 | 4.2.4 | Fiscal policy | Fiscal policy uses government spending and taxation to influence economic activity and macroeconomic aims. |
 | 4.2.5 | Fiscal policy measures | Measures are changes in taxes and government spending. |
 | 4.2.6 | Effects of fiscal policy | Explain how fiscal policy may support growth, employment, price stability, redistribution, balance of payments stability and sustainability. |
@@ -154,7 +154,7 @@ Calculators are allowed in both papers. Both papers can assess all subject conte
 | 4.4.3 | Effects of supply-side policy | Explain how supply-side policies can support growth, employment, price stability, competitiveness and balance of payments stability. |
 | 4.5.1 | Economic growth | Economic growth is an increase in real GDP. |
 | 4.5.2 | Measuring growth | Use real GDP to measure economic growth. |
-| 4.5.3 | Causes and consequences of growth | Growth may come from higher total demand, more resources or better-quality resources. Analyse advantages and disadvantages. |
+| 4.5.3 | Causes and consequences of growth | Growth may come from higher aggregate demand, more resources or better-quality resources. Analyse advantages and disadvantages. |
 | 4.5.4 | Recession | A recession is a fall in real GDP or negative economic growth. It may be caused by lower demand, fewer resources or lower-quality resources, and affects consumers, workers, firms and government. |
 | 4.5.5 | Policies for growth | Evaluate the range of policies available to promote economic growth. |
 | 4.6.1 | Employment, unemployment and full employment | Employment is being in work. Unemployment is being willing and able to work but unable to find a job. Full employment means unemployment is low and most willing workers can find work. |
@@ -164,7 +164,7 @@ Calculators are allowed in both papers. Both papers can assess all subject conte
 | 4.6.5 | Policies to reduce unemployment | Evaluate policies such as demand-side stimulus, training, labour mobility policies and supply-side reforms. |
 | 4.7.1 | Inflation and deflation | Inflation is a sustained rise in the general price level. Deflation is a sustained fall in the general price level. |
 | 4.7.2 | Measuring inflation | Inflation is measured using the Consumer Prices Index (CPI). |
-| 4.7.3 | Causes of inflation | Demand-pull inflation comes from rising total demand. Cost-push inflation comes from rising costs of production. |
+| 4.7.3 | Causes of inflation | Demand-pull inflation comes from rising aggregate demand. Cost-push inflation comes from rising costs of production. |
 | 4.7.4 | Consequences of inflation | Analyse effects on savers, lenders, borrowers, consumers, workers, firms and the economy. |
 | 4.7.5 | Policies to control inflation | Evaluate fiscal, monetary and supply-side policies for controlling inflation. |
 
@@ -230,4 +230,3 @@ Calculators are allowed in both papers. Both papers can assess all subject conte
 | Removed or reduced content | Removed/reduced areas include trade unions as a standalone topic, growth of firms, role of government as a standalone topic, principles of taxation, claimant count, population pyramid interpretation, fixed exchange-rate systems and some PPC links. |
 | Added or clearer content | Added/clearer areas include scarcity, elasticity boundary cases, monopoly in market failure, mixed-economy arguments, household age/culture, minimum-wage diagrams, mergers, ATC diagrams, investment and productivity, competitive/monopoly market effects, recession, seasonal unemployment, healthcare and poverty, globalisation changes, free trade and trade-restriction reasons. |
 | Renumbering | Fiscal policy is now 4.2, monetary policy is 4.3, supply-side policy is 4.4, economic growth is 4.5, employment/unemployment is 4.6 and inflation is 4.7. |
-

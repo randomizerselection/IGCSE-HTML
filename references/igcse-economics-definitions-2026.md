@@ -95,7 +95,7 @@ Each table row contains a syllabus reference, a term, and exam-ready definition 
 | 2.8.3 | Inelastic supply | The percentage change in quantity supplied is smaller than the percentage change in price; PES less than 1. |
 | 2.8.3 | Unitary elastic supply | The percentage change in quantity supplied equals the percentage change in price; PES equals 1. |
 | 2.8.3 | Determinants of PES | Production time, construction time, storage time, stocks, spare capacity, availability / mobility of factors of production, whether production can be switched, and time period. |
-| 2.9.1 | Market economic system | An economy where resources are allocated mainly by market forces / the price mechanism, with private sector ownership and decisions influenced by self-interest / profit motive. |
+| 2.9.1 | Market economic system | An economy where resources are allocated mainly by market forces / the price mechanism, with private sector ownership and decisions influenced by the profit motive. |
 | 2.9.2 | Consumer sovereignty | The idea that firms produce what consumers demand because profit provides an incentive to respond to demand. |
 | 2.10.1 | Market failure | An inefficient allocation / misallocation of resources in a free market; production or consumption of goods and services in a market is not efficient. |
 | 2.10.1 | Private benefit | A benefit enjoyed / incurred by the consumer or producer of a product, e.g. better future job prospects from education or profits earned by a firm. |
@@ -197,35 +197,35 @@ Each table row contains a syllabus reference, a term, and exam-ready definition 
 | 4.2.1 | Stable prices / low inflation | A low and stable rise in the general price level / cost of living; helps maintain purchasing power, confidence and certainty. |
 | 4.2.1 | Balance of payments stability | Avoiding persistent current account deficits or surpluses and instability in international payments / the foreign exchange rate. |
 | 4.2.1 | Redistribution of income | Government action to reduce income inequality, e.g. progressive taxation and state benefits. |
-| 4.2.2 | Conflict: full employment and stable prices | Lower unemployment can increase total demand and wage pressure, causing demand-pull or cost-push inflation. |
+| 4.2.2 | Conflict: full employment and stable prices | Lower unemployment can increase aggregate demand and wage pressure, causing demand-pull or cost-push inflation. |
 | 4.2.2 | Conflict: growth and balance of payments stability | Higher growth can raise incomes and demand for imports, worsening the current account. |
 | 4.2.2 | Conflict: full employment and balance of payments stability | Higher employment can increase incomes and spending on imports, worsening the current account. |
 | 4.3.1 | Government budget | A plan / forecast for government expenditure and government revenue. |
 | 4.3.2 | Government spending | Spending by government on areas such as education, healthcare, pensions, benefits, defence and infrastructure. |
-| 4.3.3 | Taxation | The main source of government revenue; levied to raise revenue, redistribute income, discourage demerit goods, correct market failure and influence total demand / economic activity. |
+| 4.3.3 | Taxation | The main source of government revenue; levied to raise revenue, redistribute income, discourage demerit goods, correct market failure and influence aggregate demand / economic activity. |
 | 4.3.4 | Direct tax | A tax on income or wealth paid directly to government, such as income tax, corporation tax or wealth tax. |
 | 4.3.4 | Indirect tax | A tax on spending / goods and services, such as VAT, sales tax, excise duties or tariffs. It raises firms’ costs of production and may reduce supply / increase price. |
 | 4.3.4 | Progressive tax | A tax that takes a higher proportion of income as income rises / from higher-income groups. |
 | 4.3.4 | Regressive tax | A tax that takes a higher proportion of income from lower-income groups / places a greater burden on the poor. |
 | 4.3.4 | Proportional tax | A tax that takes the same proportion of income at all income levels. |
 | 4.3.5 | Good tax | A good tax should be equitable / fair, certain, convenient, economical to collect, difficult to evade, flexible and should not create major disincentive effects. |
-| 4.3.7 | Fiscal policy | Use of government spending and taxation to influence economic activity / total demand and achieve macroeconomic aims. |
+| 4.3.7 | Fiscal policy | Use of government spending and taxation to influence economic activity / aggregate demand and achieve macroeconomic aims. |
 | 4.3.8 | Budget deficit | Government spending exceeds government revenue. |
 | 4.3.8 | Budget surplus | Government revenue exceeds government spending. |
 | 4.3.8 | Balanced budget | Government spending equals government revenue. |
-| 4.3.9 | Expansionary fiscal policy | Increasing government spending and/or reducing taxation to increase total demand, output and employment / economic growth. |
-| 4.3.9 | Contractionary fiscal policy | Reducing government spending and/or increasing taxation to reduce total demand and inflationary pressure. |
+| 4.3.9 | Expansionary fiscal policy | Increasing government spending and/or reducing taxation to increase aggregate demand, output and employment / economic growth. |
+| 4.3.9 | Contractionary fiscal policy | Reducing government spending and/or increasing taxation to reduce aggregate demand and inflationary pressure. |
 | 4.4.1 | Money supply | The amount of money in an economy / in circulation. |
-| 4.4.1 | Monetary policy | Policy using changes in interest rates, money supply and foreign exchange rates; usually implemented by the central bank and used to influence total demand and macroeconomic aims. |
+| 4.4.1 | Monetary policy | Policy using changes in interest rates, money supply and foreign exchange rates; usually implemented by the central bank and used to influence aggregate demand and macroeconomic aims. |
 | 4.4.2 | Interest rate | The cost of borrowing and reward for saving; higher interest rates tend to reduce consumer expenditure, borrowing and investment and increase saving. |
-| 4.4.3 | Expansionary monetary policy | Lower interest rates / increased money supply to increase consumer spending, investment, total demand, output and employment. |
-| 4.4.3 | Contractionary monetary policy | Higher interest rates / reduced money supply to reduce consumer expenditure, investment, total demand and inflationary pressure. |
+| 4.4.3 | Expansionary monetary policy | Lower interest rates / increased money supply to increase consumer spending, investment, aggregate demand, output and employment. |
+| 4.4.3 | Contractionary monetary policy | Higher interest rates / reduced money supply to reduce consumer expenditure, investment, aggregate demand and inflationary pressure. |
 | 4.5.1 | Supply-side policy | Policy measures designed to increase productive capacity / total supply by improving the quantity, quality, efficiency or mobility of factors of production. |
 | 4.5.2 | Supply-side measures | Education and training, labour market reforms, lower direct taxes, deregulation, improving incentives to work and invest, privatisation, infrastructure, healthcare and support for research / technology. |
 | 4.6.1 | Real GDP | The value of output / GDP adjusted for inflation. |
 | 4.6.2 | GDP per head / per capita | GDP divided by population; used as an indicator of average income / output per person and living standards. |
-| 4.6.3 | Recession | A fall in real GDP / negative economic growth / low economic activity; associated with lower total demand, lower output and higher unemployment, moving the economy inside its PPC. |
-| 4.6.4 | Economic growth from higher demand | Increased total demand can increase the utilisation of resources and GDP, moving production from inside towards the PPC. |
+| 4.6.3 | Recession | A fall in real GDP / negative economic growth / low economic activity; associated with lower aggregate demand, lower output and higher unemployment, moving the economy inside its PPC. |
+| 4.6.4 | Economic growth from higher demand | Increased aggregate demand can increase the utilisation of resources and GDP, moving production from inside towards the PPC. |
 | 4.6.4 | Economic growth from higher capacity | Investment, technology and increases in the quantity / quality of factors of production shift the PPC to the right. |
 | 4.7.1 | Employment | People in work / employed in producing goods and services. |
 | 4.7.1 | Unemployment | Those willing and able to work who cannot find employment. |
@@ -237,13 +237,13 @@ Each table row contains a syllabus reference, a term, and exam-ready definition 
 | 4.7.3 | Labour force survey | A survey-based measure of unemployment asking whether people are without work, available for work and seeking work. |
 | 4.7.4 | Frictional unemployment | Workers in between jobs; includes people searching for work. |
 | 4.7.4 | Structural unemployment | Unemployment caused by changes in demand and supply conditions, skills not matching vacancies, lack of labour mobility or decline of industries. |
-| 4.7.4 | Cyclical / demand-deficient unemployment | Unemployment caused by lack of total demand / low economic activity; it occurs during a recession. |
+| 4.7.4 | Cyclical / demand-deficient unemployment | Unemployment caused by lack of aggregate demand / low economic activity; it occurs during a recession. |
 | 4.8.1 | Inflation | A sustained rise in the general price level / cost of living. |
 | 4.8.1 | Deflation | A sustained fall in the general price level / cost of living. |
 | 4.8.2 | Consumer Prices Index (CPI) | A measure of inflation / cost of living using weights / a basket of goods and services. |
-| 4.8.3 | Demand-pull inflation | Inflation caused by higher total demand / spending, pulling prices up. |
+| 4.8.3 | Demand-pull inflation | Inflation caused by higher aggregate demand / spending, pulling prices up. |
 | 4.8.3 | Cost-push inflation | Inflation caused by increases in costs of production, e.g. wages, raw materials, imported costs or energy. |
-| 4.8.3 | Demand-side deflation | Deflation caused by falling total demand / low consumer expenditure / lower incomes. |
+| 4.8.3 | Demand-side deflation | Deflation caused by falling aggregate demand / low consumer expenditure / lower incomes. |
 | 4.8.3 | Supply-side deflation | Deflation caused by lower costs, higher productivity, improved technology or increased supply. |
 
 ## 5 Economic development
@@ -320,7 +320,7 @@ Each table row contains a syllabus reference, a term, and exam-ready definition 
 | 6.4.2 | Causes of current account deficit | High imports, low exports, higher incomes at home, lower incomes abroad, weak international competitiveness, high inflation, poor quality and a high exchange rate. |
 | 6.4.2 | Causes of current account surplus | High exports, low imports, low domestic demand, high foreign demand, strong competitiveness, low inflation, good quality and a low exchange rate. |
 | 6.4.4 | Policies for balance of payments stability | Expenditure-reducing policies, expenditure-switching policies, supply-side policies, exchange-rate policy and protectionist measures; effectiveness depends on PED, retaliation and time lags. |
-| 6.4.4 | Expenditure-reducing policies | Policies that reduce total demand / spending, which can reduce imports and improve the current account balance. |
+| 6.4.4 | Expenditure-reducing policies | Policies that reduce aggregate demand / spending, which can reduce imports and improve the current account balance. |
 | 6.4.4 | Expenditure-switching policies | Policies that switch demand away from imports and towards domestically produced goods, or switch foreign demand towards the country’s exports. |
 
 ## Formula quick reference

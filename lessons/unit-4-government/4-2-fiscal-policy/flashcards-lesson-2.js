@@ -10,13 +10,13 @@ IGCSE.flashcards = {
       id: 'tax-revenue',
       type: 'definition',
       term: 'Taxation',
-      definition: 'The main source of government revenue, levied to raise revenue and influence economic activity.',
+      definition: 'The main source of government revenue, levied to raise revenue, redistribute income, discourage demerit goods, correct market failure and influence aggregate demand.',
     },
     {
       id: 'demerit-tax',
       type: 'definition',
       term: 'Demerit good',
-      definition: 'A good with harmful effects that is over-consumed or over-produced.',
+      definition: 'A good with harmful effects that is over-consumed or over-produced because consumers may not appreciate its full costs.',
     },
     {
       id: 'direct-tax',

@@ -40,7 +40,7 @@ IGCSE.flashcards = {
       id: 'merit-goods',
       type: 'definition',
       term: 'Merit good',
-      definition: 'A beneficial good that is under-consumed because people may be unaware of its benefits.',
+      definition: 'A beneficial good, often with positive externalities, that is under-consumed because people may be unaware of its benefits.',
     },
     {
       id: 'infrastructure',

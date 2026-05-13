@@ -4,9 +4,9 @@ IGCSE.quiz = {
   id: '2-8-market-economic-system-lesson-1',
   version: '1.0.0',
   title: 'Market economic system quiz',
-  description: 'Check syllabus 2.8.1: markets, private ownership and the price mechanism.',
+  description: 'Check syllabus 2.8.1: market forces, private sector ownership, the price mechanism and profit motive.',
   questions: [
-    { id: 'definition', type: 'multipleChoice', prompt: 'Which statement best defines a market economic system?', choices: ['Resources are allocated mainly through markets, private ownership and the price mechanism.', 'The government owns all resources and sets all output.', 'All goods are provided free by the public sector.', 'Firms produce only what the government orders.'], answer: 0, explanation: 'This matches the current syllabus wording for 2.8.1.' },
+    { id: 'definition', type: 'multipleChoice', prompt: 'Which statement best defines a market economic system?', choices: ['Resources are allocated mainly by market forces or the price mechanism, with private sector ownership and the profit motive.', 'The government owns all resources and sets all output.', 'All goods are provided free by the public sector.', 'Firms produce only what the government orders.'], answer: 0, explanation: 'This matches the definitions source: market forces / price mechanism, private sector ownership and decisions influenced by the profit motive.' },
     { id: 'private-ownership', type: 'fillBlank', prompt: 'A market economic system includes private __________ of resources.', acceptedAnswers: ['ownership'], explanation: 'Private ownership is a core feature of a market economy.' },
     { id: 'price-mechanism', type: 'fillBlank', prompt: 'Prices act as signals and incentives through the price __________.', acceptedAnswers: ['mechanism'], explanation: 'The price mechanism uses price changes to allocate resources.' },
     { id: 'profit-motive', type: 'multipleChoice', prompt: 'Why is profit important in a market economy?', choices: ['It gives firms an incentive to produce goods consumers want.', 'It guarantees equal income.', 'It removes external costs.', 'It means government owns firms.'], answer: 0, explanation: 'Profit is an incentive that can move resources towards demanded goods.' },

@@ -26,6 +26,9 @@ IGCSE.lesson = {
       eyebrow: 'Starter',
       title: 'Signals on the shelf',
       question: 'If a supermarket vegetable shelf sells out every afternoon, what signal is the market sending to the shop?',
+      zh: '如果超市的蔬菜货架每天下午都卖空，市场向商店发出了什么信号？',
+      answer: 'Demand is higher than the shop expected, so the price may rise and the shop may order more vegetables.',
+      answerZh: '需求高于商店预期，因此价格可能上升，商店也可能订购更多蔬菜。',
       visual: photos.vegetables,
     },
     {
@@ -43,7 +46,7 @@ IGCSE.lesson = {
       type: 'section',
       eyebrow: 'New section',
       title: 'Price signals',
-      subtitle: '2.8.1 - the price mechanism allocates resources through markets',
+      zhTitle: '价格信号',
     },
     {
       type: 'fact',
@@ -73,6 +76,7 @@ IGCSE.lesson = {
       type: 'flow',
       eyebrow: 'Learn',
       title: 'Demand rises',
+      zhTitle: '需求上升',
       nodes: [['demand rises', 'price rises', 'profit may rise', 'firms produce more', 'resources move into the market']],
       footer: 'Resources include land, labour, capital and enterprise.',
       visual: photos.evCharging,
@@ -83,6 +87,9 @@ IGCSE.lesson = {
       eyebrow: 'Apply',
       title: 'E-bike demand',
       question: 'If more commuters want e-bikes, what should happen to workers, shop space and parts suppliers?',
+      zh: '如果更多通勤者想要电动自行车，工人、店铺空间和零部件供应商应该发生什么变化？',
+      answer: 'More resources should move into e-bike production and sales because higher demand can raise profit.',
+      answerZh: '更多资源应流向电动自行车的生产和销售，因为更高需求可能提高利润。',
       visual: photos.eBikeShop,
     },
     {
@@ -106,6 +113,7 @@ IGCSE.lesson = {
       type: 'flow',
       eyebrow: 'Learn',
       title: 'Demand falls',
+      zhTitle: '需求下降',
       nodes: [['demand falls', 'price falls', 'profit may fall', 'firms cut output', 'resources move elsewhere']],
       footer: 'The price mechanism can redirect resources without a central planner.',
       visual: photos.bubbleTeaShop,
@@ -115,6 +123,7 @@ IGCSE.lesson = {
       type: 'term',
       eyebrow: 'Learn',
       title: 'Consumer sovereignty',
+      zhTitle: '消费者主权',
       term: 'consumer sovereignty',
       definition: 'The idea that firms produce what consumers demand because profit provides an incentive to respond to demand.',
       examples: [

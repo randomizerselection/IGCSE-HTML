@@ -45,7 +45,7 @@ IGCSE.flashcards = {
     {
       id: 'employment-inflation-conflict',
       type: 'fillBlank',
-      prompt: 'Lower unemployment can increase total demand and wage pressure, causing demand-pull or cost-push __________.',
+      prompt: 'Lower unemployment can increase aggregate demand and wage pressure, causing demand-pull or cost-push __________.',
       answer: 'inflation',
     },
     {

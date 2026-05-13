@@ -39,6 +39,8 @@ IGCSE.lesson = {
           title:   'Income and wealth',
           question: 'Should higher-income households pay a higher percentage of their income in tax?',
           zh: '高收入家庭是否应该缴纳更高比例的收入作为税？',
+          answer: 'A progressive tax can reduce inequality, but very high rates may reduce incentives or encourage avoidance.',
+          answerZh: '累进税可以减少不平等，但过高税率可能削弱激励或鼓励避税。',
           visual: photos.taxForms,
         },
     {
@@ -56,7 +58,7 @@ IGCSE.lesson = {
           type: 'section',
           eyebrow: 'New section',
           title:   'Progressive, regressive\nand proportional taxes',
-          subtitle: '4.2.3 - Progressive, regressive and proportional taxes',
+          zhTitle: '累进税、累退税和比例税',
         },
     {
           type: 'discussion',
@@ -64,6 +66,8 @@ IGCSE.lesson = {
           title:   'Who pays a higher share?',
           question: 'Which tax structure more directly reduces inequality: progressive, regressive or proportional?',
           zh: '哪种税收结构更直接地减少不平等：累进税、累退税，还是比例税？',
+          answer: 'Progressive tax more directly reduces inequality because higher-income households pay a higher percentage.',
+          answerZh: '累进税更直接减少不平等，因为高收入家庭缴纳更高比例的收入。',
           visual: photos.socialSecurity,
         },
     {
@@ -125,6 +129,8 @@ IGCSE.lesson = {
           title:   'At the checkout',
           question: 'Is a tax added to prices fair if poorer households spend most of their income?',
           zh: '如果较贫困家庭会花掉大部分收入，加在价格上的税公平吗？',
+          answer: 'It may be unfair because poorer households can pay a higher share of their income through indirect taxes.',
+          answerZh: '这可能不公平，因为较贫困家庭可能把更高比例的收入用于缴纳间接税。',
           visual: photos.shopping,
         },
     {
@@ -175,7 +181,7 @@ IGCSE.lesson = {
           type: 'section',
           eyebrow: 'New section',
           title:   'Classify and explain',
-          subtitle: '4.2.3 - Classify and explain',
+          zhTitle: '分类并解释',
         },
     {
           type: 'discussion',
@@ -183,6 +189,8 @@ IGCSE.lesson = {
           title:   'Name it first',
           question: 'Why is it risky to explain the effect of a tax before classifying what type of tax it is?',
           zh: '为什么在判断税收类型之前就解释税收影响会有风险？',
+          answer: 'Different taxes affect consumers, firms, prices and incentives in different ways, so classification guides the analysis.',
+          answerZh: '不同税种对消费者、企业、价格和激励的影响不同，因此先分类有助于正确分析。',
           visual: photos.classroom,
         },
     {

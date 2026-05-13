@@ -78,20 +78,28 @@ should typically align with these definitions, though slide wording may be made
 more concise and student-understandable where appropriate, provided it still
 prepares students to earn marks in exams.
 
+Use `references/paper-2-mark-schemes-2023-2025/` as the shared Paper 2
+mark-scheme archive. It reorganises recent 0455 Paper 2 mark schemes by
+syllabus topic, preserving source paper, question number, command word, marks,
+mark-scheme wording, and cross-topic references for broad questions.
+
 Recommended workflow:
 
 1. Find the relevant syllabus rows, e.g. `4.2` for fiscal policy.
 2. Check the definitions overview for key terms and exam-ready wording.
-3. Use the planning notes on `term` slides where possible.
-4. Shorten wording only when needed for slide clarity or student access.
-5. Keep detailed wording in speaker explanation or follow-up practice slides.
-6. Add a short source comment near the top of each lesson `slides.js`.
+3. Check the Paper 2 mark-scheme archive for recent question wording, answer
+   chains, accepted alternatives, and evaluation points.
+4. Use the planning notes on `term` slides where possible.
+5. Shorten wording only when needed for slide clarity or student access.
+6. Keep detailed wording in speaker explanation or follow-up practice slides.
+7. Add a short source comment near the top of each lesson `slides.js`.
 
 Example comment:
 
 ```
 Syllabus source: ../../../references/igcse-economics-syllabus-2027-2029.md
 Definitions source: ../../../references/igcse-economics-definitions-2026.md
+Paper 2 mark-scheme archive: ../../../references/paper-2-mark-schemes-2023-2025/
 Use the 4.2 rows for fiscal-policy wording when creating slides.
 ```
 
@@ -175,9 +183,17 @@ After that, teach each micro-sequence in this order:
 Repeat that divider -> fact/discussion -> content -> formative-assessment
 sequence for each major section in the deck.
 
-Section dividers should name the content actually taught in that section. They
-do not need subtitles; the section slide itself shows progress through the
-lesson sequence.
+Section dividers should name the content actually taught in that section. Use
+`zhTitle` for concise Chinese title translations on important `section`, `term`,
+and concept-bearing `flow` slides so students can recognise and memorise key
+IGCSE terms. Divider subtitles are optional and should be used only as a short
+student-facing bridge or contrast that adds meaning beyond the title, such as
+`How lower rates change spending and investment`.
+
+Do not use divider subtitles for syllabus codes, topic breadcrumbs, or formulaic
+phrases such as `2.8.2 - advantages include efficiency`. Keep syllabus
+references in source comments, hero subtitles, objectives, quiz explanations, or
+teacher planning notes instead.
 
 Most teaching slides should not use subtitles or lead text. Prefer a clear,
 self-contained title, then move directly into the content.
@@ -193,9 +209,9 @@ answer text in the third item of each step so it appears inside the blank when
 clicked.
 
 For bilingual slides, put Chinese translations on discussion and fact slides.
-Use `zhTitle` on important flow and definition slides so the Chinese appears
-inline with the English title. Keep the English title short enough that the
-bilingual title does not overflow.
+Use `zhTitle` on important section dividers, flow slides and definition slides
+so the Chinese appears inline with the English title. Keep the English title
+short enough that the bilingual title does not overflow.
 
 For list-like syllabus content, avoid putting all explanations on one dense
 slide. Prefer:

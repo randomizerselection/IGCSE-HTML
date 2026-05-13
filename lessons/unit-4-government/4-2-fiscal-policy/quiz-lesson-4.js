@@ -11,13 +11,13 @@ IGCSE.quiz = {
       type: 'multipleChoice',
       prompt: 'What is fiscal policy?',
       choices: [
-        'The use of government spending and taxation to influence economic activity.',
+        'The use of government spending and taxation to influence economic activity and aggregate demand.',
         'The use of interest rates by private banks only.',
         'The buying and selling decisions of households.',
         'The rules firms use to set wages.',
       ],
       answer: 0,
-      explanation: 'Fiscal policy uses government spending and taxation to influence macroeconomic performance.',
+      explanation: 'Fiscal policy uses government spending and taxation to influence aggregate demand and macroeconomic performance.',
     },
     {
       id: 'fiscal-tools',

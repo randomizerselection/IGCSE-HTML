@@ -26,6 +26,9 @@ IGCSE.lesson = {
       eyebrow: 'Starter',
       title: 'Who decides?',
       question: 'At Pike Place Market, who decides what coffee is sold, what price is charged and whether the store survives?',
+      zh: '在派克市场，谁决定出售哪种咖啡、收取什么价格以及这家店能否生存？',
+      answer: 'Consumers and firms both matter: consumer demand affects sales, while the firm sets prices and decides what to supply.',
+      answerZh: '消费者和企业都会影响结果：消费者需求影响销量，企业决定价格和供应什么。',
       visual: photos.starbucks,
     },
     {
@@ -43,7 +46,7 @@ IGCSE.lesson = {
       type: 'section',
       eyebrow: 'New section',
       title: 'Market economy basics',
-      subtitle: '2.8.1 - resources are allocated mainly through markets, private ownership and the price mechanism',
+      zhTitle: '市场经济基础',
     },
     {
       type: 'fact',
@@ -90,8 +93,9 @@ IGCSE.lesson = {
       type: 'term',
       eyebrow: 'Learn',
       title: 'Market economic system',
+      zhTitle: '市场经济制度',
       term: 'market economic system',
-      definition: 'An economy where resources are allocated mainly by market forces or the price mechanism, with private sector ownership and decisions influenced by self-interest or profit motive.',
+      definition: 'An economy where resources are allocated mainly by market forces or the price mechanism, with private sector ownership and decisions influenced by the profit motive.',
       examples: [
         ['Markets', 'buyers and sellers interact'],
         ['Private ownership', 'resources owned by individuals and firms'],
@@ -177,7 +181,7 @@ IGCSE.lesson = {
       mode: 'fillBlanks',
       steps: [
         ['1', 'A market economic system allocates resources mainly through markets, private ownership and the price __________.', 'mechanism'],
-        ['2', 'Private firms are influenced by self-interest and the profit __________.', 'motive'],
+        ['2', 'Private firms are influenced by the profit __________.', 'motive'],
         ['3', 'In a planned economy, government planning is more __________.', 'important'],
         ['4', 'Most real economies are __________ economies.', 'mixed'],
       ],

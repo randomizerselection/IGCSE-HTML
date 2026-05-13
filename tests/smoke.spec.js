@@ -32,6 +32,39 @@ function findFlashcardFiles(dir, base = dir) {
   });
 }
 
+function findSlideFiles(dir, base = dir) {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
+    if (entry.name === 'node_modules' || entry.name === '.git') return [];
+
+    const absolutePath = path.join(dir, entry.name);
+    if (entry.isDirectory()) return findSlideFiles(absolutePath, base);
+    if (!/^slides.*\.js$/.test(entry.name)) return [];
+
+    return [path.relative(base, absolutePath).replace(/\\/g, '/')];
+  });
+}
+
+function deepProxy() {
+  return new Proxy(function noop() {}, {
+    get(_target, property) {
+      if (property === Symbol.toPrimitive) return () => '';
+      return deepProxy();
+    },
+    apply() {
+      return deepProxy();
+    }
+  });
+}
+
+function readLesson(relativePath) {
+  const source = fs.readFileSync(path.join(root, relativePath), 'utf8');
+  const IGCSE = { photos: deepProxy(), renderVisual: () => '' };
+  const context = { window: { IGCSE }, IGCSE, console };
+  context.window.window = context.window;
+  vm.runInNewContext(source, context, { filename: relativePath });
+  return context.window.IGCSE.lesson;
+}
+
 function readFlashcards(relativePath) {
   const source = fs.readFileSync(path.join(root, relativePath), 'utf8');
   const context = { window: {} };
@@ -186,6 +219,158 @@ test.describe('site smoke', () => {
       const localPath = photo.src.replace(/^(\.\.\/){3}/, '');
       expect(fs.existsSync(path.join(root, localPath)), `${namespace}.${key} file`).toBe(true);
     }
+  });
+
+  test('discussion slide data includes Chinese translations and possible answers', () => {
+    const slideFiles = findSlideFiles(path.join(root, 'lessons'), root);
+    const discussionSlides = [];
+
+    for (const slideFile of slideFiles) {
+      const lesson = readLesson(slideFile);
+      for (const [index, slide] of (lesson.slides || []).entries()) {
+        if (slide.type === 'discussion') discussionSlides.push({ slideFile, index, slide });
+      }
+    }
+
+    expect(discussionSlides.length).toBeGreaterThan(0);
+    for (const { slideFile, index, slide } of discussionSlides) {
+      const label = `${slideFile} slide ${index + 1}`;
+      expect(slide.zh, `${label} zh`).toBeTruthy();
+      expect(slide.answer, `${label} answer`).toBeTruthy();
+      expect(slide.answerZh, `${label} answerZh`).toBeTruthy();
+      expect(`${slide.zh} ${slide.answerZh}`, `${label} encoded Chinese`).not.toMatch(/\?{4,}/);
+    }
+  });
+
+  test('section divider subtitles stay student-facing when present', () => {
+    const slideFiles = findSlideFiles(path.join(root, 'lessons'), root);
+    const badSubtitles = [];
+    const syllabusPrefix = /^\d+(?:\.\d+)*(?:-\d+(?:\.\d+)*)?\s+-/;
+    const formulaicBreadcrumb = /\b(?:advantages|disadvantages)\s+include\b/i;
+    const normalize = (value) => String(value || '').replace(/\s+/g, ' ').trim().toLowerCase();
+
+    for (const slideFile of slideFiles) {
+      const lesson = readLesson(slideFile);
+      for (const [index, slide] of (lesson.slides || []).entries()) {
+        if (slide.type !== 'section' || !slide.subtitle) continue;
+
+        const subtitle = String(slide.subtitle).trim();
+        const normalizedSubtitle = normalize(subtitle);
+        const normalizedTitle = normalize(slide.title);
+        const label = `${slideFile} slide ${index + 1}: ${subtitle}`;
+
+        if (syllabusPrefix.test(subtitle)) badSubtitles.push(`${label} starts with a syllabus code`);
+        if (formulaicBreadcrumb.test(subtitle)) badSubtitles.push(`${label} uses formulaic breadcrumb wording`);
+        if (normalizedSubtitle === normalizedTitle) badSubtitles.push(`${label} repeats the title`);
+      }
+    }
+
+    expect(badSubtitles).toEqual([]);
+  });
+
+  test('important key-term title slides include Chinese titles', () => {
+    const slideFiles = findSlideFiles(path.join(root, 'lessons'), root);
+    const missingZhTitles = [];
+    const keyFlowTitles = new Set([
+      'Demand rises',
+      'Demand falls',
+      'Inequality',
+      'External costs',
+      'External benefits',
+      'Public goods may be under-provided',
+      'Over-consumption',
+      'Under-consumption',
+      'Non-provision',
+      'Restricted monopoly supply',
+      'Growth can raise living standards',
+      'Stable prices protect confidence',
+      '1. Provide merit goods',
+      '2. Provide public goods',
+      '3. Invest in infrastructure',
+      '4. Support key industries',
+      '5. Reduce inequality',
+      '6. Manage the macroeconomy',
+      '1. Raise revenue',
+      '2. Reduce demerit goods',
+      '3. Reduce imports',
+      '4. Redistribute income',
+      '5. Influence demand',
+      '6. Encourage sustainability',
+      'Indirect tax on tobacco',
+      'Why a sales tax can be regressive',
+      'Sales tax can be regressive',
+      'Expansionary policy',
+      'Contractionary policy',
+      'Economic growth',
+      'Employment',
+      'Price stability',
+      'Redistribution',
+      'Balance of payments',
+      'Sustainability',
+      'Lower rates and spending',
+      'Lower rates and investment',
+      'Higher rates and spending',
+      'Higher rates and saving',
+      'Increasing money supply',
+      'Reducing money supply',
+      'Lower exchange rate',
+      'Higher exchange rate',
+      'Spending and borrowing',
+      'Investment and output',
+      'Saving and spending',
+      'Borrowing and investment',
+      'Inflation',
+      'Imports route',
+      'Exchange-rate route',
+    ]);
+    const normalize = (value) => String(value || '').replace(/\s+/g, ' ').trim();
+
+    for (const slideFile of slideFiles) {
+      const lesson = readLesson(slideFile);
+      for (const [index, slide] of (lesson.slides || []).entries()) {
+        const title = normalize(slide.title);
+        const requiresZhTitle = slide.type === 'section'
+          || slide.type === 'term'
+          || (slide.type === 'flow' && keyFlowTitles.has(title));
+
+        if (requiresZhTitle && !slide.zhTitle) {
+          missingZhTitles.push(`${slideFile} slide ${index + 1}: ${slide.type} "${title}"`);
+        }
+      }
+    }
+
+    expect(missingZhTitles).toEqual([]);
+  });
+
+  test('discussion slides reveal bilingual possible answers without advancing', async ({ page }) => {
+    await page.goto(pageUrl('lessons/unit-4-government/4-2-fiscal-policy/lesson-4.html') + '#2');
+
+    const expected = await page.evaluate(() => {
+      const slide = window.IGCSE.lesson.slides[1];
+      return {
+        zh: slide.zh,
+        answer: slide.answer,
+        answerZh: slide.answerZh
+      };
+    });
+
+    await expect(page.locator('.slide.is-active')).toHaveAttribute('data-idx', '1');
+    await expect(page.locator('.slide.is-active .discussionPrompt .zh')).toHaveText(expected.zh);
+    await page.getByRole('button', { name: /^Show possible answer$/i }).click();
+
+    const dialog = page.getByRole('dialog', { name: /^Possible answer$/i });
+    await expect(dialog).toBeVisible();
+    await expect(dialog.locator('.discussionAnswerText')).toHaveText(expected.answer);
+    await expect(dialog.locator('.discussionAnswerZh')).toHaveText(expected.answerZh);
+
+    await page.keyboard.press('ArrowRight');
+    await expect(page.locator('.slide.is-active')).toHaveAttribute('data-idx', '1');
+    await expect(dialog).toBeVisible();
+
+    await page.keyboard.press('Escape');
+    await expect(dialog).toBeHidden();
+    await expect(page.locator('.slide.is-active')).toHaveAttribute('data-idx', '1');
+    await expectNoHorizontalOverflow(page);
   });
 
   test('teaching philosophy page renders bilingual pedagogy at desktop and phone widths', async ({ page }) => {

@@ -40,6 +40,9 @@ IGCSE.lesson = {
       eyebrow: 'Starter',
       title:   'Who changes the price of money?',
       question: 'If an economy has weak spending and rising unemployment, who might act before the government changes taxes?',
+      zh: '如果经济支出疲弱且失业上升，在政府改变税收之前，谁可能先采取行动？',
+      answer: 'The central bank may act by changing interest rates, money supply or credit conditions.',
+      answerZh: '中央银行可能先采取行动，例如改变利率、货币供应或信贷条件。',
       visual: photos.bankEngland,
     },
     {
@@ -57,7 +60,7 @@ IGCSE.lesson = {
       type: 'section',
       eyebrow: 'New section',
       title:   'Money supply',
-      subtitle: '4.3.1 - Money supply is the amount of money in the economy',
+      zhTitle: '货币供应',
     },
     {
       type: 'fact',
@@ -80,6 +83,7 @@ IGCSE.lesson = {
       type: 'term',
       eyebrow: 'Learn',
       title:   'Money supply',
+      zhTitle: '货币供应',
       term:    'money supply',
       definition: 'The amount of money in the economy.',
       examples: [
@@ -98,20 +102,23 @@ IGCSE.lesson = {
       steps: [
         ['1', 'Money supply is the amount of money in the __________.', 'economy'],
         ['2', 'Bank deposits are part of the money __________.', 'supply'],
-        ['3', 'More money available for payments can affect total __________.', 'demand'],
+        ['3', 'More money available for payments can affect aggregate __________.', 'demand'],
       ],
     },
     {
       type: 'section',
       eyebrow: 'New section',
       title:   'Central banks',
-      subtitle: '3.1.2 link - central banks help implement monetary policy',
+      zhTitle: '中央银行',
     },
     {
       type: 'discussion',
       eyebrow: 'Explore',
       title:   'Central-bank decisions',
       question: 'Why might a central bank change interest rates when inflation is above target?',
+      zh: '当通货膨胀高于目标时，中央银行为什么可能改变利率？',
+      answer: 'It may raise interest rates to reduce borrowing and spending, lowering demand-pull inflationary pressure.',
+      answerZh: '央行可能提高利率以减少借款和支出，从而降低需求拉动型通胀压力。',
       visual: photos.fed,
     },
     {
@@ -158,12 +165,13 @@ IGCSE.lesson = {
       type: 'section',
       eyebrow: 'New section',
       title:   'Monetary policy',
-      subtitle: '4.3.1 - policy tools used to influence macroeconomic aims',
+      zhTitle: '货币政策',
     },
     {
       type: 'term',
       eyebrow: 'Learn',
       title:   'Monetary policy',
+      zhTitle: '货币政策',
       term:    'monetary policy',
       definition: 'Policy using changes in interest rates, money supply and foreign exchange rates; usually implemented by the central bank and used to influence aggregate demand and macroeconomic aims.',
       examples: [

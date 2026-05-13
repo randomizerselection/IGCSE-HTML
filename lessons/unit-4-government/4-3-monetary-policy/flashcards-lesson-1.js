@@ -16,13 +16,13 @@ IGCSE.flashcards = {
       id: 'central-bank',
       type: 'definition',
       term: 'Central bank',
-      definition: 'A bank to the government and commercial banks that helps implement monetary policy.',
+      definition: 'A bank to the government and commercial banks that helps implement monetary policy, manage the money supply and issue currency.',
     },
     {
       id: 'monetary-policy',
       type: 'definition',
       term: 'Monetary policy',
-      definition: 'Policy using changes in interest rates, money supply and foreign exchange rates to influence aggregate demand and macroeconomic aims.',
+      definition: 'Policy, usually implemented by the central bank, using interest rates, money supply and foreign exchange rates to influence aggregate demand and macroeconomic aims.',
     },
     {
       id: 'tools-interest',
