@@ -533,6 +533,40 @@ test.describe('site smoke', () => {
     await expect(page).toHaveURL(/#1$/);
   });
 
+  test('bilingual term titles keep translations below the English heading', async ({ page }) => {
+    await page.goto(pageUrl('lessons/unit-2-allocation/2-8-market-economic-system/lesson-1.html') + '#7');
+
+    await expect(page.locator('.slide.is-active h2')).toHaveText(/Market economic system/);
+    await expect(page.locator('.slide.is-active h2 .inlineZh')).toBeVisible();
+    await expectNoHorizontalOverflow(page);
+
+    const titleLayout = await page.locator('.slide.is-active h2').evaluate((heading) => {
+      const englishNode = [...heading.childNodes]
+        .find((node) => node.nodeType === Node.TEXT_NODE && node.textContent.trim());
+      const zh = heading.querySelector('.inlineZh');
+      const englishRange = document.createRange();
+      englishRange.selectNodeContents(englishNode);
+      const englishRect = englishRange.getBoundingClientRect();
+      const zhRect = zh.getBoundingClientRect();
+      const headingRect = heading.getBoundingClientRect();
+
+      return {
+        zhDisplay: window.getComputedStyle(zh).display,
+        englishBottom: englishRect.bottom,
+        zhTop: zhRect.top,
+        zhLeft: zhRect.left,
+        zhRight: zhRect.right,
+        headingLeft: headingRect.left,
+        headingRight: headingRect.right,
+      };
+    });
+
+    expect(titleLayout.zhDisplay).toBe('block');
+    expect(titleLayout.zhTop).toBeGreaterThanOrEqual(titleLayout.englishBottom - 1);
+    expect(titleLayout.zhLeft).toBeGreaterThanOrEqual(titleLayout.headingLeft - 1);
+    expect(titleLayout.zhRight).toBeLessThanOrEqual(titleLayout.headingRight + 1);
+  });
+
   test('student selector opens on demand from lesson slides', async ({ page }, testInfo) => {
     if (testInfo.project.name.includes('phone')) {
       await page.goto(pageUrl('lessons/unit-2-allocation/2-8-market-economic-system/lesson-1.html'));
@@ -1007,17 +1041,22 @@ test.describe('site smoke', () => {
     await page.goto(pageUrl('lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html') + '#6');
     await expect(page.locator('.slide.is-active .termDefinitionZh')).toBeVisible();
 
-    const fontSizes = await page.evaluate(() => {
+    const translationStyle = await page.evaluate(() => {
       const termBox = document.querySelector('.slide.is-active .termBox');
       const english = termBox?.querySelector('p:not(.termDefinitionZh)');
       const chinese = termBox?.querySelector('.termDefinitionZh');
+      const chineseStyle = window.getComputedStyle(chinese);
+      const alphaMatch = chineseStyle.color.match(/rgba?\([^,]+,\s*[^,]+,\s*[^,\s)]+(?:,\s*([^)]+))?\)/);
       return {
         english: parseFloat(window.getComputedStyle(english).fontSize),
-        chinese: parseFloat(window.getComputedStyle(chinese).fontSize)
+        chinese: parseFloat(chineseStyle.fontSize),
+        chineseAlpha: alphaMatch?.[1] === undefined ? 1 : parseFloat(alphaMatch[1])
       };
     });
 
-    expect(fontSizes.chinese).toBeLessThan(fontSizes.english);
+    expect(translationStyle.chinese).toBeLessThan(translationStyle.english);
+    expect(translationStyle.chinese).toBeGreaterThanOrEqual(17);
+    expect(translationStyle.chineseAlpha).toBeGreaterThanOrEqual(0.8);
     await expectNoHorizontalOverflow(page);
   });
 

@@ -31,6 +31,12 @@ body { overflow: hidden; }
 .slide h3 {
   color: var(--ink);
 }
+.slide h1,
+.slide h2,
+.sectionTitle {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
 @keyframes slideIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: none; }
@@ -297,14 +303,17 @@ body { overflow: hidden; }
 }
 
 h2 .inlineZh {
-  display: inline;
-  margin-left: .55em;
+  display: block;
+  max-width: 100%;
+  margin: .2em 0 0;
   color: var(--ink-dim);
-  font-size: .42em;
+  font-size: .4em;
   line-height: 1.18;
   font-weight: 760;
   letter-spacing: 0;
-  vertical-align: middle;
+  text-wrap: balance;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 .sectionTitle .inlineZh {
   display: block;
@@ -316,18 +325,22 @@ h2 .inlineZh {
   letter-spacing: 0;
 }
 .termBlock h2 .inlineZh {
-  display: inline;
-  margin: 0 0 0 .52em;
+  display: block;
+  max-width: 100%;
+  margin: .18em 0 0;
   font-size: .34em;
   line-height: 1.18;
   white-space: normal;
+  text-wrap: balance;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 .termBox .termDefinitionZh {
   margin-top: .65rem;
-  color: rgba(219,231,246,.58);
-  font-size: clamp(15px, 1.05vw, 20px);
-  line-height: 1.45;
-  font-weight: 620;
+  color: rgba(219,231,246,.82);
+  font-size: clamp(17px, 1.18vw, 23px);
+  line-height: 1.42;
+  font-weight: 680;
   letter-spacing: 0;
 }
 
@@ -774,8 +787,8 @@ h2 .inlineZh {
   height: 15px;
   margin-right: .32rem;
   border-radius: 999px;
-  background: var(--gold);
-  color: #111827;
+  background: rgba(219,231,246,.16);
+  color: rgba(219,231,246,.78);
   font-size: 10px;
   font-weight: 950;
 }
@@ -784,7 +797,7 @@ h2 .inlineZh {
 .handoutSources[open] summary,
 .quizSources[open] summary,
 .flashcardSources[open] summary {
-  border-color: rgba(255,209,102,.55);
+  border-color: rgba(219,231,246,.28);
   color: var(--ink);
 }
 
@@ -3059,6 +3072,13 @@ body.is-flashcard-mode #deck {
 .handoutSources summary {
   border-color: #d7dee9;
   background: #fff;
+  color: #526176;
+}
+
+.flashcardSources summary::before,
+.quizSources summary::before,
+.handoutSources summary::before {
+  background: #e8eef6;
   color: #526176;
 }
 
