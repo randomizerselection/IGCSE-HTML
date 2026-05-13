@@ -88,6 +88,7 @@ IGCSE.lesson = {
       zhTitle: '利率',
       term:    'interest rate',
       definition: 'The cost of borrowing and reward for saving; higher interest rates tend to reduce consumer expenditure, borrowing and investment and increase saving.',
+      definitionZh: '借款成本和储蓄回报；较高利率通常会减少消费支出、借款和投资，并增加储蓄。',
       examples: [
         ['Borrowing', 'a higher rate makes loans more expensive'],
         ['Saving', 'a higher rate gives a larger reward for saving'],

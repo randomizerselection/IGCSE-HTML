@@ -88,6 +88,7 @@ IGCSE.lesson = {
       zhTitle: '货币供应',
       term:    'money supply',
       definition: 'The amount of money in an economy / in circulation.',
+      definitionZh: '经济中或流通中的货币数量。',
       examples: [
         ['Cash', 'notes and coins used for spending'],
         ['Deposits', 'money held in bank accounts'],
@@ -176,6 +177,7 @@ IGCSE.lesson = {
       zhTitle: '货币政策',
       term:    'monetary policy',
       definition: 'Policy using changes in interest rates, money supply and foreign exchange-rate measures; usually implemented by the central bank and used to influence aggregate demand and macroeconomic aims.',
+      definitionZh: '利用利率、货币供应和外汇汇率措施的政策；通常由中央银行实施，用于影响总需求和宏观经济目标。',
       examples: [
         ['Interest rates', 'change the cost of borrowing and reward for saving'],
         ['Money supply', 'change the amount of money available in the economy'],

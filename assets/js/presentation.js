@@ -441,6 +441,7 @@ const renderers = {
           ? `<b>${esc(s.term)}</b>`
           : ''}
         <p>${esc(s.definition)}</p>
+        ${s.definitionZh ? `<p class="termDefinitionZh">${esc(s.definitionZh)}</p>` : ''}
       </div>
       ${s.formula ? `<div class="formula">${esc(s.formula)}</div>` : ''}
       ${s.examples ? termExamples(s.examples) : ''}
@@ -1413,6 +1414,7 @@ function renderHandoutBlock(slide) {
         <div class="handoutDefinition">
           ${slide.term ? `<b>${esc(slide.term)}</b>` : ''}
           ${handoutParagraph(slide.definition)}
+          ${handoutParagraph(slide.definitionZh, 'handoutDefinitionZh')}
         </div>
         ${slide.formula ? `<p class="handoutFormula">${esc(slide.formula)}</p>` : ''}
         ${handoutPairs(slide.examples || [], 'handoutExamples')}

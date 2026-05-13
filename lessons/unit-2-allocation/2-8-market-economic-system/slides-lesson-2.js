@@ -130,6 +130,7 @@ IGCSE.lesson = {
       zhTitle: '消费者主权',
       term: 'consumer sovereignty',
       definition: 'The idea that firms produce what consumers demand because profit provides an incentive to respond to demand.',
+      definitionZh: '指企业生产消费者所需求的商品，因为利润为企业回应需求提供激励。',
       examples: [
         ['More spending', 'firms stock more of the product'],
         ['Less spending', 'firms reduce output'],

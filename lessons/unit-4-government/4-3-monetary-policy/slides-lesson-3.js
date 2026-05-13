@@ -163,6 +163,7 @@ IGCSE.lesson = {
       zhTitle: '外汇汇率',
       term:    'foreign exchange rate',
       definition: 'The price of one currency in terms of another currency.',
+      definitionZh: '一种货币以另一种货币表示的价格。',
       examples: [
         ['Higher exchange rate', 'currency appreciates or is revalued'],
         ['Lower exchange rate', 'currency depreciates or is devalued'],

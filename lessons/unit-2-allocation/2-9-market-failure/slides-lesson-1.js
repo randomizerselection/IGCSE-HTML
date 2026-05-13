@@ -61,6 +61,7 @@ IGCSE.lesson = {
       zhTitle: '市场失灵',
       term: 'market failure',
       definition: 'An inefficient allocation or misallocation of resources in a free market; production or consumption is not efficient.',
+      definitionZh: '自由市场中资源配置低效或错配；生产或消费没有达到效率。',
       examples: [
         ['Over-consumption', 'too much of a harmful good'],
         ['Under-consumption', 'too little of a beneficial good'],
@@ -176,6 +177,7 @@ IGCSE.lesson = {
       zhTitle: '公共物品',
       term: 'public good',
       definition: 'A good that would not be produced by the private sector or needs to be financed by government; it is non-rival and non-excludable.',
+      definitionZh: '私营部门不会提供或需要由政府筹资提供的物品；它具有非竞争性和非排他性。',
       examples: [
         ['Non-rival', 'one person using it does not reduce use by others'],
         ['Non-excludable', 'non-payers cannot easily be stopped from benefiting'],

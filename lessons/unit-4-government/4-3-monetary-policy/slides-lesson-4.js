@@ -88,6 +88,7 @@ IGCSE.lesson = {
       zhTitle: '扩张性货币政策',
       term:    'expansionary monetary policy',
       definition: 'Lower interest rates or increased money supply to increase consumer spending, investment, aggregate demand, output and employment.',
+      definitionZh: '降低利率或增加货币供应，以增加消费支出、投资、总需求、产出和就业。',
       examples: [
         ['Interest rates', 'lower rates'],
         ['Money supply', 'increase money supply'],
@@ -153,6 +154,7 @@ IGCSE.lesson = {
       zhTitle: '紧缩性货币政策',
       term:    'contractionary monetary policy',
       definition: 'Higher interest rates or reduced money supply to reduce consumer expenditure, investment, aggregate demand and inflationary pressure.',
+      definitionZh: '提高利率或减少货币供应，以减少消费支出、投资、总需求和通胀压力。',
       examples: [
         ['Interest rates', 'higher rates'],
         ['Money supply', 'reduce money supply'],

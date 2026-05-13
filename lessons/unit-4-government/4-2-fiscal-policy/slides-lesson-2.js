@@ -224,6 +224,7 @@ IGCSE.lesson = {
           zhTitle: '直接税',
           term:    'direct tax',
           definition: 'A direct tax is a tax on income or wealth paid directly to government, such as income tax, corporation tax or wealth tax.',
+          definitionZh: '直接税是对收入或财富征收、直接向政府缴纳的税，如所得税、公司税或财富税。',
           examples: [
             ['Income tax', 'tax on wages'],
             ['Corporation tax', 'tax on company profits'],
@@ -239,6 +240,7 @@ IGCSE.lesson = {
           zhTitle: '间接税',
           term:    'indirect tax',
           definition: 'An indirect tax is a tax on spending / goods and services, such as VAT, sales tax, excise duties or tariffs.',
+          definitionZh: '间接税是对支出、商品和服务征收的税，如增值税、销售税、消费税或关税。',
           examples: [
             ['VAT', 'added to many prices'],
             ['Sales tax', 'paid at checkout'],
@@ -342,6 +344,7 @@ IGCSE.lesson = {
           zhTitle: '进口关税',
           term:    'tariff',
           definition: 'A tariff is an indirect tax on imported goods. It raises the price of imports and may protect domestic producers.',
+          definitionZh: '关税是对进口商品征收的间接税。它提高进口品价格，并可能保护国内生产者。',
           examples: [
             ['Imported cars', 'price rises'],
             ['Imported steel', 'domestic firms protected'],

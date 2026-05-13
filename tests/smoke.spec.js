@@ -987,6 +987,40 @@ test.describe('site smoke', () => {
     }
   });
 
+  test('term slides include subordinate Chinese definition translations', async ({ page }) => {
+    const termSlides = findSlideFiles(root)
+      .filter((relativePath) => !relativePath.includes('/_template/'))
+      .flatMap((relativePath) => {
+        const lesson = readLesson(relativePath);
+        return (lesson?.slides || [])
+          .map((slide, index) => ({ relativePath, slide, index }))
+          .filter(({ slide }) => slide.type === 'term');
+      });
+
+    expect(termSlides.length).toBeGreaterThan(0);
+
+    for (const { relativePath, slide, index } of termSlides) {
+      expect.soft(slide.definitionZh, `${relativePath} slide ${index + 1}`).toEqual(expect.any(String));
+      expect.soft(slide.definitionZh.trim(), `${relativePath} slide ${index + 1}`).not.toHaveLength(0);
+    }
+
+    await page.goto(pageUrl('lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html') + '#6');
+    await expect(page.locator('.slide.is-active .termDefinitionZh')).toBeVisible();
+
+    const fontSizes = await page.evaluate(() => {
+      const termBox = document.querySelector('.slide.is-active .termBox');
+      const english = termBox?.querySelector('p:not(.termDefinitionZh)');
+      const chinese = termBox?.querySelector('.termDefinitionZh');
+      return {
+        english: parseFloat(window.getComputedStyle(english).fontSize),
+        chinese: parseFloat(window.getComputedStyle(chinese).fontSize)
+      };
+    });
+
+    expect(fontSizes.chinese).toBeLessThan(fontSizes.english);
+    await expectNoHorizontalOverflow(page);
+  });
+
   test('student quiz progress updates and try again unlocks the form', async ({ page }) => {
     await page.goto(pageUrl('lessons/unit-4-government/4-1-macroeconomic-aims/index.html') + '?view=quiz');
 

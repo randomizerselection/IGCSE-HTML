@@ -100,6 +100,7 @@ IGCSE.lesson = {
       zhTitle: '市场经济制度',
       term: 'market economic system',
       definition: 'An economy where resources are allocated mainly by market forces or the price mechanism, with private sector ownership and decisions influenced by the profit motive.',
+      definitionZh: '一种经济制度，资源主要由市场力量或价格机制配置，以私营部门所有为主，决策受利润动机影响。',
       examples: [
         ['Markets', 'buyers and sellers interact'],
         ['Private ownership', 'resources owned by individuals and firms'],

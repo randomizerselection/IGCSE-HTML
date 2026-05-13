@@ -161,6 +161,7 @@ IGCSE.lesson = {
           zhTitle: '比例税',
           term:    'proportional tax',
           definition: 'A proportional tax takes the same proportion of income at all income levels, even though higher earners pay more money in total.',
+          definitionZh: '比例税在所有收入水平上征收相同比例的收入，虽然高收入者缴纳的总金额更多。',
           examples: [
             ['Low income', '10% of $20,000 = $2,000'],
             ['High income', '10% of $80,000 = $8,000'],

@@ -81,6 +81,7 @@ IGCSE.lesson = {
       zhTitle: '预算差额',
       term:    'government budget',
       definition: 'A government budget is a plan or forecast for government revenue and government expenditure.',
+      definitionZh: '政府预算是政府收入和政府支出的计划或预测。',
       formula: 'Budget balance = government revenue - government expenditure',
       examples: [
         ['Deficit', 'negative balance'],

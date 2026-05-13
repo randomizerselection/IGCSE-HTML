@@ -322,6 +322,14 @@ h2 .inlineZh {
   line-height: 1.18;
   white-space: normal;
 }
+.termBox .termDefinitionZh {
+  margin-top: .65rem;
+  color: rgba(219,231,246,.58);
+  font-size: clamp(15px, 1.05vw, 20px);
+  line-height: 1.45;
+  font-weight: 620;
+  letter-spacing: 0;
+}
 
 /* ---------- Private / external / social relationship diagram ---------- */
 .socialEffectsVenn {
@@ -3944,6 +3952,12 @@ body.is-flashcard-mode #deck {
   margin-bottom: 4px;
   color: #111827;
   font-size: 16px;
+}
+
+.handoutDefinitionZh {
+  color: #64748b !important;
+  font-size: 14px !important;
+  line-height: 1.45 !important;
 }
 
 .handoutPairs,

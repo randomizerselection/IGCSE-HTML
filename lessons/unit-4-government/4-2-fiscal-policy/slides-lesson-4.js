@@ -90,6 +90,7 @@ IGCSE.lesson = {
       zhTitle: '财政政策',
       term:    'fiscal policy',
       definition: 'The use of government spending and taxation to influence economic activity, aggregate demand and macroeconomic aims.',
+      definitionZh: '政府利用支出和税收来影响经济活动、总需求和宏观经济目标。',
       examples: [
         ['Spending', 'government purchases and services'],
         ['Taxation', 'changes in tax rates or tax revenue'],
