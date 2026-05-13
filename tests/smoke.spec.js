@@ -874,11 +874,7 @@ test.describe('site smoke', () => {
         'IC 3.1',
         'IC 3.2',
       ]);
-      await expect(page.locator('.quizSources')).toHaveCount(8);
-      await expect(page.locator('.quizSources summary').first()).toHaveText('Sources');
-      await page.locator('.quizSources summary').first().click();
-      await expect(page.locator('.quizSources').first()).toContainText(/Syllabus source/i);
-      await expect(page.locator('.quizSources').first()).toContainText(/Definition source|Paper 2 source/i);
+      await expect(page.locator('.quizSources')).toHaveCount(0);
       await expectLessonModeTabs(page, 'Quiz');
       await expectNoHorizontalOverflow(page);
     }

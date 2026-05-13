@@ -148,26 +148,6 @@ window.IGCSE = window.IGCSE || {};
       .filter((rule) => rule.terms.some((term) => text.includes(term)))
       .map((rule) => rule.source);
   };
-  const renderSources = (sources = [], className = 'quizSources') => {
-    const items = normalizeSources(sources);
-    if (!items.length) return '';
-    return `
-      <details class="${className}">
-        <summary>Sources</summary>
-        <div class="sourcePanel" aria-label="Sources">
-          ${items.map((source) => `
-            <div class="sourceItem">
-              <span class="sourceLabel">${esc(source.label)}</span>
-              <span class="sourceRef">${esc(source.ref)}</span>
-              ${source.note ? `<span class="sourceNote">${esc(source.note)}</span>` : ''}
-              ${source.question ? `<span class="sourceQuestion"><b>Exam question:</b> ${esc(source.question)}</span>` : ''}
-              ${source.extract ? `<span class="sourceExtract">${esc(source.extract)}</span>` : ''}
-            </div>
-          `).join('')}
-        </div>
-      </details>
-    `;
-  };
   const pointsLabel = (question) => {
     const points = questionMaxPoints(question);
     return `${points} ${points === 1 ? 'point' : 'points'}`;
@@ -197,7 +177,6 @@ window.IGCSE = window.IGCSE || {};
           </label>
         `).join('')}
       </div>
-      ${renderSources(question.sources)}
       <div class="quizCorrection" hidden></div>
     </fieldset>
   `;
@@ -209,7 +188,6 @@ window.IGCSE = window.IGCSE || {};
         <span>Answer</span>
         <input type="text" name="q-${index}" autocomplete="off" required />
       </label>
-      ${renderSources(question.sources)}
       <div class="quizCorrection" hidden></div>
     </fieldset>
   `;
@@ -297,7 +275,6 @@ window.IGCSE = window.IGCSE || {};
       correction.innerHTML = `
         <b>${response.correct ? 'Correct' : 'Correct answer'}: ${esc(response.correctAnswer)}</b>
         ${response.explanation ? `<p>${esc(response.explanation)}</p>` : ''}
-        ${renderSources(response.sources, 'quizSources is-correction')}
       `;
     });
   };
