@@ -33,6 +33,14 @@
      Important section, term and concept-bearing flow slides should use zhTitle
      for a concise Chinese translation. Keep the English syllabus term primary.
 
+   Compact card convention:
+     Use cardStyle: 'compactVisual' for dense overview/category cards. Prefer
+     object cards with concise Chinese key-term labels and small SVG icons:
+       { title: 'Economic growth', zhTitle: '经济增长', body: 'increase real GDP', icon: 'growth' }
+     Use cardLayout: 'balancedGrid' when a six-card list should read as a
+     balanced 3 x 2 teaching grid. Existing tuple cards remain valid for
+     ordinary, less dense card slides.
+
    Section divider convention:
      Section titles should name the concept being taught. Use zhTitle for a
      concise Chinese translation. Omit subtitles by default.

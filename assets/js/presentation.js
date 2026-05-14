@@ -248,17 +248,85 @@ const footer = (meta, slide) => `
 `;
 
 /* ---------- Component helpers ---------- */
-const cardGrid = (cards = []) => `
-  <div class="cardgrid">
-    ${cards.map(c => `
-      <div class="card">
-        ${c[2] ? `<div class="num">${esc(c[2])}</div>` : ''}
-        <b>${esc(c[0])}</b>
-        <span>${esc(c[1])}</span>
-      </div>
-    `).join('')}
-  </div>
-`;
+const cardIcons = {
+  bank: '<path d="M8 18h48"/><path d="M14 18v24M26 18v24M38 18v24M50 18v24"/><path d="M12 42h40"/><path d="M10 18 32 7l22 11z"/>',
+  balancePayments: '<path d="M12 22h16l4 8h20v16H12z"/><path d="M18 46a4 4 0 1 0 8 0 4 4 0 0 0-8 0z"/><path d="M42 46a4 4 0 1 0 8 0 4 4 0 0 0-8 0z"/><path d="M42 14h10v10"/><path d="M52 14 38 28"/><path d="M22 14H12v10"/><path d="M12 14l14 14"/>',
+  currentAccount: '<path d="M12 18h28"/><path d="M12 30h40"/><path d="M12 42h28"/><path d="m42 14 8 8-8 8"/><path d="m22 34-8 8 8 8"/>',
+  defence: '<path d="M32 8 50 16v13c0 13-8 21-18 27-10-6-18-14-18-27V16z"/><path d="M32 16v30"/>',
+  education: '<path d="M8 22 32 10l24 12-24 12z"/><path d="M18 28v12c8 5 20 5 28 0V28"/><path d="M52 24v18"/>',
+  environmentalSustainability: '<circle cx="29" cy="32" r="18"/><path d="M13 32h32M29 14c5 6 8 12 8 18s-3 12-8 18M29 14c-5 6-8 12-8 18s3 12 8 18"/><path d="M41 47c-1-9 4-17 13-23-11 0-20 5-22 13-1 5 2 9 7 10"/><path d="M42 47c-3-5-7-8-13-9"/>',
+  employment: '<path d="M23 21a9 9 0 1 0 18 0 9 9 0 0 0-18 0z"/><path d="M14 54c3-10 11-16 18-16s15 6 18 16"/>',
+  growth: '<path d="M10 50h44"/><path d="M16 44 27 33l8 7 15-20"/><path d="M43 20h7v7"/>',
+  healthcare: '<path d="M32 52s-18-10-18-25a10 10 0 0 1 18-6 10 10 0 0 1 18 6c0 15-18 25-18 25z"/><path d="M32 24v15M24 31h16"/>',
+  industry: '<path d="M10 50h44V24L41 32v-8L28 32v-8L10 35z"/><path d="M18 42h6M30 42h6M42 42h6"/>',
+  incomeRedistribution: '<path d="M14 48h10V28H14z"/><path d="M40 48h10V16H40z"/><path d="M43 22C33 23 26 28 22 36"/><path d="m22 36-1-9"/><path d="m22 36 9-1"/><text x="17" y="22">L</text><text x="43" y="13">H</text>',
+  infrastructure: '<path d="M10 48h44"/><path d="M16 48 28 18l12 30"/><path d="M22 34h20"/><path d="M12 40h40"/>',
+  lowInflation: '<path d="M15 16h22l12 12v20H15z"/><path d="M37 16v12h12"/><path d="M22 40h20"/><path d="m38 34 7 6-7 6"/><text x="21" y="30">%</text>',
+  lowUnemployment: '<path d="M22 20a8 8 0 1 0 16 0 8 8 0 0 0-16 0z"/><path d="M12 52c3-10 10-15 18-15 5 0 10 2 14 6"/><path d="m42 47 5 5 10-13"/>',
+  macroeconomy: '<circle cx="32" cy="32" r="20"/><path d="M12 32h40M32 12c6 6 9 13 9 20s-3 14-9 20M32 12c-6 6-9 13-9 20s3 14 9 20"/>',
+  market: '<path d="M12 26h40l-4 26H16z"/><path d="M20 26c0-8 5-14 12-14s12 6 12 14"/><path d="M22 37h20"/>',
+  payments: '<path d="M12 22h40v28H12z"/><path d="M12 30h40"/><path d="M22 42h8"/><path d="M39 42h5"/>',
+  prices: '<path d="M16 14h23l9 9v27H16z"/><path d="M38 14v10h10"/><path d="M24 40c5 4 12 4 16 0"/><path d="M25 31h.1M39 31h.1"/>',
+  publicGood: '<path d="M32 8 53 20v9c0 14-9 22-21 27-12-5-21-13-21-27v-9z"/><path d="M23 33h18M32 24v18"/>',
+  realGdp: '<path d="M10 50h44"/><path d="M16 44 26 34l8 6 15-19"/><path d="M43 21h7v7"/><rect x="14" y="37" width="6" height="13"/><rect x="27" y="30" width="6" height="20"/><rect x="40" y="24" width="6" height="26"/><text x="13" y="18">GDP</text>',
+  redistribution: '<path d="M18 18h28"/><path d="M23 18 15 36h16z"/><path d="M41 18 33 36h16z"/><path d="M32 18v30"/><path d="M22 52h20"/>',
+  subsidy: '<path d="M32 10v44"/><path d="M20 22c0-5 5-8 12-8s12 3 12 8-5 7-12 7-12 3-12 8 5 8 12 8 12-3 12-8"/>',
+  sustainability: '<path d="M33 52c-2-15 5-27 17-36-15 0-28 8-31 20-1 5 2 10 7 12"/><path d="M32 51c-3-11-9-18-18-22 11-2 20 2 24 10"/>',
+  welfare: '<path d="M16 34c6-4 12-4 18 0l3 2c4 2 8 1 11-2"/><path d="M12 46h40"/><path d="M21 22a7 7 0 1 0 14 0 7 7 0 0 0-14 0z"/>',
+};
+
+const cardIcon = (icon = '') => {
+  const paths = cardIcons[icon];
+  if (!paths) return '';
+  return `
+    <span class="cardIcon" aria-hidden="true">
+      <svg viewBox="0 0 64 64" focusable="false">
+        ${paths}
+      </svg>
+    </span>
+  `;
+};
+
+const normalizeCard = (card = {}) => {
+  if (Array.isArray(card)) {
+    return {
+      title: card[0],
+      body: card[1],
+      num: card[2],
+    };
+  }
+
+  return {
+    title: card.title,
+    zhTitle: card.zhTitle,
+    body: card.body || card.detail || card.definition,
+    num: card.num || card.number,
+    icon: card.icon,
+  };
+};
+
+const cardGrid = (cards = [], options = {}) => {
+  const style = options.style ? ` is-${esc(options.style)}` : '';
+  const layout = options.layout ? ` is-${esc(options.layout)}` : '';
+  return `
+    <div class="cardgrid${style}${layout}">
+      ${cards.map((rawCard) => {
+        const card = normalizeCard(rawCard);
+        return `
+          <div class="card">
+            ${card.icon ? cardIcon(card.icon) : ''}
+            ${card.num ? `<div class="num">${esc(card.num)}</div>` : ''}
+            <b class="cardTitle">
+              ${esc(card.title)}
+              ${card.zhTitle ? `<span class="cardTitleZh" lang="zh-Hans">${esc(card.zhTitle)}</span>` : ''}
+            </b>
+            ${card.body ? `<span class="cardBody">${esc(card.body)}</span>` : ''}
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+};
 
 const numberedCards = (items = []) => `
   <div class="cardgrid">
@@ -585,7 +653,7 @@ const renderers = {
     <div>
       <h2>${esc(s.title)}</h2>
       ${s.lead ? `<p class="lead">${esc(s.lead)}</p>` : ''}
-      ${cardGrid(s.cards)}
+      ${cardGrid(s.cards, { style: s.cardStyle, layout: s.cardLayout })}
       ${s.footer ? `<div class="prompt">${esc(s.footer)}</div>` : ''}
     </div>
   `,

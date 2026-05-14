@@ -296,6 +296,33 @@ pass selectors for finer control:
 partialReview: ['.choices > .choice', '.prompt']
 ```
 
+### Compact bilingual cards
+
+Use `cardStyle: 'compactVisual'` for dense overview/category slides with four
+to six short concept cards. Keep ordinary tuple cards for simple explanation
+slides that already fit comfortably.
+
+Compact cards use object data so each key term can carry a concise Chinese
+translation and a small local SVG icon:
+
+```js
+{
+  type: 'cards',
+  title: 'The six macroeconomic aims',
+  cardStyle: 'compactVisual',
+  cardLayout: 'balancedGrid',
+  cards: [
+    { title: 'Economic growth', zhTitle: '经济增长', body: 'increase real GDP', icon: 'realGdp' },
+    { title: 'Full employment', zhTitle: '充分就业', body: 'keep unemployment low', icon: 'lowUnemployment' },
+  ],
+}
+```
+
+Supported card fields are `title`, `zhTitle`, `body`, `icon`, and `num`.
+Existing tuple cards such as `['Economic growth', 'increase real GDP']` remain
+supported. Use `cardLayout: 'balancedGrid'` only when a six-card list should
+render as a balanced 3 x 2 teaching grid on classroom screens.
+
 ### Visual keys
 
 Declared in `assets/js/visuals.js`. Core graphics:

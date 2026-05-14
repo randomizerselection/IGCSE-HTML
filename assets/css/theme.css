@@ -115,6 +115,7 @@ p, .text { margin: 0; font-size: var(--t-body); line-height: 1.4; color: var(--i
 /* ---------- Cards ---------- */
 .card {
   position: relative;
+  min-width: 0;
   background: var(--card-bg);
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
@@ -131,8 +132,14 @@ p, .text { margin: 0; font-size: var(--t-body); line-height: 1.4; color: var(--i
   color: #fff;
   font-weight: 750;
   letter-spacing: -0.01em;
+  overflow-wrap: anywhere;
 }
-.card span { font-size: clamp(18px, 1.32vw, 25px); line-height: 1.35; color: #ccdaee; }
+.card span {
+  font-size: clamp(18px, 1.32vw, 25px);
+  line-height: 1.35;
+  color: #ccdaee;
+  overflow-wrap: anywhere;
+}
 .card .num {
   font-size: clamp(32px, 3.6vw, 64px);
   font-weight: 900; color: var(--gold);
@@ -429,6 +436,167 @@ button.choice:focus-visible {
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.cardgrid.is-compactVisual {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+  gap: .9rem;
+  align-items: stretch;
+}
+.cardgrid.is-compactVisual .card {
+  min-height: clamp(180px, 26vh, 270px);
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  align-content: start;
+  gap: .52rem;
+  padding: 1.05rem 1.05rem;
+  border-radius: var(--r-md);
+}
+.cardgrid.is-compactVisual .cardIcon {
+  width: clamp(44px, 3.2vw, 64px);
+  height: clamp(44px, 3.2vw, 64px);
+  display: inline-grid;
+  place-items: center;
+  color: var(--cyan);
+}
+.cardgrid.is-compactVisual .cardIcon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.cardgrid.is-compactVisual .cardIcon text {
+  fill: currentColor;
+  stroke: none;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0;
+}
+.cardgrid.is-compactVisual .card:nth-child(2n) .cardIcon { color: var(--gold); }
+.cardgrid.is-compactVisual .card:nth-child(3n) .cardIcon { color: var(--green); }
+.cardgrid.is-compactVisual .card:nth-child(4n) .cardIcon { color: var(--rose); }
+.cardgrid.is-compactVisual .card b {
+  margin-bottom: 0;
+  font-size: clamp(23px, 1.52vw, 34px);
+  line-height: 1.06;
+  letter-spacing: 0;
+}
+.cardgrid.is-compactVisual .cardTitleZh {
+  display: block;
+  margin-top: .32rem;
+  color: rgba(219,231,246,.76);
+  font-size: clamp(18px, 1.04vw, 24px);
+  line-height: 1.18;
+  font-weight: 720;
+  letter-spacing: 0;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.cardgrid.is-compactVisual .cardBody {
+  display: block;
+  align-self: end;
+  font-size: clamp(20px, 1.22vw, 27px);
+  line-height: 1.22;
+}
+.cardgrid.is-compactVisual.is-balancedGrid {
+  width: min(100%, 1500px);
+  margin: clamp(.55rem, 1.1vh, 1rem) auto 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(.75rem, 1.08vw, 1.2rem);
+}
+.cardgrid.is-compactVisual.is-balancedGrid .card {
+  min-height: clamp(148px, 21vh, 226px);
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  align-content: stretch;
+  column-gap: clamp(.75rem, 1vw, 1.1rem);
+  row-gap: .35rem;
+  padding: clamp(.9rem, 1.15vw, 1.25rem);
+}
+.cardgrid.is-compactVisual.is-balancedGrid .cardIcon {
+  grid-row: 1 / span 2;
+  width: clamp(50px, 3.15vw, 68px);
+  height: clamp(50px, 3.15vw, 68px);
+  align-self: start;
+  padding: .36rem;
+  border-radius: 18px;
+  background: rgba(255,255,255,.055);
+  border: 1px solid rgba(255,255,255,.10);
+}
+.cardgrid.is-compactVisual.is-balancedGrid .card b {
+  font-size: clamp(25px, 1.65vw, 36px);
+  line-height: 1.04;
+}
+.cardgrid.is-compactVisual.is-balancedGrid .cardTitleZh {
+  font-size: clamp(19px, 1.08vw, 24px);
+}
+.cardgrid.is-compactVisual.is-balancedGrid .cardBody {
+  align-self: start;
+  font-size: clamp(20px, 1.18vw, 27px);
+  line-height: 1.18;
+}
+@media (max-width: 900px) {
+  .cardgrid.is-compactVisual {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  }
+  .cardgrid.is-compactVisual.is-balancedGrid {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .8rem;
+  }
+  .cardgrid.is-compactVisual .card {
+    min-height: 154px;
+    padding: .9rem;
+  }
+  .cardgrid.is-compactVisual.is-balancedGrid .card {
+    min-height: 230px;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+  }
+  .cardgrid.is-compactVisual.is-balancedGrid .cardIcon {
+    grid-row: auto;
+    width: 44px;
+    height: 44px;
+    padding: .28rem;
+    border-radius: 14px;
+  }
+  .cardgrid.is-compactVisual .cardIcon {
+    width: 40px;
+    height: 40px;
+  }
+}
+@media (min-width: 1000px) and (max-height: 700px) {
+  .cardgrid.is-compactVisual.is-balancedGrid {
+    width: min(100%, 1450px);
+    gap: .72rem;
+  }
+  .cardgrid.is-compactVisual.is-balancedGrid .card {
+    min-height: 156px;
+    padding: .72rem .78rem;
+    column-gap: .72rem;
+    row-gap: .2rem;
+  }
+  .cardgrid.is-compactVisual.is-balancedGrid .cardIcon {
+    width: 54px;
+    height: 54px;
+    padding: .28rem;
+    border-radius: 16px;
+  }
+  .cardgrid.is-compactVisual.is-balancedGrid .card b {
+    font-size: clamp(26px, 1.45vw, 30px);
+    line-height: 1.02;
+  }
+  .cardgrid.is-compactVisual.is-balancedGrid .cardTitleZh {
+    margin-top: .22rem;
+    font-size: clamp(18px, .96vw, 21px);
+  }
+  .cardgrid.is-compactVisual.is-balancedGrid .cardBody {
+    font-size: clamp(20px, 1.04vw, 23px);
+    line-height: 1.12;
+  }
 }
 
 /* ---------- Flow chips ---------- */

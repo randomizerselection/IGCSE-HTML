@@ -132,6 +132,55 @@ async function expectNoHorizontalOverflow(page) {
   expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.clientWidth + 1);
 }
 
+async function expectCompactCardGridFits(page, options = {}) {
+  await expect(page.locator('.slide.is-active .cardgrid.is-compactVisual')).toBeVisible();
+  await expect(page.locator('.slide.is-active .cardTitleZh').first()).toBeVisible();
+
+  const layout = await page.evaluate(() => {
+    const slide = document.querySelector('.slide.is-active');
+    const grid = slide?.querySelector('.cardgrid.is-compactVisual');
+    const gridRect = grid?.getBoundingClientRect();
+
+    return {
+      grid: gridRect ? {
+        left: gridRect.left,
+        right: gridRect.right,
+        width: gridRect.width,
+        scrollWidth: grid.scrollWidth,
+      } : null,
+      cards: [...(grid?.querySelectorAll('.card') || [])].map((card) => {
+        const cardRect = card.getBoundingClientRect();
+        const titleRect = card.querySelector('.cardTitle')?.getBoundingClientRect();
+        const zhRect = card.querySelector('.cardTitleZh')?.getBoundingClientRect();
+
+        return {
+          cardLeft: cardRect.left,
+          cardRight: cardRect.right,
+          titleLeft: titleRect?.left ?? 0,
+          titleRight: titleRect?.right ?? 0,
+          zhLeft: zhRect?.left ?? 0,
+          zhRight: zhRect?.right ?? 0,
+          hasZh: Boolean(zhRect),
+        };
+      }),
+      rows: [...new Set([...(grid?.querySelectorAll('.card') || [])]
+        .map((card) => Math.round(card.getBoundingClientRect().top)))].length,
+    };
+  });
+
+  expect(layout.grid).not.toBeNull();
+  expect(layout.grid.scrollWidth).toBeLessThanOrEqual(layout.grid.width + 1);
+  if (options.rows) expect(layout.rows).toBe(options.rows);
+
+  for (const card of layout.cards) {
+    expect(card.hasZh).toBe(true);
+    expect(card.titleLeft).toBeGreaterThanOrEqual(card.cardLeft - 1);
+    expect(card.titleRight).toBeLessThanOrEqual(card.cardRight + 1);
+    expect(card.zhLeft).toBeGreaterThanOrEqual(card.cardLeft - 1);
+    expect(card.zhRight).toBeLessThanOrEqual(card.cardRight + 1);
+  }
+}
+
 async function expectLessonModeTabs(page, activeMode) {
   const tabs = page.locator('.lessonModeTabs');
   await expect(tabs.getByRole('link', { name: /^Slides$/i })).toBeVisible();
@@ -710,7 +759,7 @@ test.describe('site smoke', () => {
   test('lesson start link returns slide view to the first slide', async ({ page }, testInfo) => {
     await page.goto(pageUrl('lessons/unit-4-government/4-1-macroeconomic-aims/index.html') + '#5');
 
-    await expect(page.locator('.slide.is-active h2')).toHaveText(/What governments try to achieve/i);
+    await expect(page.locator('.slide.is-active h2')).toHaveText(/The six macroeconomic aims/i);
     if (testInfo.project.name.includes('phone')) {
       await expectLessonModeTabs(page, 'Slides');
       await expect(page.locator('.lessonModeMenu')).toBeHidden();
@@ -755,6 +804,53 @@ test.describe('site smoke', () => {
     expect(titleLayout.zhTop).toBeGreaterThanOrEqual(titleLayout.englishBottom - 1);
     expect(titleLayout.zhLeft).toBeGreaterThanOrEqual(titleLayout.headingLeft - 1);
     expect(titleLayout.zhRight).toBeLessThanOrEqual(titleLayout.headingRight + 1);
+  });
+
+  test('compact bilingual card slides fit without horizontal clipping', async ({ page }, testInfo) => {
+    const checks = [
+      {
+        path: 'lessons/unit-4-government/4-1-macroeconomic-aims/index.html',
+        hash: '#5',
+        title: /The six macroeconomic aims/i,
+        rows: testInfo.project.name.includes('phone') ? 3 : 2,
+      },
+      {
+        path: 'lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html',
+        hash: '#14',
+        title: /Main areas of spending/i,
+      },
+      {
+        path: 'lessons/unit-4-government/4-3-monetary-policy/lesson-1.html',
+        hash: '#10',
+        title: /What central banks do/i,
+      },
+      {
+        path: 'lessons/unit-4-government/4-4-supply-side-policy/lesson-2.html',
+        hash: '#5',
+        title: /Government builds capacity/i,
+      },
+      {
+        path: 'lessons/unit-2-allocation/2-8-market-economic-system/lesson-1.html',
+        hash: '#8',
+        title: /Four core features/i,
+      },
+    ];
+
+    for (const check of checks) {
+      await page.goto(pageUrl(check.path) + check.hash);
+      await expect(page.locator('.slide.is-active h2')).toHaveText(check.title);
+      await expectNoHorizontalOverflow(page);
+      await expectCompactCardGridFits(page, { rows: check.rows });
+    }
+
+    if (!testInfo.project.name.includes('phone')) {
+      await page.setViewportSize({ width: 2048, height: 576 });
+      await page.goto(pageUrl('lessons/unit-4-government/4-1-macroeconomic-aims/index.html') + '#5');
+      await expect(page.locator('.slide.is-active h2')).toHaveText(/The six macroeconomic aims/i);
+      await expectNoHorizontalOverflow(page);
+      await expect(page.locator('.slide.is-active .cardgrid')).toHaveClass(/is-balancedGrid/);
+      await expectCompactCardGridFits(page, { rows: 2 });
+    }
   });
 
   test('student selector opens on demand from lesson slides', async ({ page }, testInfo) => {
@@ -978,7 +1074,7 @@ test.describe('site smoke', () => {
     }
     await expect(page.locator('.slide')).toHaveCount(0);
     await expect(page.locator('.handoutBlock')).toHaveCount(4);
-    await expect(page.locator('.handoutBlock').filter({ hasText: /What governments try to achieve/i })).toBeVisible();
+    await expect(page.locator('.handoutBlock').filter({ hasText: /The six macroeconomic aims/i })).toBeVisible();
     await expect(page.locator('.handoutDocument')).not.toContainText(/Key points/i);
     await expect(page.locator('.handoutBlock').filter({ hasText: /Choose the priority/i })).toHaveCount(0);
 
