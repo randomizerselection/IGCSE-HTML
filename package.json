@@ -1,6 +1,7 @@
 {
   "name": "oehler-huang-library",
   "scripts": {
+    "build:definitions": "node scripts/build-definitions-page.js",
     "test": "playwright test",
     "test:smoke": "playwright test tests/smoke.spec.js"
   },

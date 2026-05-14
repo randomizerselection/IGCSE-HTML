@@ -116,11 +116,19 @@ function readFlashcards(relativePath) {
   return context.window.IGCSE.flashcards;
 }
 
-function definitionTerms() {
+function definitionRows() {
   const source = fs.readFileSync(path.join(root, 'references/igcse-economics-definitions-2026.md'), 'utf8');
-  return new Set([...source.matchAll(/^\|\s*[^|]+\|\s*([^|]+?)\s*\|/gm)]
-    .map((match) => match[1].trim())
-    .filter((term) => term && !['Term', 'Ref'].includes(term)));
+  return [...source.matchAll(/^\|\s*([^|]*?)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*$/gm)]
+    .map((match) => ({
+      ref: match[1].trim(),
+      term: match[2].trim(),
+      definition: match[3].trim(),
+    }))
+    .filter((row) => row.term && row.term !== 'Term' && !/^---+$/.test(row.ref) && !/^---+$/.test(row.term));
+}
+
+function definitionTerms() {
+  return new Set(definitionRows().map((row) => row.term));
 }
 
 async function expectNoHorizontalOverflow(page) {
@@ -261,6 +269,7 @@ test.describe('site smoke', () => {
 
     await expect(page.getByRole('heading', { name: /Oehler-Huang Library/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /^Review lessons$/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Key definitions/i })).toHaveAttribute('href', 'definitions.html');
     await expect(page.getByRole('link', { name: /Teaching philosophy \/ 教学理念/i }).first()).toBeVisible();
     await expect(page.getByRole('heading', { name: /^IGCSE Economics Lesson Library$/i })).toBeVisible();
     await expect(page.getByRole('img', { name: /Samuel Oehler-Huang/i })).toBeVisible();
@@ -310,6 +319,131 @@ test.describe('site smoke', () => {
     expect(macroHeadingBox).not.toBeNull();
     expect(macroHeadingBox.x).toBeGreaterThanOrEqual(0);
     expect(macroHeadingBox.x + macroHeadingBox.width).toBeLessThanOrEqual(viewport.width + 1);
+  });
+
+  test('definitions revision page renders searchable bilingual cards', async ({ page }) => {
+    const expectedRows = definitionRows();
+    await page.goto(pageUrl('definitions.html'));
+
+    await expect(page.getByRole('heading', { name: /^Key Definitions$/i })).toBeVisible();
+    await expect(page.getByText(/IGCSE 经济学核心定义/i)).toBeVisible();
+    await expect(page.getByText(/revise for quizzes, class tests, and IGCSE Economics exams/i)).toBeVisible();
+    await expect(page.getByRole('link', { name: /Back to library/i })).toHaveAttribute('href', 'index.html');
+    await expect(page.locator('[data-definition-count]')).toHaveText(String(expectedRows.length));
+    await expect(page.locator('.definition-card')).toHaveCount(expectedRows.length);
+    await expect(page.locator('.definition-card:visible')).toHaveCount(expectedRows.length);
+    await expect(page.locator('.section-nav')).toBeVisible();
+    await expect(page.getByRole('button', { name: /Study definitions/i })).toBeVisible();
+    await expect(page.getByRole('button', { name: /Study definitions/i })).toHaveAttribute('aria-expanded', 'false');
+    await expect(page.locator('[data-study-all]')).toBeHidden();
+    await expect(page.locator('[data-flashcard-shell]')).toBeHidden();
+    await expect(page.locator('.definition-zh').filter({ hasText: /复习要点|待补充/i })).toHaveCount(0);
+
+    await expect(page.locator('.definition-card').filter({ hasText: /Opportunity cost/ }).first()).toBeVisible();
+    await expect(page.locator('.definition-card').filter({ hasText: /市场失灵/ }).first()).toBeVisible();
+    await expect(page.locator('.definition-card').filter({ hasText: /Fiscal policy/ }).first()).toBeVisible();
+    await expect(page.locator('.definition-card').filter({ has: page.getByRole('heading', { name: 'PED', exact: true }) })).toBeVisible();
+
+    const navLayout = await page.locator('.section-link').evaluateAll((links) => links.map((link) => {
+      const title = link.querySelector('span')?.getBoundingClientRect();
+      const translation = link.querySelector('small')?.getBoundingClientRect();
+      const count = link.querySelector('b')?.getBoundingClientRect();
+      return {
+        titleRight: title?.right ?? 0,
+        translationRight: translation?.right ?? 0,
+        countLeft: count?.left ?? 0,
+      };
+    }));
+
+    for (const item of navLayout) {
+      expect(item.countLeft).toBeGreaterThanOrEqual(Math.max(item.titleRight, item.translationRight) + 6);
+    }
+
+    await page.getByRole('searchbox', { name: /Search definitions/i }).fill('Market failure');
+    await expect(page.locator('.definition-card').filter({ has: page.getByRole('heading', { name: 'Market failure', exact: true }) })).toBeVisible();
+    await expect(page.locator('.definition-card').filter({ has: page.getByRole('heading', { name: 'Opportunity cost', exact: true }) })).toBeHidden();
+
+    await page.getByRole('searchbox', { name: /Search definitions/i }).fill('');
+    await page.getByRole('button', { name: /Unit 4/i }).click();
+    await expect(page.locator('.definition-card').filter({ has: page.getByRole('heading', { name: 'Fiscal policy', exact: true }) })).toBeVisible();
+    await expect(page.locator('.definition-card').filter({ has: page.getByRole('heading', { name: 'Market failure', exact: true }) })).toBeHidden();
+
+    await page.getByRole('button', { name: /Formulas/i }).click();
+    await expect(page.locator('.definition-card').filter({ has: page.getByRole('heading', { name: 'PED', exact: true }) })).toBeVisible();
+    await expect(page.locator('.definition-card').filter({ has: page.getByRole('heading', { name: 'Fiscal policy', exact: true }) })).toBeHidden();
+
+    await expectNoHorizontalOverflow(page);
+  });
+
+  test('definitions flashcard picker studies selected syllabus parts', async ({ page }) => {
+    const expectedRows = definitionRows();
+    const unitCount = (unit) => expectedRows.filter((row) => row.ref.startsWith(`${unit}.`)).length;
+    const topicCount = (topic) => expectedRows.filter((row) => row.ref.startsWith(`${topic}.`)).length;
+    await page.goto(pageUrl('definitions.html'));
+
+    const studyButton = page.getByRole('button', { name: /Study definitions/i });
+    await studyButton.click();
+    await expect(studyButton).toHaveAttribute('aria-expanded', 'true');
+    await expect(page.getByLabel(/All definitions/i)).toBeChecked();
+    await expect(page.locator('[data-study-count]')).toHaveText(String(expectedRows.length));
+    await expect(page.getByRole('button', { name: /Start flashcard test/i })).toBeEnabled();
+
+    await page.getByLabel(/All definitions/i).uncheck();
+    await expect(page.locator('[data-study-count]')).toHaveText('0');
+    await expect(page.getByRole('button', { name: /Start flashcard test/i })).toBeDisabled();
+
+    await page.getByLabel(/Whole Unit 2/i).check();
+    await expect(page.locator('[data-study-count]')).toHaveText(String(unitCount('2')));
+    await page.getByLabel(/Whole Unit 2/i).uncheck();
+    await expect(page.locator('[data-study-count]')).toHaveText('0');
+
+    await page.locator('[data-study-topic="2.7"]').check();
+    await expect(page.locator('[data-study-count]')).toHaveText(String(topicCount('2.7')));
+    await page.locator('[data-study-topic="4.3"]').check();
+    await expect(page.locator('[data-study-count]')).toHaveText(String(topicCount('2.7') + topicCount('4.3')));
+    await studyButton.click();
+    await expect(page.locator('[data-study-all]')).toBeHidden();
+    await studyButton.click();
+    await expect(page.locator('[data-study-count]')).toHaveText(String(topicCount('2.7') + topicCount('4.3')));
+    await page.locator('[data-study-topic="2.7"]').uncheck();
+    await page.locator('[data-study-topic="4.3"]').uncheck();
+
+    await page.getByRole('searchbox', { name: /Search definitions/i }).fill('no visible card should match this');
+    await page.getByLabel(/Whole Unit 2/i).check();
+    await page.getByRole('button', { name: /Start flashcard test/i }).click();
+    await expect(page.locator('[data-flashcard-left]')).toHaveText(String(unitCount('2')));
+    await expect(page.locator('[data-flashcard-card]')).toBeVisible();
+    await expect(page.locator('[data-flashcard-ref]')).toContainText(/^2\./);
+    await page.getByRole('button', { name: /Show Answer/i }).click();
+    await expect(page.locator('[data-flashcard-definition]')).toContainText(/\S/);
+    await expect(page.locator('[data-flashcard-definition-zh]')).toContainText(/\S/);
+    await page.getByRole('button', { name: /^Again$/i }).click();
+    await expect(page.locator('[data-flashcard-left]')).toHaveText(String(unitCount('2')));
+    await expect(page.locator('[data-flashcard-again]')).toHaveText('1');
+    await page.keyboard.press('Enter');
+    await expect(page.locator('[data-flashcard-definition]')).toContainText(/\S/);
+    await page.keyboard.press('2');
+    await expect(page.locator('[data-flashcard-left]')).toHaveText(String(unitCount('2') - 1));
+    await expect(page.locator('[data-flashcard-known]')).toHaveText('1');
+    await page.getByRole('button', { name: /Shuffle/i }).click();
+    await expect(page.locator('[data-flashcard-left]')).toHaveText(String(unitCount('2') - 1));
+    await page.getByRole('button', { name: /Reset/i }).click();
+    await expect(page.locator('[data-flashcard-left]')).toHaveText(String(unitCount('2')));
+    await expect(page.locator('[data-flashcard-known]')).toHaveText('0');
+    await page.getByRole('button', { name: /Back to definitions/i }).click();
+    await expect(page.getByRole('searchbox', { name: /Search definitions/i })).toHaveValue('no visible card should match this');
+
+    await page.getByLabel(/Whole Unit 2/i).uncheck();
+    await page.locator('[data-study-topic="4.1"]').check();
+    await expect(page.locator('[data-study-count]')).toHaveText('1');
+    await page.getByRole('button', { name: /Start flashcard test/i }).click();
+    await page.keyboard.press(' ');
+    await page.keyboard.press('2');
+    await expect(page.locator('[data-flashcard-complete]')).toBeVisible();
+    await expect(page.locator('[data-flashcard-known]')).toHaveText('1');
+    await page.getByRole('button', { name: /Study again/i }).click();
+    await expect(page.locator('[data-flashcard-left]')).toHaveText('1');
+    await expectNoHorizontalOverflow(page);
   });
 
   test('unit deck menus show subordinate Chinese deck titles', async ({ page }) => {
@@ -1243,6 +1377,8 @@ test.describe('site smoke', () => {
   });
 
   test('lesson quiz views render for every available deck', async ({ page }) => {
+    test.slow();
+
     const quizPaths = [
       'lessons/unit-2-allocation/2-8-market-economic-system/lesson-1.html',
       'lessons/unit-2-allocation/2-8-market-economic-system/lesson-2.html',

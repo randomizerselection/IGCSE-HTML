@@ -78,6 +78,11 @@ should typically align with these definitions, though slide wording may be made
 more concise and student-understandable where appropriate, provided it still
 prepares students to earn marks in exams.
 
+The student-facing bilingual definitions overview at `definitions.html` is
+generated from that Markdown source plus `scripts/definition-translations.js`.
+After editing the definitions reference or translation companion, run
+`npm run build:definitions` and commit the regenerated HTML.
+
 Use `references/paper-2-mark-schemes-2023-2025/` as the shared Paper 2
 mark-scheme archive. It reorganises recent 0455 Paper 2 mark schemes by
 syllabus topic, preserving source paper, question number, command word, marks,
