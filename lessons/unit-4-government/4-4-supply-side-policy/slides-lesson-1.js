@@ -225,6 +225,16 @@ IGCSE.lesson = {
       partialReview: ['.cardgrid > .card', '.prompt'],
     },
     {
+      type: 'modelAnswer',
+      eyebrow: 'Exam answer',
+      title:   'Model answer',
+      question: 'Explain one difference between monetary policy and supply-side policy.',
+      answer: 'Monetary policy is usually carried out by a central bank and uses measures such as interest rates to influence total demand. Supply-side policy is usually carried out by the government and aims to increase total supply or productive capacity, for example through education, training or infrastructure.',
+      links: ['central bank', 'government', 'total demand', 'total supply'],
+      markSchemeNote: 'This matches explain wording by identifying a clear contrast and developing both sides with accurate policy terminology.',
+      partialReview: ['.modelAnswerCard', '.modelAnswerLinks > span', '.modelAnswerNote'],
+    },
+    {
       type: 'answer',
       eyebrow: 'Exit ticket',
       title:   'Fill in the blanks',

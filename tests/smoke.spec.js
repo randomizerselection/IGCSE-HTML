@@ -517,6 +517,28 @@ test.describe('site smoke', () => {
     }
   });
 
+  test('slide counter selects direct slide numbers', async ({ page }) => {
+    await page.goto(pageUrl('lessons/unit-4-government/4-1-macroeconomic-aims/index.html'));
+
+    const activeSlide = page.locator('.slide.is-active');
+    const activeJump = page.locator('.slide.is-active [data-slide-jump]');
+    const total = await page.evaluate(() => window.IGCSE.lesson.slides.length);
+
+    await expect(activeJump).toHaveValue('1');
+    await expect(activeJump.locator('option')).toHaveCount(total);
+    await activeJump.selectOption('5');
+    await expect(activeSlide).toHaveAttribute('data-idx', '4');
+    await expect(page).toHaveURL(/#5$/);
+    await expect(activeJump).toHaveValue('5');
+
+    await activeJump.selectOption(String(total));
+    await expect(activeSlide).toHaveAttribute('data-idx', String(total - 1));
+    await expect(page).toHaveURL(new RegExp(`#${total}$`));
+    await expect(activeJump).toHaveValue(String(total));
+
+    await expectNoHorizontalOverflow(page);
+  });
+
   test('lesson start link returns slide view to the first slide', async ({ page }, testInfo) => {
     await page.goto(pageUrl('lessons/unit-4-government/4-1-macroeconomic-aims/index.html') + '#5');
 

@@ -237,6 +237,16 @@ IGCSE.lesson = {
       partialReview: ['.cardgrid > .card', '.prompt'],
     },
     {
+      type: 'modelAnswer',
+      eyebrow: 'Exam answer',
+      title:   'Model answer',
+      question: 'Discuss whether improving education can help a government achieve its macroeconomic aims.',
+      answer: 'Improving education can raise productivity because workers gain more skills. This may increase employment, reduce costs and help firms keep prices stable. More productive firms may also become more competitive, increasing exports. However, education has an opportunity cost and can take years to affect output. It will help most if the education matches the skills firms need.',
+      links: ['productivity', 'employment', 'prices', 'exports', 'opportunity cost'],
+      markSchemeNote: 'This follows discuss level wording by developing benefits, adding a limitation, and making a judgement about when the policy works best.',
+      partialReview: ['.modelAnswerCard', '.modelAnswerLinks > span', '.modelAnswerNote'],
+    },
+    {
       type: 'exam',
       eyebrow: 'Exam practice',
       title:   'Evaluate supply-side policy',
@@ -245,6 +255,16 @@ IGCSE.lesson = {
       prompt:   'Compare supply-side policy with demand-side alternatives and judge the cause of inflation.',
       visual:   photos.industry,
       partialReview: ['.cardgrid > .card', '.prompt'],
+    },
+    {
+      type: 'modelAnswer',
+      eyebrow: 'Exam answer',
+      title:   'Model answer',
+      question: 'Discuss whether supply-side policies are the best way to reduce inflation.',
+      answer: 'Supply-side policies can reduce inflation if they raise productivity and lower firms costs. Lower costs can reduce cost-push inflation and higher output can reduce pressure on prices. However, there may be a long time lag, and these policies may not solve demand-pull inflation quickly. Monetary policy may be more effective if inflation is caused by excessive spending.',
+      links: ['productivity', 'costs', 'time lag', 'demand-pull inflation', 'monetary policy'],
+      markSchemeNote: 'This follows discuss wording by comparing both sides and judging effectiveness according to the cause of inflation.',
+      partialReview: ['.modelAnswerCard', '.modelAnswerLinks > span', '.modelAnswerNote'],
     },
     {
       type: 'answer',

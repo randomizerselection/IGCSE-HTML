@@ -189,6 +189,16 @@ IGCSE.lesson = {
       partialReview: ['.cardgrid > .card', '.prompt'],
     },
     {
+      type: 'modelAnswer',
+      eyebrow: 'Exam answer',
+      title: 'Model answer',
+      question: 'Explain why economic growth may conflict with environmental sustainability.',
+      answer: 'Economic growth means more output is produced. This may require more resource use, such as energy and raw materials. If firms burn more fuel or create more waste, pollution can rise, so environmental sustainability may be damaged.',
+      links: ['more output', 'resource use', 'pollution', 'environmental sustainability'],
+      markSchemeNote: 'This matches explain wording by identifying growth, developing a clear cause-effect chain, and qualifying the outcome with "may".',
+      partialReview: ['.modelAnswerCard', '.modelAnswerLinks > span', '.modelAnswerNote'],
+    },
+    {
       type: 'answer',
       eyebrow: 'Exit ticket',
       title: 'Three retrieval prompts',

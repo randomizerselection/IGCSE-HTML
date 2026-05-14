@@ -236,6 +236,16 @@ IGCSE.lesson = {
       partialReview: ['.cardgrid > .card', '.prompt'],
     },
     {
+      type: 'modelAnswer',
+      eyebrow: 'Exam answer',
+      title:   'Model answer',
+      question: 'Analyse how a cut in corporation tax can increase economic growth.',
+      answer: 'A cut in corporation tax can allow firms to keep more retained profit. This may increase investment in capital equipment and technology. Better technology can raise productivity and productive capacity, allowing firms to produce more output, so real GDP and economic growth may increase.',
+      links: ['retained profit', 'investment', 'technology', 'productive capacity'],
+      markSchemeNote: 'This follows analyse wording by developing a logical chain from lower tax to investment, capacity and real GDP.',
+      partialReview: ['.modelAnswerCard', '.modelAnswerLinks > span', '.modelAnswerNote'],
+    },
+    {
       type: 'answer',
       eyebrow: 'Exit ticket',
       title:   'Fill in the blanks',

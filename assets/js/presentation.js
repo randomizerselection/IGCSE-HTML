@@ -208,7 +208,7 @@ const renderSources = (sources = [], className = 'sourceList') => {
   `;
 };
 
-const contentSourceTypes = new Set(['term', 'cards', 'flow', 'compare', 'exam', 'answer', 'split', 'systemCompare', 'socialEffectsVenn']);
+const contentSourceTypes = new Set(['term', 'cards', 'flow', 'compare', 'exam', 'modelAnswer', 'answer', 'split', 'systemCompare', 'socialEffectsVenn']);
 
 function sourcesForSlide(meta, slide) {
   const key = sourceProfileKey(meta);
@@ -224,7 +224,18 @@ function sourcesForSlide(meta, slide) {
 const topline = (slide, idx, total) => `
   <div class="topline">
     <span class="badge">${esc(slide.eyebrow || 'Economics')}</span>
-    <span class="count">${pad(idx + 1)} / ${pad(total)}</span>
+    <label class="count slideJumpControl">
+      <select
+        class="slideJumpSelect"
+        data-slide-jump
+        aria-label="Go to slide number, 1 to ${total}"
+      >
+        ${Array.from({ length: total }, (_item, i) => `
+          <option value="${i + 1}"${i === idx ? ' selected' : ''}>${pad(i + 1)}</option>
+        `).join('')}
+      </select>
+      <span class="slideJumpTotal" aria-hidden="true">/ ${pad(total)}</span>
+    </label>
   </div>
 `;
 
@@ -305,6 +316,32 @@ const flowChips = (nodes = []) => {
 
 const cleanList = (items = []) =>
   `<ul class="clean">${items.map(x => `<li>${esc(x)}</li>`).join('')}</ul>`;
+
+const escapeRegExp = (value = '') =>
+  String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+const highlightTerms = (text = '', terms = []) => {
+  const uniqueTerms = [...new Set((terms || [])
+    .map((term) => String(term || '').trim())
+    .filter(Boolean))]
+    .sort((a, b) => b.length - a.length);
+
+  if (!uniqueTerms.length) return esc(text);
+
+  const pattern = new RegExp(`(${uniqueTerms.map(escapeRegExp).join('|')})`, 'gi');
+  const chunks = [];
+  let lastIndex = 0;
+
+  String(text || '').replace(pattern, (match, _term, offset) => {
+    chunks.push(esc(String(text).slice(lastIndex, offset)));
+    chunks.push(`<mark>${esc(match)}</mark>`);
+    lastIndex = offset + match.length;
+    return match;
+  });
+
+  chunks.push(esc(String(text).slice(lastIndex)));
+  return chunks.join('');
+};
 
 const termExamples = (items = []) => `
   <div class="termExamples">
@@ -574,18 +611,39 @@ const renderers = {
   `,
 
   exam: (s) => `
-    <div>
+    <div class="examBlock">
       <h2>${esc(s.title)}</h2>
-      <p class="lead">${esc(s.question)}</p>
+      <p class="lead examQuestion">${esc(s.question)}</p>
+      <div class="examChainLabel">Required chain links</div>
       <div class="cardgrid">
-        ${(s.keywords || []).map(k => `
-          <div class="card">
+        ${(s.keywords || []).map((k, i) => `
+          <div class="card examChainLink">
+            <div class="num">${i + 1}</div>
             <b>${esc(k)}</b>
-            <span>required link in the chain</span>
           </div>
         `).join('')}
       </div>
       ${s.prompt ? `<div class="prompt">${esc(s.prompt)}</div>` : ''}
+    </div>
+  `,
+
+  modelAnswer: (s) => `
+    <div class="modelAnswerBlock">
+      <h2>${esc(s.title || 'Model answer')}</h2>
+      ${s.question ? `<p class="lead modelAnswerQuestion">${esc(s.question)}</p>` : ''}
+      <div class="modelAnswerCard">
+        <div class="modelAnswerLabel">Model answer</div>
+        <p class="modelAnswerText">${highlightTerms(s.answer || '', s.links || [])}</p>
+      </div>
+      ${(s.links || []).length ? `
+        <div class="modelAnswerLinks" aria-label="Required links used">
+          ${(s.links || []).map((link) => `<span>${esc(link)}</span>`).join('')}
+        </div>` : ''}
+      ${s.markSchemeNote ? `
+        <div class="modelAnswerNote">
+          <b>Why this scores well</b>
+          <span>${esc(s.markSchemeNote)}</span>
+        </div>` : ''}
     </div>
   `,
 
@@ -1735,6 +1793,9 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
     closeChinaComparison();
     idx = Math.max(0, Math.min(slides.length - 1, n));
     slideEls.forEach((el, i) => el.classList.toggle('is-active', i === idx));
+    mountEl.querySelectorAll('[data-slide-jump]').forEach((input, i) => {
+      input.value = String(i + 1);
+    });
     syncPartials(idx);
     if (progressBar) progressBar.style.width = (((idx + 1) / slides.length) * 100) + '%';
     if (notesEl) notesEl.textContent = slideEls[idx].dataset.notes || '';
@@ -1783,6 +1844,16 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
   function toggleFullscreen() {
     if (document.fullscreenElement) document.exitFullscreen();
     else document.documentElement.requestFullscreen().catch(() => {});
+  }
+
+  function applySlideJump(select) {
+    if (!select) return;
+    const requested = Number.parseInt(select.value, 10);
+    if (!Number.isFinite(requested)) {
+      select.value = String(idx + 1);
+      return;
+    }
+    show(Math.max(1, Math.min(slides.length, requested)) - 1);
   }
 
   function openChinaComparison(slideIndex) {
@@ -1929,6 +2000,12 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
     else if (k === 'Escape')                          { overviewEl?.classList.remove('is-visible'); }
   });
 
+  mountEl.addEventListener('change', (event) => {
+    const select = event.target?.closest?.('[data-slide-jump]');
+    if (!select) return;
+    applySlideJump(select);
+  });
+
   mountEl.querySelectorAll('.chinaCompareButton').forEach((button) => {
     button.addEventListener('click', (event) => {
       event.preventDefault();
@@ -1950,7 +2027,7 @@ IGCSE.mountLesson = function(lesson, mountEl = document.getElementById('deck')) 
   // Click-to-advance (but not on overview / notes / controls)
   mountEl.addEventListener('click', (e) => {
     const target = e.target?.closest ? e.target : null;
-    if (target?.closest('.thumb, #notes, .help, button, a, input, label, select, details, summary, .sourceList, .sourcePanel, .taxSim, .chinaTaxSim, .indirectTaxSim, .marketMechanismSim, .marketFailureExternalitySim, .publicGoodFreeRiderSim, .monopolyPowerSim, .marketFailureScenarioGame, .marketSignalGame')) return;
+    if (target?.closest('.thumb, #notes, .help, .slideJumpControl, button, a, input, label, select, details, summary, .sourceList, .sourcePanel, .taxSim, .chinaTaxSim, .indirectTaxSim, .marketMechanismSim, .marketFailureExternalitySim, .publicGoodFreeRiderSim, .monopolyPowerSim, .marketFailureScenarioGame, .marketSignalGame')) return;
     if (revealNextPartial()) return;
     show(idx + 1);
   });

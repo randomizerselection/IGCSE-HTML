@@ -344,6 +344,16 @@ IGCSE.lesson = {
       partialReview: ['.cardgrid > .card', '.prompt'],
     },
     {
+      type: 'modelAnswer',
+      eyebrow: 'Exam answer',
+      title:   'Model answer',
+      question: 'Analyse how interventionist supply-side policies could reduce unemployment.',
+      answer: 'Government spending on education and training can improve workers skills and productivity. This makes workers more employable, so firms may be more willing to hire them. Infrastructure spending can also improve mobility by making it easier for workers to travel to jobs, reducing geographical unemployment.',
+      links: ['education', 'training', 'infrastructure', 'mobility'],
+      markSchemeNote: 'This follows analyse wording by building coherent links from policy measures to skills, employability, mobility and lower unemployment.',
+      partialReview: ['.modelAnswerCard', '.modelAnswerLinks > span', '.modelAnswerNote'],
+    },
+    {
       type: 'answer',
       eyebrow: 'Exit ticket',
       title:   'Fill in the blanks',

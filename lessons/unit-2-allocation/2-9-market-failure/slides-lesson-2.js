@@ -200,6 +200,16 @@ IGCSE.lesson = {
       partialReview: ['.cardgrid > .card', '.prompt'],
     },
     {
+      type: 'modelAnswer',
+      eyebrow: 'Exam answer',
+      title: 'Model answer',
+      question: 'Discuss whether a market economic system is the best way to allocate resources. [8]',
+      answer: 'A market economic system can allocate resources well because the price mechanism responds to consumer demand. If consumers want more of a good, higher prices and profit give firms an incentive to supply more, increasing choice and efficiency. However, markets can fail. Goods with external costs may be over-produced, while public goods may not be provided because of the free-rider problem. Overall, markets can be effective for many private goods, but government intervention may be needed where market failure is significant.',
+      links: ['price mechanism', 'choice', 'external costs', 'public goods', 'free-rider problem', 'judgement'],
+      markSchemeNote: 'This follows discuss level wording by developing both sides, using economic concepts accurately, and ending with a supported judgement.',
+      partialReview: ['.modelAnswerCard', '.modelAnswerLinks > span', '.modelAnswerNote'],
+    },
+    {
       type: 'answer',
       eyebrow: 'Exit ticket',
       title: 'Fill in the blanks',
