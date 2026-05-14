@@ -51,7 +51,7 @@ IGCSE.lesson = {
       zhTitle: '影响与评价',
       subtitle: 'Supply-side policy lesson 4 - 4.4.3',
       kicker:   'How do capacity, productivity and competitiveness affect macroeconomic aims?',
-      visual:   photos.port,
+      visual:   photos.portTerminal,
     },
     {
       type: 'discussion',
@@ -61,7 +61,7 @@ IGCSE.lesson = {
       zh: '如果企业生产率提高，哪些宏观经济目标可能同时改善？',
       answer: 'Growth, employment, price stability and the current account may improve, but only if the policy is effective and well targeted.',
       answerZh: '经济增长、就业、价格稳定和经常账户都可能改善，但前提是政策有效且目标明确。',
-      visual: photos.port,
+      visual: photos.industrialRobot,
     },
     {
       type: 'outcomes',
@@ -104,7 +104,7 @@ IGCSE.lesson = {
       zhTitle: '增长路径',
       nodes: [['productivity rises', 'costs per unit fall', 'firms can expand output', 'real GDP can rise']],
       footer: 'Supply-side growth is about raising capacity, not only using spare capacity.',
-      visual: photos.industry,
+      visual: photos.industrialRobot,
       partialReview: ['.flowRow > .flowChip', '.prompt'],
     },
     {
@@ -128,7 +128,7 @@ IGCSE.lesson = {
       zhTitle: '就业路径',
       nodes: [['skills or mobility improve', 'workers match vacancies', 'structural unemployment falls', 'employment can rise']],
       footer: 'Evaluation: jobs must exist and workers must be able to access them.',
-      visual: photos.classroom,
+      visual: photos.employmentOffice,
       partialReview: ['.flowRow > .flowChip', '.prompt'],
     },
     {
@@ -159,7 +159,7 @@ IGCSE.lesson = {
       zh: '为什么供给侧政策可能在不减少就业的情况下降低通货膨胀？',
       answer: 'If productivity rises and unit costs fall, firms may increase supply and lower prices rather than cut output.',
       answerZh: '如果生产率上升、单位成本下降，企业可能增加供给并降低价格，而不是削减产出。',
-      visual: photos.industry,
+      visual: photos.industrialRobot,
     },
     {
       type: 'flow',
@@ -168,7 +168,7 @@ IGCSE.lesson = {
       zhTitle: '价格稳定路径',
       nodes: [['productivity rises', 'average costs fall', 'supply rises', 'cost-push inflationary pressure may fall']],
       footer: 'This is why supply-side policy can help with stable prices.',
-      visual: photos.industry,
+      visual: photos.industrialRobot,
       partialReview: ['.flowRow > .flowChip', '.prompt'],
     },
     {
@@ -178,7 +178,7 @@ IGCSE.lesson = {
       zhTitle: '经常账户路径',
       nodes: [['quality rises or costs fall', 'exports become more competitive', 'exports may rise', 'current account may improve']],
       footer: 'Evaluation: exchange rates, foreign demand and rival firms also matter.',
-      visual: photos.port,
+      visual: photos.portTerminal,
       partialReview: ['.flowRow > .flowChip', '.prompt'],
     },
     {
@@ -224,7 +224,7 @@ IGCSE.lesson = {
         ['Inequality', 'benefits may go mainly to some workers, firms or regions'],
       ],
       footer: 'Use "may" because supply-side policy is not automatic.',
-      visual: photos.classroom,
+      visual: photos.vwApprentices,
       partialReview: ['.cardgrid > .card', '.prompt'],
     },
     {
@@ -254,7 +254,7 @@ IGCSE.lesson = {
       question: 'Discuss whether supply-side policies are the best way to reduce inflation.',
       keywords: ['productivity', 'costs', 'time lag', 'demand-pull inflation', 'monetary policy'],
       prompt:   'Compare supply-side policy with demand-side alternatives and judge the cause of inflation.',
-      visual:   photos.industry,
+      visual:   photos.industrialRobot,
       partialReview: ['.cardgrid > .card', '.prompt'],
     },
     {

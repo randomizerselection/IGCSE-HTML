@@ -44,7 +44,7 @@ IGCSE.lesson = {
       zhTitle: '供给侧政策',
       subtitle: 'Supply-side policy lesson 1 - 4.4.1',
       kicker:   'How can policy raise what an economy is able to produce?',
-      visual:   photos.industry,
+      visual:   photos.industrialRobot,
     },
     {
       type: 'discussion',
@@ -54,7 +54,7 @@ IGCSE.lesson = {
       zh: '如果企业订单很多，却找不到熟练工人，政策应主要增加支出还是增加生产能力？',
       answer: 'Capacity. More spending may raise prices, but skills, infrastructure and investment can help firms produce more.',
       answerZh: '应增加生产能力。更多支出可能推高价格，而技能、基础设施和投资能帮助企业增加产量。',
-      visual: photos.industry,
+      visual: photos.vwApprentices,
     },
     {
       type: 'outcomes',
@@ -103,7 +103,7 @@ IGCSE.lesson = {
         ['Efficiency', 'more output from the same resources'],
         ['Mobility', 'resources move to where they are needed'],
       ],
-      visual: photos.industry,
+      visual: photos.industrialRobot,
       partialReview: ['.termBox', '.termExamples > .termExample'],
     },
     {
@@ -127,7 +127,7 @@ IGCSE.lesson = {
       rightTitle: 'Market-based',
       right: ['change incentives through markets', 'tax cuts, privatisation and deregulation', 'labour-market reforms'],
       prompt: 'Use this classification before explaining individual measures.',
-      visual: photos.roadwork,
+      visual: photos.singaporeIte,
       partialReview: ['.splitCols > .card', '.prompt'],
     },
     {
@@ -137,7 +137,7 @@ IGCSE.lesson = {
       zhTitle: '长期产出',
       nodes: [['better skills or capital', 'productivity rises', 'productive capacity rises', 'long-run output can rise']],
       footer: 'Syllabus terms: productive capacity, efficiency and long-run output.',
-      visual: photos.industry,
+      visual: photos.industrialRobot,
       partialReview: ['.flowRow > .flowChip', '.prompt'],
     },
     {
@@ -152,7 +152,7 @@ IGCSE.lesson = {
       ],
       answer: 0,
       prompt: 'Supply-side policy focuses on the economy\'s ability to produce.',
-      visual: photos.industry,
+      visual: photos.industrialRobot,
     },
     {
       type: 'section',

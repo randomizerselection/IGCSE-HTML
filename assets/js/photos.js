@@ -393,6 +393,20 @@ window.IGCSE = window.IGCSE || {};
       'Wikimedia Commons / Internal Revenue Service',
       'https://commons.wikimedia.org/wiki/File:US_Corporation_Income_Tax_Return_2011_form_1120.jpg'
     ),
+    portTerminal: photo(
+      'supply-side-policy',
+      'aarhus-container-terminal.jpg',
+      'Container cranes and freight stacks at the Port of Aarhus container terminal.',
+      'Wikimedia Commons / Guillaume Baviere',
+      'https://commons.wikimedia.org/wiki/File:Aarhus_container_terminal.jpg'
+    ),
+    mobilePhoneStore: photo(
+      'supply-side-policy',
+      'mobile-phone-store-stockholm.jpg',
+      'A Three mobile phone store on Kungsgatan in Stockholm.',
+      'Wikimedia Commons / Tony Webster',
+      'https://commons.wikimedia.org/wiki/File:3_Kungsgatan_Mobile_Phone_Store_(22460724332).jpg'
+    ),
     smallMobilePhoneShop: photo(
       'supply-side-policy',
       'small-mobile-phone-shop.jpg',
@@ -400,11 +414,16 @@ window.IGCSE = window.IGCSE || {};
       'Wikimedia Commons / Oxfam East Africa',
       'https://commons.wikimedia.org/wiki/File:Mobile_phone_shop_(7550611126).jpg'
     ),
+    stockCertificate: photo(
+      'supply-side-policy',
+      'stock-certificate.jpg',
+      'An early twentieth-century stock certificate showing private share ownership.',
+      'Wikimedia Commons / Museum of Vojvodinian Slovaks',
+      'https://commons.wikimedia.org/wiki/File:Stock_certificate.jpg'
+    ),
     healthcareWorkforce: fiscalPolicy.healthcare,
     roadwork: fiscalPolicy.roadwork,
     chipsInvestment: fiscalPolicyFacts.chipsForAmerica,
-    portTerminal: fiscalPolicyFacts.euCbam,
-    stockCertificate: fiscalPolicyFacts.hmrcLondon,
     fed: monetaryPolicy.fed,
   };
 

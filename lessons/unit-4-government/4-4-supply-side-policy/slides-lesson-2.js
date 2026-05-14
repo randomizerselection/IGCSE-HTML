@@ -51,7 +51,7 @@ IGCSE.lesson = {
       zhTitle: '干预型供给侧政策',
       subtitle: 'Supply-side policy lesson 2 - 4.4.2',
       kicker:   'How can government spending and direct support raise productive capacity?',
-      visual:   photos.classroom,
+      visual:   photos.autoMechanicsTraining,
     },
     {
       type: 'discussion',
@@ -61,7 +61,7 @@ IGCSE.lesson = {
       zh: '如果工人缺少技能，企业又面临高运输成本，为什么单靠市场力量可能太慢？',
       answer: 'Government can intervene directly through education, training, healthcare, infrastructure and targeted subsidies.',
       answerZh: '政府可以通过教育、培训、医疗保健、基础设施和有针对性的补贴直接干预。',
-      visual: photos.roadwork,
+      visual: photos.employmentOffice,
     },
     {
       type: 'outcomes',
@@ -115,7 +115,7 @@ IGCSE.lesson = {
           source: 'Source: China Ministry of Education, 2020 vocational education briefing.',
         },
       },
-      visual: factPhotos.skillsTraining,
+      visual: factPhotos.vocationalEducation,
     },
     {
       type: 'term',
@@ -130,7 +130,7 @@ IGCSE.lesson = {
         ['Training', 'raises job-specific skills'],
         ['Technology', 'helps each worker produce more'],
       ],
-      visual: photos.classroom,
+      visual: photos.vwApprentices,
       partialReview: ['.termBox', '.termExamples > .termExample'],
     },
     {
@@ -140,7 +140,7 @@ IGCSE.lesson = {
       zhTitle: '培训路径',
       nodes: [['more training', 'skills improve', 'productivity rises', 'firms can produce more']],
       footer: 'Paper 2 basis: training can increase skills, productivity and job opportunities.',
-      visual: photos.classroom,
+      visual: photos.autoMechanicsTraining,
       partialReview: ['.flowRow > .flowChip', '.prompt'],
     },
     {
@@ -169,7 +169,7 @@ IGCSE.lesson = {
       ],
       answer: 1,
       prompt: 'The key link is improved skills and employability.',
-      visual: photos.classroom,
+      visual: photos.employmentOffice,
     },
     {
       type: 'section',
@@ -185,7 +185,7 @@ IGCSE.lesson = {
       zh: '为什么医疗保健支出不仅是福利政策，也可能是供给侧政策？',
       answer: 'Healthier workers may take fewer days off, work more effectively and raise output per worker.',
       answerZh: '更健康的工人可能更少缺勤、更有效率，从而提高人均产出。',
-      visual: photos.healthcare,
+      visual: photos.healthcareWorkforce,
     },
     {
       type: 'flow',
@@ -194,7 +194,7 @@ IGCSE.lesson = {
       zhTitle: '医疗保健路径',
       nodes: [['better healthcare', 'less illness and absence', 'workers are more productive', 'total supply may rise']],
       footer: 'Evaluation: benefits may take time and require government spending.',
-      visual: photos.healthcare,
+      visual: photos.healthcareWorkforce,
       partialReview: ['.flowRow > .flowChip', '.prompt'],
     },
     {
@@ -216,7 +216,7 @@ IGCSE.lesson = {
         ['Geographical', 'workers cannot move to where jobs are'],
         ['Policy link', 'training, housing, transport and job information'],
       ],
-      visual: photos.roadwork,
+      visual: photos.employmentOffice,
       partialReview: ['.termBox', '.termExamples > .termExample'],
     },
     {
@@ -232,7 +232,7 @@ IGCSE.lesson = {
         ['Regional mismatch', 'transport and housing can help'],
         ['Industry decline', 'retraining may be needed'],
       ],
-      visual: photos.roadwork,
+      visual: photos.employmentOffice,
       partialReview: ['.termBox', '.termExamples > .termExample'],
     },
     {
@@ -242,7 +242,7 @@ IGCSE.lesson = {
       zhTitle: '流动性路径',
       nodes: [['better transport or job information', 'workers can reach vacancies', 'labour mobility rises', 'unemployment may fall']],
       footer: 'Paper 2 basis: infrastructure can increase geographical mobility and reduce unemployment.',
-      visual: photos.roadwork,
+      visual: photos.employmentOffice,
       partialReview: ['.flowRow > .flowChip', '.prompt'],
     },
     {
@@ -289,7 +289,7 @@ IGCSE.lesson = {
       zhTitle: '基础设施路径',
       nodes: [['better roads, ports or internet', 'transport and communication costs fall', 'firms can expand output', 'productive capacity rises']],
       footer: 'Interventionist policy can lower firms\' costs by improving public infrastructure.',
-      visual: photos.roadwork,
+      visual: photos.portTerminal,
       partialReview: ['.flowRow > .flowChip', '.prompt'],
     },
     {
@@ -319,7 +319,7 @@ IGCSE.lesson = {
         ['Training subsidy', 'lower cost of worker training'],
         ['Risk', 'firms may rely on support'],
       ],
-      visual: photos.taxForms,
+      visual: photos.chipsInvestment,
       partialReview: ['.termBox', '.termExamples > .termExample'],
     },
     {
@@ -341,7 +341,7 @@ IGCSE.lesson = {
       question: 'Analyse how interventionist supply-side policies could reduce unemployment.',
       keywords: ['education', 'training', 'infrastructure', 'mobility'],
       prompt:   'Use 2023ON-22 Q3(c): name a measure, explain the skill, mobility or cost link, then link to unemployment.',
-      visual:   photos.classroom,
+      visual:   photos.employmentOffice,
       partialReview: ['.cardgrid > .card', '.prompt'],
     },
     {

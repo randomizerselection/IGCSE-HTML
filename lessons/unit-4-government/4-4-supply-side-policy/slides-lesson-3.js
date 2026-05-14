@@ -50,7 +50,7 @@ IGCSE.lesson = {
       zhTitle: '市场型供给侧政策',
       subtitle: 'Supply-side policy lesson 3 - 4.4.2',
       kicker:   'How can markets, profit and competition raise productive capacity?',
-      visual:   photos.taxForms,
+      visual:   photos.stockCertificate,
     },
     {
       type: 'discussion',
@@ -60,7 +60,7 @@ IGCSE.lesson = {
       zh: '如果政府想利用市场而不是直接支出，什么会让企业更愿意投资？',
       answer: 'Lower taxes, fewer barriers, stronger competition and more flexible labour markets can raise expected profit and efficiency.',
       answerZh: '更低税收、更少壁垒、更强竞争和更灵活的劳动力市场可以提高预期利润和效率。',
-      visual: photos.industry,
+      visual: photos.chipsInvestment,
     },
     {
       type: 'outcomes',
@@ -105,7 +105,7 @@ IGCSE.lesson = {
       ],
       answer: 0,
       prompt: 'Market-based policies work through incentives, competition and flexibility.',
-      visual: photos.taxForms,
+      visual: photos.mobilePhoneStore,
     },
     {
       type: 'section',
@@ -128,7 +128,7 @@ IGCSE.lesson = {
           source: 'Source: Cambridge 4.4 supply-side policy syllabus wording and Paper 2 archive.',
         },
       },
-      visual: photos.taxForms,
+      visual: photos.corporationTaxReturn,
     },
     {
       type: 'flow',
@@ -137,7 +137,7 @@ IGCSE.lesson = {
       zhTitle: '税收激励路径',
       nodes: [['lower corporation tax', 'retained profit rises', 'investment may rise', 'productive capacity may rise']],
       footer: 'Paper 2 basis: a corporation-tax cut can increase investment, technology and output.',
-      visual: photos.taxForms,
+      visual: photos.corporationTaxReturn,
       partialReview: ['.flowRow > .flowChip', '.prompt'],
     },
     {
@@ -173,7 +173,7 @@ IGCSE.lesson = {
         ['Possible risk', 'private monopoly may raise prices'],
         ['Exam word', 'evaluate, do not assume it always helps'],
       ],
-      visual: photos.industry,
+      visual: photos.stockCertificate,
       partialReview: ['.termBox', '.termExamples > .termExample'],
     },
     {
@@ -212,7 +212,7 @@ IGCSE.lesson = {
       zh: '为什么市场型供给侧政策可能提高效率，但也带来公平问题？',
       answer: 'Firms may face lower costs and stronger incentives, but workers or consumers may have weaker protection and inequality may rise.',
       answerZh: '企业可能成本更低、激励更强，但工人或消费者保护可能减弱，不平等也可能上升。',
-      visual: photos.shopping,
+      visual: photos.smallMobilePhoneShop,
     },
     {
       type: 'answer',
@@ -233,7 +233,7 @@ IGCSE.lesson = {
       question: 'Analyse how a cut in corporation tax can increase economic growth.',
       keywords: ['retained profit', 'investment', 'technology', 'productive capacity'],
       prompt:   'Use 2025MJ-21 Q4(c): profits retained, investment rises, capital or technology improves, output rises.',
-      visual:   photos.taxForms,
+      visual:   photos.corporationTaxReturn,
       partialReview: ['.cardgrid > .card', '.prompt'],
     },
     {
