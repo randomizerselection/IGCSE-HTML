@@ -1,0 +1,90 @@
+window.IGCSE = window.IGCSE || {};
+
+IGCSE.quiz = {
+  id: '4-4-supply-side-policy-lesson-3',
+  version: '1.0.0',
+  title: 'Market-based supply-side policies quiz',
+  description: 'Check tax incentives, privatisation, deregulation and labour-market reforms.',
+  questions: [
+    {
+      id: 'market-based',
+      type: 'multipleChoice',
+      prompt: 'Which is a market-based supply-side policy?',
+      choices: [
+        'Deregulating a market to increase competition.',
+        'Government spending on healthcare.',
+        'Building a public road.',
+        'Subsidising training directly.',
+      ],
+      answer: 0,
+      explanation: 'Market-based policies work through incentives, competition and flexibility.',
+    },
+    {
+      id: 'competition',
+      type: 'fillBlank',
+      prompt: 'Market-based policies rely on prices, profit and __________.',
+      acceptedAnswers: ['competition'],
+      explanation: 'The market-based route uses competition and incentives rather than direct provision.',
+    },
+    {
+      id: 'tax-incentive',
+      type: 'multipleChoice',
+      prompt: 'How can lower corporation tax raise productive capacity?',
+      choices: [
+        'It can increase retained profit and the incentive to invest.',
+        'It forces all firms to close.',
+        'It is direct public spending on roads.',
+        'It always reduces every firm\'s profit.',
+      ],
+      answer: 0,
+      explanation: 'More retained profit can fund investment in capital, technology or expansion.',
+    },
+    {
+      id: 'corporation-tax',
+      type: 'fillBlank',
+      prompt: 'A lower corporation tax may increase firms\' incentive to __________.',
+      acceptedAnswers: ['invest', 'expand'],
+      explanation: 'Higher retained profit can encourage investment and expansion.',
+    },
+    {
+      id: 'privatisation',
+      type: 'multipleChoice',
+      prompt: 'What is privatisation?',
+      choices: [
+        'Transfer of assets from the public sector to the private sector.',
+        'An increase in government ownership of every firm.',
+        'A tax paid only by households.',
+        'A rise in unemployment benefits.',
+      ],
+      answer: 0,
+      explanation: 'Privatisation transfers assets or firms into private-sector ownership.',
+    },
+    {
+      id: 'deregulation',
+      type: 'fillBlank',
+      prompt: 'Deregulation may reduce barriers to market __________.',
+      acceptedAnswers: ['entry'],
+      explanation: 'Lower entry barriers can increase competition and efficiency.',
+    },
+    {
+      id: 'risk',
+      type: 'multipleChoice',
+      prompt: 'Which is a possible risk of market-based supply-side reforms?',
+      choices: [
+        'Weaker worker or consumer protection.',
+        'Instant success in every industry.',
+        'No need to consider time lags.',
+        'No effect on incentives.',
+      ],
+      answer: 0,
+      explanation: 'Deregulation and labour-market reforms can improve efficiency but may reduce protection.',
+    },
+    {
+      id: 'revenue',
+      type: 'fillBlank',
+      prompt: 'Lower taxes can reduce government tax __________.',
+      acceptedAnswers: ['revenue'],
+      explanation: 'This is one evaluation point for tax-cut supply-side policies.',
+    },
+  ],
+};

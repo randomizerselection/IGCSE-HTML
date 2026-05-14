@@ -1,0 +1,360 @@
+/* ============================================================
+   Lesson 4.4 - Supply-side policy
+   Cambridge IGCSE Economics 0455 - Unit 4: Government and the macroeconomy
+
+   Syllabus source:
+   ../../../references/igcse-economics-syllabus-2027-2029.md
+   Definitions source:
+   ../../../references/igcse-economics-definitions-2026.md
+   Paper 2 mark-scheme archive:
+   ../../../references/paper-2-mark-schemes-2023-2025/4-government-and-macroeconomy.md
+
+   Pacing note:
+   Lesson 2 focuses on interventionist supply-side policies in 4.4.2:
+   education, training, healthcare, infrastructure and subsidies. Anchor each
+   measure to productivity, mobility, capacity or structural unemployment.
+   ============================================================ */
+
+window.IGCSE = window.IGCSE || {};
+
+const photos = IGCSE.photos.supplySidePolicy;
+const factPhotos = IGCSE.photos.supplySidePolicyFacts;
+const ppcInterventionRight = {
+  type: 'diagram',
+  kind: 'ppc',
+  mode: 'rightShift',
+  title: 'PPC: intervention raises capacity',
+  caption: 'Education, healthcare or infrastructure can shift PPC1 to PPC2.',
+};
+const ppcInsideToOn = {
+  type: 'diagram',
+  kind: 'ppc',
+  mode: 'insideToOn',
+  title: 'PPC: reducing unemployment',
+  caption: 'Training and mobility can move output from inside the PPC towards the PPC.',
+};
+IGCSE.lesson = {
+  meta: {
+    code:         '4.4.2',
+    unit:         'Unit 4 - Government and the macroeconomy',
+    title:        'Supply-side policy lesson 2: interventionist supply-side policies - Cambridge IGCSE Economics 0455',
+    lessonLabel:  'Supply-side policy lesson 2',
+    courseLabel:  'Cambridge IGCSE Economics 0455',
+    creatorLabel: 'Created by Samuel Oehler-Huang, Suzhou Foreign Language School',
+  },
+
+  slides: [
+    {
+      type: 'hero',
+      eyebrow:  'Lesson overview',
+      title:    'Interventionist supply-side policies',
+      subtitle: 'Supply-side policy lesson 2 - 4.4.2',
+      kicker:   'How can government spending and direct support raise productive capacity?',
+      visual:   photos.classroom,
+    },
+    {
+      type: 'discussion',
+      eyebrow: 'Starter',
+      title:   'When markets move too slowly',
+      question: 'If workers lack skills and firms face high transport costs, why might market forces alone be too slow?',
+      zh: '如果工人缺少技能，企业又面临高运输成本，为什么单靠市场力量可能太慢？',
+      answer: 'Government can intervene directly through education, training, healthcare, infrastructure and targeted subsidies.',
+      answerZh: '政府可以通过教育、培训、医疗保健、基础设施和有针对性的补贴直接干预。',
+      visual: photos.roadwork,
+    },
+    {
+      type: 'outcomes',
+      eyebrow: 'Objectives - 4.4.2',
+      title:   'By the end, you can',
+      bullets: [
+        'Classify education, training, healthcare, infrastructure and subsidies as interventionist policies.',
+        'Explain how education, training and healthcare can raise productivity.',
+        'Explain how infrastructure and subsidies can raise capacity.',
+        'Analyse how government support can reduce unemployment.',
+      ],
+    },
+    {
+      type: 'section',
+      eyebrow: 'New section',
+      title:   'Interventionist policies',
+      zhTitle: '干预型政策',
+    },
+    {
+      type: 'cards',
+      eyebrow: 'Learn',
+      title:   'Government builds capacity',
+      cards: [
+        ['Education and training', 'raise skills and productivity'],
+        ['Healthcare', 'reduce illness and absence'],
+        ['Infrastructure', 'reduce business costs and increase mobility'],
+        ['Subsidies', 'lower production or training costs'],
+      ],
+      footer: 'Interventionist supply-side policy uses government action to improve supply.',
+      visual: ppcInterventionRight,
+      partialReview: ['.cardgrid > .card', '.prompt'],
+    },
+    {
+      type: 'section',
+      eyebrow: 'New section',
+      title:   'Education and training',
+      zhTitle: '教育与培训',
+    },
+    {
+      type: 'fact',
+      eyebrow: 'Example',
+      facts: {
+        left: {
+          country: 'Germany',
+          fact: 'In 2022, 468,900 people signed new contracts in Germany\'s dual vocational training system.',
+          source: 'Source: German Federal Statistical Office, 2023.',
+        },
+        china: {
+          country: 'China',
+          fact: 'China\'s vocational schools had 28.57 million students acquiring skills during the 13th Five-Year Plan period.',
+          source: 'Source: China Ministry of Education, 2020 vocational education briefing.',
+        },
+      },
+      visual: factPhotos.skillsTraining,
+    },
+    {
+      type: 'term',
+      eyebrow: 'Learn',
+      title:   'Productivity',
+      zhTitle: '生产率',
+      term:    'productivity',
+      definition: 'Output per worker or output per factor input in a given period of time.',
+      definitionZh: '在一定时期内，每名工人或每单位生产要素投入所产生的产出。',
+      examples: [
+        ['Education', 'raises knowledge and qualifications'],
+        ['Training', 'raises job-specific skills'],
+        ['Technology', 'helps each worker produce more'],
+      ],
+      visual: photos.classroom,
+      partialReview: ['.termBox', '.termExamples > .termExample'],
+    },
+    {
+      type: 'flow',
+      eyebrow: 'Learn',
+      title:   'Training route',
+      zhTitle: '培训路径',
+      nodes: [['more training', 'skills improve', 'productivity rises', 'firms can produce more']],
+      footer: 'Paper 2 basis: training can increase skills, productivity and job opportunities.',
+      visual: photos.classroom,
+      partialReview: ['.flowRow > .flowChip', '.prompt'],
+    },
+    {
+      type: 'cards',
+      eyebrow: 'PPC reasoning',
+      title:   'Training on a PPC',
+      cards: [
+        ['Better labour', 'training raises workers\' skills and productivity'],
+        ['Higher output', 'firms can produce more from the same resources'],
+        ['Right shift', 'PPC2 is outside PPC1 because capacity has increased'],
+        ['Written link', 'state that maximum output or productive capacity rises'],
+      ],
+      footer: 'Past paper chain: training -> skills/productivity -> higher capacity -> PPC shifts right.',
+      visual: ppcInterventionRight,
+      partialReview: ['.cardgrid > .card', '.prompt'],
+    },
+    {
+      type: 'quiz',
+      eyebrow: 'Check',
+      question: 'Which chain best links training to lower unemployment?',
+      choices: [
+        'Training -> lower skills -> fewer jobs.',
+        'Training -> higher skills -> more employability -> structural unemployment may fall.',
+        'Training -> higher imports -> no workers needed.',
+        'Training -> higher interest rates -> saving rises.',
+      ],
+      answer: 1,
+      prompt: 'The key link is improved skills and employability.',
+      visual: photos.classroom,
+    },
+    {
+      type: 'section',
+      eyebrow: 'New section',
+      title:   'Healthcare and productivity',
+      zhTitle: '医疗保健与生产率',
+    },
+    {
+      type: 'discussion',
+      eyebrow: 'Explore',
+      title:   'Healthy workers',
+      question: 'Why can healthcare spending be a supply-side policy rather than only a welfare policy?',
+      zh: '为什么医疗保健支出不仅是福利政策，也可能是供给侧政策？',
+      answer: 'Healthier workers may take fewer days off, work more effectively and raise output per worker.',
+      answerZh: '更健康的工人可能更少缺勤、更有效率，从而提高人均产出。',
+      visual: photos.healthcare,
+    },
+    {
+      type: 'flow',
+      eyebrow: 'Learn',
+      title:   'Healthcare route',
+      zhTitle: '医疗保健路径',
+      nodes: [['better healthcare', 'less illness and absence', 'workers are more productive', 'total supply may rise']],
+      footer: 'Evaluation: benefits may take time and require government spending.',
+      visual: photos.healthcare,
+      partialReview: ['.flowRow > .flowChip', '.prompt'],
+    },
+    {
+      type: 'section',
+      eyebrow: 'New section',
+      title:   'Labour mobility',
+      zhTitle: '劳动力流动性',
+    },
+    {
+      type: 'term',
+      eyebrow: 'Learn',
+      title:   'Factor immobility',
+      zhTitle: '生产要素流动性不足',
+      term:    'factor immobility',
+      definition: 'Factors of production cannot move easily to where they are needed, causing unemployment, shortages or surpluses.',
+      definitionZh: '生产要素难以流向需要它们的地方，从而导致失业、短缺或过剩。',
+      examples: [
+        ['Occupational', 'workers lack the right skills'],
+        ['Geographical', 'workers cannot move to where jobs are'],
+        ['Policy link', 'training, housing, transport and job information'],
+      ],
+      visual: photos.roadwork,
+      partialReview: ['.termBox', '.termExamples > .termExample'],
+    },
+    {
+      type: 'term',
+      eyebrow: 'Learn',
+      title:   'Structural unemployment',
+      zhTitle: '结构性失业',
+      term:    'structural unemployment',
+      definition: 'Unemployment caused by changes in demand and supply conditions, skills not matching vacancies, lack of labour mobility or decline of industries.',
+      definitionZh: '由于需求和供给条件变化、技能与岗位不匹配、劳动力流动性不足或产业衰退而造成的失业。',
+      examples: [
+        ['Skills mismatch', 'training can help'],
+        ['Regional mismatch', 'transport and housing can help'],
+        ['Industry decline', 'retraining may be needed'],
+      ],
+      visual: photos.roadwork,
+      partialReview: ['.termBox', '.termExamples > .termExample'],
+    },
+    {
+      type: 'flow',
+      eyebrow: 'Learn',
+      title:   'Mobility route',
+      zhTitle: '流动性路径',
+      nodes: [['better transport or job information', 'workers can reach vacancies', 'labour mobility rises', 'unemployment may fall']],
+      footer: 'Paper 2 basis: infrastructure can increase geographical mobility and reduce unemployment.',
+      visual: photos.roadwork,
+      partialReview: ['.flowRow > .flowChip', '.prompt'],
+    },
+    {
+      type: 'cards',
+      eyebrow: 'PPC reasoning',
+      title:   'Mobility and spare resources',
+      cards: [
+        ['Before', 'skills or location mismatch leaves output inside the PPC'],
+        ['Policy', 'training, transport or job information improves mobility'],
+        ['After', 'more workers match vacancies, so output moves closer to the PPC'],
+        ['Careful wording', 'this shows better resource use; a capacity rise needs a rightward shift'],
+      ],
+      footer: 'This is useful when the answer focuses on unemployment rather than new capacity.',
+      visual: ppcInsideToOn,
+      partialReview: ['.cardgrid > .card', '.prompt'],
+    },
+    {
+      type: 'section',
+      eyebrow: 'New section',
+      title:   'Infrastructure and subsidies',
+      zhTitle: '基础设施与补贴',
+    },
+    {
+      type: 'fact',
+      eyebrow: 'Example',
+      facts: {
+        left: {
+          country: 'World Bank LPI',
+          fact: 'The 2023 Logistics Performance Index covered 139 economies and includes trade and transport infrastructure quality.',
+          source: 'Source: World Bank Logistics Performance Index 2023.',
+        },
+        china: {
+          country: 'China',
+          fact: 'China allocated RMB 1 trillion in 2024 treasury bond funds to support major projects.',
+          source: 'Source: China State Council/Xinhua, 2024.',
+        },
+      },
+      visual: factPhotos.infrastructure,
+    },
+    {
+      type: 'flow',
+      eyebrow: 'Learn',
+      title:   'Infrastructure route',
+      zhTitle: '基础设施路径',
+      nodes: [['better roads, ports or internet', 'transport and communication costs fall', 'firms can expand output', 'productive capacity rises']],
+      footer: 'Interventionist policy can lower firms\' costs by improving public infrastructure.',
+      visual: photos.roadwork,
+      partialReview: ['.flowRow > .flowChip', '.prompt'],
+    },
+    {
+      type: 'cards',
+      eyebrow: 'PPC reasoning',
+      title:   'Infrastructure on a PPC',
+      cards: [
+        ['Better infrastructure', 'roads, ports, power or internet reduce business costs'],
+        ['More capacity', 'firms can produce and transport more output'],
+        ['PPC shift', 'PPC shifts right because the economy can produce more output'],
+        ['Analysis link', 'lower costs and higher output can support growth'],
+      ],
+      footer: 'Infrastructure is an interventionist route to higher productive capacity.',
+      visual: ppcInterventionRight,
+      partialReview: ['.cardgrid > .card', '.prompt'],
+    },
+    {
+      type: 'term',
+      eyebrow: 'Learn',
+      title:   'Subsidy',
+      zhTitle: '补贴',
+      term:    'subsidy',
+      definition: 'A government payment or financial incentive to producers or consumers; it can reduce costs, increase supply, lower price and encourage production or consumption.',
+      definitionZh: '政府给生产者或消费者的付款或财政激励；可降低成本、增加供给、降低价格并鼓励生产或消费。',
+      examples: [
+        ['Firm subsidy', 'lower production costs'],
+        ['Training subsidy', 'lower cost of worker training'],
+        ['Risk', 'firms may rely on support'],
+      ],
+      visual: photos.taxForms,
+      partialReview: ['.termBox', '.termExamples > .termExample'],
+    },
+    {
+      type: 'answer',
+      eyebrow: 'Check',
+      title:   'Fill in the blanks',
+      mode:    'fillBlanks',
+      steps: [
+        ['1', 'Education and training can raise worker __________.', 'productivity'],
+        ['2', 'Healthcare can reduce working time lost through __________.', 'illness'],
+        ['3', 'Transport improvements can improve geographical __________.', 'mobility'],
+        ['4', 'Subsidies can reduce firms\' production __________.', 'costs'],
+      ],
+    },
+    {
+      type: 'exam',
+      eyebrow: 'Exam practice',
+      title:   'Analyse unemployment',
+      question: 'Analyse how interventionist supply-side policies could reduce unemployment.',
+      keywords: ['education', 'training', 'infrastructure', 'mobility'],
+      prompt:   'Use 2023ON-22 Q3(c): name a measure, explain the skill, mobility or cost link, then link to unemployment.',
+      visual:   photos.classroom,
+      partialReview: ['.cardgrid > .card', '.prompt'],
+    },
+    {
+      type: 'answer',
+      eyebrow: 'Exit ticket',
+      title:   'Fill in the blanks',
+      mode:    'fillBlanks',
+      steps: [
+        ['1', 'Training can reduce structural unemployment by improving worker __________.', 'skills'],
+        ['2', 'Labour mobility means workers can move between jobs, occupations or __________.', 'regions'],
+        ['3', 'Infrastructure can reduce transport and production __________.', 'costs'],
+        ['4', 'Interventionist supply-side policy requires government __________.', 'spending'],
+      ],
+      cue: 'Answer before leaving.',
+    },
+  ],
+};

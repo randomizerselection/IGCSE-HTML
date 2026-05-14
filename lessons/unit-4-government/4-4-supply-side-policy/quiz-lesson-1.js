@@ -1,0 +1,90 @@
+window.IGCSE = window.IGCSE || {};
+
+IGCSE.quiz = {
+  id: '4-4-supply-side-policy-lesson-1',
+  version: '1.0.0',
+  title: 'Supply-side policy basics quiz',
+  description: 'Check syllabus 4.4.1: supply-side policy, productive capacity, efficiency and long-run output.',
+  questions: [
+    {
+      id: 'policy-aim',
+      type: 'multipleChoice',
+      prompt: 'What is the main aim of supply-side policy?',
+      choices: [
+        'To increase productive capacity and total supply.',
+        'To reduce every firm\'s output.',
+        'To use only interest rates.',
+        'To increase imports without changing output.',
+      ],
+      answer: 0,
+      explanation: 'Supply-side policy aims to raise productive capacity, efficiency and long-run output.',
+    },
+    {
+      id: 'capacity',
+      type: 'fillBlank',
+      prompt: 'Supply-side policy aims to increase productive __________.',
+      acceptedAnswers: ['capacity'],
+      explanation: 'Productive capacity is the economy\'s ability to produce goods and services.',
+    },
+    {
+      id: 'supply-demand',
+      type: 'multipleChoice',
+      prompt: 'Which contrast is most accurate?',
+      choices: [
+        'Demand-side policy mainly affects total demand; supply-side policy raises total supply.',
+        'Supply-side policy only changes consumer spending.',
+        'Monetary policy and supply-side policy use exactly the same measures.',
+        'Supply-side policy can only reduce output.',
+      ],
+      answer: 0,
+      explanation: 'The key exam contrast is total demand versus total supply.',
+    },
+    {
+      id: 'long-run',
+      type: 'fillBlank',
+      prompt: 'Supply-side policies often have a stronger effect in the long __________.',
+      acceptedAnswers: ['run', 'term'],
+      explanation: 'Training, infrastructure and investment may take time to affect output.',
+    },
+    {
+      id: 'ppc',
+      type: 'multipleChoice',
+      prompt: 'How would higher productive capacity be shown on a PPC?',
+      choices: [
+        'A rightward shift of the PPC.',
+        'A movement from one point to another on the same PPC only.',
+        'A leftward shift caused by fewer resources.',
+        'No possible change.',
+      ],
+      answer: 0,
+      explanation: 'A rightward PPC shift shows greater productive capacity.',
+    },
+    {
+      id: 'efficiency',
+      type: 'fillBlank',
+      prompt: 'Higher efficiency means less waste or more output from the same __________.',
+      acceptedAnswers: ['resources', 'inputs', 'input'],
+      explanation: 'Efficiency improves when inputs produce more output or less waste.',
+    },
+    {
+      id: 'classification',
+      type: 'multipleChoice',
+      prompt: 'Which pair shows the usual classification of supply-side policies?',
+      choices: [
+        'Interventionist and market-based.',
+        'Cash-only and barter-only.',
+        'Imports and exports only.',
+        'Private and impossible.',
+      ],
+      answer: 0,
+      explanation: 'Supply-side policies are often grouped into interventionist and market-based measures.',
+    },
+    {
+      id: 'total-supply',
+      type: 'fillBlank',
+      prompt: 'Supply-side policy aims to increase total __________.',
+      acceptedAnswers: ['supply'],
+      explanation: 'The policy target is the economy\'s capacity to supply goods and services.',
+    },
+  ],
+};

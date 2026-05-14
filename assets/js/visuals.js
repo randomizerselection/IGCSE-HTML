@@ -23,11 +23,16 @@ const arrowDef = (id) => `
   </defs>
 `;
 
-const wrap = (inner) => `<div class="vizPanel" aria-hidden="true">${inner}</div>`;
+const wrap = (inner, className = '') => `<div class="vizPanel${className ? ` ${className}` : ''}" aria-hidden="true">${inner}</div>`;
 const svg  = (id, body) => `<svg viewBox="0 0 520 520" role="img">${arrowDef(id)}${body}</svg>`;
 const htmlEsc = (s) => String(s ?? '').replace(/[&<>"']/g, (m) => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
 }[m]));
+const svgTextLines = (className, x, y, lines = [], attrs = '', lineHeight = 18) => `
+  <text class="${className}" x="${x}" y="${y}" ${attrs}>
+    ${lines.map((line, i) => `<tspan x="${x}" dy="${i === 0 ? 0 : lineHeight}">${htmlEsc(line)}</tspan>`).join('')}
+  </text>
+`;
 
 IGCSE.isRemoteImageUrl = IGCSE.isRemoteImageUrl || ((src) =>
   /^(?:https?:)?\/\//i.test(String(src || '').trim()));
@@ -61,6 +66,143 @@ const renderPhoto = (photo = {}) => {
       ${captionHtml}
     </figure>
   `;
+};
+
+const diagramPpcExamLines = [
+  'Exam: label two output axes; curves touch both axes;',
+  'show the shift with an arrow or PPC1 to PPC2.',
+];
+
+const diagramPpcPointPositions = {
+  inside: { x: 236, y: 316 },
+  on: { x: 322, y: 272 },
+  outside: { x: 408, y: 218 },
+};
+
+const diagramPpcCurvePaths = {
+  base: 'M86 150 C198 160 354 268 420 390',
+  right: 'M86 106 C224 116 412 244 470 390',
+  left: 'M86 202 C178 216 306 306 352 390',
+};
+
+const diagramArrowId = (id) => `${id}-diagramArrow`;
+const diagramArrowDef = (id) => `
+  <defs>
+    <marker id="${diagramArrowId(id)}" markerWidth="14" markerHeight="14" refX="12" refY="7" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M0,0 L0,14 L14,7 z" fill="var(--gold)"/>
+    </marker>
+  </defs>
+`;
+
+const diagramPpcShiftArrow = (id, mode) => {
+  if (mode === 'leftShift') {
+    return `<path class="diagramShiftArrow" marker-end="url(#${diagramArrowId(id)})" d="M190 184 L190 214"/>`;
+  }
+  return `<path class="diagramShiftArrow" marker-end="url(#${diagramArrowId(id)})" d="M190 156 L190 126"/>`;
+};
+
+const diagramPpcPoint = (label, point, note = '') => `
+  <g class="diagramPoint">
+    <circle cx="${point.x}" cy="${point.y}" r="7"/>
+    <text x="${point.x + 13}" y="${point.y - 10}">${htmlEsc(label)}</text>
+    ${note ? `<text class="diagramPointNote" x="${point.x + 13}" y="${point.y + 13}">${htmlEsc(note)}</text>` : ''}
+  </g>
+`;
+
+const renderPpcDiagram = (spec = {}, id = 'ppc') => {
+  const mode = spec.mode || spec.shift || 'rightShift';
+  const xLabel = spec.xLabel || 'Consumer goods';
+  const yLabel = spec.yLabel || 'Capital goods';
+  const title = spec.title || (mode === 'leftShift'
+    ? 'PPC: lower productive capacity'
+    : mode === 'insideToOn'
+      ? 'PPC: using spare resources'
+      : 'PPC: higher productive capacity');
+  const caption = spec.caption || (mode === 'insideToOn'
+    ? 'A to B uses unemployed resources more efficiently; it is not a rightward shift.'
+    : mode === 'leftShift'
+      ? 'A leftward shift shows lower maximum output.'
+      : 'A rightward shift shows higher maximum output.');
+  const secondaryCurve = mode === 'leftShift' ? 'left' : mode === 'rightShift' ? 'right' : '';
+
+  const curves = [
+    `<path class="diagramCurve is-base" d="${diagramPpcCurvePaths.base}"/>`,
+    `<text class="diagramCurveLabel" x="112" y="176">PPC1</text>`,
+  ];
+
+  if (secondaryCurve) {
+    const labelX = 112;
+    const labelY = secondaryCurve === 'right' ? 132 : 222;
+    curves.push(`<path class="diagramCurve is-secondary" d="${diagramPpcCurvePaths[secondaryCurve]}"/>`);
+    curves.push(`<text class="diagramCurveLabel is-secondary" x="${labelX}" y="${labelY}">PPC2</text>`);
+    curves.push(diagramPpcShiftArrow(id, mode));
+  }
+
+  const points = [];
+  if (mode === 'insideToOn') {
+    points.push(diagramPpcPoint('A', diagramPpcPointPositions.inside, 'inside PPC'));
+    points.push(diagramPpcPoint('B', diagramPpcPointPositions.on, 'on PPC'));
+    points.push(`<path class="diagramMovementArrow" marker-end="url(#${diagramArrowId(id)})" d="M252 304 C274 290 296 280 316 272"/>`);
+  } else if (mode === 'points') {
+    points.push(diagramPpcPoint('A', diagramPpcPointPositions.inside, 'inside'));
+    points.push(diagramPpcPoint('B', diagramPpcPointPositions.on, 'on'));
+    points.push(diagramPpcPoint('C', diagramPpcPointPositions.outside, 'outside'));
+  } else if (mode === 'movement') {
+    points.push(diagramPpcPoint('A', { x: 204, y: 178 }, 'more capital goods'));
+    points.push(diagramPpcPoint('B', { x: 356, y: 318 }, 'more consumer goods'));
+    points.push(`<path class="diagramMovementArrow" marker-end="url(#${diagramArrowId(id)})" d="M220 190 C268 216 318 266 348 308"/>`);
+  }
+  const checklistLines = Array.isArray(spec.checklist)
+    ? spec.checklist
+    : spec.checklist
+      ? [spec.checklist]
+      : diagramPpcExamLines;
+
+  return wrap(svg(id, `
+    ${diagramArrowDef(id)}
+    <text class="diagramTitle" x="260" y="34" text-anchor="middle">${htmlEsc(title)}</text>
+    <line class="diagramAxis" x1="86" y1="390" x2="478" y2="390"/>
+    <line class="diagramAxis" x1="86" y1="390" x2="86" y2="74"/>
+    <text class="diagramAxisLabel" x="282" y="430" text-anchor="middle">${htmlEsc(xLabel)}</text>
+    <text class="diagramAxisLabel" transform="translate(32 242) rotate(-90)" text-anchor="middle">${htmlEsc(yLabel)}</text>
+    <text class="diagramOriginLabel" x="64" y="412">0</text>
+    ${curves.join('')}
+    ${points.join('')}
+    <text class="diagramCaption" x="260" y="460" text-anchor="middle">${htmlEsc(caption)}</text>
+    ${spec.checklist === false ? '' : svgTextLines('diagramChecklist', 86, 484, checklistLines)}
+  `), 'diagramPanel diagram-ppc');
+};
+
+const renderDemandSupplyDiagram = (spec = {}, id = 'demandSupply') => {
+  const title = spec.title || 'Demand and supply';
+  const shift = spec.shift || '';
+  const showDemandShift = shift === 'demandRight' || shift === 'demandLeft';
+  const showSupplyShift = shift === 'supplyRight' || shift === 'supplyLeft';
+  const demand2 = shift === 'demandLeft' ? 'M110 126 L378 398' : 'M158 126 L426 398';
+  const supply2 = shift === 'supplyLeft' ? 'M122 398 L390 126' : 'M170 398 L438 126';
+
+  return wrap(svg(id, `
+    <text class="diagramTitle" x="260" y="42" text-anchor="middle">${htmlEsc(title)}</text>
+    <line class="diagramAxis" x1="84" y1="418" x2="476" y2="418"/>
+    <line class="diagramAxis" x1="84" y1="418" x2="84" y2="64"/>
+    <text class="diagramAxisLabel" x="282" y="482" text-anchor="middle">${htmlEsc(spec.xLabel || 'Quantity')}</text>
+    <text class="diagramAxisLabel" transform="translate(30 252) rotate(-90)" text-anchor="middle">${htmlEsc(spec.yLabel || 'Price')}</text>
+    <path class="diagramLine demandLine" d="M134 126 L402 398"/>
+    <path class="diagramLine supplyLine" d="M146 398 L414 126"/>
+    <text class="diagramCurveLabel" x="410" y="398">D</text>
+    <text class="diagramCurveLabel" x="422" y="128">S</text>
+    ${showDemandShift ? `<path class="diagramLine demandLine is-secondary" d="${demand2}"/><text class="diagramCurveLabel is-secondary" x="${shift === 'demandLeft' ? 386 : 434}" y="398">D2</text>` : ''}
+    ${showSupplyShift ? `<path class="diagramLine supplyLine is-secondary" d="${supply2}"/><text class="diagramCurveLabel is-secondary" x="${shift === 'supplyLeft' ? 398 : 446}" y="128">S2</text>` : ''}
+    ${shift ? `<path class="diagramShiftArrow" marker-end="url(#${id})" d="M250 260 C280 246 310 232 340 218"/>` : ''}
+    <text class="diagramCaption" x="84" y="458">${htmlEsc(spec.caption || 'Reusable micro diagram shell for future demand and supply lessons.')}</text>
+  `), 'diagramPanel diagram-demand-supply');
+};
+
+const renderDiagram = (spec = {}, id = 'diagram') => {
+  const kind = String(spec.kind || spec.diagram || '').toLowerCase();
+  if (kind === 'ppc' || kind === 'productionpossibilitycurve') return renderPpcDiagram(spec, id);
+  if (['demand-supply', 'demandsupply', 'demandandsupply'].includes(kind)) return renderDemandSupplyDiagram(spec, id);
+  return renderPpcDiagram(spec, id);
 };
 
 /* ---------- Catalogue of named graphics ---------- */
@@ -217,7 +359,10 @@ const aliases = {
 
 IGCSE.renderVisual = function(key, id) {
   if (!key) return '';
-  if (typeof key === 'object') return renderPhoto(key);
+  if (typeof key === 'object') {
+    if (key.type === 'diagram' || key.kind || key.diagram) return renderDiagram(key, id || 'diagram');
+    return renderPhoto(key);
+  }
   if (key === 'hero') return graphics.hero();
   const resolved = graphics[key] ? key : (aliases[key] || 'abstract');
   const fn = graphics[resolved] || graphics.abstract;

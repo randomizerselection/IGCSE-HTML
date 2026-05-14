@@ -350,6 +350,27 @@ window.IGCSE = window.IGCSE || {};
     ),
   };
 
+  const supplySidePolicy = {
+    classroom: fiscalPolicy.classroom,
+    healthcare: fiscalPolicy.healthcare,
+    roadwork: fiscalPolicy.roadwork,
+    industry: fiscalPolicy.industry,
+    port: fiscalPolicy.port,
+    taxForms: fiscalPolicy.taxForms,
+    shopping: fiscalPolicy.shopping,
+    fed: monetaryPolicy.fed,
+    exchangeRate: monetaryPolicy.exchangeRate,
+  };
+
+  const supplySidePolicyFacts = {
+    skillsTraining: fiscalPolicyFacts.finlandEducation,
+    vocationalEducation: fiscalPolicy.classroom,
+    infrastructure: fiscalPolicy.roadwork,
+    chipsInvestment: fiscalPolicyFacts.chipsForAmerica,
+    portLogistics: fiscalPolicy.port,
+    healthcareProductivity: fiscalPolicy.healthcare,
+  };
+
   IGCSE.photos = {
     ...(IGCSE.photos || {}),
     fiscalPolicy,
@@ -366,6 +387,8 @@ window.IGCSE = window.IGCSE || {};
     },
     marketEconomicSystem,
     monetaryPolicy,
+    supplySidePolicy,
+    supplySidePolicyFacts,
   };
 
   // Backward-compatible alias for older market lessons.

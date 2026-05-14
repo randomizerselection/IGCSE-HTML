@@ -1,0 +1,90 @@
+window.IGCSE = window.IGCSE || {};
+
+IGCSE.quiz = {
+  id: '4-4-supply-side-policy-lesson-2',
+  version: '1.0.0',
+  title: 'Interventionist supply-side policies quiz',
+  description: 'Check government-led supply-side measures using education, training, healthcare, infrastructure and subsidies.',
+  questions: [
+    {
+      id: 'interventionist',
+      type: 'multipleChoice',
+      prompt: 'Which is an interventionist supply-side policy?',
+      choices: [
+        'Government spending on education and training.',
+        'Privatising a state-owned firm.',
+        'Deregulating a market.',
+        'Reducing trade union power only.',
+      ],
+      answer: 0,
+      explanation: 'Interventionist supply-side policies use government spending or direct support to improve supply.',
+    },
+    {
+      id: 'productivity',
+      type: 'multipleChoice',
+      prompt: 'What is productivity?',
+      choices: [
+        'Output per worker or per factor input.',
+        'The total number of shops in a city.',
+        'A tax on imports only.',
+        'The interest rate paid on savings.',
+      ],
+      answer: 0,
+      explanation: 'Productivity measures output per worker or input in a period of time.',
+    },
+    {
+      id: 'training',
+      type: 'fillBlank',
+      prompt: 'Training can increase workers\' skills and __________.',
+      acceptedAnswers: ['productivity'],
+      explanation: 'Training can make labour more productive and employable.',
+    },
+    {
+      id: 'healthcare',
+      type: 'fillBlank',
+      prompt: 'Better healthcare can reduce working time lost through __________.',
+      acceptedAnswers: ['illness', 'sickness', 'disease'],
+      explanation: 'Healthier workers may be absent less often and work more productively.',
+    },
+    {
+      id: 'mobility',
+      type: 'multipleChoice',
+      prompt: 'Which measure can increase geographical labour mobility?',
+      choices: [
+        'Better transport links or housing access.',
+        'Banning workers from moving regions.',
+        'Removing all job adverts.',
+        'Reducing every worker\'s skills.',
+      ],
+      answer: 0,
+      explanation: 'Transport and housing can help workers reach jobs in different places.',
+    },
+    {
+      id: 'occupational',
+      type: 'fillBlank',
+      prompt: 'Training can improve occupational labour __________.',
+      acceptedAnswers: ['mobility'],
+      explanation: 'Occupational mobility means workers can move between types of work.',
+    },
+    {
+      id: 'unemployment-chain',
+      type: 'multipleChoice',
+      prompt: 'Which chain best explains an interventionist reduction in unemployment?',
+      choices: [
+        'Education -> higher skills -> workers match vacancies -> unemployment may fall.',
+        'Education -> lower skills -> fewer vacancies -> unemployment must fall.',
+        'Healthcare -> more illness -> productivity rises.',
+        'Transport worsens -> workers reach more jobs.',
+      ],
+      answer: 0,
+      explanation: 'The accepted chain links skills or mobility to employability and lower unemployment.',
+    },
+    {
+      id: 'infrastructure',
+      type: 'fillBlank',
+      prompt: 'Better infrastructure can reduce firms\' transport __________.',
+      acceptedAnswers: ['costs', 'cost'],
+      explanation: 'Infrastructure is an interventionist policy that can lower costs and raise capacity.',
+    },
+  ],
+};

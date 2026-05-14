@@ -1,0 +1,90 @@
+window.IGCSE = window.IGCSE || {};
+
+IGCSE.quiz = {
+  id: '4-4-supply-side-policy-lesson-4',
+  version: '1.0.0',
+  title: 'Supply-side effects and evaluation quiz',
+  description: 'Check syllabus 4.4.3: effects on growth, employment, prices, competitiveness and the current account.',
+  questions: [
+    {
+      id: 'growth',
+      type: 'multipleChoice',
+      prompt: 'How can supply-side policy increase economic growth?',
+      choices: [
+        'By raising productive capacity and long-run output.',
+        'By permanently reducing every worker\'s skill.',
+        'By making firms unable to produce.',
+        'By lowering total supply.',
+      ],
+      answer: 0,
+      explanation: 'Supply-side policy can raise real GDP by increasing capacity and productivity.',
+    },
+    {
+      id: 'costs',
+      type: 'fillBlank',
+      prompt: 'Higher productivity can reduce average production __________.',
+      acceptedAnswers: ['costs', 'cost'],
+      explanation: 'Lower unit costs can reduce cost-push inflationary pressure.',
+    },
+    {
+      id: 'inflation',
+      type: 'multipleChoice',
+      prompt: 'How can supply-side policy help price stability?',
+      choices: [
+        'Lower costs can reduce cost-push inflationary pressure.',
+        'Higher costs always reduce inflation.',
+        'Less output always means lower inflation with no risk.',
+        'It can only affect income tax revenue.',
+      ],
+      answer: 0,
+      explanation: 'Productivity gains can lower average costs and increase supply.',
+    },
+    {
+      id: 'exports',
+      type: 'fillBlank',
+      prompt: 'If firms become more competitive, exports may __________.',
+      acceptedAnswers: ['rise', 'increase', 'grow'],
+      explanation: 'Lower prices or higher quality can raise export demand.',
+    },
+    {
+      id: 'current-account',
+      type: 'multipleChoice',
+      prompt: 'Which chain links supply-side policy to the current account?',
+      choices: [
+        'Productivity rises -> costs fall -> exports become more competitive -> current account may improve.',
+        'Skills fall -> costs rise -> exports rise automatically.',
+        'Infrastructure worsens -> imports must disappear.',
+        'Workers train less -> current account must improve.',
+      ],
+      answer: 0,
+      explanation: 'Competitiveness is the key link to exports and the current account.',
+    },
+    {
+      id: 'unemployment',
+      type: 'fillBlank',
+      prompt: 'Better skills and mobility may reduce structural __________.',
+      acceptedAnswers: ['unemployment'],
+      explanation: 'Structural unemployment falls when workers can match available jobs.',
+    },
+    {
+      id: 'evaluation',
+      type: 'multipleChoice',
+      prompt: 'Which is the strongest evaluation point?',
+      choices: [
+        'Supply-side policies may take years and have opportunity cost.',
+        'Supply-side policies work instantly in every case.',
+        'Supply-side policies never need funding.',
+        'Supply-side policies cannot affect firms.',
+      ],
+      answer: 0,
+      explanation: 'Time lags and opportunity cost are core evaluation points.',
+    },
+    {
+      id: 'opportunity-cost',
+      type: 'fillBlank',
+      prompt: 'Money spent on training has an opportunity __________.',
+      acceptedAnswers: ['cost'],
+      explanation: 'Government spending on one policy cannot be used for another priority.',
+    },
+  ],
+};

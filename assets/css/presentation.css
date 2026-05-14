@@ -134,6 +134,10 @@ body { overflow: hidden; }
   overflow: hidden;
 }
 .vizPanel svg { width: 100%; height: 100%; display: block; }
+.diagramPanel {
+  aspect-ratio: 1.08;
+  padding: 22px;
+}
 
 .photoPanel {
   position: relative;
@@ -219,6 +223,93 @@ body { overflow: hidden; }
   stroke-linecap: round;
   stroke-dasharray: 360; stroke-dashoffset: 360;
   animation: draw .75s var(--ease) forwards;
+}
+
+/* Exam-ready diagram widget */
+.diagramTitle {
+  fill: var(--ink);
+  font-size: 24px;
+  font-weight: 850;
+}
+.diagramAxis {
+  stroke: rgba(255,255,255,.64);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.diagramAxisLabel,
+.diagramOriginLabel,
+.diagramCaption,
+.diagramChecklist,
+.diagramPointNote {
+  fill: rgba(219,231,246,.82);
+}
+.diagramAxisLabel {
+  font-size: 18px;
+  font-weight: 760;
+}
+.diagramOriginLabel {
+  font-size: 16px;
+  font-weight: 720;
+}
+.diagramCurve,
+.diagramLine {
+  fill: none;
+  stroke-width: 5.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.diagramCurve.is-base,
+.diagramLine.demandLine {
+  stroke: var(--cyan);
+}
+.diagramCurve.is-secondary,
+.diagramLine.supplyLine {
+  stroke: var(--gold);
+}
+.diagramLine.is-secondary {
+  stroke: var(--green);
+}
+.diagramCurveLabel {
+  fill: var(--cyan);
+  font-size: 18px;
+  font-weight: 900;
+}
+.diagramCurveLabel.is-secondary {
+  fill: var(--gold);
+}
+.diagramShiftArrow,
+.diagramMovementArrow {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 4.2;
+  stroke-linecap: round;
+}
+.diagramMovementArrow {
+  stroke: var(--green);
+}
+.diagramPoint circle {
+  fill: var(--ink);
+  stroke: var(--green);
+  stroke-width: 4;
+}
+.diagramPoint text {
+  fill: var(--ink);
+  font-size: 20px;
+  font-weight: 900;
+}
+.diagramPoint .diagramPointNote {
+  fill: rgba(219,231,246,.74);
+  font-size: 14px;
+  font-weight: 700;
+}
+.diagramCaption {
+  font-size: 14px;
+  font-weight: 760;
+}
+.diagramChecklist {
+  fill: rgba(255,209,102,.9);
+  font-size: 12.5px;
+  font-weight: 760;
 }
 
 /* Hero decorative graphic */

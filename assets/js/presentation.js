@@ -48,6 +48,11 @@ const SOURCE_PROFILES = {
     { label: 'Definition source', ref: 'Definitions 2026: Monetary policy; Interest rate; Central bank; Money supply' },
     { label: 'Paper 2 source', ref: '4-government archive: 4.3 Monetary policy', note: 'Includes central bank and monetary-policy measure items' },
   ],
+  supplySide: [
+    { label: 'Syllabus source', ref: 'Syllabus 4.4' },
+    { label: 'Definition source', ref: 'Definitions 2026: Supply-side policy; Productivity; Factor immobility; Structural unemployment' },
+    { label: 'Paper 2 source', ref: '4-government archive: 4.4 Supply-side policy', note: 'Includes supply-side measure, unemployment, growth and evaluation items' },
+  ],
 };
 
 const PAPER_2_QUESTIONS = {
@@ -72,6 +77,15 @@ const PAPER_2_QUESTIONS = {
   '2023ON-21 Q5(a)': 'Identify two monetary policy measures.',
   '2025ON-22 Q4(a)': 'Identify two policy measures a central bank could use to maintain price stability.',
   '2025ON-21 Q1(g)': 'Discuss whether or not an increase in interest rates will harm the Swiss economy.',
+  '2023ON-22 Q3(c)': 'Analyse how supply-side policy measures could reduce unemployment.',
+  '2024ON-21 Q3(d)': 'Discuss whether or not improving education can help a government achieve its macroeconomic aims.',
+  '2023FM-22 Q4(a)': 'Identify two causes of an increase in labour productivity.',
+  '2025ON-22 Q5(b)': 'Explain two differences between monetary policy and supply-side policy.',
+  '2025MJ-21 Q4(c)': 'Analyse how a cut in the corporation (corporate income) tax rate can increase economic growth.',
+  '2023ON-22 Q5(c)': "Analyse, using a production possibility curve (PPC) diagram, the effect of a decrease in the size of a country's labour force on its economy.",
+  '2024ON-21 Q1(f)': 'Analyse, using a production possibility curve (PPC) diagram, the effect of technological progress on an economy such as the UAE.',
+  '2025MJ-22 Q3(a)': 'Identify what is measured on the axes of a production possibility curve.',
+  '2025ON-22 Q2(b)': 'Explain two ways an economy could reach a point outside its current PPC.',
   '2024ON-22 Q3(c)': 'Analyse how the macroeconomic aims of economic growth and balance of payments stability may conflict.',
   '2023FM-22 Q1(g)': 'Discuss whether or not a central bank should aim for a low inflation rate.',
 };
@@ -85,6 +99,7 @@ const sourceProfileKey = (meta = {}) => {
   const text = `${meta.code || ''} ${meta.title || ''} ${meta.lessonLabel || ''}`.toLowerCase();
   if (text.includes('2.8') || text.includes('market economic system')) return 'marketSystem';
   if (text.includes('2.9') || text.includes('market failure')) return 'marketFailure';
+  if (text.includes('4.4') || text.includes('supply-side policy')) return 'supplySide';
   if (text.includes('4.1') || text.includes('macroeconomic aims')) return 'macroAims';
   if (text.includes('4.2') || text.includes('fiscal policy')) return 'fiscal';
   if (text.includes('4.3') || text.includes('monetary policy')) return 'monetary';
@@ -116,6 +131,15 @@ const DIRECT_SOURCE_RULES = {
     { terms: ['central bank'], source: { label: 'Paper 2 source', ref: '2024ON-23 Q5(a); 2023ON-23 Q3(b)', note: 'Central bank definition and functions', extract: 'MS basis: government bank, bankers bank, issuer of currency and implementer of monetary policy.' } },
     { terms: ['monetary policy measures', 'interest rates', 'money supply', 'foreign exchange-rate measures'], source: { label: 'Paper 2 source', ref: '2023ON-21 Q5(a); 2025ON-22 Q4(a)', note: 'Monetary-policy measure items', extract: 'MS basis: interest rates, money supply and exchange-rate measures are accepted policy tools.' } },
     { terms: ['interest rate'], source: { label: 'Paper 2 source', ref: '2025ON-21 Q1(g)', note: 'Interest-rate effects discuss wording', extract: 'MS basis: interest-rate changes affect borrowing, saving, spending and investment.' } },
+  ],
+  supplySide: [
+    { terms: ['supply-side policy', 'productive capacity', 'total supply'], source: { label: 'Paper 2 source', ref: '2025ON-22 Q5(b)', note: 'Monetary and supply-side policy difference wording', extract: 'MS basis: supply-side policy aims to increase total supply and usually takes longer than demand-side measures.' } },
+    { terms: ['ppc', 'production possibility curve', 'rightward ppc shift', 'rightward shift', 'point outside'], source: { label: 'Paper 2 source', ref: '2024ON-21 Q1(f); 2025MJ-22 Q3(a); 2025ON-22 Q2(b)', note: 'PPC productive-capacity diagram wording', extract: 'MS basis: axes need two different outputs; curves slope downward and touch both axes; right shift or PPC1 to PPC2 shows higher productive capacity.' } },
+    { terms: ['point inside', 'inside ppc', 'unemployed resources', 'spare resources'], source: { label: 'Paper 2 source', ref: '2023ON-22 Q5(c)', note: 'PPC capacity and resource-use wording', extract: 'MS basis: a change in available resources changes productive capacity; the diagram mark scheme stresses axes, curves to axes and labelled shifts.' } },
+    { terms: ['education', 'training', 'healthcare', 'labour mobility', 'structural unemployment'], source: { label: 'Paper 2 source', ref: '2023ON-22 Q3(c); 2024ON-21 Q3(d)', note: 'Human-capital and unemployment chains', extract: 'MS basis: education/training raise skills, productivity and mobility; healthcare reduces lost work time; these may reduce unemployment.' } },
+    { terms: ['productivity'], source: { label: 'Paper 2 source', ref: '2023FM-22 Q4(a)', note: 'Labour productivity causes item', extract: 'MS basis: productivity can rise through education, training, healthcare, technology, capital equipment and working conditions.' } },
+    { terms: ['infrastructure', 'corporation tax', 'investment', 'tax incentive'], source: { label: 'Paper 2 source', ref: '2025MJ-21 Q4(c)', note: 'Investment and growth chain', extract: 'MS basis: lower corporation tax can increase retained profit, investment, technology, productivity, capacity and GDP.' } },
+    { terms: ['privatisation', 'deregulation', 'subsidies', 'subsidy'], source: { label: 'Paper 2 source', ref: '2023ON-22 Q3(c)', note: 'Supply-side policy measure examples', extract: 'MS basis: privatisation, deregulation, subsidies and labour-market reforms can raise efficiency, cut costs or encourage expansion.' } },
   ],
   macroAims: [
     { terms: ['economic growth', 'balance of payments'], source: { label: 'Paper 2 source', ref: '2024ON-22 Q3(c)', note: 'Macroeconomic aim conflict wording', extract: 'MS basis: growth can raise imports and create balance of payments pressure.' } },

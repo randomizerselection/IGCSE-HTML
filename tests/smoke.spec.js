@@ -182,10 +182,10 @@ test.describe('site smoke', () => {
     const macroLessonCard = page.locator('.lesson-card').filter({ hasText: /4\.1\.1/i });
     await expect(macroLessonCard.getByRole('heading', { name: /Macroeconomic aims/i })).toBeVisible();
 
-    await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(15);
-    await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(15);
-    await expect(page.getByRole('link', { name: /^Quiz$/i })).toHaveCount(15);
-    await expect(page.getByRole('link', { name: /^Flashcards$/i })).toHaveCount(15);
+    await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(19);
+    await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(19);
+    await expect(page.getByRole('link', { name: /^Quiz$/i })).toHaveCount(19);
+    await expect(page.getByRole('link', { name: /^Flashcards$/i })).toHaveCount(19);
     await expect(page.getByRole('link', { name: /Handout view/i }).first()).toHaveAttribute('href', /view=print/);
     await expect(page.getByRole('link', { name: /^Quiz$/i }).first()).toHaveAttribute('href', /view=quiz/);
     await expect(page.getByRole('link', { name: /^Flashcards$/i }).first()).toHaveAttribute('href', /view=flashcards/);
@@ -825,6 +825,10 @@ test.describe('site smoke', () => {
       'lessons/unit-4-government/4-3-monetary-policy/lesson-2.html',
       'lessons/unit-4-government/4-3-monetary-policy/lesson-3.html',
       'lessons/unit-4-government/4-3-monetary-policy/lesson-4.html',
+      'lessons/unit-4-government/4-4-supply-side-policy/lesson-1.html',
+      'lessons/unit-4-government/4-4-supply-side-policy/lesson-2.html',
+      'lessons/unit-4-government/4-4-supply-side-policy/lesson-3.html',
+      'lessons/unit-4-government/4-4-supply-side-policy/lesson-4.html',
     ];
 
     for (const flashcardPath of flashcardPaths) {
@@ -1001,6 +1005,16 @@ test.describe('site smoke', () => {
         url: 'lessons/unit-4-government/4-2-fiscal-policy/lesson-4.html#21',
         expected: /Paper 2 source/i,
       },
+      {
+        url: 'lessons/unit-4-government/4-4-supply-side-policy/lesson-1.html#6',
+        expected: /Syllabus 4\.4|2025ON-22 Q5\(b\)/i,
+        expectedQuestion: /Exam question: 2025ON-22 Q5\(b\): Explain two differences between monetary policy and supply-side policy\./i,
+      },
+      {
+        url: 'lessons/unit-4-government/4-4-supply-side-policy/lesson-1.html#14',
+        expected: /2024ON-21 Q1\(f\)|2025MJ-22 Q3\(a\)|2025ON-22 Q2\(b\)/i,
+        expectedQuestion: /Exam question: 2024ON-21 Q1\(f\): Analyse, using a production possibility curve \(PPC\) diagram/i,
+      },
     ];
 
     for (const check of checks) {
@@ -1019,6 +1033,30 @@ test.describe('site smoke', () => {
       }
       await expectNoHorizontalOverflow(page);
     }
+  });
+
+  test('supply-side PPC diagram widget renders exam-ready labels', async ({ page }) => {
+    await page.goto(pageUrl('lessons/unit-4-government/4-4-supply-side-policy/lesson-1.html') + '#14');
+
+    const diagram = page.locator('.slide.is-active .diagram-ppc');
+    await expect(diagram).toBeVisible();
+    await expect(diagram).toContainText('PPC1');
+    await expect(diagram).toContainText('PPC2');
+    await expect(diagram).toContainText('Consumer goods');
+    await expect(diagram).toContainText('Capital goods');
+    await expect(diagram).toContainText(/curves touch both axes/i);
+    await expect(page.locator('.slide.is-active')).not.toContainText(/AD-AS/i);
+
+    const diagramGeometry = await diagram.evaluate((node) => ({
+      curves: node.querySelectorAll('.diagramCurve').length,
+      axes: node.querySelectorAll('.diagramAxis').length,
+      shiftArrowPath: node.querySelector('.diagramShiftArrow')?.getAttribute('d') || '',
+    }));
+
+    expect(diagramGeometry.curves).toBeGreaterThanOrEqual(2);
+    expect(diagramGeometry.axes).toBe(2);
+    expect(diagramGeometry.shiftArrowPath).toBe('M190 156 L190 126');
+    await expectNoHorizontalOverflow(page);
   });
 
   test('term slides include subordinate Chinese definition translations', async ({ page }) => {
@@ -1222,6 +1260,21 @@ test.describe('site smoke', () => {
 
   test('monetary policy menu links back and offers lesson views', async ({ page }) => {
     await page.goto(pageUrl('lessons/unit-4-government/4-3-monetary-policy/index.html'));
+
+    await expect(page.getByRole('link', { name: /Library index/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(4);
+    await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(4);
+    await expect(page.getByRole('link', { name: /^Quiz$/i })).toHaveCount(4);
+    await expect(page.getByRole('link', { name: /^Flashcards$/i })).toHaveCount(4);
+    await expect(page.getByRole('link', { name: /Handout view/i }).first()).toHaveAttribute('href', /view=print/);
+    await expect(page.getByRole('link', { name: /^Quiz$/i }).first()).toHaveAttribute('href', /view=quiz/);
+    await expect(page.getByRole('link', { name: /^Flashcards$/i }).first()).toHaveAttribute('href', /view=flashcards/);
+
+    await expectNoHorizontalOverflow(page);
+  });
+
+  test('supply-side policy menu links back and offers lesson views', async ({ page }) => {
+    await page.goto(pageUrl('lessons/unit-4-government/4-4-supply-side-policy/index.html'));
 
     await expect(page.getByRole('link', { name: /Library index/i })).toBeVisible();
     await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(4);
