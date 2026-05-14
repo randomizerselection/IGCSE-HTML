@@ -800,16 +800,21 @@ test.describe('site smoke', () => {
     await expect(page.getByText(/Economics teacher, Suzhou Foreign Language School/i)).toBeVisible();
     await expect(page.getByText(/苏州外国语学校经济学教师/)).toBeVisible();
     await expect(page.getByRole('heading', { name: /What the materials show/i })).toHaveCount(0);
-    await expect(page.getByRole('heading', { name: /From curiosity to exam explanation/i })).toBeVisible();
-    await expect(page.getByText(/情境导入/)).toBeVisible();
-    await expect(page.getByText(/从政策问题、市场现象或真实案例出发/)).toBeVisible();
+    await expect(page.getByText(/Economics is not learned by memorising definitions alone/i)).toBeVisible();
+    await expect(page.getByRole('heading', { name: /From economic problem to transferable judgement/i })).toBeVisible();
+    await expect(page.getByText('经济问题', { exact: true })).toBeVisible();
+    await expect(page.getByText(/从稀缺、激励、市场变化或政策选择出发/)).toBeVisible();
     await expect(page.getByRole('heading', { name: /Aligned with Cambridge teaching principles/i })).toBeVisible();
     await expect(page.getByText(/Confident 自信/)).toBeVisible();
-    await expect(page.getByText(/本课程对齐剑桥教学指导/)).toBeVisible();
+    await expect(page.getByText(/Cambridge teaching principles: active learning/i)).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Active learning/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /Assessment for learning/i })).toBeVisible();
+    await expect(page.getByText(/课程以 Cambridge IGCSE Economics 0455 和剑桥教学原则为核心/)).toBeVisible();
     await expect(page.getByRole('heading', { name: /For parents/i })).toBeVisible();
     await expect(page.getByRole('heading', { name: /面向家长/i })).toBeVisible();
     await expect(page.getByRole('heading', { name: /For teachers/i })).toBeVisible();
     await expect(page.getByRole('heading', { name: /面向教师/i })).toBeVisible();
+    await expect(page.getByText(/Effective Economics revision is active skill practice/i)).toBeVisible();
     await expect(page.getByText(/does not claim formal endorsement/i)).toBeVisible();
 
     await expectNoHorizontalOverflow(page);
