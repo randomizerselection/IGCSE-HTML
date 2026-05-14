@@ -33,6 +33,7 @@ IGCSE.lesson = {
       type: 'hero',
       eyebrow:  'Lesson overview',
       title:    'Government budget and spending',
+      zhTitle: '政府预算与支出',
       subtitle: 'Fiscal policy lesson 1',
       kicker:   'How do budgets and spending choices affect the economy?',
       visual:   photos.budgetMeeting,

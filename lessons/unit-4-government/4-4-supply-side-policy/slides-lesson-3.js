@@ -47,6 +47,7 @@ IGCSE.lesson = {
       type: 'hero',
       eyebrow:  'Lesson overview',
       title:    'Market-based supply-side policies',
+      zhTitle: '市场型供给侧政策',
       subtitle: 'Supply-side policy lesson 3 - 4.4.2',
       kicker:   'How can markets, profit and competition raise productive capacity?',
       visual:   photos.taxForms,

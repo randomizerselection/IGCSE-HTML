@@ -33,6 +33,7 @@ IGCSE.lesson = {
           type: 'hero',
           eyebrow:  'Lesson overview',
           title:    'Taxation',
+      zhTitle: '税收',
           subtitle: 'Fiscal policy lesson 2',
           kicker:   'Why do governments tax, and how can taxes be classified?',
           visual:   photos.shopping,

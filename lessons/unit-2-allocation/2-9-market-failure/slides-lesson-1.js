@@ -22,6 +22,7 @@ IGCSE.lesson = {
       type: 'hero',
       eyebrow: 'Lesson overview',
       title: 'Market failure terms and causes',
+      zhTitle: '市场失灵的术语与成因',
       subtitle: '2.9.1-2.9.3 - inefficient allocation, terms and causes',
       kicker: 'Why can private incentives differ from what is best for society?',
       visual: photos.factorySmoke,

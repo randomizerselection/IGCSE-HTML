@@ -32,6 +32,17 @@
     }
     .deck-card .code { color: var(--gold); font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
     .deck-card h2 { margin: .65rem 0 .6rem; font-size: clamp(24px, 2.6vw, 38px); line-height: 1.05; letter-spacing: -0.02em; }
+    .deck-card .deck-title-zh {
+      margin: -.25rem 0 .7rem;
+      color: var(--ink-dim);
+      font-size: clamp(16px, 1.45vw, 22px);
+      line-height: 1.22;
+      font-weight: 760;
+      letter-spacing: 0;
+      text-wrap: balance;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
     .deck-card p { color: var(--muted); font-size: 15px; line-height: 1.45; margin: 0 0 1.2rem; }
     .deck-actions { margin-top: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: .65rem; }
     .deck-action.primary { color: var(--cyan); border-color: rgba(86,216,255,.32); }
@@ -56,6 +67,7 @@
       <article class="deck-card">
         <span class="code">Lesson 1 - 2.9.1-2.9.3</span>
         <h2>Terms and causes</h2>
+        <p class="deck-title-zh" lang="zh-Hans">术语与成因</p>
         <p>Market failure, private/external/social costs and benefits, public goods, merit goods, demerit goods and monopoly power.</p>
         <div class="deck-actions" aria-label="Market failure terms and causes views">
           <a class="deck-action primary" href="./lesson-1.html">Slide view</a>
@@ -67,6 +79,7 @@
       <article class="deck-card">
         <span class="code">Lesson 2 - 2.9.4</span>
         <h2>Consequences and evaluation</h2>
+        <p class="deck-title-zh" lang="zh-Hans">后果与评价</p>
         <p>Over-consumption, under-consumption, non-provision, restricted monopoly supply and balanced exam judgement.</p>
         <div class="deck-actions" aria-label="Market failure consequences and evaluation views">
           <a class="deck-action primary" href="./lesson-2.html">Slide view</a>

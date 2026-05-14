@@ -21,6 +21,7 @@ IGCSE.lesson = {
       type: 'hero',
       eyebrow: 'Lesson overview',
       title: 'Market economic system',
+      zhTitle: '市场经济体制',
       subtitle: '2.8.1 - markets, private ownership and the price mechanism',
       kicker: 'How can millions of private decisions allocate scarce resources?',
       visual: photos.starbucks,

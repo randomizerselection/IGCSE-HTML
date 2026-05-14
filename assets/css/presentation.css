@@ -398,6 +398,17 @@ body { overflow: hidden; }
   line-height: 1.08;
   letter-spacing: -0.035em;
 }
+.slide.is-hero .heroTitleZh {
+  margin-top: .24em;
+  color: var(--ink-dim);
+  font-size: clamp(24px, 2.35vw, 44px);
+  line-height: 1.16;
+  font-weight: 760;
+  letter-spacing: 0;
+  text-wrap: balance;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
 .slide.is-hero .photoPanel {
   height: min(62vh, 560px);
   min-height: 420px;

@@ -41,6 +41,7 @@ IGCSE.lesson = {
       type: 'hero',
       eyebrow:  'Lesson overview',
       title:    'Supply-side policy',
+      zhTitle: '供给侧政策',
       subtitle: 'Supply-side policy lesson 1 - 4.4.1',
       kicker:   'How can policy raise what an economy is able to produce?',
       visual:   photos.industry,

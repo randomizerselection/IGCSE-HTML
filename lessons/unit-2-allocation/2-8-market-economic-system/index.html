@@ -35,6 +35,17 @@
     .deck-card:hover, .deck-card:focus-within { transform: translateY(-4px); border-color: var(--line-strong); background: var(--card-bg-hi); }
     .deck-card .code { color: var(--gold); font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
     .deck-card h2 { margin: .65rem 0 .6rem; font-size: clamp(24px, 2.6vw, 38px); line-height: 1.05; letter-spacing: -0.02em; }
+    .deck-card .deck-title-zh {
+      margin: -.25rem 0 .7rem;
+      color: var(--ink-dim);
+      font-size: clamp(16px, 1.45vw, 22px);
+      line-height: 1.22;
+      font-weight: 760;
+      letter-spacing: 0;
+      text-wrap: balance;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
     .deck-card p { color: var(--muted); font-size: 15px; line-height: 1.45; margin: 0 0 1.2rem; }
     .deck-actions { margin-top: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: .65rem; }
     .deck-action.primary { color: var(--cyan); border-color: rgba(86,216,255,.32); }
@@ -59,6 +70,7 @@
       <article class="deck-card">
         <span class="code">Lesson 1 - 2.8.1</span>
         <h2>Market economic system</h2>
+        <p class="deck-title-zh" lang="zh-Hans">市场经济体制</p>
         <p>Resources allocated mainly by market forces and the price mechanism, with private sector ownership and the profit motive.</p>
         <div class="deck-actions" aria-label="Market economic system views">
           <a class="deck-action primary" href="./lesson-1.html">Slide view</a>
@@ -70,6 +82,7 @@
       <article class="deck-card">
         <span class="code">Lesson 2 - 2.8.1</span>
         <h2>Price mechanism</h2>
+        <p class="deck-title-zh" lang="zh-Hans">价格机制</p>
         <p>Demand and supply signals, profit incentives and resources moving between uses.</p>
         <div class="deck-actions" aria-label="Price mechanism views">
           <a class="deck-action primary" href="./lesson-2.html">Slide view</a>
@@ -81,6 +94,7 @@
       <article class="deck-card">
         <span class="code">Lesson 3 - 2.8.2</span>
         <h2>Arguments for markets</h2>
+        <p class="deck-title-zh" lang="zh-Hans">支持市场的论点</p>
         <p>Choice, incentives and efficiency, with fact-based examples from apps, EVs and logistics.</p>
         <div class="deck-actions" aria-label="Arguments for markets views">
           <a class="deck-action primary" href="./lesson-3.html">Slide view</a>
@@ -92,6 +106,7 @@
       <article class="deck-card">
         <span class="code">Lesson 4 - 2.8.2</span>
         <h2>Arguments against markets</h2>
+        <p class="deck-title-zh" lang="zh-Hans">反对市场的论点</p>
         <p>Inequality, market failure and under-provision of some goods as limits of market allocation.</p>
         <div class="deck-actions" aria-label="Arguments against markets views">
           <a class="deck-action primary" href="./lesson-4.html">Slide view</a>

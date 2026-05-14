@@ -196,6 +196,23 @@
       letter-spacing: -0.035em;
     }
 
+    .section-title-zh,
+    .unit-title-zh,
+    .topic-title-zh {
+      color: var(--ink-dim);
+      font-weight: 760;
+      letter-spacing: 0;
+      text-wrap: balance;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+
+    .section-title-zh {
+      margin-top: .45rem;
+      font-size: clamp(18px, 1.65vw, 28px);
+      line-height: 1.22;
+    }
+
     .section-intro {
       color: var(--muted);
       font-size: 16px;
@@ -260,6 +277,18 @@
       letter-spacing: 0;
       overflow-wrap: break-word;
       hyphens: manual;
+    }
+
+    .lesson-card .deck-title-zh {
+      margin: .28rem 0 0;
+      color: var(--ink-dim);
+      font-size: 14px;
+      font-weight: 760;
+      line-height: 1.25;
+      letter-spacing: 0;
+      text-wrap: balance;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
     }
 
     .lesson-card p {
@@ -476,6 +505,12 @@
       letter-spacing: 0;
     }
 
+    .unit-title-zh {
+      margin-top: .28rem;
+      font-size: clamp(15px, 1.2vw, 19px);
+      line-height: 1.24;
+    }
+
     .unit-meta {
       display: flex;
       flex-wrap: wrap;
@@ -522,6 +557,12 @@
       line-height: 1.14;
       letter-spacing: 0;
       padding-top: .16rem;
+    }
+
+    .topic-title-zh {
+      margin-top: .22rem;
+      font-size: clamp(14px, 1.05vw, 17px);
+      line-height: 1.24;
     }
 
     .topic-lessons {
@@ -736,6 +777,7 @@
         <div>
           <div class="section-kicker">Current collection</div>
           <h2 id="materials-title">IGCSE Economics Lesson Library</h2>
+          <p class="section-title-zh" lang="zh-Hans">IGCSE经济学课程库</p>
         </div>
       </div>
 
@@ -749,6 +791,7 @@
               <div>
                 <span class="unit-kicker">Unit 1</span>
                 <h3>The basic economic problem</h3>
+                <p class="unit-title-zh" lang="zh-Hans">基本经济问题</p>
               </div>
               <div class="unit-meta">
                 <span class="status">Coming later</span>
@@ -766,6 +809,7 @@
               <div>
                 <span class="unit-kicker">Unit 2</span>
                 <h3>The allocation of resources</h3>
+                <p class="unit-title-zh" lang="zh-Hans">资源配置</p>
               </div>
               <div class="unit-meta">
                 <span class="status live">Lessons available</span>
@@ -776,10 +820,12 @@
                 <span class="topic-ref">2.8</span>
                 <div class="topic-copy">
                   <h4>Market economic system and market arguments</h4>
+                  <p class="topic-title-zh" lang="zh-Hans">市场经济体制与市场论点</p>
                   <div class="topic-lessons">
                     <article class="lesson-card featured">
                       <span class="code">2.8.1</span>
                       <h3>Market economic system</h3>
+                      <p class="deck-title-zh" lang="zh-Hans">市场经济体制</p>
                       <div class="lesson-actions" aria-label="Market economic system views">
                         <a class="lesson-action primary" href="lessons/unit-2-allocation/2-8-market-economic-system/lesson-1.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-2-allocation/2-8-market-economic-system/lesson-1.html?view=print">Handout view</a>
@@ -790,6 +836,7 @@
                     <article class="lesson-card featured">
                       <span class="code">2.8.1</span>
                       <h3>Price mechanism</h3>
+                      <p class="deck-title-zh" lang="zh-Hans">价格机制</p>
                       <div class="lesson-actions" aria-label="Price mechanism views">
                         <a class="lesson-action primary" href="lessons/unit-2-allocation/2-8-market-economic-system/lesson-2.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-2-allocation/2-8-market-economic-system/lesson-2.html?view=print">Handout view</a>
@@ -800,6 +847,7 @@
                     <article class="lesson-card featured">
                       <span class="code">2.8.2</span>
                       <h3>Arguments for markets</h3>
+                      <p class="deck-title-zh" lang="zh-Hans">支持市场的论点</p>
                       <div class="lesson-actions" aria-label="Arguments for markets views">
                         <a class="lesson-action primary" href="lessons/unit-2-allocation/2-8-market-economic-system/lesson-3.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-2-allocation/2-8-market-economic-system/lesson-3.html?view=print">Handout view</a>
@@ -810,6 +858,7 @@
                     <article class="lesson-card featured">
                       <span class="code">2.8.2</span>
                       <h3>Arguments against markets</h3>
+                      <p class="deck-title-zh" lang="zh-Hans">反对市场的论点</p>
                       <div class="lesson-actions" aria-label="Arguments against markets views">
                         <a class="lesson-action primary" href="lessons/unit-2-allocation/2-8-market-economic-system/lesson-4.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-2-allocation/2-8-market-economic-system/lesson-4.html?view=print">Handout view</a>
@@ -824,10 +873,12 @@
                 <span class="topic-ref">2.9</span>
                 <div class="topic-copy">
                   <h4>Market failure</h4>
+                  <p class="topic-title-zh" lang="zh-Hans">市场失灵</p>
                   <div class="topic-lessons">
                     <article class="lesson-card featured">
                       <span class="code">2.9.1-2.9.3</span>
                       <h3>Terms and causes</h3>
+                      <p class="deck-title-zh" lang="zh-Hans">术语与成因</p>
                       <div class="lesson-actions" aria-label="Market failure terms and causes views">
                         <a class="lesson-action primary" href="lessons/unit-2-allocation/2-9-market-failure/lesson-1.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-2-allocation/2-9-market-failure/lesson-1.html?view=print">Handout view</a>
@@ -838,6 +889,7 @@
                     <article class="lesson-card featured">
                       <span class="code">2.9.4</span>
                       <h3>Consequences and evaluation</h3>
+                      <p class="deck-title-zh" lang="zh-Hans">后果与评价</p>
                       <div class="lesson-actions" aria-label="Market failure consequences and evaluation views">
                         <a class="lesson-action primary" href="lessons/unit-2-allocation/2-9-market-failure/lesson-2.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-2-allocation/2-9-market-failure/lesson-2.html?view=print">Handout view</a>
@@ -861,6 +913,7 @@
               <div>
                 <span class="unit-kicker">Unit 3</span>
                 <h3>Microeconomic decision makers</h3>
+                <p class="unit-title-zh" lang="zh-Hans">微观经济决策者</p>
               </div>
               <div class="unit-meta">
                 <span class="status">Coming later</span>
@@ -878,6 +931,7 @@
               <div>
                 <span class="unit-kicker">Unit 4</span>
                 <h3>Government and the macroeconomy</h3>
+                <p class="unit-title-zh" lang="zh-Hans">政府与宏观经济</p>
               </div>
               <div class="unit-meta">
                 <span class="status live">Lessons available</span>
@@ -888,10 +942,12 @@
                 <span class="topic-ref">4.1</span>
                 <div class="topic-copy">
                   <h4>Macroeconomic aims</h4>
+                  <p class="topic-title-zh" lang="zh-Hans">宏观经济目标</p>
                   <div class="topic-lessons">
                     <article class="lesson-card featured">
                       <span class="code">4.1.1</span>
                       <h3>Macro<wbr>economic aims</h3>
+                      <p class="deck-title-zh" lang="zh-Hans">宏观经济目标</p>
                       <div class="lesson-actions" aria-label="Macroeconomic aims views">
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-1-macroeconomic-aims/index.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-4-government/4-1-macroeconomic-aims/index.html?view=print">Handout view</a>
@@ -906,10 +962,12 @@
                 <span class="topic-ref">4.2</span>
                 <div class="topic-copy">
                   <h4>Fiscal policy</h4>
+                  <p class="topic-title-zh" lang="zh-Hans">财政政策</p>
                   <div class="topic-lessons">
                     <article class="lesson-card featured">
                       <span class="code">4.2.1-4.2.2</span>
                       <h3>Government budget and spending</h3>
+                      <p class="deck-title-zh" lang="zh-Hans">政府预算与支出</p>
                       <div class="lesson-actions" aria-label="Government budget and spending views">
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html?view=print">Handout view</a>
@@ -920,6 +978,7 @@
                     <article class="lesson-card featured">
                       <span class="code">4.2.3</span>
                       <h3>Taxation foundations</h3>
+                      <p class="deck-title-zh" lang="zh-Hans">税收基础</p>
                       <div class="lesson-actions" aria-label="Taxation foundations views">
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-2.html?view=print">Handout view</a>
@@ -930,6 +989,7 @@
                     <article class="lesson-card featured">
                       <span class="code">4.2.3</span>
                       <h3>Tax structures</h3>
+                      <p class="deck-title-zh" lang="zh-Hans">税收结构</p>
                       <div class="lesson-actions" aria-label="Tax structures views">
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-3.html?view=print">Handout view</a>
@@ -940,6 +1000,7 @@
                     <article class="lesson-card featured">
                       <span class="code">4.2.4-4.2.6</span>
                       <h3>Fiscal-policy measures and effects</h3>
+                      <p class="deck-title-zh" lang="zh-Hans">财政政策措施与影响</p>
                       <div class="lesson-actions" aria-label="Fiscal-policy measures and effects views">
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-4.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-4-government/4-2-fiscal-policy/lesson-4.html?view=print">Handout view</a>
@@ -954,10 +1015,12 @@
                 <span class="topic-ref">4.3</span>
                 <div class="topic-copy">
                   <h4>Monetary policy</h4>
+                  <p class="topic-title-zh" lang="zh-Hans">货币政策</p>
                   <div class="topic-lessons">
                     <article class="lesson-card featured">
                       <span class="code">4.3.1</span>
                       <h3>Money supply and monetary policy</h3>
+                      <p class="deck-title-zh" lang="zh-Hans">货币供应与货币政策</p>
                       <div class="lesson-actions" aria-label="Money supply and monetary policy views">
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-3-monetary-policy/lesson-1.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-4-government/4-3-monetary-policy/lesson-1.html?view=print">Handout view</a>
@@ -968,6 +1031,7 @@
                     <article class="lesson-card featured">
                       <span class="code">4.3.2</span>
                       <h3>Interest rates</h3>
+                      <p class="deck-title-zh" lang="zh-Hans">利率</p>
                       <div class="lesson-actions" aria-label="Interest rates views">
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-3-monetary-policy/lesson-2.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-4-government/4-3-monetary-policy/lesson-2.html?view=print">Handout view</a>
@@ -978,6 +1042,7 @@
                     <article class="lesson-card featured">
                       <span class="code">4.3.2</span>
                       <h3>Money supply and exchange rates</h3>
+                      <p class="deck-title-zh" lang="zh-Hans">货币供应与汇率</p>
                       <div class="lesson-actions" aria-label="Money supply and exchange rates views">
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-3-monetary-policy/lesson-3.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-4-government/4-3-monetary-policy/lesson-3.html?view=print">Handout view</a>
@@ -988,6 +1053,7 @@
                     <article class="lesson-card featured">
                       <span class="code">4.3.3</span>
                       <h3>Effects of monetary policy</h3>
+                      <p class="deck-title-zh" lang="zh-Hans">货币政策的影响</p>
                       <div class="lesson-actions" aria-label="Effects of monetary policy views">
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-3-monetary-policy/lesson-4.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-4-government/4-3-monetary-policy/lesson-4.html?view=print">Handout view</a>
@@ -1002,10 +1068,12 @@
                 <span class="topic-ref">4.4</span>
                 <div class="topic-copy">
                   <h4>Supply-side policy</h4>
+                  <p class="topic-title-zh" lang="zh-Hans">供给侧政策</p>
                   <div class="topic-lessons">
                     <article class="lesson-card featured">
                       <span class="code">4.4.1</span>
                       <h3>Productive capacity and total supply</h3>
+                      <p class="deck-title-zh" lang="zh-Hans">生产能力与总供给</p>
                       <div class="lesson-actions" aria-label="Productive capacity and total supply views">
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-4-supply-side-policy/lesson-1.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-4-government/4-4-supply-side-policy/lesson-1.html?view=print">Handout view</a>
@@ -1016,6 +1084,7 @@
                     <article class="lesson-card featured">
                       <span class="code">4.4.2</span>
                       <h3>Interventionist supply-side policies</h3>
+                      <p class="deck-title-zh" lang="zh-Hans">干预型供给侧政策</p>
                       <div class="lesson-actions" aria-label="Interventionist supply-side policies views">
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-4-supply-side-policy/lesson-2.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-4-government/4-4-supply-side-policy/lesson-2.html?view=print">Handout view</a>
@@ -1026,6 +1095,7 @@
                     <article class="lesson-card featured">
                       <span class="code">4.4.2</span>
                       <h3>Market-based supply-side policies</h3>
+                      <p class="deck-title-zh" lang="zh-Hans">市场型供给侧政策</p>
                       <div class="lesson-actions" aria-label="Market-based supply-side policies views">
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-4-supply-side-policy/lesson-3.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-4-government/4-4-supply-side-policy/lesson-3.html?view=print">Handout view</a>
@@ -1036,6 +1106,7 @@
                     <article class="lesson-card featured">
                       <span class="code">4.4.3</span>
                       <h3>Effects and evaluation</h3>
+                      <p class="deck-title-zh" lang="zh-Hans">影响与评价</p>
                       <div class="lesson-actions" aria-label="Effects and evaluation views">
                         <a class="lesson-action primary" href="lessons/unit-4-government/4-4-supply-side-policy/lesson-4.html">Slide view</a>
                         <a class="lesson-action secondary" href="lessons/unit-4-government/4-4-supply-side-policy/lesson-4.html?view=print">Handout view</a>
@@ -1059,6 +1130,7 @@
               <div>
                 <span class="unit-kicker">Unit 5</span>
                 <h3>Economic development</h3>
+                <p class="unit-title-zh" lang="zh-Hans">经济发展</p>
               </div>
               <div class="unit-meta">
                 <span class="status">Coming later</span>
@@ -1076,6 +1148,7 @@
               <div>
                 <span class="unit-kicker">Unit 6</span>
                 <h3>International trade and globalisation</h3>
+                <p class="unit-title-zh" lang="zh-Hans">国际贸易与全球化</p>
               </div>
               <div class="unit-meta">
                 <span class="status">Coming later</span>

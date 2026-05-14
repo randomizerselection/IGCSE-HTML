@@ -472,6 +472,7 @@ const renderers = {
     <div>
       ${s.subtitle ? `<div class="sub">${esc(s.subtitle)}</div>` : ''}
       <h1>${esc(s.title)}</h1>
+      ${s.zhTitle ? `<div class="heroTitleZh" lang="zh-Hans">${esc(s.zhTitle)}</div>` : ''}
       ${s.kicker ? `<div class="kicker">${esc(s.kicker)}</div>` : ''}
     </div>
   `,

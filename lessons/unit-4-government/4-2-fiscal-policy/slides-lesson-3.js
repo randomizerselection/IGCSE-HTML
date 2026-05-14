@@ -33,6 +33,7 @@ IGCSE.lesson = {
       type: 'hero',
       eyebrow:  'Lesson overview',
       title:    'Progressive, regressive and proportional taxes',
+      zhTitle: '累进税、累退税和比例税',
       subtitle: 'Fiscal policy lesson 3',
       kicker:   'Who pays a higher share of income when taxes change?',
       visual:   photos.taxForms,

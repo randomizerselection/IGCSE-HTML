@@ -22,6 +22,7 @@ IGCSE.lesson = {
       type: 'hero',
       eyebrow: 'Lesson overview',
       title: 'Consequences of market failure',
+      zhTitle: '市场失灵的后果',
       subtitle: '2.9.4 - over-consumption, under-consumption, non-provision and restricted supply',
       kicker: 'What happens when markets allocate too much, too little or none at all?',
       visual: photos.tobacco,

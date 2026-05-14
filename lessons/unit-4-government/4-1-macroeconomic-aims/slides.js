@@ -22,6 +22,7 @@ IGCSE.lesson = {
       type: 'hero',
       eyebrow: 'Lesson overview',
       title: 'Macroeconomic aims',
+      zhTitle: '宏观经济目标',
       subtitle: '4.1.1',
       kicker: 'What is the government trying to achieve for the whole economy?',
       visual: photos.worldBankHeadquarters,

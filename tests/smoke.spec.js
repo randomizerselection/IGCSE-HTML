@@ -7,6 +7,48 @@ const vm = require('vm');
 const root = path.resolve(__dirname, '..');
 const pageUrl = (relativePath) => pathToFileURL(path.join(root, relativePath)).toString();
 const remoteUrlPattern = /^https?:\/\//i;
+const deckTitleTranslations = {
+  'Market economic system': '市场经济体制',
+  'Price mechanism': '价格机制',
+  'Arguments for markets': '支持市场的论点',
+  'Arguments against markets': '反对市场的论点',
+  'Terms and causes': '术语与成因',
+  'Consequences and evaluation': '后果与评价',
+  'Macroeconomic aims': '宏观经济目标',
+  'Government budget and spending': '政府预算与支出',
+  'Taxation foundations': '税收基础',
+  'Tax structures': '税收结构',
+  'Fiscal-policy measures and effects': '财政政策措施与影响',
+  'Money supply and monetary policy': '货币供应与货币政策',
+  'Interest rates': '利率',
+  'Money supply and exchange rates': '货币供应与汇率',
+  'Effects of monetary policy': '货币政策的影响',
+  'Productive capacity and total supply': '生产能力与总供给',
+  'Interventionist supply-side policies': '干预型供给侧政策',
+  'Market-based supply-side policies': '市场型供给侧政策',
+  'Effects and evaluation': '影响与评价',
+};
+const hierarchyTitleTranslations = {
+  section: {
+    'IGCSE Economics Lesson Library': 'IGCSE经济学课程库',
+  },
+  units: {
+    'The basic economic problem': '基本经济问题',
+    'The allocation of resources': '资源配置',
+    'Microeconomic decision makers': '微观经济决策者',
+    'Government and the macroeconomy': '政府与宏观经济',
+    'Economic development': '经济发展',
+    'International trade and globalisation': '国际贸易与全球化',
+  },
+  topics: {
+    'Market economic system and market arguments': '市场经济体制与市场论点',
+    'Market failure': '市场失灵',
+    'Macroeconomic aims': '宏观经济目标',
+    'Fiscal policy': '财政政策',
+    'Monetary policy': '货币政策',
+    'Supply-side policy': '供给侧政策',
+  },
+};
 
 function findHtmlFiles(dir, base = dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
@@ -179,8 +221,25 @@ test.describe('site smoke', () => {
     await expect(page.getByRole('link', { name: /Handout view/i }).first()).toBeVisible();
     await expect(page.getByRole('link', { name: /^Quiz$/i }).first()).toBeVisible();
     await expect(page.getByRole('link', { name: /^Flashcards$/i }).first()).toBeVisible();
+    await expect(page.locator('.section-title-zh')).toHaveText(hierarchyTitleTranslations.section['IGCSE Economics Lesson Library']);
+
+    for (const [title, translation] of Object.entries(hierarchyTitleTranslations.units)) {
+      const unit = page.locator('.unit-summary').filter({ has: page.getByRole('heading', { name: title }) });
+      await expect(unit.locator('.unit-title-zh')).toHaveText(translation);
+    }
+
+    for (const [title, translation] of Object.entries(hierarchyTitleTranslations.topics)) {
+      const topic = page.locator('.topic-copy').filter({ has: page.getByRole('heading', { name: title }) });
+      await expect(topic.locator('.topic-title-zh')).toHaveText(translation);
+    }
+
     const macroLessonCard = page.locator('.lesson-card').filter({ hasText: /4\.1\.1/i });
     await expect(macroLessonCard.getByRole('heading', { name: /Macroeconomic aims/i })).toBeVisible();
+    await expect(macroLessonCard.locator('.deck-title-zh')).toHaveText(deckTitleTranslations['Macroeconomic aims']);
+
+    for (const translation of Object.values(deckTitleTranslations)) {
+      await expect(page.locator('.lesson-card .deck-title-zh', { hasText: translation }).first()).toBeVisible();
+    }
 
     await expect(page.getByRole('link', { name: /Slide view/i })).toHaveCount(19);
     await expect(page.getByRole('link', { name: /Handout view/i })).toHaveCount(19);
@@ -202,6 +261,62 @@ test.describe('site smoke', () => {
     expect(macroHeadingBox).not.toBeNull();
     expect(macroHeadingBox.x).toBeGreaterThanOrEqual(0);
     expect(macroHeadingBox.x + macroHeadingBox.width).toBeLessThanOrEqual(viewport.width + 1);
+  });
+
+  test('unit deck menus show subordinate Chinese deck titles', async ({ page }) => {
+    const menus = [
+      {
+        path: 'lessons/unit-2-allocation/2-8-market-economic-system/index.html',
+        titles: [
+          'Market economic system',
+          'Price mechanism',
+          'Arguments for markets',
+          'Arguments against markets',
+        ],
+      },
+      {
+        path: 'lessons/unit-2-allocation/2-9-market-failure/index.html',
+        titles: ['Terms and causes', 'Consequences and evaluation'],
+      },
+      {
+        path: 'lessons/unit-4-government/4-2-fiscal-policy/index.html',
+        titles: [
+          'Government budget and spending',
+          'Taxation foundations',
+          'Tax structures',
+          'Fiscal-policy measures and effects',
+        ],
+      },
+      {
+        path: 'lessons/unit-4-government/4-3-monetary-policy/index.html',
+        titles: [
+          'Money supply and monetary policy',
+          'Interest rates',
+          'Money supply and exchange rates',
+          'Effects of monetary policy',
+        ],
+      },
+      {
+        path: 'lessons/unit-4-government/4-4-supply-side-policy/index.html',
+        titles: [
+          'Productive capacity and total supply',
+          'Interventionist supply-side policies',
+          'Market-based supply-side policies',
+          'Effects and evaluation',
+        ],
+      },
+    ];
+
+    for (const menu of menus) {
+      await page.goto(pageUrl(menu.path));
+
+      for (const title of menu.titles) {
+        const card = page.locator('.deck-card').filter({ has: page.getByRole('heading', { name: title }) });
+        await expect(card.locator('.deck-title-zh')).toHaveText(deckTitleTranslations[title]);
+      }
+
+      await expectNoHorizontalOverflow(page);
+    }
   });
 
   test('shared photo catalogue uses complete local image metadata', () => {
@@ -242,6 +357,25 @@ test.describe('site smoke', () => {
     }
   });
 
+  test('all opening hero slides include Chinese deck titles', () => {
+    const slideFiles = findSlideFiles(path.join(root, 'lessons'), root)
+      .filter((slideFile) => !slideFile.includes('/_template/'));
+    const missingZhTitles = [];
+
+    for (const slideFile of slideFiles) {
+      const lesson = readLesson(slideFile);
+      const heroSlide = (lesson.slides || []).find((slide) => slide.type === 'hero');
+      if (!heroSlide?.zhTitle) {
+        missingZhTitles.push(slideFile);
+        continue;
+      }
+
+      expect(heroSlide.zhTitle, `${slideFile} hero zhTitle`).not.toMatch(/\?{2,}/);
+    }
+
+    expect(missingZhTitles).toEqual([]);
+  });
+
   test('complete lesson decks include fact and discussion slides', () => {
     const slideFiles = findSlideFiles(path.join(root, 'lessons'), root)
       .filter((slideFile) => !slideFile.includes('/_template/'));
@@ -258,6 +392,40 @@ test.describe('site smoke', () => {
     }
 
     expect(missingCoverage).toEqual([]);
+  });
+
+  test('exam chain slides are followed by mark-scheme model answers', () => {
+    const slideFiles = findSlideFiles(path.join(root, 'lessons'), root)
+      .filter((slideFile) => !slideFile.includes('/_template/'));
+    const missingModelAnswers = [];
+
+    for (const slideFile of slideFiles) {
+      const lesson = readLesson(slideFile);
+      const slides = lesson.slides || [];
+
+      for (const [index, slide] of slides.entries()) {
+        if (slide.type !== 'exam') continue;
+
+        const nextSlide = slides[index + 1];
+        const label = `${slideFile} slide ${index + 1}`;
+        if (nextSlide?.type !== 'modelAnswer') {
+          missingModelAnswers.push(`${label}: next slide is not modelAnswer`);
+          continue;
+        }
+
+        expect(nextSlide.question, `${label} model question`).toBe(slide.question);
+        expect(nextSlide.answer, `${label} model answer`).toEqual(expect.any(String));
+        expect(nextSlide.answer.trim(), `${label} model answer`).not.toHaveLength(0);
+        expect(nextSlide.markSchemeNote, `${label} markSchemeNote`).toEqual(expect.any(String));
+        expect(nextSlide.markSchemeNote, `${label} markSchemeNote`).toMatch(/\b(?:explain|analyse|discuss|mark|scheme|level|chain|judgement|transmission)\b/i);
+
+        for (const keyword of slide.keywords || []) {
+          expect(nextSlide.links || [], `${label} links include ${keyword}`).toContain(keyword);
+        }
+      }
+    }
+
+    expect(missingModelAnswers).toEqual([]);
   });
 
   test('fact slide text keeps source attribution in source lines', () => {

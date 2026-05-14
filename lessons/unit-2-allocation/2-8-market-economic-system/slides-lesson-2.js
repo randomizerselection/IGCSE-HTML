@@ -21,6 +21,7 @@ IGCSE.lesson = {
       type: 'hero',
       eyebrow: 'Lesson overview',
       title: 'Price mechanism',
+      zhTitle: '价格机制',
       subtitle: '2.8.1 - demand and supply signals allocate resources',
       kicker: 'How do prices tell firms where resources should move?',
       visual: photos.vegetables,

@@ -351,24 +351,70 @@ window.IGCSE = window.IGCSE || {};
   };
 
   const supplySidePolicy = {
-    classroom: fiscalPolicy.classroom,
-    healthcare: fiscalPolicy.healthcare,
+    singaporeIte: photo(
+      'supply-side-policy',
+      'singapore-ite-headquarters.jpg',
+      'An aeroplane displayed at the Institute of Technical Education headquarters in Singapore.',
+      'Wikimedia Commons / ProjectManhattan',
+      'https://commons.wikimedia.org/wiki/File:Aeroplane_at_ITE_HQ,_Singapore.jpg'
+    ),
+    vwApprentices: photo(
+      'supply-side-policy',
+      'vw-apprentices-training.jpg',
+      'Apprentices training in a Volkswagen workshop in Wolfsburg, Germany.',
+      'Bundesarchiv, B 145 Bild-F060162-0011 / Engelbert Reineke / CC-BY-SA 3.0',
+      'https://commons.wikimedia.org/wiki/File:Bundesarchiv_B_145_Bild-F060162-0011,_Wolfsburg,_VW_Autowerk,_Lehrlingsausbildung.jpg'
+    ),
+    autoMechanicsTraining: photo(
+      'supply-side-policy',
+      'auto-mechanics-vocational-training.jpg',
+      'A student learns engine mechanics at Chawama Youth Resource Centre in Zambia.',
+      'Wikimedia Commons / IICD',
+      'https://commons.wikimedia.org/wiki/File:Auto_mechanics_class_at_Chawama_Youth_Resource_Centre_(5348624275).jpg'
+    ),
+    employmentOffice: photo(
+      'supply-side-policy',
+      'employment-office-erfurt.jpg',
+      'The public employment office building in Erfurt, Germany.',
+      'Wikimedia Commons / Giorno2',
+      'https://commons.wikimedia.org/wiki/File:Agentur_f%C3%BCr_Arbeit_Arbeitsamt_Erfurt_1.JPG'
+    ),
+    industrialRobot: photo(
+      'supply-side-policy',
+      'industrial-riveting-robot.jpg',
+      'An industrial robot used in an automated riveting process.',
+      'Wikimedia Commons / Michael KR',
+      'https://commons.wikimedia.org/wiki/File:Blindniet_Roboteranlage_4327.jpg'
+    ),
+    corporationTaxReturn: photo(
+      'supply-side-policy',
+      'corporation-tax-return-1120.jpg',
+      'A United States corporation income tax return form.',
+      'Wikimedia Commons / Internal Revenue Service',
+      'https://commons.wikimedia.org/wiki/File:US_Corporation_Income_Tax_Return_2011_form_1120.jpg'
+    ),
+    smallMobilePhoneShop: photo(
+      'supply-side-policy',
+      'small-mobile-phone-shop.jpg',
+      'A small mobile phone shop selling phones and wireless internet access.',
+      'Wikimedia Commons / Oxfam East Africa',
+      'https://commons.wikimedia.org/wiki/File:Mobile_phone_shop_(7550611126).jpg'
+    ),
+    healthcareWorkforce: fiscalPolicy.healthcare,
     roadwork: fiscalPolicy.roadwork,
-    industry: fiscalPolicy.industry,
-    port: fiscalPolicy.port,
-    taxForms: fiscalPolicy.taxForms,
-    shopping: fiscalPolicy.shopping,
+    chipsInvestment: fiscalPolicyFacts.chipsForAmerica,
+    portTerminal: fiscalPolicyFacts.euCbam,
+    stockCertificate: fiscalPolicyFacts.hmrcLondon,
     fed: monetaryPolicy.fed,
-    exchangeRate: monetaryPolicy.exchangeRate,
   };
 
   const supplySidePolicyFacts = {
-    skillsTraining: fiscalPolicyFacts.finlandEducation,
-    vocationalEducation: fiscalPolicy.classroom,
-    infrastructure: fiscalPolicy.roadwork,
+    skillsTraining: supplySidePolicy.singaporeIte,
+    vocationalEducation: supplySidePolicy.vwApprentices,
+    infrastructure: supplySidePolicy.portTerminal,
     chipsInvestment: fiscalPolicyFacts.chipsForAmerica,
-    portLogistics: fiscalPolicy.port,
-    healthcareProductivity: fiscalPolicy.healthcare,
+    portLogistics: supplySidePolicy.portTerminal,
+    healthcareProductivity: supplySidePolicy.healthcareWorkforce,
   };
 
   IGCSE.photos = {

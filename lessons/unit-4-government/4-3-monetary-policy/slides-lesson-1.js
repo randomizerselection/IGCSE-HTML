@@ -33,6 +33,7 @@ IGCSE.lesson = {
       type: 'hero',
       eyebrow:  'Lesson overview',
       title:    'Money supply and monetary policy',
+      zhTitle: '货币供应与货币政策',
       subtitle: 'Monetary policy lesson 1 - 4.3.1',
       kicker:   'How can a central bank influence macroeconomic aims?',
       visual:   photos.pboc,
