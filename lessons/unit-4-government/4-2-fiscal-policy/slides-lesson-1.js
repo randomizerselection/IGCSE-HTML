@@ -176,6 +176,7 @@ IGCSE.lesson = {
       eyebrow: 'Learn',
       title:   'Main areas of spending',
       cardStyle: 'compactVisual',
+      cardLayout: 'balancedGrid',
       cards: [
         { title: 'Education', zhTitle: '教育', body: 'schools and training', icon: 'education' },
         { title: 'Healthcare', zhTitle: '医疗保健', body: 'hospitals and public health', icon: 'healthcare' },
@@ -184,7 +185,6 @@ IGCSE.lesson = {
         { title: 'Defence', zhTitle: '国防', body: 'national security', icon: 'defence' },
         { title: 'Industry support', zhTitle: '产业支持', body: 'subsidies and research', icon: 'industry' },
       ],
-      visual: photos.budgetHearing,
       partialReview: ['.cardgrid > .card'],
     },
     {
@@ -223,15 +223,15 @@ IGCSE.lesson = {
       eyebrow: 'Learn',
       title:   'Why governments spend',
       cardStyle: 'compactVisual',
+      cardLayout: 'balancedGrid',
       cards: [
-        { title: 'Merit goods', zhTitle: '有益品', body: 'education, healthcare', num: '1', icon: 'education' },
-        { title: 'Public goods', zhTitle: '公共物品', body: 'defence', num: '2', icon: 'publicGood' },
-        { title: 'Infrastructure', zhTitle: '基础设施', body: 'roads, rail, ports', num: '3', icon: 'infrastructure' },
-        { title: 'Key industries', zhTitle: '关键产业', body: 'subsidies, R&D', num: '4', icon: 'industry' },
-        { title: 'Inequality', zhTitle: '不平等', body: 'benefits, pensions', num: '5', icon: 'redistribution' },
-        { title: 'Macroeconomy', zhTitle: '宏观经济', body: 'demand, inflation', num: '6', icon: 'macroeconomy' },
+        { title: 'Merit goods', zhTitle: '有益品', body: 'education, healthcare', icon: 'education' },
+        { title: 'Public goods', zhTitle: '公共物品', body: 'defence', icon: 'publicGood' },
+        { title: 'Infrastructure', zhTitle: '基础设施', body: 'roads, rail, ports', icon: 'infrastructure' },
+        { title: 'Key industries', zhTitle: '关键产业', body: 'subsidies, R&D', icon: 'industry' },
+        { title: 'Inequality', zhTitle: '不平等', body: 'benefits, pensions', icon: 'redistribution' },
+        { title: 'Macroeconomy', zhTitle: '宏观经济', body: 'demand, inflation', icon: 'macroeconomy' },
       ],
-      visual: photos.budgetHearing,
       partialReview: ['.cardgrid > .card'],
     },
     {

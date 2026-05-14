@@ -818,6 +818,19 @@ test.describe('site smoke', () => {
         path: 'lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html',
         hash: '#14',
         title: /Main areas of spending/i,
+        rows: testInfo.project.name.includes('phone') ? 3 : 2,
+      },
+      {
+        path: 'lessons/unit-4-government/4-2-fiscal-policy/lesson-1.html',
+        hash: '#17',
+        title: /Why governments spend/i,
+        rows: testInfo.project.name.includes('phone') ? 3 : 2,
+      },
+      {
+        path: 'lessons/unit-4-government/4-2-fiscal-policy/lesson-4.html',
+        hash: '#19',
+        title: /Fiscal policy and macro aims/i,
+        rows: testInfo.project.name.includes('phone') ? 3 : 2,
       },
       {
         path: 'lessons/unit-4-government/4-3-monetary-policy/lesson-1.html',
